@@ -25,6 +25,7 @@ const MIGRATIONS: &[(&str, &str)] = &[
     ("004_edges", include_str!("../schema/004_edges.sql")),
     ("005_tag_map", include_str!("../schema/005_tag_map.sql")),
     ("006_overlays", include_str!("../schema/006_overlays.sql")),
+    ("007_conditions", include_str!("../schema/007_conditions.sql")),
 ];
 
 /// How many migrations this build knows.

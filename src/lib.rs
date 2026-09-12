@@ -3,6 +3,7 @@
 //! The deliverable of this repo is a SQLite file. Everything here exists to
 //! produce one and to prove things about it.
 
+pub mod conditions;
 pub mod connectors;
 pub mod ingest;
 pub mod mapdb;

@@ -48,8 +48,12 @@ pub struct Connector {
     pub id: String,
     pub origins: Origins,
     pub overhead_ms: i64,
-    /// What the character must have. Empty for a mechanism anyone can use.
-    pub requires: Vec<(String, String)>,
+    /// Conditions the client must evaluate before offering this, by id — see
+    /// [`crate::conditions`]. Empty for a mechanism anyone can use.
+    ///
+    /// Ids rather than resolved conditions: the same condition is referenced by
+    /// connectors and edges alike, and a client loads the vocabulary once.
+    pub conditions: Vec<String>,
     pub destinations: Vec<Destination>,
 }
 
@@ -77,7 +81,7 @@ pub fn load_all(conn: &Connection) -> rusqlite::Result<Vec<Connector>> {
                 _ => Origins::Anywhere,
             },
             overhead_ms: row.get(3)?,
-            requires: Vec::new(),
+            conditions: Vec::new(),
             destinations: Vec::new(),
         })
     })?;
@@ -131,12 +135,12 @@ pub fn load_all(conn: &Connection) -> rusqlite::Result<Vec<Connector>> {
         }
 
         let mut stmt = conn.prepare(
-            "SELECT requirement, detail FROM connector_requires
-              WHERE connector_id = ?1 ORDER BY requirement, detail",
+            "SELECT condition_id FROM connector_conditions
+              WHERE connector_id = ?1 ORDER BY condition_id",
         )?;
-        let reqs = stmt.query_map([&c.id], |row| Ok((row.get(0)?, row.get(1)?)))?;
-        for r in reqs {
-            c.requires.push(r?);
+        let conds = stmt.query_map([&c.id], |row| row.get(0))?;
+        for cond in conds {
+            c.conditions.push(cond?);
         }
     }
 
@@ -173,8 +177,14 @@ mod tests {
                 ('fwi-trinket','fixed',3201029,0,'turn #{item}','You get the feeling'),
                 ('fwi-trinket','origin',0,0,'turn #{item}','You get the feeling');
 
-            INSERT INTO connector_requires(connector_id, requirement, detail) VALUES
-                ('fwi-trinket', 'has-item', 'fwi trinket');
+            INSERT INTO conditions(id, description) VALUES
+                ('has-fwi-trinket', 'the character has an Isle of Four Winds trinket');
+            INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
+                ('has-fwi-trinket', 0, 0, 'item', 'fwi trinket', 'absent', '');
+            INSERT INTO condition_effects(condition_id, effect, amount) VALUES
+                ('has-fwi-trinket', 'forbid', 0);
+            INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+                ('fwi-trinket', 'has-fwi-trinket');
             ",
         )
         .expect("fixture");
@@ -198,7 +208,7 @@ mod tests {
             "You flag down a nearby urchin",
             "the game's own words, not a client label"
         );
-        assert!(urchins.requires.is_empty(), "the lease is not stored here");
+        assert!(urchins.conditions.is_empty(), "anyone with the lease can use these");
     }
 
     /// The round trip, which is why the trinket is worth +1,374 and not
@@ -213,9 +223,9 @@ mod tests {
         assert!(kinds.contains(&DestinationKind::Fixed(3201029)));
         assert!(kinds.contains(&DestinationKind::Origin));
         assert_eq!(
-            fwi.requires,
-            vec![("has-item".to_string(), "fwi trinket".to_string())],
-            "what, never where -- worn and stowed satisfy it alike"
+            fwi.conditions,
+            vec!["has-fwi-trinket".to_string()],
+            "a reference, so edges and connectors share one vocabulary"
         );
     }
 
@@ -288,7 +298,7 @@ mod tests {
         conn.execute("DELETE FROM connectors WHERE id = 'fwi-trinket'", [])
             .expect("delete");
 
-        for table in ["connector_destinations", "connector_steps", "connector_requires"] {
+        for table in ["connector_destinations", "connector_steps", "connector_conditions"] {
             let left: i64 = conn
                 .query_row(
                     &format!("SELECT count(*) FROM {table} WHERE connector_id = 'fwi-trinket'"),
