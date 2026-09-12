@@ -74,6 +74,12 @@ urchin guide bank	You flag down a nearby urchin
 That is a fact about GemStone, true for everyone, and exactly the kind of thing
 this layer exists to stop every client rediscovering.
 
+> `{item}` is only the easy half. The 3,037 script edges also carry
+> destinations Lich could not name, round trips, preconditions and two genuine
+> puzzles. See **[connectors-hard-cases.md](connectors-hard-cases.md)**, which
+> counts them and extends the tables above with destination *kinds* and
+> preconditions.
+
 ## One placeholder, and only one
 
 Commands are literal, except where the literal value is per-character:
