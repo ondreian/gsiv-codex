@@ -32,3 +32,30 @@ live in `urnon`'s `map.db3` and move here.
 
 [`urnon`](https://github.com/ondreian/urnon) is the first, not the owner.
 Nothing here depends on it.
+
+## Building one
+
+```sh
+codex build --from ~/.local/share/urnon/map.db3 \
+            --out  /tmp/codex.db3 \
+            --vocabulary data
+```
+
+```
+rooms 28446, edges 62012 (skipped 3037 script, 2 ambiguous)
+locations 28192, facets from tags 374425
+```
+
+urnon reads it with no flag — `World::load_any` recognises the schema:
+
+```sh
+urnon-world --db /tmp/codex.db3 plan 4042150 4043301
+4042301  walk  east
+4043301  walk  go archway
+2 steps, 2.6s
+
+urnon-daemon -i gst --control-port 7331 --world-db /tmp/codex.db3
+```
+
+Verified live: `/travel bank`, `/travel town` and `/travel gemshop` all plan and
+walk on a graph urnon did not write.
