@@ -89,6 +89,19 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
     // Cheap here and permanent in the artifact: every consumer's first query
     // is faster for a page-ordered file, and nobody has to remember to do it.
     conn.execute_batch("VACUUM; ANALYZE;")?;
+
+    // Out of WAL before shipping. A published file has exactly one writer --
+    // this build, which has finished -- and WAL costs every reader afterwards:
+    // opening a WAL database requires creating a `-shm` file *beside* it, so
+    // the directory has to be writable even when the reader only reads and the
+    // database file itself is 444.
+    //
+    // Measured, because the failure is easy to state wrongly. A 444 file in a
+    // writable directory works in either mode. In a 555 directory the WAL
+    // build fails with "attempt to write a readonly database" and the rollback
+    // journal build plans normally -- and a shipped artifact will sit in a
+    // directory somebody has locked down.
+    conn.execute_batch("PRAGMA journal_mode = DELETE;")?;
     eprintln!("built {out}");
     Ok(())
 }
