@@ -73,8 +73,34 @@ The fact is *"this edge exists"*. Who saw it and when is provenance, and
 provenance belongs to the pull request — its author, its commit, its date —
 where git already stores it and nobody has to diff it.
 
-The same applies to `edge_observations.edge_id`: it is a local surrogate key.
-Upstream the identity of an edge is `(from_uid, to_uid, command)`.
+## The codex has no `edge_id`
+
+urnon's `edges.edge_id` is a surrogate, and the digraph design reserves it
+deliberately: §6's parallel edges are two rows agreeing on
+`(from_uid, to_uid, command)` and differing only in their gate, which any
+uniqueness constraint over those columns would forbid.
+
+Measured, that case does not exist yet. **All 65,053 edges are distinct on
+`(from_uid, to_uid, command)`** — gates are unbuilt, so nothing is parallel.
+When gates arrive the gate joins the key rather than being hidden behind a
+surrogate.
+
+So the published identity of an edge is its columns, and no id is written at
+all. A content hash would be the same determinism made unreadable:
+
+```
+a3f8c12b	mana	20                    a hash
+4042150	4042301	east	mana	20      the key
+```
+
+Only the second can be reviewed, and the first puts a hashing algorithm into
+the format specification that every writer must reproduce byte-identically for
+as long as the repository exists. Child tables — costs, gates, companions —
+reference the columns. That is wider and it is legible, and they hold 0 rows
+today, so the width is hypothetical and the legibility is not.
+
+urnon may keep whatever surrogate it likes internally. It is an index, not a
+fact, and it stops at the boundary.
 
 ## The formatter is the mechanism
 
