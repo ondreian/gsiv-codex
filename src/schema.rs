@@ -21,6 +21,7 @@ use rusqlite::Connection;
 const MIGRATIONS: &[(&str, &str)] = &[
     ("001_world", include_str!("../schema/001_world.sql")),
     ("002_room_sets", include_str!("../schema/002_room_sets.sql")),
+    ("003_connectors", include_str!("../schema/003_connectors.sql")),
 ];
 
 /// How many migrations this build knows.

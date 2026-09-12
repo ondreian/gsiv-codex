@@ -47,8 +47,10 @@ Dependency, not preference:
    2. **room sets** — done, at the size the evidence justified. Terms are
       unioned; `flood`, `intersect` and `difference` are deferred because they
       have zero consumers, and each is additive when one appears.
-   3. **connectors** — the 3,037 script edges expressed as data instead of
-      Lich Ruby. See `docs/connectors.md`. Needs sets for its origins.
+   3. **connectors** — done. Four tables, three destination kinds, one
+      placeholder. See `docs/connectors.md` and
+      `docs/connectors-hard-cases.md`. Nothing is ingested yet: the shape
+      exists, the rows do not.
    4. **the script-edge burn-down** — coverage as a property test rather than
       a feeling.
 2. **verbs** — independent, cheapest, and has a waiting consumer: autocomplete
