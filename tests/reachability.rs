@@ -69,159 +69,171 @@ fn load_dir(conn: &Connection, dir: &std::path::Path) {
     }
 }
 
-/// Is any room of `to` reachable from any room of `from`, following edges?
+/// How much of each region you can walk to, and how much of it can walk home.
 ///
-/// Breadth-first in SQL, seeded and tested from subqueries rather than an
-/// interpolated list: Ta'Illistim is 1,311 rooms and `VALUES (a),(b),...`
-/// over that many hits SQLite's compound-SELECT limit. Parameters also mean
-/// no place name is ever spliced into SQL.
+/// `(reachable, total)` per place, both directions, in two queries rather than
+/// two per place: the forward walk follows `from_uid -> to_uid` out of
+/// Wehnimer's, and the backward one follows the same edges the other way, so a
+/// single traversal answers "can this room reach Wehnimer's" for every room at
+/// once.
 ///
-/// Bounded by the recursion itself: `UNION` discards a room already seen, so
-/// the walk visits each room at most once and terminates on a cyclic graph
-/// with no depth limit to tune.
-fn connected(conn: &Connection, from: &str, to: &str) -> bool {
-    for place in [from, to] {
-        let n: i64 = conn
-            .query_row(
-                "SELECT count(*) FROM room_facets WHERE type = 'location' AND detail = ?1",
-                [place],
-                |r| r.get(0),
-            )
-            .expect("count");
-        assert!(n > 0, "no rooms are in {place:?}");
-    }
-
-    conn.query_row(
-        "WITH RECURSIVE reached(uid) AS (
-             SELECT room_uid FROM room_facets WHERE type = 'location' AND detail = ?1
-             UNION
-             SELECT e.to_uid FROM edges e JOIN reached r ON e.from_uid = r.uid
-         )
-         SELECT EXISTS (
-             SELECT 1 FROM reached
-              WHERE uid IN (SELECT room_uid FROM room_facets
-                             WHERE type = 'location' AND detail = ?2))",
-        [from, to],
-        |r| r.get(0),
-    )
-    .expect("reachability")
+/// # Coverage, not "is anything reachable"
+///
+/// The first version of this asked whether *any* room of a region was
+/// reachable, and reported the shadow of the Sanctum as connected. Two of its
+/// seventy-eight rooms are. The other seventy-six -- which is to say the
+/// hunting ground -- are not, and a measure that calls that connected is worse
+/// than no measure, because it answers "yes" to the question somebody is
+/// actually asking with a fact about something else.
+fn coverage(conn: &Connection) -> Vec<(String, usize, usize, usize)> {
+    let sql = "
+        WITH RECURSIVE
+          out_of_wl(uid) AS (
+            SELECT room_uid FROM room_facets
+             WHERE type = 'location' AND detail = ?1
+            UNION
+            SELECT e.to_uid FROM edges e JOIN out_of_wl r ON e.from_uid = r.uid
+          ),
+          -- The same edges, walked backwards: every room that can get home.
+          into_wl(uid) AS (
+            SELECT room_uid FROM room_facets
+             WHERE type = 'location' AND detail = ?1
+            UNION
+            SELECT e.from_uid FROM edges e JOIN into_wl c ON e.to_uid = c.uid
+          )
+        SELECT f.detail,
+               count(*),
+               sum(CASE WHEN o.uid IS NOT NULL THEN 1 ELSE 0 END),
+               sum(CASE WHEN i.uid IS NOT NULL THEN 1 ELSE 0 END)
+          FROM room_facets f
+          LEFT JOIN out_of_wl o ON o.uid = f.room_uid
+          LEFT JOIN into_wl  i ON i.uid = f.room_uid
+         WHERE f.type = 'location'
+         GROUP BY f.detail";
+    let mut stmt = conn.prepare(sql).expect("prepare");
+    stmt.query_map(["Wehnimer's Landing"], |r| {
+        Ok((
+            r.get::<_, String>(0)?,
+            r.get::<_, i64>(1)? as usize,
+            r.get::<_, i64>(2)? as usize,
+            r.get::<_, i64>(3)? as usize,
+        ))
+    })
+    .expect("query")
+    .map(|r| r.expect("row"))
+    .collect()
 }
 
-/// Every town, and whether the data can get you there and home again.
+fn pct(part: usize, whole: usize) -> usize {
+    if whole == 0 { 0 } else { part * 100 / whole }
+}
+
+/// What fraction of each region the published data reaches, as a floor.
 ///
-/// `(place, there, back)`, measured rather than hoped for. Update it when a
-/// mechanism lands, and name the mechanism in the commit.
+/// Floors rather than exact counts: a mapdb refresh moves a few rooms and
+/// should not fail a suite, while a mechanism going missing moves a region by
+/// tens of points and must. `(place, from Wehnimer's, back to Wehnimer's)`.
 ///
-/// The asymmetries are the interesting column. Four of these are one-way
-/// roads, and in both directions -- you can reach River's Rest and not leave,
-/// you can leave Zul Logoth and not arrive. A single "reachable" flag would
-/// have hidden every one of them, because each looks fine from the side
-/// somebody happened to test.
-const TOWNS: &[(&str, bool, bool)] = &[
-    // Whole, both ways. The walkable heart of the map.
-    ("Icemule Trace", true, true),
-    ("Solhaven", true, true),
-    ("Moonsedge", true, true),
-    ("Ta'Illistim", true, true),
-    // One-way. You arrive and cannot leave.
-    ("the Hinterwilds", true, false), // in by `climb sliver`, a 15,000s edge
-    ("River's Rest", true, false),    // out is `ask portmaster about travel N`
-    // One-way, the other way. You can leave and never arrive.
-    ("Zul Logoth", false, true), // in is `buy ticket` -- the gnome cart
-    ("Ta'Vaalor", false, true),
-    // Sealed. Every link in or out is a `;e` script edge the importer drops.
-    ("the Rift", false, false), // `fput 'go sphere'` + an ethereal-fog loop
-    ("Kharam-Dzu", false, false), // `ask portmaster about travel 4` -- the ferry
-    ("the Pinefar forests", false, false), // `inquire; order 2; order confirm`
+/// A zero is a region no published mechanism touches at all. The comment names
+/// what has to be expressed to change that, because "0%" on its own invites
+/// somebody to go looking for a bug in the router.
+const REGIONS: &[(&str, usize, usize)] = &[
+    ("Wehnimer's Landing", 100, 100),
+    ("Moonsedge", 95, 95),
+    ("Icemule Trace", 90, 90),
+    ("the Hinterwilds", 85, 0), // in by `climb sliver`; the caravan is the way out
+    ("River's Rest", 80, 0),
+    ("Solhaven", 80, 80),
+    // Two of seventy-eight rooms: the Fangs of the Serpent gateway, and one
+    // more. The hunting ground is the other seventy-six, and the way in is a
+    // small bone periapt -- `rub` it for a viridian portal, `go` the portal.
+    ("the shadow of the Sanctum", 0, 0),
+    // Nothing at all. Each is one `;e` mechanism away.
+    ("the Rift", 0, 0),            // `fput 'go sphere'` + an ethereal-fog loop
+    ("Zul Logoth", 0, 0),          // `buy ticket` -- the gnome cart
+    ("Kharam-Dzu", 0, 0),          // `ask portmaster about travel 4` -- the ferry
+    ("the Pinefar forests", 0, 0), // `inquire; order 2; order confirm`
 ];
 
 #[test]
-fn the_map_connects_the_towns_it_is_known_to_connect() {
+fn the_data_reaches_as_much_of_each_region_as_we_think() {
     let conn = gsiv_codex::schema::open(codex()).expect("open");
+    let measured = coverage(&conn);
     let mut wrong = Vec::new();
-    for (place, there, back) in TOWNS {
-        for (label, expected, got) in [
-            (
-                "there",
-                *there,
-                connected(&conn, "Wehnimer's Landing", place),
-            ),
-            ("back", *back, connected(&conn, place, "Wehnimer's Landing")),
+    for (place, out_floor, back_floor) in REGIONS {
+        let Some((_, total, out, back)) = measured.iter().find(|(d, ..)| d == place) else {
+            wrong.push(format!("{place}: no rooms carry this location"));
+            continue;
+        };
+        for (label, floor, got) in [
+            ("there", *out_floor, pct(*out, *total)),
+            ("back", *back_floor, pct(*back, *total)),
         ] {
-            if expected != got {
-                wrong.push(format!("{place} ({label}): expected {expected}, got {got}"));
+            if got < floor {
+                wrong.push(format!("{place} ({label}): {got}%, floor is {floor}%"));
             }
         }
     }
     assert!(
         wrong.is_empty(),
-        "reachability changed -- deliberately? name the mechanism in the commit:\n  {}",
+        "a region got harder to reach:\n  {}",
         wrong.join("\n  ")
     );
 }
 
-/// The headline number, so CI prints the direction of travel rather than
-/// burying it in a diff of the table above.
+/// The regions no published mechanism reaches, named rather than counted, so
+/// expressing one is a visible single-line change.
 #[test]
-fn seven_towns_are_not_yet_round_trips() {
-    let broken = TOWNS.iter().filter(|(_, t, b)| !(*t && *b)).count();
-    assert_eq!(broken, 7, "towns you cannot both reach and leave");
-}
-
-/// Which towns the data reaches in only one direction.
-///
-/// Named individually so that connecting one is a visible single-line change
-/// rather than a count going down. Again: an artifact of dropped edges, not a
-/// one-way road -- the fix is to express the mechanism, after which both
-/// columns flip together.
-#[test]
-fn the_asymmetric_towns_are_the_ones_we_know_about() {
-    let mut one_way: Vec<&str> = TOWNS
+fn the_unreachable_regions_are_the_ones_we_know_about() {
+    let conn = gsiv_codex::schema::open(codex()).expect("open");
+    let mut sealed: Vec<&str> = REGIONS
         .iter()
-        .filter(|(_, t, b)| t != b)
-        .map(|(p, _, _)| *p)
+        .filter(|(place, ..)| {
+            coverage(&conn)
+                .iter()
+                .find(|(d, ..)| d == place)
+                .is_some_and(|(_, total, out, _)| pct(*out, *total) < 5)
+        })
+        .map(|(p, ..)| *p)
         .collect();
-    one_way.sort_unstable();
+    sealed.sort_unstable();
     assert_eq!(
-        one_way,
-        ["River's Rest", "Ta'Vaalor", "Zul Logoth", "the Hinterwilds"]
+        sealed,
+        [
+            "Kharam-Dzu",
+            "Zul Logoth",
+            "the Pinefar forests",
+            "the Rift",
+            "the shadow of the Sanctum",
+        ]
     );
 }
 
-/// Not an assertion — a measurement, printed so the table above can be written
-/// from evidence instead of from memory. `cargo test --test reachability --
-/// --nocapture measure`
+/// Not an assertion — the table, printed. Run it when writing the floors
+/// above, so they come from a measurement rather than from memory.
+///
+///     cargo test --test reachability -- --nocapture measure
 #[test]
 fn measure() {
     let conn = gsiv_codex::schema::open(codex()).expect("open");
-    let places = [
-        "Wehnimer's Landing",
-        "Icemule Trace",
-        "Solhaven",
-        "Moonsedge",
-        "the Hinterwilds",
-        "the Rift",
-        "Zul Logoth",
-        "River's Rest",
-        "Kharam-Dzu",
-        "Ta'Illistim",
-        "Ta'Vaalor",
-        "the Pinefar forests",
-    ];
-    for place in places {
-        let n: i64 = conn
-            .query_row(
-                "SELECT count(*) FROM room_facets WHERE type='location' AND detail=?1",
-                [place],
-                |r| r.get(0),
-            )
-            .expect("count");
-        if n == 0 {
-            println!("{place:>22}  no rooms");
-            continue;
-        }
-        let out = connected(&conn, "Wehnimer's Landing", place);
-        let back = connected(&conn, place, "Wehnimer's Landing");
-        println!("{place:>22}  {n:>5} rooms   there={out:<5} back={back}");
+    let mut rows = coverage(&conn);
+    rows.retain(|(_, total, ..)| *total >= 50);
+    rows.sort_by_key(|(d, total, out, _)| {
+        (
+            usize::MAX - pct(*out, *total),
+            usize::MAX - total,
+            d.clone(),
+        )
+    });
+    println!(
+        "{:>28}  {:>6}  {:>7}  {:>7}",
+        "region", "rooms", "there", "back"
+    );
+    for (place, total, out, back) in rows {
+        println!(
+            "{place:>28}  {total:>6}  {:>6}%  {:>6}%",
+            pct(out, total),
+            pct(back, total)
+        );
     }
 }
