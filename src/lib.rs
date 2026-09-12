@@ -4,3 +4,4 @@
 //! produce one and to prove things about it.
 
 pub mod schema;
+pub mod sets;

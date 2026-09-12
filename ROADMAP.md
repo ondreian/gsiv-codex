@@ -44,9 +44,9 @@ Dependency, not preference:
 
 1. **world** — in progress, in slices:
    1. **rooms and facets** — done. Three tables, two foreign keys.
-   2. **room sets** — next. `flood` and the set algebra. Everything below
-      waits on it, and so does the composition a town actually needs: one town
-      reports several `LOCATION` strings, so a place is a set.
+   2. **room sets** — done, at the size the evidence justified. Terms are
+      unioned; `flood`, `intersect` and `difference` are deferred because they
+      have zero consumers, and each is additive when one appears.
    3. **connectors** — the 3,037 script edges expressed as data instead of
       Lich Ruby. See `docs/connectors.md`. Needs sets for its origins.
    4. **the script-edge burn-down** — coverage as a property test rather than

@@ -18,7 +18,10 @@ use rusqlite::Connection;
 /// Every migration, in order, embedded so a built binary needs no files beside
 /// it. Adding one means adding a line here — deliberately manual, because the
 /// order is the contract and a directory listing is not a promise.
-const MIGRATIONS: &[(&str, &str)] = &[("001_world", include_str!("../schema/001_world.sql"))];
+const MIGRATIONS: &[(&str, &str)] = &[
+    ("001_world", include_str!("../schema/001_world.sql")),
+    ("002_room_sets", include_str!("../schema/002_room_sets.sql")),
+];
 
 /// How many migrations this build knows.
 pub fn latest_version() -> u32 {
