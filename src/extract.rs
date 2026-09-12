@@ -62,6 +62,60 @@ fn trailing_move(command: &str) -> Option<(&str, String)> {
     Some((body, inner[..end].to_string()))
 }
 
+/// `;e table = "red"; fput "go #{table} table" if dothistimeout("go #{table}
+/// table", 25, /You ... head over to|waves.*you.*invi/)`
+///
+/// Half of every room the codex orphans is one of these -- 455 of 904, four
+/// times the next cause and more than every connector put together. Taverns
+/// and gaming halls are full of tables you `go` to, and the mapdb records the
+/// way out of one as a plain move and the way in as this.
+///
+/// It reads as a program and it is an edge. `table` is assigned a literal in
+/// every single body, the interpolation puts it straight back, and everything
+/// around it -- the timeout, the alternation of replies, the `if` -- is
+/// retry-and-confirm. That is the client's job and urnon's walker already does
+/// it better, by checking the room id rather than the prose.
+///
+/// The reply text is dropped with the rest. `edge_overlays` has nowhere to put
+/// it, and arriving in the room you aimed at is stronger evidence than the
+/// game saying you did.
+fn table_move(command: &str) -> Option<String> {
+    let c = command.trim();
+    // The interpolation is the shape. Without it, `table` is some other
+    // variable in some other program.
+    if !c.contains("go #{table} table") {
+        return None;
+    }
+    let at = c.find("table")?;
+    let rest = c[at + 5..].trim_start();
+    let rest = rest.strip_prefix('=')?.trim_start();
+    let inner = rest.strip_prefix('"')?;
+    let end = inner.find('"')?;
+    let name = &inner[..end];
+    // A name with a quote or a newline in it is not a name; a name with `#{`
+    // in it is another interpolation and this cannot resolve it.
+    if name.is_empty() || name.contains("#{") {
+        return None;
+    }
+    Some(format!("go {name} table"))
+}
+
+/// `;e true` is NOT a move, and must never be extracted as one.
+///
+/// It reads like an empty body with nothing to do, and it is the urchin
+/// network: all 523 of them land in an Urchin Hideout, and every source room
+/// carries `urchin guide <somewhere>` and `urchin-access`. The command is
+/// empty because the *urchin* does the moving -- you flag one down and it
+/// takes you. Publishing it as an edge would publish a road that sends
+/// nothing and expects you to arrive somewhere else.
+///
+/// It is a connector, and urnon already has the shape for it. Left here as a
+/// named fact because "the body is empty, so this is a bare move" is the
+/// obvious wrong conclusion and somebody will reach it again.
+fn is_urchin_hop(command: &str) -> bool {
+    command.trim() == ";e true"
+}
+
 /// Classify the bookkeeping before the move.
 fn classify(body: &str) -> Body {
     if body.is_empty() {
@@ -123,8 +177,18 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             else {
                 continue;
             };
-            let Some((body, moved)) = trailing_move(command) else {
+            if is_urchin_hop(command) {
                 continue;
+            }
+            // A trailing `move` first, then the table idiom -- which has no
+            // `move` in it at all, and would otherwise be skipped as
+            // unrecognised forever.
+            let (body, moved) = match trailing_move(command) {
+                Some(found) => found,
+                None => match table_move(command) {
+                    Some(moved) => ("", moved),
+                    None => continue,
+                },
             };
             let time_ms = r
                 .get("timeto")
@@ -278,6 +342,35 @@ mod tests {
         assert!(
             !found.iter().any(|e| e.to_uid == 500),
             "$go2_restart after the move means the destination is not fixed"
+        );
+    }
+
+    /// The single biggest cause of orphaned rooms, and it is an edge.
+    #[test]
+    fn a_table_is_a_go_command_with_a_program_around_it() {
+        assert_eq!(
+            table_move(
+                r#";e table = "red"; fput "go #{table} table" if dothistimeout("go #{table} table", 25, /You (?:and your group )?head over to/)"#
+            ),
+            Some("go red table".to_string())
+        );
+        // Two words, and no space around the `=`, both of which occur.
+        assert_eq!(
+            table_move(
+                r#";e table="Flying Tart"; fput "go #{table} table" if dothistimeout("go #{table} table", 25, /x/)"#
+            ),
+            Some("go Flying Tart table".to_string())
+        );
+    }
+
+    /// `table` has to be *this* idiom, not any program that mentions a table.
+    #[test]
+    fn a_table_that_is_not_the_idiom_is_left_alone() {
+        assert_eq!(table_move(";e fput 'look under table'; move 'west'"), None);
+        assert_eq!(
+            table_move(r##";e table = "#{colour}"; fput "go #{table} table""##),
+            None,
+            "an interpolated name is one this cannot resolve"
         );
     }
 

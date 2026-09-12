@@ -139,11 +139,11 @@ fn pct(part: usize, whole: usize) -> usize {
 /// somebody to go looking for a bug in the router.
 const REGIONS: &[(&str, usize, usize)] = &[
     ("Wehnimer's Landing", 100, 100),
-    ("Moonsedge", 95, 95),
-    ("Icemule Trace", 90, 90),
-    ("the Hinterwilds", 85, 0), // in by `climb sliver`; the caravan is the way out
-    ("River's Rest", 80, 0),
-    ("Solhaven", 80, 80),
+    ("Moonsedge", 98, 98),
+    ("Icemule Trace", 94, 94),
+    ("the Hinterwilds", 90, 0), // in by `climb sliver`; the caravan is the way out
+    ("River's Rest", 84, 0),
+    ("Solhaven", 89, 98),
     // Two of seventy-eight rooms: the Fangs of the Serpent gateway, and one
     // more. The hunting ground is the other seventy-six, and the way in is a
     // small bone periapt -- `rub` it for a viridian portal, `go` the portal.
@@ -207,6 +207,37 @@ fn the_unreachable_regions_are_the_ones_we_know_about() {
             "the shadow of the Sanctum",
         ]
     );
+}
+
+/// Rooms nothing can walk into. The primary number.
+///
+/// A room with no inbound edge is one no route can end at, and every one of
+/// them is a mechanism the importer dropped and nobody has expressed yet. It
+/// needs no denominator argument and no guess about the game, which is what
+/// makes it the measure to drive: coverage is this plus cascade plus real
+/// topology, and reading a cause off it has gone wrong repeatedly.
+///
+/// Measured, not hoped for. It came down by 455 in one change when the table
+/// idiom was extracted, which was half of it.
+#[test]
+fn the_rooms_nothing_can_walk_into() {
+    let conn = gsiv_codex::schema::open(codex()).expect("open");
+    let stuck: i64 = conn
+        .query_row(
+            "SELECT count(*) FROM rooms r
+              WHERE NOT EXISTS (SELECT 1 FROM edges e WHERE e.to_uid = r.uid)",
+            [],
+            |r| r.get(0),
+        )
+        .expect("count");
+    // A ceiling, so the number can only come down without a deliberate edit.
+    // 134 of these have no inbound edge in the mapdb either and may never be
+    // fixable from this data.
+    assert!(
+        stuck <= 449,
+        "{stuck} rooms have no way in, up from 449 -- an extraction regressed"
+    );
+    println!("{stuck} rooms with no inbound edge");
 }
 
 /// Not an assertion — the table, printed. Run it when writing the floors
