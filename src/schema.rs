@@ -69,6 +69,14 @@ pub fn open(path: impl AsRef<std::path::Path>) -> rusqlite::Result<Connection> {
     Ok(conn)
 }
 
+/// Open an existing database without migrating it.
+pub fn open_any(path: impl AsRef<std::path::Path>) -> rusqlite::Result<Connection> {
+    let conn = Connection::open(path)?;
+    conn.execute_batch("PRAGMA foreign_keys = ON;")?;
+    migrate(&conn)?;
+    Ok(conn)
+}
+
 /// An in-memory database at the current schema, for tests.
 pub fn open_in_memory() -> rusqlite::Result<Connection> {
     let conn = Connection::open_in_memory()?;

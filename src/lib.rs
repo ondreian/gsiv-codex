@@ -9,4 +9,5 @@ pub mod ingest;
 pub mod mapdb;
 pub mod overlays;
 pub mod schema;
+pub mod similarity;
 pub mod sets;

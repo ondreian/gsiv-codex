@@ -32,6 +32,19 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("conditions") => match flag("--db") {
+            Some(db) => match conditions_report(&db, flag("--floor")) {
+                Ok(()) => ExitCode::SUCCESS,
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::from(1)
+                }
+            },
+            None => {
+                eprintln!("usage: codex conditions --db <codex.db3> [--floor 0.5]");
+                ExitCode::from(2)
+            }
+        },
         Some("stats") => match flag("--db") {
             Some(db) => match stats(&db) {
                 Ok(()) => ExitCode::SUCCESS,
@@ -46,7 +59,7 @@ fn main() -> ExitCode {
             }
         },
         _ => {
-            eprintln!("usage: codex (build | stats) ...");
+            eprintln!("usage: codex (build | stats | conditions) ...");
             ExitCode::from(2)
         }
     }
@@ -148,6 +161,39 @@ fn stats(db: &str) -> Result<(), Box<dyn std::error::Error>> {
     ] {
         let n: i64 = conn.query_row(&format!("SELECT count(*) FROM {table}"), [], |r| r.get(0))?;
         println!("{table:24} {n:>8}");
+    }
+    Ok(())
+}
+
+/// Print every condition's signature, then the pairs that might be one rule.
+///
+/// The shortlist decides nothing. Whether two rules *should* be one is a
+/// question about the game, and the answer is not in the data — so this
+/// renders them side by side, compactly enough to judge, and stops.
+fn conditions_report(db: &str, floor: Option<String>) -> Result<(), Box<dyn std::error::Error>> {
+    use gsiv_codex::similarity;
+
+    let floor: f64 = floor.and_then(|f| f.parse().ok()).unwrap_or(0.5);
+    let conn = schema::open_any(db)?;
+    let all = gsiv_codex::conditions::load_all(&conn)?;
+    let list: Vec<_> = all.into_values().collect();
+
+    println!("{} conditions\n", list.len());
+    for c in &list {
+        println!("  {:<24} {}", c.id, similarity::signature(c));
+    }
+
+    let candidates = similarity::shortlist(&list, floor);
+    println!("\n{} pair(s) at or above {floor}:\n", candidates.len());
+    for cand in &candidates {
+        let mark = if cand.same_shape { "SAME SHAPE" } else { "          " };
+        println!("  {mark}  {:.2}  {}  vs  {}", cand.score, cand.a, cand.b);
+        for id in [&cand.a, &cand.b] {
+            if let Some(c) = list.iter().find(|c| &c.id == id) {
+                println!("              {:<24} {}", c.id, similarity::signature(c));
+            }
+        }
+        println!();
     }
     Ok(())
 }
