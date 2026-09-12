@@ -97,7 +97,9 @@ mod tests {
         apply(&conn).expect("apply");
 
         let ms: i64 = conn
-            .query_row("SELECT time_ms FROM edges WHERE from_uid=1", [], |r| r.get(0))
+            .query_row("SELECT time_ms FROM edges WHERE from_uid=1", [], |r| {
+                r.get(0)
+            })
             .expect("edge");
         assert_eq!(ms, 3000);
     }
@@ -183,7 +185,11 @@ mod tests {
 
         assert_eq!(
             coverage(&conn).expect("coverage"),
-            Coverage { overlay: 1, connector: 0, unhandled: 0 }
+            Coverage {
+                overlay: 1,
+                connector: 0,
+                unhandled: 0
+            }
         );
     }
 
@@ -197,7 +203,10 @@ mod tests {
                   VALUES (1,2,'unhandled','')",
             [],
         );
-        assert!(err.is_err(), "unhandled without a reason is not a disposition");
+        assert!(
+            err.is_err(),
+            "unhandled without a reason is not a disposition"
+        );
 
         conn.execute(
             "INSERT INTO script_edge_disposition(from_uid,to_uid,disposition,reason)

@@ -55,7 +55,10 @@ fn trailing_move(command: &str) -> Option<(&str, String)> {
     if !inner[end + 1..].trim().trim_matches(';').is_empty() {
         return None;
     }
-    let body = c.strip_prefix(";e")?[..at - 2].trim().trim_matches(';').trim();
+    let body = c.strip_prefix(";e")?[..at - 2]
+        .trim()
+        .trim_matches(';')
+        .trim();
     Some((body, inner[..end].to_string()))
 }
 
@@ -113,7 +116,11 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             if !command.trim_start().starts_with(";e") {
                 continue;
             }
-            let Some(to) = target.parse::<i64>().ok().and_then(|i| uid_of.get(&i).copied()) else {
+            let Some(to) = target
+                .parse::<i64>()
+                .ok()
+                .and_then(|i| uid_of.get(&i).copied())
+            else {
                 continue;
             };
             let Some((body, moved)) = trailing_move(command) else {
@@ -134,9 +141,7 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             });
         }
     }
-    out.sort_by(|a, b| {
-        (a.from_uid, a.to_uid, &a.command).cmp(&(b.from_uid, b.to_uid, &b.command))
-    });
+    out.sort_by(|a, b| (a.from_uid, a.to_uid, &a.command).cmp(&(b.from_uid, b.to_uid, &b.command)));
     Ok(out)
 }
 
@@ -194,8 +199,10 @@ pub fn to_sql(found: &[Extracted]) -> String {
         }
     }
 
-    s.push_str("\n-- Left alone, with the reason. Every script edge is either superseded\n\
-                -- or listed; there is no third case, and a property test says so.\n");
+    s.push_str(
+        "\n-- Left alone, with the reason. Every script edge is either superseded\n\
+                -- or listed; there is no third case, and a property test says so.\n",
+    );
     for (e, excerpt) in &skipped {
         let reason = format!("ends in a move but the body is not modelled: {excerpt}");
         s.push_str(&format!(

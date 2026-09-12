@@ -198,7 +198,10 @@ mod tests {
             "INSERT INTO room_set_terms(set_name, seq, op) VALUES ('x', 0, 'flood')",
             [],
         );
-        assert!(err.is_err(), "flood is not an op yet, and saying so is the point");
+        assert!(
+            err.is_err(),
+            "flood is not an op yet, and saying so is the point"
+        );
     }
 
     /// A term belongs to a set that exists.

@@ -223,9 +223,11 @@ mod tests {
 
         assert_eq!(stats.edges_skipped_ambiguous, 1);
         let left: i64 = codex
-            .query_row("SELECT count(*) FROM edges WHERE command = 'out'", [], |r| {
-                r.get(0)
-            })
+            .query_row(
+                "SELECT count(*) FROM edges WHERE command = 'out'",
+                [],
+                |r| r.get(0),
+            )
             .expect("count");
         assert_eq!(left, 0, "neither destination is publishable");
 
@@ -261,7 +263,9 @@ mod tests {
 
         assert_eq!(stats.locations, 4);
         let spellings: Vec<String> = codex
-            .prepare("SELECT DISTINCT detail FROM room_facets WHERE type='location' ORDER BY detail")
+            .prepare(
+                "SELECT DISTINCT detail FROM room_facets WHERE type='location' ORDER BY detail",
+            )
             .expect("prepare")
             .query_map([], |r| r.get(0))
             .expect("query")
@@ -302,14 +306,21 @@ mod tests {
         let codex = codex_with_vocabulary();
         Connection::open(&src)
             .expect("open")
-            .execute("INSERT INTO lich_room_tags(lich_id, tag) VALUES (10, 'mystery')", [])
+            .execute(
+                "INSERT INTO lich_room_tags(lich_id, tag) VALUES (10, 'mystery')",
+                [],
+            )
             .expect("tag");
 
         from_urnon_store(&codex, &src).expect("ingest");
         project_tags(&codex, &src).expect("project");
 
         let mystery: i64 = codex
-            .query_row("SELECT count(*) FROM room_facets WHERE type='mystery'", [], |r| r.get(0))
+            .query_row(
+                "SELECT count(*) FROM room_facets WHERE type='mystery'",
+                [],
+                |r| r.get(0),
+            )
             .expect("count");
         assert_eq!(mystery, 0);
     }
@@ -330,6 +341,9 @@ mod tests {
 
         from_urnon_store(&codex, &src).expect("second");
         project_tags(&codex, &src).expect("second project");
-        assert_eq!((count("rooms"), count("edges"), count("room_facets")), (rooms, edges, facets));
+        assert_eq!(
+            (count("rooms"), count("edges"), count("room_facets")),
+            (rooms, edges, facets)
+        );
     }
 }

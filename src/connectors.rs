@@ -195,7 +195,10 @@ mod tests {
     fn a_towns_guides_load_with_their_commands() {
         let conn = fixture();
         let all = load_all(&conn).expect("load");
-        let urchins = all.iter().find(|c| c.id.starts_with("urchin")).expect("found");
+        let urchins = all
+            .iter()
+            .find(|c| c.id.starts_with("urchin"))
+            .expect("found");
 
         assert_eq!(urchins.origins, Origins::Only("icemule".into()));
         assert_eq!(urchins.destinations.len(), 2);
@@ -204,11 +207,13 @@ mod tests {
             "urchin guide bank"
         );
         assert_eq!(
-            urchins.destinations[0].steps[0].expect,
-            "You flag down a nearby urchin",
+            urchins.destinations[0].steps[0].expect, "You flag down a nearby urchin",
             "the game's own words, not a client label"
         );
-        assert!(urchins.conditions.is_empty(), "anyone with the lease can use these");
+        assert!(
+            urchins.conditions.is_empty(),
+            "anyone with the lease can use these"
+        );
     }
 
     /// The round trip, which is why the trinket is worth +1,374 and not
@@ -298,7 +303,11 @@ mod tests {
         conn.execute("DELETE FROM connectors WHERE id = 'fwi-trinket'", [])
             .expect("delete");
 
-        for table in ["connector_destinations", "connector_steps", "connector_conditions"] {
+        for table in [
+            "connector_destinations",
+            "connector_steps",
+            "connector_conditions",
+        ] {
             let left: i64 = conn
                 .query_row(
                     &format!("SELECT count(*) FROM {table} WHERE connector_id = 'fwi-trinket'"),

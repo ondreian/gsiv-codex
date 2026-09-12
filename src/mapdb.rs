@@ -115,8 +115,9 @@ pub fn import(conn: &Connection, json: &str) -> Result<Stats, Box<dyn std::error
         let mut room_stmt = conn.prepare(
             "INSERT OR REPLACE INTO rooms(uid, title, climate, terrain) VALUES (?1, ?2, ?3, ?4)",
         )?;
-        let mut facet_stmt = conn
-            .prepare("INSERT OR IGNORE INTO room_facets(room_uid, type, detail) VALUES (?1, ?2, ?3)")?;
+        let mut facet_stmt = conn.prepare(
+            "INSERT OR IGNORE INTO room_facets(room_uid, type, detail) VALUES (?1, ?2, ?3)",
+        )?;
         for room in &rooms {
             let Some(&uid) = uid_of.get(&room.id) else {
                 continue;
@@ -142,8 +143,9 @@ pub fn import(conn: &Connection, json: &str) -> Result<Stats, Box<dyn std::error
     // nothing rather than a twenty-first kind of thing nobody meant to invent.
     let rules = tag_rules(conn)?;
     {
-        let mut stmt = conn
-            .prepare("INSERT OR IGNORE INTO room_facets(room_uid, type, detail) VALUES (?1, ?2, ?3)")?;
+        let mut stmt = conn.prepare(
+            "INSERT OR IGNORE INTO room_facets(room_uid, type, detail) VALUES (?1, ?2, ?3)",
+        )?;
         for room in &rooms {
             let Some(&uid) = uid_of.get(&room.id) else {
                 continue;
@@ -308,15 +310,27 @@ mod tests {
         let conn = codex();
         let s = import(&conn, SAMPLE).expect("import");
         assert_eq!(s.rooms, 4, "three plain, one instanced kept as uid[0]");
-        assert_eq!(s.rooms_unmapped, 1, "Lich knows a place the game does not name");
-        assert_eq!(s.rooms_instanced, 1, "counted, so the under-representation is visible");
+        assert_eq!(
+            s.rooms_unmapped, 1,
+            "Lich knows a place the game does not name"
+        );
+        assert_eq!(
+            s.rooms_instanced, 1,
+            "counted, so the under-representation is visible"
+        );
 
         let kept: i64 = conn
-            .query_row("SELECT count(*) FROM rooms WHERE uid = 501", [], |r| r.get(0))
+            .query_row("SELECT count(*) FROM rooms WHERE uid = 501", [], |r| {
+                r.get(0)
+            })
             .expect("count");
         assert_eq!(kept, 1, "the first uid");
         let others: i64 = conn
-            .query_row("SELECT count(*) FROM rooms WHERE uid IN (502, 503)", [], |r| r.get(0))
+            .query_row(
+                "SELECT count(*) FROM rooms WHERE uid IN (502, 503)",
+                [],
+                |r| r.get(0),
+            )
             .expect("count");
         assert_eq!(others, 0, "and only the first");
     }
@@ -327,7 +341,11 @@ mod tests {
         let conn = codex();
         import(&conn, SAMPLE).expect("import");
         let to_nowhere: i64 = conn
-            .query_row("SELECT count(*) FROM edges WHERE command = 'north'", [], |r| r.get(0))
+            .query_row(
+                "SELECT count(*) FROM edges WHERE command = 'north'",
+                [],
+                |r| r.get(0),
+            )
             .expect("count");
         assert_eq!(to_nowhere, 0, "room 9 does not exist in the mapdb at all");
     }
@@ -338,7 +356,11 @@ mod tests {
         let s = import(&conn, SAMPLE).expect("import");
         assert_eq!(s.edges_script, 1);
         let ruby: i64 = conn
-            .query_row("SELECT count(*) FROM edges WHERE command LIKE ';e%'", [], |r| r.get(0))
+            .query_row(
+                "SELECT count(*) FROM edges WHERE command LIKE ';e%'",
+                [],
+                |r| r.get(0),
+            )
             .expect("count");
         assert_eq!(ruby, 0);
     }
@@ -350,7 +372,11 @@ mod tests {
         let conn = codex();
         import(&conn, SAMPLE).expect("import");
         let ms: i64 = conn
-            .query_row("SELECT time_ms FROM edges WHERE command = 'go archway'", [], |r| r.get(0))
+            .query_row(
+                "SELECT time_ms FROM edges WHERE command = 'go archway'",
+                [],
+                |r| r.get(0),
+            )
             .expect("edge");
         assert_eq!(ms, DEFAULT_TIME_MS);
     }
@@ -390,7 +416,10 @@ mod tests {
         };
         let before = (count("rooms"), count("edges"), count("room_facets"));
         let second = import(&conn, SAMPLE).expect("second");
-        assert_eq!((count("rooms"), count("edges"), count("room_facets")), before);
+        assert_eq!(
+            (count("rooms"), count("edges"), count("room_facets")),
+            before
+        );
         assert_eq!(first, second, "and it reports the same thing it did");
     }
 }

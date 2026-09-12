@@ -241,7 +241,13 @@ pub fn load_all(conn: &Connection) -> rusqlite::Result<BTreeMap<String, Conditio
         let rows = stmt.query_map([], |row| row.get::<_, String>(0))?;
         for id in rows {
             let id = id?;
-            out.insert(id.clone(), Condition { id, ..Condition::default() });
+            out.insert(
+                id.clone(),
+                Condition {
+                    id,
+                    ..Condition::default()
+                },
+            );
         }
     }
     {
@@ -276,7 +282,8 @@ pub fn load_all(conn: &Connection) -> rusqlite::Result<BTreeMap<String, Conditio
         }
     }
     {
-        let mut stmt = conn.prepare("SELECT condition_id, effect, amount FROM condition_effects")?;
+        let mut stmt =
+            conn.prepare("SELECT condition_id, effect, amount FROM condition_effects")?;
         let mut rows = stmt.query([])?;
         while let Some(row) = rows.next()? {
             let id: String = row.get(0)?;
@@ -355,8 +362,16 @@ mod tests {
         let all = load_all(&conn).expect("load");
         let ice = &all["ice-slip"];
 
-        assert_eq!(evaluate(ice, &ranger(80)).total_ms(), 0, "80 survival, no pause");
-        assert_eq!(evaluate(ice, &ranger(20)).total_ms(), 4000, "20 survival, pause");
+        assert_eq!(
+            evaluate(ice, &ranger(80)).total_ms(),
+            0,
+            "80 survival, no pause"
+        );
+        assert_eq!(
+            evaluate(ice, &ranger(20)).total_ms(),
+            4000,
+            "20 survival, pause"
+        );
     }
 
     /// Haste rescues the unskilled, which is the third clause of the rule and
@@ -393,11 +408,19 @@ mod tests {
 
         let mut runner = ranger(20);
         runner.preferences.insert("ice_mode".into(), "run".into());
-        assert_eq!(evaluate(ice, &runner).total_ms(), 0, "told to run, so it runs");
+        assert_eq!(
+            evaluate(ice, &runner).total_ms(),
+            0,
+            "told to run, so it runs"
+        );
 
         let mut waiter = ranger(80);
         waiter.preferences.insert("ice_mode".into(), "wait".into());
-        assert_eq!(evaluate(ice, &waiter).total_ms(), 4000, "told to wait, so it waits");
+        assert_eq!(
+            evaluate(ice, &waiter).total_ms(),
+            4000,
+            "told to wait, so it waits"
+        );
     }
 
     /// The thing Lich has nowhere to say. An injured arm forbids a climb
@@ -413,7 +436,10 @@ mod tests {
 
         let mut hurt = ranger(80);
         hurt.injuries.insert("right_arm".into(), 3);
-        assert!(evaluate(climb, &hurt).forbidden, "a rank 3 arm is not climbing");
+        assert!(
+            evaluate(climb, &hurt).forbidden,
+            "a rank 3 arm is not climbing"
+        );
     }
 
     /// An item is what, never where. The snapshot carries possession and the
@@ -424,7 +450,10 @@ mod tests {
         let all = load_all(&conn).expect("load");
         let trinket = &all["has-fwi-trinket"];
 
-        assert!(evaluate(trinket, &ranger(50)).forbidden, "no trinket, no trip");
+        assert!(
+            evaluate(trinket, &ranger(50)).forbidden,
+            "no trinket, no trip"
+        );
 
         let mut owner = ranger(50);
         owner.items.insert("fwi trinket".into());
@@ -448,7 +477,10 @@ mod tests {
     /// everybody is the worse of the two failures.
     #[test]
     fn a_condition_with_no_terms_holds_for_nobody() {
-        let empty = Condition { id: "unfinished".into(), ..Condition::default() };
+        let empty = Condition {
+            id: "unfinished".into(),
+            ..Condition::default()
+        };
         assert!(!holds(&empty, &ranger(50)));
     }
 }
