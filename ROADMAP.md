@@ -42,8 +42,15 @@ and properties. That is normalisation, not polymorphism.
 
 Dependency, not preference:
 
-1. **world** — in progress. Rooms and facets exist in `urnon`'s store today and
-   move here. Room sets are unbuilt and everything else waits on them.
+1. **world** — in progress, in slices:
+   1. **rooms and facets** — done. Three tables, two foreign keys.
+   2. **room sets** — next. `flood` and the set algebra. Everything below
+      waits on it, and so does the composition a town actually needs: one town
+      reports several `LOCATION` strings, so a place is a set.
+   3. **connectors** — the 3,037 script edges expressed as data instead of
+      Lich Ruby. See `docs/connectors.md`. Needs sets for its origins.
+   4. **the script-edge burn-down** — coverage as a property test rather than
+      a feeling.
 2. **verbs** — independent, cheapest, and has a waiting consumer: autocomplete
    in the urnon TUI input line, plus help menus.
 3. **items** — independent. Plenty of established scripts to harvest; the work
@@ -104,14 +111,19 @@ None of these are settled. They block writing schema, not writing prose.
    `flood` has content, and it is a recursive CTE. So a stored set is a view
    definition — as SQL text (powerful, unreviewable) or a restricted
    serialized form (reviewable, needs a compiler)?
-3. **Layering.** `world` + `userland` attached together, with the runtime
+3. **Bootstrap.** ~~Committed or rebuilt?~~ **Settled: option C.** Vendor a
+   pinned `map.json`, build the tables, commit corrections as overlays applied
+   after the import. Corrections are what decided it — committing the tables
+   cannot keep one across a mapdb refresh, and rebuilding alone has nowhere to
+   put one. See `docs/bootstrap-decision.md`.
+4. **Layering.** `world` + `userland` attached together, with the runtime
    reading the union. Precedence when both define `bank`? Can userland
    *subtract*, and with what tombstone? Shared id space or separate ranges?
    What breaks when a shipped row moves under a userland reference?
-4. **Distribution.** Checked-in binary, build artifact, or downloaded release?
+5. **Distribution.** Checked-in binary, build artifact, or downloaded release?
    That decides versioning, offline behaviour, and whose problem a migration
    is.
-5. **Analytics.** DuckDB reads these files; live store or exported snapshot?
+6. **Analytics.** DuckDB reads these files; live store or exported snapshot?
    A daemon is writing the live one while a query runs.
 
 ## Non-goals
