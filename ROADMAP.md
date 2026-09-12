@@ -51,8 +51,12 @@ Dependency, not preference:
       placeholder. See `docs/connectors.md` and
       `docs/connectors-hard-cases.md`. Nothing is ingested yet: the shape
       exists, the rows do not.
-   4. **the script-edge burn-down** — coverage as a property test rather than
-      a feeling.
+   4. **edges and ingest** — done. `codex build --from <urnon map.db3>` emits
+      a database urnon routes on: 28,446 rooms, 62,012 walk edges, 374,425
+      facets. Script edges never cross; 2 statically-ambiguous commands are
+      excluded and recorded.
+   5. **the script-edge burn-down** — coverage as a property test rather than
+      a feeling. Needs connector rows, which needs curation.
 2. **verbs** — independent, cheapest, and has a waiting consumer: autocomplete
    in the urnon TUI input line, plus help menus.
 3. **items** — independent. Plenty of established scripts to harvest; the work

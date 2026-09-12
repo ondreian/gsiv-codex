@@ -4,5 +4,6 @@
 //! produce one and to prove things about it.
 
 pub mod connectors;
+pub mod ingest;
 pub mod schema;
 pub mod sets;
