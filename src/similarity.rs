@@ -92,6 +92,7 @@ fn render_term(t: &Term, elide: bool) -> String {
         Subject::Spell => "spell",
         Subject::Item => "item",
         Subject::Injury => "injury",
+        Subject::Posture => "posture",
         Subject::Preference => "pref",
     };
     let op = match t.op {

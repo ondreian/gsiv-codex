@@ -61,6 +61,7 @@ CREATE TABLE condition_terms (
     --   spell         Spell['Haste'].active?
     --   item          the character has one; worn, held or stowed alike
     --   injury        a wound by location, by severity
+    --   posture       standing, kneeling, sitting, prone
     --   preference    a setting the player chose, e.g. ice_mode
     --
     -- `injury` is here on different evidence from the rest. The mapdb contains
@@ -70,7 +71,8 @@ CREATE TABLE condition_terms (
     -- knowledge went into scripts and players' heads instead. It is exactly
     -- the kind of fact this layer exists to hold.
     subject      TEXT    NOT NULL CHECK (subject IN
-                 ('skill','stat','society','society_rank','encumbrance','spell','item','injury','preference')),
+                 ('skill','stat','society','society_rank','encumbrance','spell','item','injury',
+                  'posture','preference')),
     key          TEXT    NOT NULL DEFAULT '',
     op           TEXT    NOT NULL CHECK (op IN
                  ('lt','lte','gt','gte','eq','ne','present','absent')),

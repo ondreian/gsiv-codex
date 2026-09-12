@@ -43,6 +43,7 @@ pub enum Subject {
     Spell,
     Item,
     Injury,
+    Posture,
     Preference,
 }
 
@@ -57,6 +58,7 @@ impl Subject {
             "spell" => Subject::Spell,
             "item" => Subject::Item,
             "injury" => Subject::Injury,
+            "posture" => Subject::Posture,
             "preference" => Subject::Preference,
             _ => return None,
         })
@@ -132,6 +134,9 @@ pub struct CharacterSnapshot {
     pub items: BTreeSet<String>,
     /// Injuries by location: `left_arm` → severity. Absent means unhurt.
     pub injuries: BTreeMap<String, i64>,
+    /// `standing`, `kneeling`, `sitting`, `prone`. Needed to say "kneel unless
+    /// you already are".
+    pub posture: String,
     /// Settings the player chose, e.g. `ice_mode` → `run`.
     pub preferences: BTreeMap<String, String>,
 }
@@ -186,6 +191,7 @@ fn term_holds(t: &Term, who: &CharacterSnapshot) -> bool {
         Subject::Injury => cmp_num(who.injuries.get(&t.key).copied().unwrap_or(0), t),
         Subject::Stat => cmp_str(who.stats.get(&t.key).map(String::as_str), t),
         Subject::Society => cmp_str(who.society.as_deref(), t),
+        Subject::Posture => cmp_str(Some(who.posture.as_str()), t),
         Subject::Preference => cmp_str(who.preferences.get(&t.key).map(String::as_str), t),
         Subject::Spell => cmp_member(who.spells.contains(&t.key), t),
         Subject::Item => cmp_member(who.items.contains(&t.key), t),
