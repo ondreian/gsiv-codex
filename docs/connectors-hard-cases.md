@@ -59,15 +59,23 @@ client's job, not the map's.
 
 ### Hands and containers — 136 edges
 
-The FWI trinket's Ruby is mostly inventory management: is it worn, are both
-hands full, empty one, find it, get it, remember the container, turn it, put it
-back, refill hands.
+The FWI trinket's Ruby opens with `worn = !GameObj[...].nil?` and then does
+nothing at all if the answer is yes — you simply `turn` it. The hand and
+container dance is the *fallback* for a trinket carried in a container: empty a
+hand, find it, get it, remember where it came from, turn it, put it back,
+refill hands.
 
-**None of that is a fact about the world.** The fact is *the trinket must be in
-hand*. How a client arranges that is its own capability — urnon already has a
-container store and hand tracking. As data it is a **precondition** from a
-closed vocabulary, and the cleanup afterwards is the client restoring its own
-state, which it is better placed to do than a map is.
+So the requirement is **not** that the trinket is in hand. It is that the
+character **has** one. Worn is the common case and needs no preparation
+whatever; held needs none either; in a container needs the dance.
+
+**None of that is a fact about the world.** The fact is *this connector needs
+that item*. Where the character keeps it, and what it takes to make it usable,
+is the client's own business — urnon already has a container store and hand
+tracking, and it knows whether the thing is worn. As data it is a
+**precondition** from a closed vocabulary, and the cleanup afterwards is the
+client restoring its own state, which it is far better placed to do than a map
+is.
 
 ### `force_start_script 'go2', [room]` — 4 edges
 
@@ -106,14 +114,16 @@ Preconditions, closed vocabulary, client-satisfied:
 ```sql
 connector_requires (
     connector_id TEXT NOT NULL,
-    requirement  TEXT NOT NULL,   -- 'item-in-hand', 'hands-free', ...
+    requirement  TEXT NOT NULL,   -- 'has-item', ...
     detail       TEXT NOT NULL DEFAULT '',
     PRIMARY KEY (connector_id, requirement, detail)
 );
 ```
 
-The vocabulary starts at exactly what the 136 edges need and grows only on
-evidence. A requirement the client cannot satisfy means the connector is not
+`has-item` says what the connector needs, never where it must be — a worn
+trinket and one in a backpack satisfy the same requirement at different cost to
+the client. The vocabulary starts at exactly what the 136 edges need and grows
+only on evidence. A requirement the client cannot satisfy means the connector is not
 offered — which is the same rule as the lease, and needs no new machinery.
 
 Steps gain a timeout, since `dothistimeout` carries one:
