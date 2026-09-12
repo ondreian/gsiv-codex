@@ -168,11 +168,14 @@ fn seven_towns_are_not_yet_round_trips() {
     assert_eq!(broken, 7, "towns you cannot both reach and leave");
 }
 
-/// A one-way road is the failure that hides: it looks correct from whichever
-/// side somebody tested. Naming them individually means fixing one is a
-/// visible, single-line change rather than a count going down.
+/// Which towns the data reaches in only one direction.
+///
+/// Named individually so that connecting one is a visible single-line change
+/// rather than a count going down. Again: an artifact of dropped edges, not a
+/// one-way road -- the fix is to express the mechanism, after which both
+/// columns flip together.
 #[test]
-fn the_one_way_roads_are_the_ones_we_know_about() {
+fn the_asymmetric_towns_are_the_ones_we_know_about() {
     let mut one_way: Vec<&str> = TOWNS
         .iter()
         .filter(|(_, t, b)| t != b)
