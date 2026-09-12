@@ -55,8 +55,11 @@ Dependency, not preference:
       a database urnon routes on: 28,446 rooms, 62,012 walk edges, 374,425
       facets. Script edges never cross; 2 statically-ambiguous commands are
       excluded and recorded.
-   5. **the script-edge burn-down** — coverage as a property test rather than
-      a feeling. Needs connector rows, which needs curation.
+   5. **overlays and the script-edge burn-down** — started. Corrections apply
+      after the import, so a mapdb refresh cannot revert them. First
+      population: 834 edges whose mapdb "command" was Ruby wrapping one real
+      command, worth 283 rooms of reachability. `script_edge_disposition` says
+      what became of each script edge; the rest wait on connector curation.
 2. **verbs** — independent, cheapest, and has a waiting consumer: autocomplete
    in the urnon TUI input line, plus help menus.
 3. **items** — independent. Plenty of established scripts to harvest; the work

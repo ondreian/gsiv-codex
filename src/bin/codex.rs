@@ -104,6 +104,14 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
         eprintln!("facets from tags: {facets}");
     }
 
+    // Overlays last, and that ordering is the whole point of option C: a
+    // correction applied *after* the import survives a mapdb refresh, where an
+    // edit to the imported rows would be silently reverted by the next one.
+    let applied = gsiv_codex::overlays::apply(&conn)?;
+    if applied > 0 {
+        eprintln!("overlays applied: {applied}");
+    }
+
     // Cheap here and permanent in the artifact: every consumer's first query
     // is faster for a page-ordered file, and nobody has to remember to do it.
     conn.execute_batch("VACUUM; ANALYZE;")?;
