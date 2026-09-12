@@ -94,15 +94,20 @@ CREATE TABLE condition_effects (
     PRIMARY KEY (condition_id, effect)
 ) WITHOUT ROWID;
 
--- 460 edges pointing at one condition, rather than 460 copies of it.
+-- Edges pointing at one condition, rather than a copy of it per edge.
+--
+-- **No foreign key to `edges`, deliberately.** An extracted edge does not exist
+-- until overlays are applied, which is after this data loads -- so a key here
+-- would impose an ordering the build would have to grow a third phase to
+-- satisfy. A row naming an edge that is not there is inert rather than wrong,
+-- which is the same call `connector_destinations.to_uid` makes, and the same
+-- property test covers it: every row here names a real edge.
 CREATE TABLE edge_conditions (
     from_uid     INTEGER NOT NULL,
     to_uid       INTEGER NOT NULL,
     command      TEXT    NOT NULL,
     condition_id TEXT    NOT NULL REFERENCES conditions(id) ON DELETE CASCADE,
-    PRIMARY KEY (from_uid, to_uid, command, condition_id),
-    FOREIGN KEY (from_uid, to_uid, command) REFERENCES edges(from_uid, to_uid, command)
-        ON DELETE CASCADE
+    PRIMARY KEY (from_uid, to_uid, command, condition_id)
 ) WITHOUT ROWID;
 
 -- And the same vocabulary for a connector, replacing `connector_requires`.

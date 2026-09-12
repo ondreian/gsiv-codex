@@ -32,6 +32,19 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("extract") => {
+            let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
+                eprintln!("usage: codex extract --from vendor/map.json --out data/050_extracted.sql");
+                return ExitCode::from(2);
+            };
+            match extract_to(&from, &out) {
+                Ok(()) => ExitCode::SUCCESS,
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::from(1)
+                }
+            }
+        }
         Some("conditions") => match flag("--db") {
             Some(db) => match conditions_report(&db, flag("--floor")) {
                 Ok(()) => ExitCode::SUCCESS,
@@ -59,7 +72,7 @@ fn main() -> ExitCode {
             }
         },
         _ => {
-            eprintln!("usage: codex (build | stats | conditions) ...");
+            eprintln!("usage: codex (build | extract | stats | conditions) ...");
             ExitCode::from(2)
         }
     }
@@ -74,11 +87,23 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
     }
     let conn = schema::open(out)?;
 
-    // Vocabulary before projection: a tag map row references a facet type, and
-    // the projection consults the map. Loaded from `.sql` files so the
-    // decisions stay reviewable as data rather than compiled in.
-    if let Some(dir) = vocabulary {
-        let mut files: Vec<_> = std::fs::read_dir(dir)?
+    // Two phases, because the data depends on the import in both directions.
+    //
+    //   vocabulary/  loads *first*: the tag map names facet types, and the
+    //                projection consults the map, so both must exist before a
+    //                single room is read.
+    //   overlays/    loads *last*: an extracted edge asserts something over
+    //                the import, and a condition tagged onto an edge cannot
+    //                reference a row that does not exist yet.
+    //
+    // The directory is the phase. A numbering convention would have worked and
+    // would have been one silent mistake away from a foreign key error nobody
+    // could explain.
+    let load_phase = |dir: &str| -> Result<(), Box<dyn std::error::Error>> {
+        let Ok(entries) = std::fs::read_dir(dir) else {
+            return Ok(());
+        };
+        let mut files: Vec<_> = entries
             .filter_map(Result::ok)
             .map(|e| e.path())
             .filter(|p| p.extension().is_some_and(|e| e == "sql"))
@@ -86,8 +111,14 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
         files.sort();
         for path in &files {
             conn.execute_batch(&std::fs::read_to_string(path)?)?;
-            eprintln!("vocabulary: {}", path.display());
+            eprintln!("  {}", path.display());
         }
+        Ok(())
+    };
+
+    if let Some(dir) = vocabulary {
+        eprintln!("vocabulary:");
+        load_phase(&format!("{dir}/vocabulary"))?;
     }
 
     // A `.json` is the vendored mapdb -- the real bootstrap. A `.db3` is
@@ -120,6 +151,10 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
     // Overlays last, and that ordering is the whole point of option C: a
     // correction applied *after* the import survives a mapdb refresh, where an
     // edit to the imported rows would be silently reverted by the next one.
+    if let Some(dir) = vocabulary {
+        eprintln!("overlays:");
+        load_phase(&format!("{dir}/overlays"))?;
+    }
     let applied = gsiv_codex::overlays::apply(&conn)?;
     if applied > 0 {
         eprintln!("overlays applied: {applied}");
@@ -195,5 +230,24 @@ fn conditions_report(db: &str, floor: Option<String>) -> Result<(), Box<dyn std:
         }
         println!();
     }
+    Ok(())
+}
+
+/// Regenerate the extracted-command overlays from the vendored mapdb.
+fn extract_to(from: &str, out: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let found = gsiv_codex::extract::from_mapdb(&std::fs::read_to_string(from)?)?;
+    let skipped = found
+        .iter()
+        .filter(|e| matches!(e.body, gsiv_codex::extract::Body::Unrecognised(_)))
+        .count();
+    let tagged = found
+        .iter()
+        .filter(|e| matches!(e.body, gsiv_codex::extract::Body::Condition(_)))
+        .count();
+    std::fs::write(out, gsiv_codex::extract::to_sql(&found))?;
+    eprintln!(
+        "{} extracted ({tagged} with a condition), {skipped} left alone -> {out}",
+        found.len() - skipped
+    );
     Ok(())
 }

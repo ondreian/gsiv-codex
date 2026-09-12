@@ -5,6 +5,7 @@
 
 pub mod conditions;
 pub mod connectors;
+pub mod extract;
 pub mod ingest;
 pub mod mapdb;
 pub mod overlays;
