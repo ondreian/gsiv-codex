@@ -21,7 +21,9 @@ fn main() -> ExitCode {
     match args.first().map(String::as_str) {
         Some("build") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
-                eprintln!("usage: codex build --from <map.db3> --out <codex.db3> [--vocabulary <dir>]");
+                eprintln!(
+                    "usage: codex build --from <map.db3> --out <codex.db3> [--vocabulary <dir>]"
+                );
                 return ExitCode::from(2);
             };
             match build(&from, &out, flag("--vocabulary").as_deref()) {
@@ -34,7 +36,9 @@ fn main() -> ExitCode {
         }
         Some("extract") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
-                eprintln!("usage: codex extract --from vendor/map.json --out data/050_extracted.sql");
+                eprintln!(
+                    "usage: codex extract --from vendor/map.json --out data/050_extracted.sql"
+                );
                 return ExitCode::from(2);
             };
             match extract_to(&from, &out) {
@@ -78,7 +82,11 @@ fn main() -> ExitCode {
     }
 }
 
-fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn std::error::Error>> {
+fn build(
+    from: &str,
+    out: &str,
+    vocabulary: Option<&str>,
+) -> Result<(), Box<dyn std::error::Error>> {
     // Rebuilt from scratch every time. A build that appends to whatever was
     // there before is a build whose output depends on its history, which is
     // the opposite of what a published artifact needs.
@@ -103,15 +111,23 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
         let Ok(entries) = std::fs::read_dir(dir) else {
             return Ok(());
         };
+        // `.sql` is a script; `.tsv` is a table named by its file. Both are
+        // ordered by the numeric prefix together, so a TSV whose foreign key
+        // points at a row a `.sql` inserts can be sequenced after it.
         let mut files: Vec<_> = entries
             .filter_map(Result::ok)
             .map(|e| e.path())
-            .filter(|p| p.extension().is_some_and(|e| e == "sql"))
+            .filter(|p| p.extension().is_some_and(|e| e == "sql" || e == "tsv"))
             .collect();
         files.sort();
         for path in &files {
-            conn.execute_batch(&std::fs::read_to_string(path)?)?;
-            eprintln!("  {}", path.display());
+            if path.extension().is_some_and(|e| e == "tsv") {
+                let n = gsiv_codex::tsv::load(&conn, path)?;
+                eprintln!("  {} ({n} rows)", path.display());
+            } else {
+                conn.execute_batch(&std::fs::read_to_string(path)?)?;
+                eprintln!("  {}", path.display());
+            }
         }
         Ok(())
     };
@@ -221,7 +237,11 @@ fn conditions_report(db: &str, floor: Option<String>) -> Result<(), Box<dyn std:
     let candidates = similarity::shortlist(&list, floor);
     println!("\n{} pair(s) at or above {floor}:\n", candidates.len());
     for cand in &candidates {
-        let mark = if cand.same_shape { "SAME SHAPE" } else { "          " };
+        let mark = if cand.same_shape {
+            "SAME SHAPE"
+        } else {
+            "          "
+        };
         println!("  {mark}  {:.2}  {}  vs  {}", cand.score, cand.a, cand.b);
         for id in [&cand.a, &cand.b] {
             if let Some(c) = list.iter().find(|c| &c.id == id) {

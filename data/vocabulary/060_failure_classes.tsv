@@ -1,0 +1,29 @@
+cannot-drag	retry	675	1	Lich also rebuilds the command as `drag <name> <target>` from the earlier grab line. Only the simple repair is expressed here: dragging a body is not travel, and a router that plans one is answering a question nobody asked.	global_defs.rb:675
+climb-failed	retry	642	0	You fell. Stand before trying again.	global_defs.rb:642
+disk-wobbled	retry	741	0	Your disk did not follow. Send it again; nothing to fix.	global_defs.rb:741
+engaged	retry	607	0	Twice, as Lich does. One retreat moves you one range band.	global_defs.rb:607
+fell-down	retry	726	0		global_defs.rb:726
+hands-full	retry	693	0	Climbing and swimming want both hands.	global_defs.rb:693
+hidden	retry	612	0	Some rooms will not admit someone nobody can see.	global_defs.rb:612
+item-at-your-feet	retry	746	0	The game refuses to let you walk off and leave it.	global_defs.rb:746
+knocked-down	retry	722	0		global_defs.rb:722
+must-be-standing	retry	715	0	Sitting, lying, kneeling. Thirteen ways to be told to get up.	global_defs.rb:715
+needs-climb	retry	669	1	The map says `go`, the game wants `climb`. A correction the overlay should eventually carry so nobody pays the round trip.	global_defs.rb:669
+needs-go	retry	672	1	The same mistake in the other direction.	global_defs.rb:672
+no-such-exit	edge-wrong	625	0	The largest branch, and the one that matters most: twenty-six ways for the game to say the exit is not there. Lich returns false, which its map layer takes as licence to delete the edge.	global_defs.rb:625
+not-allowed	unavailable	631	0	A ticket, a guest pass, a club membership, a reputation. The exit is real and this character may not use it -- Lich returns nil *specifically* so the direction is not removed from the map. This is the Silverwood Manor case.	global_defs.rb:631
+pitch-dark	unavailable	764	0	DIVERGENCE FROM LICH. Lich returns *true* here, which claims you arrived; you did not, and every command after it is sent from the wrong room. You need a light source. Recorded as unavailable, which is what it is.	global_defs.rb:764
+senses-lost	retry	757	0	Lich polls for the line for three seconds. The text is the signal, so a client waits for it rather than for a duration.	global_defs.rb:757
+shocked	retry	750	0	A boltstone apparatus discharging into you.	global_defs.rb:750
+slipped	retry	736	0	The ice. Six seconds of roundtime and you are on your back, in the room you started in. This is the recovery; the four-second pause in `conditions` is the avoidance, and a walk needs both -- the pause is skippable at high Survival, and the recovery never is.	global_defs.rb:736
+still-recovering	retry	719	0		global_defs.rb:719
+stunned	retry	733	0	Lich also waits out stun *before* every send, so seeing this at all means the stun landed between the check and the command.	global_defs.rb:733
+swim-failed	retry	743	0		global_defs.rb:743
+swimming	arrived	648	0	Sailor's Grief. The swim messages are progress, not failure.	global_defs.rb:648
+thread-tumble	retry	651	0	The silvery thread needs both hands. Lich refills them on arrival, which is why `empty-hands` implies a refill.	global_defs.rb:651
+too-injured-to-climb	retry	661	1	Sigil of Resolve. Lich returns nil when the character does not know it, so a client without the spell should treat this as `unavailable` -- the remedy is conditional on knowing 9704, which is a character fact and belongs in the snapshot, not here.	global_defs.rb:661
+transient-refusal	retry	638	0	Vertigo, a guard checking you in, a shimmering field. Nothing is wrong; it simply did not take this time.	global_defs.rb:638
+type-ahead-refused	retry	730	0	Server backpressure: more commands in flight than the subscription allows. The only failure here caused by the client rather than the world, and the one a batching walker will meet first.	global_defs.rb:730
+wait-n-seconds	retry	708	0	`...Wait 3 seconds.` -- the server's own roundtime refusal. The count is in the message, so a client reads it there rather than sleeping a constant.	global_defs.rb:708
+way-is-closed	retry	697	1	Open it once. If it is still closed it is locked, and opening it again will not help.	global_defs.rb:697
+wrong-door	retry	615	1	Several doors, and the map named the ordinal wrong. Lich walks the ordinal up one each time; the detail here is the first step of that, and a client that implements the walk can keep going.	global_defs.rb:615

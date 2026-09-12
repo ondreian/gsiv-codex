@@ -1,0 +1,124 @@
+cannot-drag	^You can't drag
+climb-failed	^Climbing.*(?:plunge|fall)
+climb-failed	^Tentatively, you attempt to climb.*(?:fall|slip)
+climb-failed	^You attempt to climb .* wrong approach
+climb-failed	^You attempt to climb down the .*, but you can't seem to find purchase\.
+climb-failed	^You leap .* fall unceremoniously to the ground in a heap\.$
+climb-failed	^You run towards .*? slowly retreat back, reassessing the situation\.
+climb-failed	^You search for a way to make the climb .*? but without success\.$
+climb-failed	^You start down the .*, but you find it hard going.\s*Rather than risking a fall, you make your way back up\.
+climb-failed	^You start to climb .* you fall to the ground
+climb-failed	^You start up the .* but slip after a few feet and fall to the ground
+climb-failed	^You start.*but quickly realize
+climb-failed	^You.*drop back to the ground
+disk-wobbled	^You flick your hand (?:up|down)wards and focus your aura on your disk, but your disk only wobbles briefly\.$
+engaged	^While in combat\?  You'll have better luck if you first retreat
+engaged	^You are engaged to
+engaged	^You can't do that while engaged!
+engaged	^You need to retreat out of combat first!
+engaged	^You realize that would be next to impossible while in combat.
+engaged	^You try to move, but you're engaged
+fell-down	You go flying down several feet, landing with a
+hands-full	^It's a bit too difficult to swim holding
+hands-full	^Maybe if your hands were empty
+hands-full	^You can't .+ with your hands full\.$
+hands-full	^You figure freeing up both hands might help\.
+hands-full	^You will need both hands free for such a difficult task\.
+hands-full	^You'll need empty hands to climb that\.$
+hidden	^How do you intend to get .*? attention\?  After all, no one can see you right now\.$
+hidden	^You can't do that without being seen\.$
+hidden	^You can't enter .+ and remain hidden or invisible\.
+hidden	^You can't enter .+ when you can't be seen\.$
+hidden	if he can't see you!$
+item-at-your-feet	^(You notice .* at your feet, and do not wish to leave it behind|As you prepare to move away, you remember)
+knocked-down	^The ground approaches you at an alarming rate
+must-be-standing	You can't do that while lying down
+must-be-standing	You can't do that while sitting
+must-be-standing	You must be standing to do that
+must-be-standing	^But you're already sitting!
+must-be-standing	^Perhaps you should stand up
+must-be-standing	^Shouldn't you be standing first
+must-be-standing	^Standing up might help
+must-be-standing	^That would be quite a trick from that position\.  Try standing up\.
+must-be-standing	^You must be standing
+must-be-standing	^You should really stand up first
+must-be-standing	^You'll have to get up first
+must-be-standing	must be standing first
+must-be-standing	will have to stand up first
+needs-climb	^You(?:'re going to| will) have to climb that\.
+needs-go	^You can't climb that\.
+no-such-exit	Please leave promptly\.
+no-such-exit	The [\w\s]+ is too far away
+no-such-exit	You may not pass\.
+no-such-exit	^Definitely NOT a good idea\.$
+no-such-exit	^How do you plan to do that here\?
+no-such-exit	^I could not find what you were referring to\.
+no-such-exit	^Maybe you should look
+no-such-exit	^That's probably not a very good idea
+no-such-exit	^There doesn't seem to be any way to do that at the moment\.$
+no-such-exit	^Uh, yeah\.  Right\.$
+no-such-exit	^What were you referring to\?
+no-such-exit	^Where are you trying to go\?
+no-such-exit	^You are already(?! as far away as you can get)
+no-such-exit	^You can't (?:go|swim) in that direction\.
+no-such-exit	^You can't go there
+no-such-exit	^You can't go to
+no-such-exit	^You cannot do that\.
+no-such-exit	^You settle yourself on
+no-such-exit	^You shouldn't annoy
+no-such-exit	^You step over to
+no-such-exit	^You take a few steps towards
+no-such-exit	^You walk over to
+no-such-exit	^Your attempt fails
+no-such-exit	become impassable\.
+no-such-exit	is too far above you to attempt that\.$
+no-such-exit	prevents you from entering\.
+not-allowed	^An unseen force prevents you\.$
+not-allowed	^An? .*? reaches over and grasps [A-Z][a-z]+ by the neck preventing (?:him|her) from being dragged anywhere\.$
+not-allowed	^As you climb, your grip gives way and you fall down
+not-allowed	^As you move toward the gate, you carelessly bump into the guard
+not-allowed	^Sorry, you aren't allowed to enter here\.
+not-allowed	^That looks like someplace only performers should go\.
+not-allowed	^The clerk stops you from entering the partition and says, "I'll need to see your ticket!"$
+not-allowed	^The guard stops you, saying, "Only members of registered groups may enter the Meeting Hall\.  If you'd like to visit, ask a group officer for a guest pass\."$
+not-allowed	^You attempt to enter the back of the shop, but a clerk stops you.  "Your reputation precedes you!
+not-allowed	^You'll have to wait, [A-Z][a-z]+ .* locker
+not-allowed	^[A-z\s-] is unable to follow you\.$
+not-allowed	appears to be closed, perhaps you should try again later\?$
+not-allowed	you notice that thick beams are placed across the entry with a small sign that reads, "Abandoned\."$
+pitch-dark	^It's pitch dark and you can't see a thing!
+senses-lost	You\ don't\ seem\ to\ be\ able\ to\ move\ to\ do\ that\.
+shocked	The electricity courses through you in a raging torrent, its power singing in your veins!  Spent, the boltstone apparatus shatters into glinting fragments\.
+shocked	The lightning strikes you in an agonizing eruption of liquid radiance!
+slipped	You wobble and stumble only for a moment before landing flat on your face!$
+slipped	^You slip in the mud and fall flat on your back\!$
+slipped	you slip (?:on a patch of ice )?and flail uselessly as you land on your rear(?:\.|!)$
+still-recovering	^You're still recovering from your recent
+stunned	You\ are\ still\ stunned\.
+swim-failed	^Running through the swampy terrain, you notice a wet patch in the bog
+swim-failed	^You blunder around in the water, barely able
+swim-failed	^You dive into the fast-moving river, but the current catches you and whips you back to shore, wet and battered\.$
+swim-failed	^You flounder around in the water.$
+swim-failed	^You slap at the water in a sad failure to swim
+swim-failed	^You struggle against the swift current to swim
+swim-failed	^You work against the swift current to swim
+swimming	^(?:You swim .*, (?:cutting through|navigating)|You swim .*, struggling against|Your lungs burn and your muscles ache)
+thread-tumble	^You begin to climb up the silvery thread.* you tumble to the ground
+too-injured-to-climb	You\ are\ too\ injured\ to\ be\ doing\ any\ climbing!
+transient-refusal	^A shimmering field of magical crimson and gold energy flows through the area\.$
+transient-refusal	^As you start .*? back to safe ground\.$
+transient-refusal	^Guards(?:wo)?man [A-Z][a-z]+ stops you and says, "(?:Stop\.|Halt!)  You need to make sure you check in
+transient-refusal	^Tentatively, you attempt to swim through the nook\.  After only a few feet, you begin to sink!  Your lungs burn from lack of air, and you begin to panic!  You frantically paddle back to safety!$
+transient-refusal	^Trying to judge the climb, you peer over the edge\.\s*A wave of dizziness hits you, and you back away from the .*\.$
+transient-refusal	^You approach the .*, but the steepness is intimidating\.$
+transient-refusal	^You attempt to navigate your way through the fog, but (?:quickly become entangled|get turned around)
+transient-refusal	^You grab [A-Z][a-z]+ and try to drag h(?:im|er), but s?he (?:is too heavy|doesn't budge)\.$
+transient-refusal	^You make your way (?:up|down) the .*\.\s*Partway (?:up|down), you make the mistake of looking down\. Struck by vertigo, you cling to the .* for a few moments, then slowly climb back (?:up|down)\.$
+transient-refusal	^You pick your way up the .*, but reach a point where your footing is questionable.\s*Reluctantly, you climb back down.$
+transient-refusal	^You step into the root, but can see no way to climb the slippery tendrils inside\.  After a moment, you step back out\.$
+transient-refusal	^You stumble a bit as you try to enter the pool but feel that your persistence will pay off\.$
+type-ahead-refused	^Sorry, you may only type ahead
+wait-n-seconds	^(\.\.\.w|W)ait ([0-9]+) sec(onds)?\.$
+way-is-closed	(?:appears|seems) to be closed\.$
+way-is-closed	^You cannot quite manage to squeeze between the stone doors\.$
+wrong-door	^You (?:take a few steps toward|trudge up to|limp towards|march up to|sashay gracefully up to|skip happily towards|sneak up to|stumble toward) a rusty doorknob

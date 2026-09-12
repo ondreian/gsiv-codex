@@ -1,0 +1,40 @@
+cannot-drag	0	rewrite	climb>go
+climb-failed	0	sleep	1000
+climb-failed	1	wait-rt	
+climb-failed	2	stand	
+engaged	0	retreat	
+engaged	1	retreat	
+fell-down	0	sleep	1000
+fell-down	1	stand	
+hands-full	0	empty-hands	
+hidden	0	unhide	
+item-at-your-feet	0	stow-feet	
+item-at-your-feet	1	sleep	1000
+knocked-down	0	sleep	1000
+knocked-down	1	stand	
+must-be-standing	0	stand	
+must-be-standing	1	wait-rt	
+needs-climb	0	rewrite	go>climb
+needs-go	0	rewrite	climb>go
+senses-lost	0	await	You regain control of your senses!
+shocked	0	sleep	500
+shocked	1	wait-stun	
+shocked	2	wait-rt	
+shocked	3	stand	
+slipped	0	wait-rt	
+slipped	1	stand	
+slipped	2	wait-rt	
+still-recovering	0	sleep	2000
+stunned	0	wait-stun	
+swim-failed	0	wait-rt	
+thread-tumble	0	sleep	500
+thread-tumble	1	wait-rt	
+thread-tumble	2	stand	
+thread-tumble	3	empty-hands	
+too-injured-to-climb	0	cast	9704
+transient-refusal	0	sleep	1000
+transient-refusal	1	wait-rt	
+type-ahead-refused	0	sleep	1000
+wait-n-seconds	0	wait-rt	
+way-is-closed	0	open-the-way	
+wrong-door	0	rewrite	door>second door
