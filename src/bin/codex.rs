@@ -49,6 +49,25 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("failures") => {
+            let (Some(lich), Some(out)) = (flag("--lich"), flag("--out")) else {
+                eprintln!("usage: codex failures --lich <lich-5 checkout> --out data/vocabulary");
+                return ExitCode::from(2);
+            };
+            match gsiv_codex::lich_move::regenerate(
+                std::path::Path::new(&lich),
+                std::path::Path::new(&out),
+            ) {
+                Ok((c, p, r)) => {
+                    eprintln!("{c} classes, {p} patterns, {r} remedies -> {out}");
+                    ExitCode::SUCCESS
+                }
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::from(1)
+                }
+            }
+        }
         Some("conditions") => match flag("--db") {
             Some(db) => match conditions_report(&db, flag("--floor")) {
                 Ok(()) => ExitCode::SUCCESS,

@@ -97,11 +97,11 @@ the count at one, so a second is a conversation rather than a surprise.
 ## Refreshing it
 
 ```
-tools/split_lich_move.py ~/dev/lich-5 data/vocabulary
+cargo run --bin codex -- failures --lich ~/dev/lich-5 --out data/vocabulary
 ```
 
-The splitting is mechanical; the classification is the table at the top of that
-script, keyed by source line. A Lich release that moves a branch **fails
+The splitting is mechanical; the classification is `BRANCHES` in
+`src/lich_move.rs`, keyed by source line. A Lich release that moves a branch **fails
 loudly** rather than silently attaching the wrong remedy to the wrong message:
 
 ```

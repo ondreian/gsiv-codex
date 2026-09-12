@@ -87,14 +87,14 @@ not-allowed	^[A-z\s-] is unable to follow you\.$
 not-allowed	appears to be closed, perhaps you should try again later\?$
 not-allowed	you notice that thick beams are placed across the entry with a small sign that reads, "Abandoned\."$
 pitch-dark	^It's pitch dark and you can't see a thing!
-senses-lost	You\ don't\ seem\ to\ be\ able\ to\ move\ to\ do\ that\.
+senses-lost	You don't seem to be able to move to do that\.
 shocked	The electricity courses through you in a raging torrent, its power singing in your veins!  Spent, the boltstone apparatus shatters into glinting fragments\.
 shocked	The lightning strikes you in an agonizing eruption of liquid radiance!
 slipped	You wobble and stumble only for a moment before landing flat on your face!$
 slipped	^You slip in the mud and fall flat on your back\!$
 slipped	you slip (?:on a patch of ice )?and flail uselessly as you land on your rear(?:\.|!)$
 still-recovering	^You're still recovering from your recent
-stunned	You\ are\ still\ stunned\.
+stunned	You are still stunned\.
 swim-failed	^Running through the swampy terrain, you notice a wet patch in the bog
 swim-failed	^You blunder around in the water, barely able
 swim-failed	^You dive into the fast-moving river, but the current catches you and whips you back to shore, wet and battered\.$
@@ -104,7 +104,7 @@ swim-failed	^You struggle against the swift current to swim
 swim-failed	^You work against the swift current to swim
 swimming	^(?:You swim .*, (?:cutting through|navigating)|You swim .*, struggling against|Your lungs burn and your muscles ache)
 thread-tumble	^You begin to climb up the silvery thread.* you tumble to the ground
-too-injured-to-climb	You\ are\ too\ injured\ to\ be\ doing\ any\ climbing!
+too-injured-to-climb	You are too injured to be doing any climbing!
 transient-refusal	^A shimmering field of magical crimson and gold energy flows through the area\.$
 transient-refusal	^As you start .*? back to safe ground\.$
 transient-refusal	^Guards(?:wo)?man [A-Z][a-z]+ stops you and says, "(?:Stop\.|Halt!)  You need to make sure you check in
