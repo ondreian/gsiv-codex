@@ -23,6 +23,21 @@ Every one of them is *entity → typed attributes → relations to other entitie
 That is what makes "unified" structural rather than aspirational, and it is
 precisely the thing Lich's format cannot express.
 
+**Same shape does not mean same table.** These are ordinary normalised
+relations — `rooms`, `room_facets`, `foes`, `foe_room_sets` — with real foreign
+keys. The alternative, one polymorphic attribute table keyed by
+`(entity_type, entity_id)`, buys a single query shape and pays for it with the
+one thing this layer exists to provide: **a polymorphic parent cannot have a
+foreign key.** A foe referencing a room set is only enforceable if both are
+real tables, and that reference is the thing Lich structurally cannot say.
+
+Where a uniform "everything known about X" query is genuinely wanted, that is a
+**view** over the union. Integrity in the tables, uniformity in the query.
+
+The collapse already done in urnon is this rule applied once: room facets are
+*one* table with a `type` column rather than separate tables for herbs, POIs
+and properties. That is normalisation, not polymorphism.
+
 ## Order
 
 Dependency, not preference:
@@ -35,6 +50,14 @@ Dependency, not preference:
    is encoding effects and properties, not finding the names.
 4. **foes** — last, because foes reference room sets. Several existing sources
    of varying quality; a wiki crawl is likely and it is the hardest of the four.
+
+**Verbs are not the entity model.** A verb is a taxonomy, not a row: `STOW`,
+`STOW <item>`, `STOW LEFT`, plus aliases and an argument grammar per node. That
+is a tree with a grammar hanging off it, and adjacency list, closure table and
+materialised path each suit a different access pattern — prefix-walk for
+autocomplete versus whole-subtree read for a help menu. It gets designed as a
+taxonomy when we reach it rather than assumed to fall out of rooms-with-
+attributes.
 
 ## What belongs here
 
@@ -54,8 +77,10 @@ and only what differs per character has to be probed.
 
 None of these are settled. They block writing schema, not writing prose.
 
-1. **Entity shape.** One table with a `type` column, or a table per type behind
-   a shared view?
+1. **Toolchain.** Is this repo Rust, and if so does it use an ORM? The
+   deliverable is a SQLite file, so a consumer's choice is unaffected either
+   way — but the pipeline needs migrations, and `flood` needs a recursive CTE
+   that a query DSL cannot express.
 2. **Sets as queries.** Eight of the nine `RoomSetDef` node types in urnon's
    digraph design are relational algebra SQLite already implements; only
    `flood` has content, and it is a recursive CTE. So a stored set is a view
