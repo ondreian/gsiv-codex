@@ -5,5 +5,6 @@
 
 pub mod connectors;
 pub mod ingest;
+pub mod mapdb;
 pub mod schema;
 pub mod sets;

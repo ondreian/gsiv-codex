@@ -77,14 +77,32 @@ fn build(from: &str, out: &str, vocabulary: Option<&str>) -> Result<(), Box<dyn 
         }
     }
 
-    let s = ingest::from_urnon_store(&conn, from)?;
-    eprintln!(
-        "rooms {}, edges {} (skipped {} script, {} ambiguous), locations {}",
-        s.rooms, s.edges, s.edges_skipped_script, s.edges_skipped_ambiguous, s.locations
-    );
-
-    let facets = ingest::project_tags(&conn, from)?;
-    eprintln!("facets from tags: {facets}");
+    // A `.json` is the vendored mapdb -- the real bootstrap. A `.db3` is
+    // urnon's already-imported store, which was the way in before this
+    // existed and stays useful for comparing the two.
+    if from.ends_with(".json") {
+        let s = gsiv_codex::mapdb::import(&conn, &std::fs::read_to_string(from)?)?;
+        eprintln!(
+            "rooms {} (skipped {} unmapped, {} instanced), edges {} (skipped {} script, \
+             {} dangling, {} ambiguous), facets {}",
+            s.rooms,
+            s.rooms_unmapped,
+            s.rooms_instanced,
+            s.edges,
+            s.edges_script,
+            s.edges_dangling,
+            s.edges_ambiguous,
+            s.facets
+        );
+    } else {
+        let s = ingest::from_urnon_store(&conn, from)?;
+        eprintln!(
+            "rooms {}, edges {} (skipped {} script, {} ambiguous), locations {}",
+            s.rooms, s.edges, s.edges_skipped_script, s.edges_skipped_ambiguous, s.locations
+        );
+        let facets = ingest::project_tags(&conn, from)?;
+        eprintln!("facets from tags: {facets}");
+    }
 
     // Cheap here and permanent in the artifact: every consumer's first query
     // is faster for a page-ordered file, and nobody has to remember to do it.
