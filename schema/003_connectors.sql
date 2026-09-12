@@ -69,9 +69,18 @@ CREATE TABLE connector_steps (
     kind         TEXT    NOT NULL,
     to_uid       INTEGER NOT NULL,
     seq          INTEGER NOT NULL,
-    -- Literal, except for `{item}` -- the character's own item id, which the
-    -- one rule forbids storing. Not a template language: no conditionals, no
-    -- expressions. A second placeholder gets argued for on its own merits.
+    -- Literal, except for two placeholders. Not a template language: no
+    -- conditionals, no expressions, and a third gets argued on its own merits
+    -- the way the second did.
+    --
+    --   {item}    the character's own item id. The one rule forbids storing
+    --             it: item ids are per-character and per-session.
+    --   {portal}  a room object the mechanism creates. The periapt's viridian
+    --             portal is not an exit and not an item -- it appears in the
+    --             room when somebody rubs a periapt, it has an id only at that
+    --             moment, and it may be *somebody else's*, which works just as
+    --             well. Nothing about it can be written down in advance, which
+    --             is exactly what a placeholder is for.
     command      TEXT    NOT NULL,
     -- What the game says on success, verbatim: "You flag down a nearby
     -- urchin". A game fact, not a client label, and exactly the kind of thing
@@ -81,6 +90,36 @@ CREATE TABLE connector_steps (
     -- carries one; the branching around it is error handling, which is the
     -- client's job.
     timeout_ms   INTEGER NOT NULL DEFAULT 0,
+    -- How to perform the step.
+    --
+    --   send   send `command` once. Every mechanism written before this
+    --          column existed, and the default.
+    --   cycle  send `command` repeatedly, and stop when the reply names the
+    --          destination.
+    --
+    -- `cycle` is not a Symbol of Seeking special case, though that is what
+    -- forced it. A whole family of mechanisms works this way: the thing does
+    -- not take a destination, it *offers* you one, and you either accept it or
+    -- ask again. Voln's Seeking shows you a room name per invocation; cycling
+    -- teleporters dial through their destinations the same way. Expressing it
+    -- as an action means the next one is rows rather than a release.
+    action       TEXT    NOT NULL DEFAULT 'send'
+                 CHECK (action IN ('send', 'cycle')),
+    -- `cycle` only: a regex with exactly one capturing group, applied to each
+    -- reply to pull out the destination being offered. The client compares the
+    -- capture against the destination room's `title`, which is why that column
+    -- is published and why the comparison is not written here -- the answer
+    -- differs per destination and would otherwise be a row per pair.
+    capture      TEXT    NOT NULL DEFAULT '',
+    -- `cycle` only: how many times to ask before giving up. A mechanism that
+    -- cycles has a finite set and comes back around; asking forever is how a
+    -- script hangs a character in a monastery all night.
+    attempts     INTEGER NOT NULL DEFAULT 0 CHECK (attempts >= 0),
+    -- The two halves agree, or the row means nothing: a `send` with a capture
+    -- is a misunderstanding, and a `cycle` without one cannot tell when to
+    -- stop.
+    CHECK ((action = 'cycle') = (capture <> '')),
+    CHECK ((action = 'cycle') = (attempts > 0)),
     PRIMARY KEY (connector_id, kind, to_uid, seq),
     FOREIGN KEY (connector_id, kind, to_uid)
         REFERENCES connector_destinations(connector_id, kind, to_uid) ON DELETE CASCADE

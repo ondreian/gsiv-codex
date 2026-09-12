@@ -235,9 +235,9 @@ fn step_sequences_start_at_zero_and_do_not_skip() {
     assert_eq!(broken, 1, "0 then 2 is a gap");
 }
 
-/// `{item}` is the only placeholder. Anything else is a template language
-/// arriving by the back door, and the first sign of it is a `{` nobody
-/// declared.
+/// `{item}` and `{portal}` are the placeholders. Anything else is a template
+/// language arriving by the back door, and the first sign of it is a `{`
+/// nobody declared.
 #[test]
 fn commands_carry_no_placeholder_but_item() {
     let conn = open_in_memory().expect("open");
@@ -246,14 +246,15 @@ fn commands_carry_no_placeholder_but_item() {
         "INSERT INTO connector_destinations(connector_id, kind, to_uid) VALUES ('c','fixed',100);
          INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command) VALUES
             ('c','fixed',100,0,'turn #{item}'),
-            ('c','fixed',100,1,'say {greeting} to {npc}');",
+            ('c','fixed',100,1,'go #{portal}'),
+            ('c','fixed',100,2,'say {greeting} to {npc}');",
     )
     .expect("steps");
 
     let offenders: i64 = conn
         .query_row(
             "SELECT count(*) FROM connector_steps
-              WHERE replace(command, '{item}', '') LIKE '%{%'",
+              WHERE replace(replace(command, '{item}', ''), '{portal}', '') LIKE '%{%'",
             [],
             |r| r.get(0),
         )
