@@ -1,0 +1,12 @@
+[package]
+name = "gsiv-codex"
+version = "0.1.0"
+edition = "2024"
+description = "A unified data layer for GemStone IV: world, verbs, foes, items"
+license = "MIT"
+
+[dependencies]
+rusqlite = { version = "0.37", features = ["bundled"] }
+
+[dev-dependencies]
+proptest = "1"

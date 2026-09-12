@@ -77,10 +77,28 @@ and only what differs per character has to be probed.
 
 None of these are settled. They block writing schema, not writing prose.
 
-1. **Toolchain.** Is this repo Rust, and if so does it use an ORM? The
-   deliverable is a SQLite file, so a consumer's choice is unaffected either
-   way — but the pipeline needs migrations, and `flood` needs a recursive CTE
-   that a query DSL cannot express.
+1. ~~**Toolchain.**~~ **Settled.** Rust, with `rusqlite` and `proptest`, and
+   **no ORM yet.**
+
+   Rust because it has been effective for this work and because the property
+   testing libraries are solid — and this project mostly cares about
+   properties. Two kinds, pulling differently:
+
+   | Kind | Example | Written as | Runs on |
+   | --- | --- | --- | --- |
+   | data | every `flood` declares an anti-seed; no boundary edge lacks its reverse | SQL assertions | the built artifact |
+   | code | evaluating a definition twice gives the same set; `difference(X, X)` is empty | `proptest` | the evaluator |
+
+   The data properties are the bulk and they are SQL, which is an argument
+   against expressing them through a query DSL.
+
+   No ORM *yet* because picking one now means picking before the query mix is
+   known. Diesel suits relational CRUD and keeps a checked-in `schema.rs`,
+   which is smoother while the shape moves; `sqlx` suits raw SQL, recursive
+   CTEs and runtime-composed queries, but checks against a live database at
+   compile time, which is friction for a schema still being designed.
+   Revisit when hand-rolled migrations start hurting — that alone would
+   justify Diesel.
 2. **Sets as queries.** Eight of the nine `RoomSetDef` node types in urnon's
    digraph design are relational algebra SQLite already implements; only
    `flood` has content, and it is a recursive CTE. So a stored set is a view
