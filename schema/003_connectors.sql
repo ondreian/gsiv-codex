@@ -69,18 +69,36 @@ CREATE TABLE connector_steps (
     kind         TEXT    NOT NULL,
     to_uid       INTEGER NOT NULL,
     seq          INTEGER NOT NULL,
-    -- Literal, except for two placeholders. Not a template language: no
-    -- conditionals, no expressions, and a third gets argued on its own merits
-    -- the way the second did.
+    -- Literal, except for placeholders. Not a template language: no
+    -- conditionals, no expressions, and each new one gets argued on its own
+    -- merits the way the second did.
     --
-    --   {item}    the character's own item id. The one rule forbids storing
-    --             it: item ids are per-character and per-session.
-    --   {portal}  a room object the mechanism creates. The periapt's viridian
-    --             portal is not an exit and not an item -- it appears in the
-    --             room when somebody rubs a periapt, it has an id only at that
-    --             moment, and it may be *somebody else's*, which works just as
-    --             well. Nothing about it can be written down in advance, which
-    --             is exactly what a placeholder is for.
+    --   #{item:<name>}     the id of something the character is carrying.
+    --   #{portal:<name>}   the id of an object in the room.
+    --   #{setting:<ns>/<k>} what the player called something.
+    --
+    -- All three stand for a thing that cannot be written down in advance. An
+    -- id is assigned per character and per session; a room object may not have
+    -- existed a moment ago; a setting is the player's own word.
+    --
+    -- **They name what they are looking for**, and the earlier spelling --
+    -- a bare `{item}` and `{portal}` -- did not. That was not a shorthand, it
+    -- was a gap: nothing said *which* item to rub, and the portal's name
+    -- ("swirling viridian portal") appeared nowhere at all, so neither could
+    -- be resolved by anything. A placeholder that cannot be filled is a
+    -- command that cannot be sent.
+    --
+    -- The periapt is both kinds in two steps, and shows why they are different
+    -- kinds rather than one:
+    --
+    --   rub #{item:small bone periapt}      -- carried, known before you start
+    --   go #{portal:swirling viridian portal}  -- in the room, and only after
+    --                                          -- the rub. It may also be
+    --                                          -- *somebody else's* portal,
+    --                                          -- which works just as well.
+    --
+    -- So `#{item:}` can be filled while planning and `#{portal:}` cannot. A
+    -- client fills both by asking the game what is in reach by that name.
     command      TEXT    NOT NULL,
     -- What the game says on success, verbatim: "You flag down a nearby
     -- urchin". A game fact, not a client label, and exactly the kind of thing

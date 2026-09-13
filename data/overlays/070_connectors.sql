@@ -30,6 +30,16 @@
 -- room object rather than an exit, and it may already be there -- somebody
 -- else's, which works just as well. That is the client's business; the data
 -- says what to send.
+--
+-- Both objects are named in the command, because an id cannot be written down
+-- and a name can. The names are the game's own, out of the working Lich patch:
+--
+--   GameObj.inv.find  { |i| i.name == "small bone periapt" }
+--   GameObj.loot.find { |i| i.name == "swirling viridian portal" }
+--
+-- These read `#{item:...}` and `#{portal:...}` rather than a bare `#{item}`
+-- and `#{portal}`, which said a substitution was wanted without saying what
+-- to substitute -- and so could never be performed by anything.
 
 INSERT INTO room_sets(name, description) VALUES
   ('sanctum-anchors', 'The two rooms a small bone periapt joins.');
@@ -50,12 +60,12 @@ INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, ti
   -- fizzles, or one is already up. Only the first is success; the third is
   -- success by somebody else's effort, and the client tells them apart by
   -- whether a portal is in the room afterwards.
-  ('periapt:sanctum', 'fixed', 4900340, 0, 'rub #{item}',
+  ('periapt:sanctum', 'fixed', 4900340, 0, 'rub #{item:small bone periapt}',
    'spiraling out to form a swirling viridian portal hanging in midair', 5000),
-  ('periapt:sanctum', 'fixed', 4900340, 1, 'go #{portal}', '', 3000),
-  ('periapt:sanctum', 'fixed', 4216057, 0, 'rub #{item}',
+  ('periapt:sanctum', 'fixed', 4900340, 1, 'go #{portal:swirling viridian portal}', '', 3000),
+  ('periapt:sanctum', 'fixed', 4216057, 0, 'rub #{item:small bone periapt}',
    'spiraling out to form a swirling viridian portal hanging in midair', 5000),
-  ('periapt:sanctum', 'fixed', 4216057, 1, 'go #{portal}', '', 3000);
+  ('periapt:sanctum', 'fixed', 4216057, 1, 'go #{portal:swirling viridian portal}', '', 3000);
 
 -- # What this gets you, and what it does not
 --
