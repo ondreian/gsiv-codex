@@ -47,6 +47,8 @@ pub struct Extracted {
     pub command: String,
     pub time_ms: i64,
     pub body: Body,
+    /// Things to do before sending `command`, by prelude id. Usually empty.
+    pub preludes: Vec<&'static str>,
 }
 
 /// Pull the trailing `move 'X'` off a `;e` command, if there is one.
@@ -151,6 +153,111 @@ fn is_silverwood(command: &str) -> bool {
     command.contains("$SILVERWOOD_TOWN")
 }
 
+/// A `;e` body read as a list of statements, when every one of them is
+/// something this understands.
+///
+/// Generalises three cases the extractor was failing separately:
+///
+/// ```text
+///   ;e move 'west'; waitrt?                        a benign tail
+///   ;e fput 'kneel'; move 'go burrow'; fput 'stand' a prelude and a postlude
+///   ;e multifput 'search', 'go alleyway'            a prelude, and no `move`
+/// ```
+///
+/// All three are one move with known housekeeping around it, and the
+/// housekeeping is either something the client already does or something the
+/// data can name. Anything with a statement this does not recognise returns
+/// `None` and stays unhandled -- the bar is that every statement is
+/// understood, not that one of them is.
+///
+/// # `fput 'stand'` afterwards is dropped on purpose
+///
+/// The kneel edges stand you back up, and this does not record that. It does
+/// not need to: leaving a character kneeling makes the *next* move answer
+/// "You will have to stand up first", which is `must-be-standing` in the
+/// failure vocabulary, whose remedy is to stand and send it again. A postlude
+/// that repairs a state the recovery already repairs is a second mechanism
+/// for one problem.
+fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
+    let body = body.trim().strip_prefix(";e")?.trim();
+    let mut preludes = Vec::new();
+    let mut moved: Option<String> = None;
+
+    for raw in body.split(';') {
+        let st = raw.trim().trim_end_matches(';').trim();
+        if st.is_empty() {
+            continue;
+        }
+        // The move itself, single- or double-quoted.
+        if let Some(found) = quoted_after(st, "move") {
+            if moved.replace(found).is_some() {
+                return None; // two moves is not one edge
+            }
+            continue;
+        }
+        // `multifput 'search', 'go alleyway'` -- a prelude and a move, in one
+        // statement and with no `move` keyword anywhere.
+        if let Some(rest) = st.strip_prefix("multifput ") {
+            let parts: Vec<&str> = rest.split(',').map(str::trim).collect();
+            let [first, second] = parts.as_slice() else {
+                return None;
+            };
+            if unquote(first)? != "search" {
+                return None;
+            }
+            preludes.push("search-for-the-exit");
+            if moved.replace(unquote(second)?.to_string()).is_some() {
+                return None;
+            }
+            continue;
+        }
+        if let Some(found) = quoted_after(st, "fput") {
+            match found.as_str() {
+                // `unless kneeling? or (Stats.race =~ /Dwarf|.../)` rides along
+                // on the same statement and is the condition the prelude
+                // already carries.
+                "kneel" => preludes.push("kneel-to-fit"),
+                "search" => preludes.push("search-for-the-exit"),
+                // Housekeeping the walker does anyway.
+                "stand" => {}
+                _ => return None,
+            }
+            continue;
+        }
+        // Waiting is what the walker does before every send regardless.
+        if st == "waitrt?" || st == "true" || st.starts_with("sleep ") || st.starts_with("pause ") {
+            continue;
+        }
+        return None;
+    }
+    moved.map(|m| (preludes, m))
+}
+
+/// The contents of the first quoted string after `keyword`, when the statement
+/// is nothing but that call.
+fn quoted_after(statement: &str, keyword: &str) -> Option<String> {
+    let rest = statement.strip_prefix(keyword)?;
+    // `move'x'` never occurs; requiring the space stops `movement` matching.
+    let rest = rest.strip_prefix(' ').or_else(|| rest.strip_prefix('('))?;
+    let inner = unquote(rest.trim().trim_end_matches(')').trim())?;
+    Some(inner.to_string())
+}
+
+fn unquote(s: &str) -> Option<&str> {
+    let s = s.trim();
+    for q in ['\'', '"'] {
+        if let Some(inner) = s.strip_prefix(q) {
+            if let Some(end) = inner.find(q) {
+                // Trailing text means this statement does more than the call.
+                if inner[end + 1..].trim().is_empty() {
+                    return Some(&inner[..end]);
+                }
+            }
+        }
+    }
+    None
+}
+
 /// Classify the bookkeeping before the move.
 fn classify(body: &str) -> Body {
     if body.is_empty() {
@@ -229,13 +336,22 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             // A trailing `move` first, then the table idiom -- which has no
             // `move` in it at all, and would otherwise be skipped as
             // unrecognised forever.
+            let mut preludes = Vec::new();
             let (body, moved) = match excluded {
                 Some(why) => (why, String::new()),
                 None => match trailing_move(command) {
                     Some(found) => found,
-                    None => match table_move(command) {
-                        Some(moved) => ("", moved),
-                        None => continue,
+                    // Every statement understood, which covers a benign tail,
+                    // a kneel, and `multifput 'search', 'go X'` alike.
+                    None => match statements(command) {
+                        Some((found, moved)) => {
+                            preludes = found;
+                            ("", moved)
+                        }
+                        None => match table_move(command) {
+                            Some(moved) => ("", moved),
+                            None => continue,
+                        },
                     },
                 },
             };
@@ -254,6 +370,7 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                     Some(why) => Body::Excluded(why),
                     None => classify(body),
                 },
+                preludes,
             });
         }
     }
@@ -303,6 +420,24 @@ pub fn to_sql(found: &[Extracted]) -> String {
             quote(&e.command),
             e.time_ms
         ));
+    }
+
+    s.push_str(
+        "\n-- Things to do before the move. `kneel-to-fit` and\n\
+         -- `search-for-the-exit` were defined and tagged on nothing at all\n\
+         -- until the extractor learned to read a body as a list of\n\
+         -- statements rather than as a trailing `move`.\n",
+    );
+    for e in &safe {
+        for prelude in &e.preludes {
+            s.push_str(&format!(
+                "INSERT OR IGNORE INTO edge_preludes(from_uid, to_uid, command, prelude_id) \
+                 VALUES ({}, {}, {}, '{prelude}');\n",
+                e.from_uid,
+                e.to_uid,
+                quote(&e.command)
+            ));
+        }
     }
 
     s.push_str("\n-- And what governs them.\n");
@@ -432,6 +567,48 @@ mod tests {
             !found.iter().any(|e| e.to_uid == 500),
             "$go2_restart after the move means the destination is not fixed"
         );
+    }
+
+    /// The three shapes one statement-list parser replaced.
+    #[test]
+    fn a_body_of_understood_statements_is_a_move_with_housekeeping() {
+        // A benign tail: the walker waits out roundtime before every send.
+        assert_eq!(
+            statements(";e move 'west'; waitrt?"),
+            Some((vec![], "west".to_string()))
+        );
+        // A prelude and a postlude. The postlude is dropped: leaving a
+        // character kneeling makes the next move say "You will have to stand
+        // up first", which the failure vocabulary already recovers from.
+        assert_eq!(
+            statements(";e fput 'kneel'; move 'go burrow'; fput 'stand'"),
+            Some((vec!["kneel-to-fit"], "go burrow".to_string()))
+        );
+        // A prelude and a move in one statement, with no `move` keyword.
+        assert_eq!(
+            statements(";e multifput 'search', 'go alleyway'"),
+            Some((vec!["search-for-the-exit"], "go alleyway".to_string()))
+        );
+        // Double quotes, which the old recogniser never handled.
+        assert_eq!(
+            statements(r#";e fput "search";move "go trapdoor""#),
+            Some((vec!["search-for-the-exit"], "go trapdoor".to_string()))
+        );
+    }
+
+    /// The bar is that EVERY statement is understood, not that one is. One
+    /// unrecognised call and the edge stays unhandled, because the thing it
+    /// does may be the mechanism.
+    #[test]
+    fn one_unknown_statement_rejects_the_whole_body() {
+        assert_eq!(statements(";e fput 'pull lever'; move 'north'"), None);
+        assert_eq!(statements(";e move 'north'; $go2_restart=true"), None);
+        assert_eq!(
+            statements(";e move 'north'; move 'south'"),
+            None,
+            "two moves is not one edge"
+        );
+        assert_eq!(statements(";e waitrt?"), None, "housekeeping and no move");
     }
 
     /// The single biggest cause of orphaned rooms, and it is an edge.
