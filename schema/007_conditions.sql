@@ -89,6 +89,27 @@ CREATE TABLE condition_terms (
 -- Lich's dijkstra reads a `nil` cost as "this edge does not exist for you", so
 -- impassable is only infinite cost. Naming it keeps that honest instead of
 -- hiding it in a magic number.
+-- # What an effect cannot yet say: it cost you health
+--
+-- Measured, on 2026-09-13: a level 100 character walked Wehnimer's Landing to
+-- Moonsedge, 168 steps, and arrived at 54% health having fought nothing. The
+-- route crosses the Ice Plains and the Crawling Shore, and the passes
+-- themselves do the damage --
+--
+--   "your teeth are chattering so hard you can be heard a mile away"
+--   "All the climbing up and down over the icy rocks of this pass has
+--    exhausted you -- the bitter cold has taken its toll"
+--   "... and hits for 102 points of damage!"
+--
+-- `delay_ms`, `add_cost_ms` and `forbid` cannot express that. The route is not
+-- slower and it is not forbidden; it costs something the cost vector does not
+-- have. A router that cannot see it will plan the same crossing again on a
+-- character at 54%, and again at 8%.
+--
+-- The same gap `008_preludes.sql` records for `give attendant 2000`: a toll is
+-- a resource cost written as a prelude because there is nowhere else to put
+-- it. Two instances now, and the second one can kill somebody.
+--
 CREATE TABLE condition_effects (
     condition_id TEXT NOT NULL REFERENCES conditions(id) ON DELETE CASCADE,
     effect       TEXT NOT NULL CHECK (effect IN ('delay_ms', 'add_cost_ms', 'forbid')),
