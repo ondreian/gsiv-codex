@@ -227,6 +227,15 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
                 "search" if guard.is_empty() => preludes.push("search-for-the-exit"),
                 // Housekeeping the walker does anyway.
                 "stand" if guard.is_empty() => {}
+                // `fput 'go narrow door'` is a move, said the long way. Only
+                // when it *looks* like one: `fput` sends any command at all,
+                // and `fput 'pull lever'` is a lever, not a road. Guessing
+                // there would publish an edge whose command moves nobody.
+                other if guard.is_empty() && looks_like_movement(other) => {
+                    if moved.replace(other.to_string()).is_some() {
+                        return None;
+                    }
+                }
                 _ => return None,
             }
             continue;
@@ -258,6 +267,32 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
         return None;
     }
     moved.map(|m| (preludes, m))
+}
+
+/// Is this command a way out of a room, rather than something you do in one?
+///
+/// The published vocabulary of movement: the two verbs the mapdb uses for
+/// exits, the two the harbour and the swamp use, and the bare directions.
+/// Anything else `fput` sends is an action -- pulling a lever, opening a
+/// chest -- and an edge whose command is one of those moves nobody.
+fn looks_like_movement(command: &str) -> bool {
+    const VERBS: &[&str] = &["go ", "climb ", "swim ", "pedal ", "push ", "jump "];
+    const DIRECTIONS: &[&str] = &[
+        "north",
+        "south",
+        "east",
+        "west",
+        "northeast",
+        "northwest",
+        "southeast",
+        "southwest",
+        "up",
+        "down",
+        "out",
+        "in",
+    ];
+    let c = command.trim();
+    VERBS.iter().any(|v| c.starts_with(v)) || DIRECTIONS.contains(&c)
 }
 
 /// `direction="west"` -> `("direction", "west")`.
@@ -688,6 +723,21 @@ mod tests {
         assert_eq!(
             statements(r#";e fput "search";move "go trapdoor""#),
             Some((vec!["search-for-the-exit"], "go trapdoor".to_string()))
+        );
+    }
+
+    /// `fput` sends any command. Only the ones that are ways out of a room
+    /// count as the move.
+    #[test]
+    fn an_fput_is_a_move_only_when_it_looks_like_one() {
+        assert_eq!(
+            statements(r#";e fput "search";fput "go narrow door""#),
+            Some((vec!["search-for-the-exit"], "go narrow door".to_string()))
+        );
+        assert_eq!(
+            statements(";e fput 'pull lever'; move 'north'"),
+            None,
+            "a lever is not a road, and an edge that pulls one moves nobody"
         );
     }
 
