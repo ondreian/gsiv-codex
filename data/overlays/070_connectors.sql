@@ -67,3 +67,71 @@ INSERT INTO condition_effects(condition_id, effect, amount) VALUES
   ('has-periapt', 'forbid', 0);
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('periapt:sanctum', 'has-periapt');
+
+-- ---------------------------------------------------------------------------
+-- The Rift, by the sphere
+-- ---------------------------------------------------------------------------
+--
+-- 0 of 232 rooms reachable before this. One way in, from one room:
+--
+--   4562036  [Breach, Cavern of Ages]   Koar's Shrine
+--
+-- Enter the sphere, then walk a direction into it, and which direction you
+-- take decides which of the Rift's three levels you land on. Thirty seconds,
+-- per the mapdb's own `timeto`.
+--
+-- Lich loops the direction until the game says you came apart --
+--
+--   "You feel every shred of yourself torn to tiny pieces and reformed..."
+--
+-- and then stands you up. Neither is recorded. The loop is retry, which a
+-- client does by checking the room id rather than the prose, and the stand is
+-- `must-be-standing` in the failure vocabulary: a postlude repairing a state
+-- the recovery already repairs is a second mechanism for one problem.
+--
+-- Only the way IN. Every exit is one Ruby program carrying an array of 60
+-- room ids -- a maze solver, not an edge -- so the Rift is a place this data
+-- can get you to and not yet out of. Said plainly rather than left to be
+-- discovered from a room.
+--
+-- # And this connector does not open the Rift on its own
+--
+-- Traced, because "the Rift is 0%" needed a cause rather than another guess.
+-- The room this works from sits in a pocket of **seven rooms** with no
+-- reachable ancestor at any depth: Koar's Shrine and the Rift reach only each
+-- other. The pocket has exactly three doors, and two of them are shut:
+--
+--   the swim edges from the Lake of Tears and the Pool -- extracted, and
+--     inside the pocket, so they join nothing to anything
+--   `push tine` from Top of the World, Aenatumgana -- itself unreachable
+--   **Symbol of Seeking**, from Icemule Trace and the Pinefar Trading Post
+--
+-- So Seeking is not merely "endgame-critical" in the abstract. It is the way
+-- into the Rift, and the sphere is the second half of a journey whose first
+-- half is a Voln symbol. Icemule is reachable; 2635 is one Seeking away; the
+-- sphere is three rooms further on.
+
+INSERT INTO room_sets(name, description) VALUES
+  ('rift-breach', 'The one room the sphere into the Rift can be entered from.');
+INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
+  ('rift-breach', 0, 'room', '4562036');
+
+INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
+  ('sphere:rift', 'only', 'rift-breach', 0,
+   'The sphere in the Cavern of Ages. The direction you walk decides the level.');
+
+INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES
+  ('sphere:rift', 'fixed', 4566001, 30000),
+  ('sphere:rift', 'fixed', 4567001, 30000),
+  ('sphere:rift', 'fixed', 4568001, 30000);
+
+INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
+  ('sphere:rift', 'fixed', 4566001, 0, 'go sphere', '', 0),
+  ('sphere:rift', 'fixed', 4566001, 1, 'north',
+   'You feel every shred of yourself torn to tiny pieces and reformed', 30000),
+  ('sphere:rift', 'fixed', 4567001, 0, 'go sphere', '', 0),
+  ('sphere:rift', 'fixed', 4567001, 1, 'west',
+   'You feel every shred of yourself torn to tiny pieces and reformed', 30000),
+  ('sphere:rift', 'fixed', 4568001, 0, 'go sphere', '', 0),
+  ('sphere:rift', 'fixed', 4568001, 1, 'east',
+   'You feel every shred of yourself torn to tiny pieces and reformed', 30000);
