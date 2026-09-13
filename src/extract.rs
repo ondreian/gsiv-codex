@@ -182,6 +182,10 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
     let body = body.trim().strip_prefix(";e")?.trim();
     let mut preludes = Vec::new();
     let mut moved: Option<String> = None;
+    // `direction="west"` and friends. The mapdb assigns a literal and then
+    // interpolates it straight back into the command; keeping the binding lets
+    // the command be read as what it is.
+    let mut bound: Vec<(String, String)> = Vec::new();
 
     for raw in body.split(';') {
         let st = raw.trim().trim_end_matches(';').trim();
@@ -227,6 +231,26 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             }
             continue;
         }
+        // `direction="west"` -- a literal bound for one interpolation.
+        if let Some((name, value)) = binding(st) {
+            bound.push((name, value));
+            continue;
+        }
+        // `start=Room.current.id` is the loop's own bookkeeping: it remembers
+        // where you were so it can retry until you are somewhere else. The
+        // walker retries by checking the room id, which is the same idea.
+        if st.ends_with("=Room.current.id") || st.ends_with("= Room.current.id") {
+            continue;
+        }
+        // `dothistimeout "pedal #{direction}", 2, /pedal/ while ...` -- the
+        // move, wearing a retry loop. 753 of the harbour's edges are this, and
+        // `pedal` is a movement verb exactly as `go` and `climb` are.
+        if let Some(cmd) = dothistimeout_command(st, &bound) {
+            if moved.replace(cmd).is_some() {
+                return None;
+            }
+            continue;
+        }
         // Waiting is what the walker does before every send regardless.
         if st == "waitrt?" || st == "true" || st.starts_with("sleep ") || st.starts_with("pause ") {
             continue;
@@ -234,6 +258,46 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
         return None;
     }
     moved.map(|m| (preludes, m))
+}
+
+/// `direction="west"` -> `("direction", "west")`.
+fn binding(statement: &str) -> Option<(String, String)> {
+    let (name, rest) = statement.split_once('=')?;
+    let name = name.trim();
+    if name.is_empty() || !name.chars().all(|c| c.is_ascii_alphanumeric() || c == '_') {
+        return None;
+    }
+    Some((name.to_string(), unquote(rest)?.to_string()))
+}
+
+/// The command out of `dothistimeout "...", 2, /re/ while ...`.
+///
+/// The timeout and the pattern are error handling and the `while` is a retry;
+/// both are the client's job. What is left is one command, once any `#{var}`
+/// in it is replaced by the literal the body bound.
+fn dothistimeout_command(statement: &str, bound: &[(String, String)]) -> Option<String> {
+    let rest = statement.strip_prefix("dothistimeout")?.trim_start();
+    let inner = {
+        let mut found = None;
+        for q in ['\'', '"'] {
+            if let Some(after) = rest.strip_prefix(q) {
+                if let Some(end) = after.find(q) {
+                    found = Some(after[..end].to_string());
+                    break;
+                }
+            }
+        }
+        found?
+    };
+    let mut command = inner;
+    for (name, value) in bound {
+        command = command.replace(&format!("#{{{name}}}"), value);
+    }
+    // An interpolation this body never bound is one nothing here can resolve.
+    if command.contains("#{") || command.trim().is_empty() {
+        return None;
+    }
+    Some(command)
 }
 
 /// `fput 'x'`, and whatever guard trails it.
@@ -624,6 +688,33 @@ mod tests {
         assert_eq!(
             statements(r#";e fput "search";move "go trapdoor""#),
             Some((vec!["search-for-the-exit"], "go trapdoor".to_string()))
+        );
+    }
+
+    /// 753 of the harbour's edges, and `pedal` is a movement verb exactly as
+    /// `go` and `climb` are.
+    #[test]
+    fn a_bound_literal_is_interpolated_back_into_the_command() {
+        assert_eq!(
+            statements(
+                r#";e direction="west";start=Room.current.id; dothistimeout "pedal #{direction}", 2, /pedal/ while Room.current.id == start"#
+            ),
+            Some((vec![], "pedal west".to_string()))
+        );
+        // A literal command needs no binding at all.
+        assert_eq!(
+            statements(";e dothistimeout 'push southeast',5,/you push/i;waitrt?"),
+            Some((vec![], "push southeast".to_string()))
+        );
+    }
+
+    /// An interpolation nothing bound is one this cannot resolve, and guessing
+    /// would publish a command with a `#{` in it.
+    #[test]
+    fn an_unbound_interpolation_is_refused() {
+        assert_eq!(
+            statements(r#";e dothistimeout "pedal #{direction}", 2, /pedal/"#),
+            None
         );
     }
 
