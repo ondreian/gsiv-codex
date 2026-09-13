@@ -32,6 +32,12 @@ pub enum Body {
     /// Something this does not model. Carries a short excerpt so the
     /// disposition row can say what was skipped.
     Unrecognised(String),
+    /// Understood, and deliberately never published. Carries the reason.
+    ///
+    /// Distinct from `Unrecognised`, which is a gap somebody may close. This
+    /// is a decision: the urchin network is a connector rather than an edge,
+    /// and Silverwood's door is gated on something no client can observe.
+    Excluded(&'static str),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -109,11 +115,40 @@ fn table_move(command: &str) -> Option<String> {
 /// takes you. Publishing it as an edge would publish a road that sends
 /// nothing and expects you to arrive somewhere else.
 ///
-/// It is a connector, and urnon already has the shape for it. Left here as a
-/// named fact because "the body is empty, so this is a bare move" is the
-/// obvious wrong conclusion and somebody will reach it again.
+/// It is a connector, and urnon already has the shape for it -- origin room
+/// straight to destination room, with no hideout in between.
+///
+/// This guard fires zero times today, and the reason is worth knowing: all 16
+/// Urchin Hideout rooms have no `uid`, so they are among the 7,884 rooms the
+/// import drops, and every one of these edges dies earlier on a destination
+/// that does not exist. Lich's two-step model -- room to hideout, hideout to
+/// destination -- is therefore not importable at all, which is a second reason
+/// the connector model is the right one rather than merely a tidier one.
+///
+/// Kept anyway. It costs a string comparison, and if a later mapdb gives the
+/// hideouts uids these become extractable-looking edges that send nothing.
 fn is_urchin_hop(command: &str) -> bool {
     command.trim() == ";e true"
+}
+
+/// Silverwood Manor is off, deliberately and permanently.
+///
+/// `;e $SILVERWOOD_TOWN=:imt;move 'go door'` -- the global says which of four
+/// towns the door leads back to, so taking the trailing `go door` alone routes
+/// a character to whichever town the last person set. That alone would make it
+/// unextractable.
+///
+/// It is worse than that: the door needs club membership, and membership is an
+/// invisible character flag. Nothing a client can read says whether this
+/// character has it, so there is no condition to write and no way to find out
+/// but to walk into the door and see. A route planned through it is a route
+/// that strands somebody.
+///
+/// So it is not a hard case awaiting a cleverer extractor. It is off. The same
+/// class of problem as urchin access, and the same answer: do not infer travel
+/// availability from something you cannot observe.
+fn is_silverwood(command: &str) -> bool {
+    command.contains("$SILVERWOOD_TOWN")
 }
 
 /// Classify the bookkeeping before the move.
@@ -177,17 +212,31 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             else {
                 continue;
             };
-            if is_urchin_hop(command) {
-                continue;
-            }
+            // Listed, never silently dropped: every script edge is superseded
+            // or accounted for, and a decision is worth more in the record
+            // than a gap.
+            let excluded = if is_urchin_hop(command) {
+                Some(
+                    "the urchin network is a connector, not an edge: the command is empty because the urchin does the moving",
+                )
+            } else if is_silverwood(command) {
+                Some(
+                    "club membership is an invisible character flag; a route planned through it strands somebody",
+                )
+            } else {
+                None
+            };
             // A trailing `move` first, then the table idiom -- which has no
             // `move` in it at all, and would otherwise be skipped as
             // unrecognised forever.
-            let (body, moved) = match trailing_move(command) {
-                Some(found) => found,
-                None => match table_move(command) {
-                    Some(moved) => ("", moved),
-                    None => continue,
+            let (body, moved) = match excluded {
+                Some(why) => (why, String::new()),
+                None => match trailing_move(command) {
+                    Some(found) => found,
+                    None => match table_move(command) {
+                        Some(moved) => ("", moved),
+                        None => continue,
+                    },
                 },
             };
             let time_ms = r
@@ -201,7 +250,10 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                 to_uid: to,
                 command: moved,
                 time_ms,
-                body: classify(body),
+                body: match excluded {
+                    Some(why) => Body::Excluded(why),
+                    None => classify(body),
+                },
             });
         }
     }
@@ -215,10 +267,11 @@ fn quote(s: &str) -> String {
 
 /// Render the extractions as reviewable SQL.
 pub fn to_sql(found: &[Extracted]) -> String {
-    let (mut safe, mut skipped) = (Vec::new(), Vec::new());
+    let (mut safe, mut skipped, mut excluded) = (Vec::new(), Vec::new(), Vec::new());
     for e in found {
         match &e.body {
             Body::Unrecognised(excerpt) => skipped.push((e, excerpt)),
+            Body::Excluded(why) => excluded.push((e, *why)),
             _ => safe.push(e),
         }
     }
@@ -231,10 +284,12 @@ pub fn to_sql(found: &[Extracted]) -> String {
          --\n\
          -- Ending in `move 'X'` is not enough to extract one. Silverwood's door\n\
          -- reads `;e $SILVERWOOD_TOWN=:imt;move 'go door'`, and taking `go door`\n\
-         -- from it discards which of four rooms the door leads back to. So an\n\
-         -- unrecognised body means the edge is skipped and recorded below with\n\
-         -- its reason: a missing edge fails to route, a wrong one routes a\n\
-         -- character somewhere they did not ask to go.\n\n",
+         -- from it discards which of four rooms the door leads back to -- and the\n\
+         -- door needs club membership besides, which no client can observe. So an\n\
+         -- unrecognised body means the edge is skipped and recorded below with its\n\
+         -- reason, and an understood-but-unpublishable one is recorded as excluded:\n\
+         -- a missing edge fails to route, a wrong one routes a character somewhere\n\
+         -- they did not ask to go.\n\n",
         safe.len(),
         skipped.len()
     ));
@@ -263,9 +318,27 @@ pub fn to_sql(found: &[Extracted]) -> String {
         }
     }
 
+    if !excluded.is_empty() {
+        s.push_str(&format!(
+            "\n-- Understood and deliberately never published: {} edges. A decision\n\
+             -- rather than a gap, written down so a later reader does not \"fix\" it.\n",
+            excluded.len()
+        ));
+        for (e, why) in &excluded {
+            s.push_str(&format!(
+                "INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, \
+                 disposition, reason) VALUES ({}, {}, '', 'excluded', {});\n",
+                e.from_uid,
+                e.to_uid,
+                quote(why)
+            ));
+        }
+    }
+
     s.push_str(
-        "\n-- Left alone, with the reason. Every script edge is either superseded\n\
-                -- or listed; there is no third case, and a property test says so.\n",
+        "\n-- Left alone, with the reason. Every script edge is either superseded,\n\
+                -- excluded or listed; there is no fourth case, and a property test\n\
+                -- says so.\n",
     );
     for (e, excerpt) in &skipped {
         let reason = format!("ends in a move but the body is not modelled: {excerpt}");
@@ -314,24 +387,40 @@ mod tests {
         assert_eq!(e.body, Body::Condition("ice-slip"));
     }
 
-    /// The case the whole discipline exists for. Extracting `go door` here
-    /// would publish an edge that takes you to Icemule when the plan said
-    /// Wehnimer's.
+    /// Off permanently, not merely unrecognised: the door needs club
+    /// membership, membership is an invisible character flag, and a route
+    /// planned through something you cannot test for is a route that strands
+    /// somebody.
     #[test]
-    fn silverwoods_door_is_left_alone() {
+    fn silverwood_is_excluded_by_name_not_by_accident() {
+        assert!(is_silverwood(";e $SILVERWOOD_TOWN=:imt;move 'go door'"));
+        assert!(!is_silverwood(";e move 'go door'"));
+    }
+
+    /// The case the whole discipline exists for, and it is now a decision
+    /// rather than a gap. Extracting `go door` here would publish an edge
+    /// that takes you to Icemule when the plan said Wehnimer's -- and even
+    /// with the global understood, the door needs club membership, which no
+    /// client can observe.
+    #[test]
+    fn silverwoods_door_is_excluded_and_said_so() {
         let found = from_mapdb(SAMPLE).expect("parse");
         let e = found.iter().find(|e| e.to_uid == 400).expect("found");
         assert!(
-            matches!(e.body, Body::Unrecognised(_)),
-            "setting a global before moving is not bookkeeping, it is the mechanism"
+            matches!(e.body, Body::Excluded(_)),
+            "a decision, not something awaiting a cleverer extractor"
         );
 
         let sql = to_sql(&found);
         assert!(
-            !sql.contains("400, 'go door'") && !sql.contains("400, 'go door', 'walk'"),
-            "it must not reach edge_overlays"
+            !sql.lines()
+                .any(|l| l.contains("edge_overlays") && l.contains("go door")),
+            "it must never reach edge_overlays"
         );
-        assert!(sql.contains("'unhandled'"), "but it must be accounted for");
+        assert!(
+            sql.contains("'excluded'") && sql.contains("invisible character flag"),
+            "and the record must say why, or somebody will fix it"
+        );
     }
 
     /// A `move` that is not the last statement is not a move we can take:

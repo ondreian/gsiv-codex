@@ -43,11 +43,18 @@ CREATE TABLE script_edge_disposition (
     -- The mapdb's Ruby, truncated. Kept so a reviewer can see what was decided
     -- about, but never published as a command: it is not one.
     excerpt  TEXT    NOT NULL DEFAULT '',
+    -- `excluded` is a decision, not a gap: the edge is understood and will
+    -- never be published. Silverwood Manor's door needs club membership, and
+    -- membership is an invisible character flag -- there is no condition to
+    -- write and no way to test for it but to walk into the door. A route
+    -- planned through something you cannot observe is a route that strands
+    -- somebody, so it is off, and saying so here stops a later reader
+    -- "fixing" it.
     disposition TEXT NOT NULL
-                CHECK (disposition IN ('overlay', 'connector', 'unhandled')),
+                CHECK (disposition IN ('overlay', 'connector', 'unhandled', 'excluded')),
     -- Required for `unhandled`: nine of these read game output and solve a
     -- riddle, and saying so is better than an empty row implying nobody looked.
     reason   TEXT    NOT NULL DEFAULT '',
     PRIMARY KEY (from_uid, to_uid),
-    CHECK (disposition <> 'unhandled' OR reason <> '')
+    CHECK (disposition NOT IN ('unhandled', 'excluded') OR reason <> '')
 ) WITHOUT ROWID;
