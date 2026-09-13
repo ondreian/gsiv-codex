@@ -29,12 +29,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:7111', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 4744014, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 2101030, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 3002033, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 7118259, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7111', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7111', 'fixed', 7142028, 1200000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:7111', 'fixed', 4744014, 0, 'ask portmaster about travel 2', '', 0),
@@ -70,12 +77,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:2101030', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 7111, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 4744014, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 3002033, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 7118259, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 7133026, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:2101030', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:2101030', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:2101030', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
   ('portmaster:2101030', 'fixed', 7111, 1, 'ask portmaster about travel 1', 'A crew member escorts you off the ship.', 1200000);
@@ -107,12 +121,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:3002033', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 7111, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 4744014, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 2101030, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 7118259, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:3002033', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:3002033', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:3002033', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
   ('portmaster:3002033', 'fixed', 7111, 1, 'ask portmaster about travel 1', 'A crew member escorts you off the ship.', 1200000);
@@ -144,12 +165,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:4744014', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 7111, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 2101030, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 3002033, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 7118259, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:4744014', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:4744014', 'fixed', 7142028, 1200000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:4744014', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
@@ -185,12 +213,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:7118259', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 7111, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 4744014, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 2101030, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 3002033, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7118259', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7118259', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:7118259', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
   ('portmaster:7118259', 'fixed', 7111, 1, 'ask portmaster about travel 1', 'A crew member escorts you off the ship.', 1200000);
@@ -222,12 +257,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:7133026', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 7111, 'silver', 10000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 4744014, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 2101030, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 3002033, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 7118259, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7133026', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7133026', 'fixed', 7142028, 1200000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:7133026', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
@@ -263,12 +305,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:7136032', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 7111, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 4744014, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 2101030, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 3002033, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 7118259, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7136032', 'fixed', 7140125, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7136032', 'fixed', 7140125, 'silver', 25000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:7136032', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
   ('portmaster:7136032', 'fixed', 7111, 1, 'ask portmaster about travel 1', 'A crew member escorts you off the ship.', 1200000);
@@ -300,12 +349,19 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:7140125', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 7111, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 4744014, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 2101030, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 2101030, 'silver', 12500);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 3002033, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 3002033, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 7118259, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 7118259, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 7136032, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 7136032, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7140125', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7140125', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:7140125', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
   ('portmaster:7140125', 'fixed', 7111, 1, 'ask portmaster about travel 1', 'A crew member escorts you off the ship.', 1200000);
@@ -337,8 +393,11 @@ INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VA
 INSERT INTO connector_conditions(connector_id, condition_id) VALUES
   ('portmaster:7142028', 'no-portmasters');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7142028', 'fixed', 7111, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7142028', 'fixed', 7111, 'silver', 35000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7142028', 'fixed', 4744014, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7142028', 'fixed', 4744014, 'silver', 25000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('portmaster:7142028', 'fixed', 7133026, 1200000);
+INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES ('portmaster:7142028', 'fixed', 7133026, 'silver', 25000);
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
   ('portmaster:7142028', 'fixed', 7111, 0, 'ask portmaster about travel 1', '', 0),
   ('portmaster:7142028', 'fixed', 7111, 1, 'ask portmaster about travel 1', 'A crew member escorts you off the ship.', 1200000);

@@ -35,10 +35,24 @@
 
 use std::collections::BTreeMap;
 
-/// `pier uid -> [(travel number, destination uid, what the game says)]`.
-pub fn routes(
-    json: &str,
-) -> Result<BTreeMap<i64, Vec<(u32, i64, String)>>, Box<dyn std::error::Error>> {
+/// One numbered sailing.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Sailing {
+    /// The `N` in `ask portmaster about travel N`.
+    pub number: u32,
+    pub to: i64,
+    /// The game's own words on arrival, out of Lich's `waitfor`.
+    pub expect: String,
+    /// The fare, in silver, from the pier's `silver-cost:<room>:<amount>` tag.
+    ///
+    /// Zero where the map database records none, which is not the same as
+    /// free -- it is unrecorded, and the safe reading of an unrecorded price
+    /// is no price rather than an invented one.
+    pub fare: i64,
+}
+
+/// `pier uid -> sailings`.
+pub fn routes(json: &str) -> Result<BTreeMap<i64, Vec<Sailing>>, Box<dyn std::error::Error>> {
     let rooms: Vec<serde_json::Value> = serde_json::from_str(json)?;
 
     let mut uid_of: BTreeMap<i64, i64> = BTreeMap::new();
@@ -55,7 +69,7 @@ pub fn routes(
         uid_of.insert(id, uid);
     }
 
-    let mut out: BTreeMap<i64, Vec<(u32, i64, String)>> = BTreeMap::new();
+    let mut out: BTreeMap<i64, Vec<Sailing>> = BTreeMap::new();
     for r in &rooms {
         let Some(from) = r
             .get("id")
@@ -84,16 +98,38 @@ pub fn routes(
             let (Some(number), expect) = (travel_number(command), waitfor_text(command)) else {
                 continue;
             };
+            // The fare is a tag on the pier naming the destination, not part
+            // of the command: `silver-cost:10838:25000`. Nothing else in the
+            // map database says what a sailing costs.
+            let fare = fare_to(r, target);
             let routes = out.entry(from).or_default();
-            if !routes.iter().any(|(n, ..)| *n == number) {
-                routes.push((number, to, expect));
+            if !routes.iter().any(|s| s.number == number) {
+                routes.push(Sailing {
+                    number,
+                    to,
+                    expect,
+                    fare,
+                });
             }
         }
     }
     for routes in out.values_mut() {
-        routes.sort_unstable();
+        routes.sort_unstable_by_key(|s| s.number);
     }
     Ok(out)
+}
+
+/// The `silver-cost:<destination>:<amount>` tag on a pier, if it carries one.
+fn fare_to(room: &serde_json::Value, target: &str) -> i64 {
+    let prefix = format!("silver-cost:{target}:");
+    room.get("tags")
+        .and_then(serde_json::Value::as_array)
+        .into_iter()
+        .flatten()
+        .filter_map(serde_json::Value::as_str)
+        .find_map(|t| t.strip_prefix(&prefix))
+        .and_then(|amount| amount.parse().ok())
+        .unwrap_or(0)
 }
 
 /// The `N` in `ask portmaster about travel N`.
@@ -128,7 +164,7 @@ fn quote(s: &str) -> String {
 }
 
 /// The overlay that publishes them.
-pub fn to_sql(routes: &BTreeMap<i64, Vec<(u32, i64, String)>>) -> String {
+pub fn to_sql(routes: &BTreeMap<i64, Vec<Sailing>>) -> String {
     let total: usize = routes.values().map(Vec::len).sum();
     let mut s = String::new();
     s.push_str(&format!(
@@ -171,13 +207,26 @@ pub fn to_sql(routes: &BTreeMap<i64, Vec<(u32, i64, String)>>) -> String {
              ('{id}', 'no-portmasters');\n",
             dests.len()
         ));
-        for (_, to, _) in dests {
+        for sail in dests {
+            let to = sail.to;
             s.push_str(&format!(
                 "INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) \
                  VALUES ('{id}', 'fixed', {to}, 1200000);\n"
             ));
+            // The fare. Twelve to thirty-five thousand silver is not pocket
+            // change, and a router that cannot see it puts a character on a
+            // boat they cannot pay for -- which they discover at the pier,
+            // having walked there instead of somewhere useful.
+            if sail.fare > 0 {
+                s.push_str(&format!(
+                    "INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) \
+                     VALUES ('{id}', 'fixed', {to}, 'silver', {});\n",
+                    sail.fare
+                ));
+            }
         }
-        for (number, to, expect) in dests {
+        for sail in dests {
+            let (number, to, expect) = (sail.number, sail.to, &sail.expect);
             // Lich sends it twice through `multifput`. Once is the ask and
             // once is the confirmation the portmaster wants; both go.
             s.push_str(&format!(
@@ -198,7 +247,7 @@ mod tests {
     use super::*;
 
     const SAMPLE: &str = r#"[
-      {"id":1,"uid":[100],"wayto":{
+      {"id":1,"uid":[100],"tags":["silver-cost:2:25000"],"wayto":{
         "2":";e multifput 'ask portmaster about travel 3','ask portmaster about travel 3';waitfor 'A crew member escorts you off the ship.'",
         "3":"north"}},
       {"id":2,"uid":[200],"wayto":{}},
@@ -211,12 +260,13 @@ mod tests {
         assert_eq!(found.len(), 1);
         assert_eq!(
             found[&100],
-            vec![(
-                3,
-                200,
-                "A crew member escorts you off the ship.".to_string()
-            )],
-            "the number, the destination, and the game's own words"
+            vec![Sailing {
+                number: 3,
+                to: 200,
+                expect: "A crew member escorts you off the ship.".to_string(),
+                fare: 25_000,
+            }],
+            "the number, the destination, the game's own words, and the fare"
         );
     }
 
@@ -232,6 +282,34 @@ mod tests {
             sql.contains("1200000"),
             "twenty minutes, when it is allowed"
         );
+    }
+
+    /// Twelve to thirty-five thousand silver is not pocket change, and the
+    /// map database has recorded it all along on a tag nobody read. A router
+    /// that cannot see the fare puts a character on a boat they cannot pay
+    /// for, which they discover at the pier.
+    #[test]
+    fn the_fare_is_published_with_the_sailing() {
+        let sql = to_sql(&routes(SAMPLE).expect("parse"));
+        assert!(sql.contains(
+            "INSERT INTO connector_costs(connector_id, kind, to_uid, resource, amount) \
+             VALUES ('portmaster:100', 'fixed', 200, 'silver', 25000);"
+        ));
+    }
+
+    /// An unrecorded fare is unrecorded, not free. Publishing a zero would
+    /// state a price the map database never gave.
+    #[test]
+    fn a_sailing_with_no_recorded_fare_carries_no_price() {
+        const NO_TAG: &str = r#"[
+          {"id":1,"uid":[100],"wayto":{
+            "2":";e multifput 'ask portmaster about travel 3','ask portmaster about travel 3';waitfor 'off the ship.'"}},
+          {"id":2,"uid":[200],"wayto":{}}
+        ]"#;
+        let found = routes(NO_TAG).expect("parse");
+        assert_eq!(found[&100][0].fare, 0);
+        let sql = to_sql(&found);
+        assert!(!sql.contains("connector_costs"));
     }
 
     /// Sent twice, as Lich sends it, and the arrival text is the game's.
