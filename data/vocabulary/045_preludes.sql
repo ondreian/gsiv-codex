@@ -17,10 +17,10 @@ INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VAL
 
 INSERT INTO preludes(id, description, condition_id) VALUES
   ('search-for-the-exit',
-   'The exit is not visible until you look for it. 61 edges; unconditional, because looking always works.',
+   'The exit is not visible until you look for it. 72 edges, measured; unconditional, because looking always works.',
    NULL),
   ('kneel-to-fit',
-   'A low passage. 37 edges.',
+   'A low passage. 39 edges, measured.',
    'needs-to-kneel');
 
 INSERT INTO prelude_steps(prelude_id, seq, command, expect) VALUES

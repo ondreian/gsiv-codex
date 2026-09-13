@@ -211,15 +211,18 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             }
             continue;
         }
-        if let Some(found) = quoted_after(st, "fput") {
+        if let Some((found, guard)) = fput_call(st) {
             match found.as_str() {
-                // `unless kneeling? or (Stats.race =~ /Dwarf|.../)` rides along
-                // on the same statement and is the condition the prelude
-                // already carries.
+                // A trailing `unless kneeling? or (Stats.race =~ /Dwarf|
+                // Halfling|Gnome/)` is allowed here and nowhere else: it is
+                // the prelude's own condition, already written down as
+                // `needs-to-kneel`, and re-reading it from the Ruby would be
+                // two sources for one rule. On any other command a guard
+                // changes what happens and the body stays unhandled.
                 "kneel" => preludes.push("kneel-to-fit"),
-                "search" => preludes.push("search-for-the-exit"),
+                "search" if guard.is_empty() => preludes.push("search-for-the-exit"),
                 // Housekeeping the walker does anyway.
-                "stand" => {}
+                "stand" if guard.is_empty() => {}
                 _ => return None,
             }
             continue;
@@ -231,6 +234,27 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
         return None;
     }
     moved.map(|m| (preludes, m))
+}
+
+/// `fput 'x'`, and whatever guard trails it.
+///
+/// Returns `(command, guard)` where the guard is whatever followed the closing
+/// quote -- empty when the statement is nothing but the call. Only the caller
+/// knows whether a guard is tolerable, and for almost every command it is not.
+fn fput_call(statement: &str) -> Option<(String, String)> {
+    let rest = statement.strip_prefix("fput ")?;
+    let rest = rest.trim();
+    for q in ['\'', '"'] {
+        if let Some(inner) = rest.strip_prefix(q) {
+            if let Some(end) = inner.find(q) {
+                return Some((
+                    inner[..end].to_string(),
+                    inner[end + 1..].trim().to_string(),
+                ));
+            }
+        }
+    }
+    None
 }
 
 /// The contents of the first quoted string after `keyword`, when the statement
@@ -339,15 +363,22 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             let mut preludes = Vec::new();
             let (body, moved) = match excluded {
                 Some(why) => (why, String::new()),
-                None => match trailing_move(command) {
-                    Some(found) => found,
-                    // Every statement understood, which covers a benign tail,
-                    // a kneel, and `multifput 'search', 'go X'` alike.
-                    None => match statements(command) {
-                        Some((found, moved)) => {
-                            preludes = found;
-                            ("", moved)
-                        }
+                // `statements` first, because it is the stricter test: it
+                // demands every statement be understood, and it is the only
+                // one that yields preludes. `trailing_move` merely wants a
+                // `move` at the end, so it would win on
+                // `fput 'kneel' unless ...; move 'southeast'` and hand back a
+                // body `classify` cannot read -- extracting nothing and
+                // tagging nothing, which is what it did.
+                None => match statements(command) {
+                    Some((found, moved)) => {
+                        preludes = found;
+                        ("", moved)
+                    }
+                    // Bodies with real logic in them: the ice conditions,
+                    // which `classify` reads and `statements` rightly refuses.
+                    None => match trailing_move(command) {
+                        Some(found) => found,
                         None => match table_move(command) {
                             Some(moved) => ("", moved),
                             None => continue,
@@ -593,6 +624,24 @@ mod tests {
         assert_eq!(
             statements(r#";e fput "search";move "go trapdoor""#),
             Some((vec!["search-for-the-exit"], "go trapdoor".to_string()))
+        );
+    }
+
+    /// The guard on `kneel` is the prelude's own condition, already written
+    /// down as `needs-to-kneel`. Re-reading it from the Ruby would be two
+    /// sources for one rule.
+    #[test]
+    fn a_kneel_may_carry_its_guard_and_nothing_else_may() {
+        assert_eq!(
+            statements(
+                ";e fput 'kneel' unless kneeling? or (Stats.race =~ /Dwarf|Halfling|Gnome/); move 'southeast'"
+            ),
+            Some((vec!["kneel-to-fit"], "southeast".to_string()))
+        );
+        assert_eq!(
+            statements(";e fput 'stand' unless standing?; move 'north'"),
+            None,
+            "a guard on anything else changes what happens"
         );
     }
 
