@@ -13,6 +13,84 @@
 -- yours. Lich asks up to twenty times. A router that believes 0.2s
 -- picks this over walking across the street.
 
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (18003, '[Graveyard]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (18003, 0, '[Graveyard]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (42019, '[Darkstone, Dungeon]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (42019, 0, '[Darkstone, Dungeon]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (67043, '[Coastal Cliffs, Cemetery]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (67043, 0, '[Coastal Cliffs, Cemetery]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (95186, '[Monastery, Misty Chamber]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (95186, 0, '[Monastery, Misty Chamber]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (312033, '[Courtyard]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (312033, 0, '[Courtyard]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (319014, '[Ruined Courtyard]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (319014, 0, '[Ruined Courtyard]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (376040, '[Marsh Keep, Inner Portcullis]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (376040, 0, '[Marsh Keep, Inner Portcullis]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (377010, '[Council War Room]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (377010, 0, '[Council War Room]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (480225, '[Red Forest, Inner Weald]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (480225, 0, '[Red Forest, Inner Weald]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (630004, '[Abandoned Village]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (630004, 0, '[Abandoned Village]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (2102029, '[Citadel, Outside]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (2102029, 0, '[Citadel, Outside]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (2123004, '[Upper Trollfang, Winding Trees]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (2123004, 0, '[Upper Trollfang, Winding Trees]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (3003048, '[Temple, Meditation Sanctum]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3003048, 0, '[Temple, Meditation Sanctum]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (3031107, '[Ruined Temple, Nexus]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3031107, 0, '[Ruined Temple, Nexus]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (3041001, '[Luukos'' Gullet, Overhang]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3041001, 0, '[Luukos'' Gullet, Overhang]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (3041025, '[Temple of Luukos, Steam Chamber]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3041025, 0, '[Temple of Luukos, Steam Chamber]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4007020, '[Deep Woods, Overgrowth]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4007020, 0, '[Deep Woods, Overgrowth]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4043800, '[Icemule Trace, Ice Garden]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4043800, 0, '[Icemule Trace, Ice Garden]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4124060, '[Frozen Bramble Patch]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4124060, 0, '[Frozen Bramble Patch]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4124105, '[A Frozen Garden]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4124105, 0, '[A Frozen Garden]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4132024, '[Abbey Cellar]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4132024, 0, '[Abbey Cellar]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4132024, 1, '[Abbey, Cellar]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4132201, '[Den of Rot, Portal]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4132201, 0, '[Den of Rot, Portal]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4212201, '[Vornavis, Wooded Plains]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4212201, 0, '[Vornavis, Wooded Plains]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4285055, '[Pentagram Chamber]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4285055, 0, '[Pentagram Chamber]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4562035, '[Birthing Sands, Cavern of Ages]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4562035, 0, '[Birthing Sands, Cavern of Ages]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4563032, '[Nightmare Gorge]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4563032, 0, '[Nightmare Gorge]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4749706, '[Fasthr''s Lance, Crown]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4749706, 0, '[Fasthr''s Lance, Crown]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (4750070, '[Castle Varunar, Great Hall]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4750070, 0, '[Castle Varunar, Great Hall]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (5000108, '[Courtyard]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (5000108, 0, '[Courtyard]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (5004055, '[Oteska''s Haven, Niima''s Shrine]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (5004055, 0, '[Oteska''s Haven, Niima''s Shrine]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (10000110, '[Courtyard]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (10000110, 0, '[Courtyard]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (13022005, '[Maaghara Labyrinth]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13022005, 0, '[Maaghara Labyrinth]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (13027016, '[Wraithenmist, Fishing Dock]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13027016, 0, '[Wraithenmist, Fishing Dock]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (13036211, '[High Plains, Moorgate]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13036211, 0, '[High Plains, Moorgate]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (13109002, '[Hall of Patrons, Vestibule]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13109002, 0, '[Hall of Patrons, Vestibule]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (14011055, '[Plains of Bone, Ruins]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (14011055, 0, '[Plains of Bone, Ruins]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (14016039, '[Lunule Weald, Perish Glen]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (14016039, 0, '[Lunule Weald, Perish Glen]');
+INSERT OR IGNORE INTO rooms(uid, title) VALUES (14116002, '[Voln Forecourt]');
+INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (14116002, 0, '[Voln Forecourt]');
+
 INSERT INTO conditions(id, description) VALUES
   ('voln-seeking', 'a member of the Order of Voln at rank 26 or better');
 INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
@@ -28,6 +106,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:312033', 'only', 'voln-outpost:312033', 0,
    'Symbol of Seeking, from one Voln outpost to 9 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:312033', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:312033', 'fixed', 18003, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:312033', 'fixed', 42019, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:312033', 'fixed', 67043, 20000);
@@ -72,6 +152,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:3003048', 'only', 'voln-outpost:3003048', 0,
    'Symbol of Seeking, from one Voln outpost to 3 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:3003048', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:3003048', 'fixed', 3031107, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:3003048', 'fixed', 3041001, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:3003048', 'fixed', 3041025, 20000);
@@ -92,6 +174,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:4043800', 'only', 'voln-outpost:4043800', 0,
    'Symbol of Seeking, from one Voln outpost to 6 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:4043800', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:4043800', 'fixed', 4124060, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:4043800', 'fixed', 4124105, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:4043800', 'fixed', 4132024, 20000);
@@ -124,6 +208,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:4749706', 'only', 'voln-outpost:4749706', 0,
    'Symbol of Seeking, from one Voln outpost to 5 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:4749706', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:4749706', 'fixed', 319014, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:4749706', 'fixed', 630004, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:4749706', 'fixed', 4007020, 20000);
@@ -152,6 +238,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:5000108', 'only', 'voln-outpost:5000108', 0,
    'Symbol of Seeking, from one Voln outpost to 4 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:5000108', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:5000108', 'fixed', 376040, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:5000108', 'fixed', 377010, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:5000108', 'fixed', 2102029, 20000);
@@ -176,6 +264,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:10000110', 'only', 'voln-outpost:10000110', 0,
    'Symbol of Seeking, from one Voln outpost to 4 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:10000110', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:10000110', 'fixed', 4124105, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:10000110', 'fixed', 4132024, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:10000110', 'fixed', 4562035, 20000);
@@ -200,6 +290,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:13109002', 'only', 'voln-outpost:13109002', 0,
    'Symbol of Seeking, from one Voln outpost to 3 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:13109002', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:13109002', 'fixed', 13022005, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:13109002', 'fixed', 13027016, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:13109002', 'fixed', 13036211, 20000);
@@ -220,6 +312,8 @@ INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
 INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
   ('voln:seeking:14116002', 'only', 'voln-outpost:14116002', 0,
    'Symbol of Seeking, from one Voln outpost to 3 recorded destinations.');
+INSERT INTO connector_conditions(connector_id, condition_id) VALUES
+  ('voln:seeking:14116002', 'voln-seeking');
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:14116002', 'fixed', 480225, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:14116002', 'fixed', 14011055, 20000);
 INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES ('voln:seeking:14116002', 'fixed', 14016039, 20000);

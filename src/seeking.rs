@@ -37,6 +37,22 @@
 
 use std::collections::BTreeMap;
 
+/// What one parse of the map database yields: the recorded pairs, and the
+/// titles of the rooms they name.
+pub struct Recorded {
+    /// `origin uid -> destination uids`.
+    pub pairs: BTreeMap<i64, Vec<i64>>,
+    /// `uid -> every title that room is known by`, for the rooms above.
+    ///
+    /// Published alongside the roads because a cycle matches on the room's
+    /// *name*: a destination the codex cannot name is a destination nothing
+    /// can ask for. uid 480225, the Red Forest's Inner Weald, is exactly that
+    /// -- it is in the map database and not in urnon's import of it, so
+    /// without this two of the thirty-seven roads point at a room the codex
+    /// has never heard of.
+    pub titles: BTreeMap<i64, Vec<String>>,
+}
+
 /// The recorded pairs, grouped by outpost: `origin uid -> destination uids`.
 pub fn pairs(json: &str) -> Result<BTreeMap<i64, Vec<i64>>, Box<dyn std::error::Error>> {
     let rooms: Vec<serde_json::Value> = serde_json::from_str(json)?;
@@ -95,8 +111,57 @@ pub fn pairs(json: &str) -> Result<BTreeMap<i64, Vec<i64>>, Box<dyn std::error::
     Ok(out)
 }
 
+/// A SQL string literal, quotes doubled.
+fn quote(s: &str) -> String {
+    format!("'{}'", s.replace('\'', "''"))
+}
+
+/// The pairs, plus the titles of every room they name.
+pub fn recorded(json: &str) -> Result<Recorded, Box<dyn std::error::Error>> {
+    let pairs = pairs(json)?;
+    let rooms: Vec<serde_json::Value> = serde_json::from_str(json)?;
+    let wanted: std::collections::BTreeSet<i64> = pairs
+        .keys()
+        .copied()
+        .chain(pairs.values().flatten().copied())
+        .collect();
+
+    let mut titles: BTreeMap<i64, Vec<String>> = BTreeMap::new();
+    for r in &rooms {
+        let Some(uid) = r
+            .get("uid")
+            .and_then(serde_json::Value::as_array)
+            .and_then(|a| a.first())
+            .and_then(serde_json::Value::as_i64)
+        else {
+            continue;
+        };
+        if !wanted.contains(&uid) {
+            continue;
+        }
+        // An array in the map database, and it matters: `[Abbey Cellar]` and
+        // `[Abbey, Cellar]` are the same room, and a client holding only one
+        // of them asks straight past its own destination.
+        let names: Vec<String> = r
+            .get("title")
+            .and_then(serde_json::Value::as_array)
+            .map(|a| {
+                a.iter()
+                    .filter_map(serde_json::Value::as_str)
+                    .map(str::to_string)
+                    .collect()
+            })
+            .unwrap_or_default();
+        if !names.is_empty() {
+            titles.insert(uid, names);
+        }
+    }
+    Ok(Recorded { pairs, titles })
+}
+
 /// The overlay that publishes them.
-pub fn to_sql(pairs: &BTreeMap<i64, Vec<i64>>) -> String {
+pub fn to_sql(recorded: &Recorded) -> String {
+    let pairs = &recorded.pairs;
     let total: usize = pairs.values().map(Vec::len).sum();
     let distinct: std::collections::BTreeSet<i64> = pairs.values().flatten().copied().collect();
     let mut s = String::new();
@@ -119,6 +184,31 @@ pub fn to_sql(pairs: &BTreeMap<i64, Vec<i64>>) -> String {
         pairs.len() * distinct.len(),
     ));
 
+    // The rooms these roads name, with every title they answer to.
+    //
+    // Published here rather than assumed from the import, because the import
+    // does not have all of them: uid 480225, the Red Forest's Inner Weald, is
+    // in the map database and not in urnon's copy of it. Without this, two of
+    // the thirty-seven roads point at a room the codex cannot name -- and a
+    // destination nothing can name is a destination nothing can ask for.
+    //
+    // `OR IGNORE`, so a room the import did bring across keeps whatever else
+    // it carries. This only fills gaps.
+    for (uid, names) in &recorded.titles {
+        let Some(first) = names.first() else { continue };
+        s.push_str(&format!(
+            "INSERT OR IGNORE INTO rooms(uid, title) VALUES ({uid}, {});\n",
+            quote(first)
+        ));
+        for (seq, name) in names.iter().enumerate() {
+            s.push_str(&format!(
+                "INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES ({uid}, {seq}, {});\n",
+                quote(name)
+            ));
+        }
+    }
+    s.push('\n');
+
     s.push_str(
         "INSERT INTO conditions(id, description) VALUES\n  \
          ('voln-seeking', 'a member of the Order of Voln at rank 26 or better');\n\
@@ -138,7 +228,9 @@ pub fn to_sql(pairs: &BTreeMap<i64, Vec<i64>>) -> String {
              ('voln-outpost:{origin}', 0, 'room', '{origin}');\n\
              INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES\n  \
              ('{id}', 'only', 'voln-outpost:{origin}', 0,\n   \
-             'Symbol of Seeking, from one Voln outpost to {} recorded destinations.');\n",
+             'Symbol of Seeking, from one Voln outpost to {} recorded destinations.');\n\
+             INSERT INTO connector_conditions(connector_id, condition_id) VALUES\n  \
+             ('{id}', 'voln-seeking');\n",
             dests.len()
         ));
         for to in dests {
@@ -172,13 +264,13 @@ mod tests {
     use super::*;
 
     const SAMPLE: &str = r#"[
-      {"id":1,"uid":[100],"wayto":{
+      {"id":1,"uid":[100],"title":["[Courtyard]"],"wayto":{
         "2":";e $mapdb_seeking_destination = 2;Map[3600].wayto['3600'].call;",
         "3":";e $mapdb_seeking_destination = 3;Map[3600].wayto['3600'].call;",
         "4":"north"}},
-      {"id":2,"uid":[200],"wayto":{}},
-      {"id":3,"uid":[300],"wayto":{}},
-      {"id":4,"uid":[400],"wayto":{}}
+      {"id":2,"uid":[200],"title":["[Abbey Cellar]","[Abbey, Cellar]"],"wayto":{}},
+      {"id":3,"uid":[300],"title":["[Graveyard]"],"wayto":{}},
+      {"id":4,"uid":[400],"title":["[Elsewhere]"],"wayto":{}}
     ]"#;
 
     #[test]
@@ -192,7 +284,7 @@ mod tests {
     /// destinations each is four roads, never eight.
     #[test]
     fn each_outpost_carries_only_its_own_destinations() {
-        let sql = to_sql(&pairs(SAMPLE).expect("parse"));
+        let sql = to_sql(&recorded(SAMPLE).expect("parse"));
         assert!(sql.contains("'voln:seeking:100', 'fixed', 200"));
         assert!(sql.contains("'voln:seeking:100', 'fixed', 300"));
         assert_eq!(
@@ -206,7 +298,7 @@ mod tests {
     /// the cost of asking once.
     #[test]
     fn the_cost_is_the_asking_not_one_ask() {
-        let sql = to_sql(&pairs(SAMPLE).expect("parse"));
+        let sql = to_sql(&recorded(SAMPLE).expect("parse"));
         assert!(sql.contains("20000"), "twenty asks, not one");
         assert!(!sql.contains(", 200);"), "not the mapdb's 0.2s");
     }
@@ -214,9 +306,42 @@ mod tests {
     /// Voln rank 26 or it is not a road at all.
     #[test]
     fn seeking_is_gated_on_the_society_and_the_rank() {
-        let sql = to_sql(&pairs(SAMPLE).expect("parse"));
+        let sql = to_sql(&recorded(SAMPLE).expect("parse"));
         assert!(sql.contains("'society', '', 'ne', 'Order of Voln'"));
         assert!(sql.contains("'society_rank', '', 'lt', '26'"));
         assert!(sql.contains("'voln-seeking', 'forbid'"));
+        // And attached. A condition nobody references forbids nothing, which
+        // is how eight of these shipped offering a Voln road to anyone who
+        // asked.
+        assert!(
+            sql.contains("('voln:seeking:100', 'voln-seeking')"),
+            "the gate has to be hung on the connector, not merely defined"
+        );
+    }
+
+    /// A destination the codex cannot name is a destination nothing can ask
+    /// for -- the mechanism offers a room by printing its name. uid 480225 is
+    /// in the map database and not in urnon's import of it, so the rooms come
+    /// from here rather than being assumed.
+    #[test]
+    fn the_rooms_the_roads_name_are_published_with_them() {
+        let sql = to_sql(&recorded(SAMPLE).expect("parse"));
+        assert!(
+            sql.contains("INSERT OR IGNORE INTO rooms(uid, title) VALUES (300, '[Graveyard]')")
+        );
+    }
+
+    /// Every spelling, not just the first. `[Abbey Cellar]` and `[Abbey,
+    /// Cellar]` are one room, and a client holding one of them asks straight
+    /// past its own destination.
+    #[test]
+    fn a_room_with_two_names_publishes_both() {
+        let sql = to_sql(&recorded(SAMPLE).expect("parse"));
+        assert!(sql.contains("room_titles(uid, seq, title) VALUES (200, 0, '[Abbey Cellar]')"));
+        assert!(sql.contains("room_titles(uid, seq, title) VALUES (200, 1, '[Abbey, Cellar]')"));
+        assert!(
+            sql.contains("INSERT OR IGNORE INTO rooms(uid, title) VALUES (200, '[Abbey Cellar]')"),
+            "and the first stays the one a person reads"
+        );
     }
 }

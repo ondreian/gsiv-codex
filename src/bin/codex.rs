@@ -103,11 +103,12 @@ fn main() -> ExitCode {
             };
             match std::fs::read_to_string(&from)
                 .map_err(|e| format!("{from}: {e}"))
-                .and_then(|json| gsiv_codex::seeking::pairs(&json).map_err(|e| e.to_string()))
-                .and_then(|p| {
-                    let n: usize = p.values().map(Vec::len).sum();
-                    std::fs::write(&out, gsiv_codex::seeking::to_sql(&p))
-                        .map(|()| (p.len(), n))
+                .and_then(|json| gsiv_codex::seeking::recorded(&json).map_err(|e| e.to_string()))
+                .and_then(|r| {
+                    let n: usize = r.pairs.values().map(Vec::len).sum();
+                    let outposts = r.pairs.len();
+                    std::fs::write(&out, gsiv_codex::seeking::to_sql(&r))
+                        .map(|()| (outposts, n))
                         .map_err(|e| format!("{out}: {e}"))
                 }) {
                 Ok((outposts, dests)) => {
