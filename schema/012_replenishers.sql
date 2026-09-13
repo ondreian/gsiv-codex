@@ -79,5 +79,13 @@ CREATE TABLE replenishers (
     -- The institution holding the balance, spelled as `BANK ACCOUNT` spells
     -- it. Empty means nobody has looked yet. Many rooms to one account.
     account  TEXT    NOT NULL DEFAULT '',
+    -- When this room is not available at all. The Isle of Four Winds is a
+    -- Premium subscription rather than a place, and routing a Standard
+    -- subscriber to its bank plans a journey that ends at a refusal -- worse
+    -- than no route, because the character has already travelled.
+    --
+    -- NULL for the ordinary case. A condition that forbids makes the room
+    -- invisible to the search rather than merely expensive.
+    condition_id TEXT REFERENCES conditions(id) ON DELETE CASCADE,
     PRIMARY KEY (room_uid, resource)
 ) WITHOUT ROWID;

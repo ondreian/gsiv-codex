@@ -97,3 +97,29 @@ UPDATE replenishers SET account = 'Cysaegir Bank'
 -- on one balance. Watched moving 67 -> 68 in Illistim and 68 -> 69 in Vaalor.
 UPDATE replenishers SET account = 'United City-States Bank'
  WHERE resource = 'silver' AND room_uid IN (13103004, 14106002);
+
+-- # The Isle of Four Winds has no road, so it has no gate either
+--
+-- `[Four Winds Bank, Teller Windows]` cannot be reached and is left unmapped.
+-- Two separate reasons, and it is worth writing both down because the second
+-- outlives the first:
+--
+--   1. Premium. `PREMIUM START` on a Standard account answers "You are not
+--      currently a Premium subscriber." Mist Harbor is a subscription tier
+--      rather than a place.
+--
+--   2. There is no published edge onto the island at all. Thirteen town
+--      squares reach room 3668 -- Wehnimer's, Solhaven, Icemule, Kharam-Dzu,
+--      Ta'Vaalor, Cysaegir, Zul Logoth, River's Rest, Kraken's Fall, Seareach,
+--      Ta'Nalfein, Sailor's Grief, the Hinterwilds -- and every one is a `;e`
+--      script edge, so the extractor dropped them.
+--
+-- The mechanism is a connector nobody has written, and it is not only Premium:
+-- Ta'Illistim's copy reads `UserVars.mapdb_fwi_trinket`, so it wants an item in
+-- hand as well. One anchor per town square, one destination, gated on the
+-- trinket and the subscription -- the same shape as the periapt to the Sanctum.
+--
+-- No condition is published here. A `not-premium` condition hung on nothing
+-- forbids nothing, which is exactly how the Voln gate shipped offering a
+-- Voln-only road to everybody. It belongs with the connector, when there is
+-- one.
