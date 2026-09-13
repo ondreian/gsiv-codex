@@ -11,6 +11,7 @@ pub mod lich_move;
 pub mod mapdb;
 pub mod overlays;
 pub mod schema;
+pub mod seeking;
 pub mod sets;
 pub mod similarity;
 pub mod tsv;
