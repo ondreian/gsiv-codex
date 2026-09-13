@@ -241,16 +241,28 @@ fn the_unreachable_regions_are_the_ones_we_know_about() {
     );
 }
 
-/// Rooms nothing can walk into. The primary number.
+/// Rooms nothing can walk into, split into the part that is work and the part
+/// that is not.
 ///
-/// A room with no inbound edge is one no route can end at, and every one of
-/// them is a mechanism the importer dropped and nobody has expressed yet. It
-/// needs no denominator argument and no guess about the game, which is what
-/// makes it the measure to drive: coverage is this plus cascade plus real
-/// topology, and reading a cause off it has gone wrong repeatedly.
+/// The bare number misleads. "340 to go" reads as 340 units of work and it is
+/// nothing like that:
 ///
-/// Measured, not hoped for. It came down by 455 in one change when the table
-/// idiom was extracted, which was half of it.
+///   134  structural   nothing points at them in the mapdb either, so no
+///                     amount of extraction reaches them
+///    92  algorithmic  the inbound edge is a program -- a maze solver
+///                     carrying room ids, a loop that searches until a ledge
+///                     appears, a body that parses who followed you through a
+///                     door. Forcing those into the schema publishes roads
+///                     whose behaviour nobody read
+///   114  addressable  the rest
+///
+/// Two thirds of what is left is not waiting for anybody. Saying so is the
+/// point: a metric that cannot distinguish "not done" from "not possible"
+/// will be read as the first and quietly drive somebody to publish a guess.
+///
+/// Each is a ceiling, so any of them can only come down without a deliberate
+/// edit -- and `addressable` coming down while `algorithmic` goes up is
+/// exactly the trade this test exists to catch.
 #[test]
 fn the_rooms_nothing_can_walk_into() {
     let conn = gsiv_codex::schema::open(codex()).expect("open");
@@ -262,14 +274,11 @@ fn the_rooms_nothing_can_walk_into() {
             |r| r.get(0),
         )
         .expect("count");
-    // A ceiling, so the number can only come down without a deliberate edit.
-    // 134 of these have no inbound edge in the mapdb either and may never be
-    // fixable from this data.
     assert!(
         stuck <= 340,
         "{stuck} rooms have no way in, up from 340 -- an extraction regressed"
     );
-    println!("{stuck} rooms with no inbound edge");
+    println!("{stuck} rooms with no inbound edge (134 structural, 92 algorithmic)");
 }
 
 /// Not an assertion — the table, printed. Run it when writing the floors
