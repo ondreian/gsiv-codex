@@ -29,6 +29,9 @@ pub enum Body {
     Bare,
     /// A recognised condition, by its id in `data/040_conditions.sql`.
     Condition(&'static str),
+    /// The condition picks the command: without Water Walking you swim.
+    /// Carries what to send instead.
+    Instead(&'static str, String),
     /// Something this does not model. Carries a short excerpt so the
     /// disposition row can say what was skipped.
     Unrecognised(String),
@@ -131,6 +134,47 @@ fn table_move(command: &str) -> Option<String> {
 /// hideouts uids these become extractable-looking edges that send nothing.
 fn is_urchin_hop(command: &str) -> bool {
     command.trim() == ";e true"
+}
+
+/// `if checkspell(112) then move 'west' else move 'swim west' end`
+///
+/// Water Walking. With it you walk; without it you swim, and the crossing is
+/// neither slower nor forbidden -- the condition picks the *command*. Returns
+/// `(walking, swimming)`.
+///
+/// Both spellings the mapdb uses: `checkspell(112)` and `Spell[112].active?`.
+fn water_walk(command: &str) -> Option<(String, String)> {
+    let c = command.trim().strip_prefix(";e")?.trim();
+    if !(c.contains("checkspell(112)") || c.contains("Spell[112]")) {
+        return None;
+    }
+    // Two moves, in order: the one with the spell, then the one without.
+    let mut moves = Vec::new();
+    let mut rest = c;
+    while let Some(at) = rest.find("move ") {
+        let after = &rest[at + 5..];
+        let mut taken = None;
+        for q in ['\'', '"'] {
+            if let Some(inner) = after.strip_prefix(q) {
+                if let Some(end) = inner.find(q) {
+                    taken = Some((inner[..end].to_string(), end + 1));
+                }
+            }
+        }
+        let (m, used) = taken?;
+        moves.push(m);
+        rest = &after[used..];
+    }
+    let [walking, swimming] = moves.as_slice() else {
+        return None;
+    };
+    // The order is the whole meaning: the `then` branch is the one that has
+    // the spell. A body whose second move is not a swim is some other
+    // conditional and this cannot read it.
+    if !swimming.starts_with("swim ") {
+        return None;
+    }
+    Some((walking.clone(), swimming.clone()))
 }
 
 /// Silverwood Manor is off, deliberately and permanently.
@@ -460,6 +504,7 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
             // `move` in it at all, and would otherwise be skipped as
             // unrecognised forever.
             let mut preludes = Vec::new();
+            let mut swim_instead: Option<String> = None;
             let (body, moved) = match excluded {
                 Some(why) => (why, String::new()),
                 // `statements` first, because it is the stricter test: it
@@ -469,6 +514,16 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                 // `fput 'kneel' unless ...; move 'southeast'` and hand back a
                 // body `classify` cannot read -- extracting nothing and
                 // tagging nothing, which is what it did.
+                // Checked before the rest: the body has two moves in it, and
+                // any recogniser that takes the first would publish the
+                // walking command for a character who has to swim.
+                None if water_walk(command).is_some() => {
+                    let Some((walking, swimming)) = water_walk(command) else {
+                        continue;
+                    };
+                    swim_instead = Some(swimming);
+                    ("", walking)
+                }
                 None => match statements(command) {
                     Some((found, moved)) => {
                         preludes = found;
@@ -496,9 +551,10 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                 to_uid: to,
                 command: moved,
                 time_ms,
-                body: match excluded {
-                    Some(why) => Body::Excluded(why),
-                    None => classify(body),
+                body: match (excluded, swim_instead) {
+                    (Some(why), _) => Body::Excluded(why),
+                    (None, Some(swim)) => Body::Instead("no-water-walking", swim),
+                    (None, None) => classify(body),
                 },
                 preludes,
             });
@@ -519,6 +575,7 @@ pub fn to_sql(found: &[Extracted]) -> String {
         match &e.body {
             Body::Unrecognised(excerpt) => skipped.push((e, excerpt)),
             Body::Excluded(why) => excluded.push((e, *why)),
+            Body::Instead(..) => safe.push(e),
             _ => safe.push(e),
         }
     }
@@ -566,6 +623,24 @@ pub fn to_sql(found: &[Extracted]) -> String {
                 e.from_uid,
                 e.to_uid,
                 quote(&e.command)
+            ));
+        }
+    }
+
+    s.push_str(
+        "\n-- And where a condition picks the command rather than the cost:\n\
+         -- without Water Walking you swim across, and the crossing is neither\n\
+         -- slower nor forbidden.\n",
+    );
+    for e in &safe {
+        if let Body::Instead(condition, swim) = &e.body {
+            s.push_str(&format!(
+                "INSERT OR IGNORE INTO edge_conditions(from_uid, to_uid, command, \
+                 condition_id, instead) VALUES ({}, {}, {}, '{condition}', {});\n",
+                e.from_uid,
+                e.to_uid,
+                quote(&e.command),
+                quote(swim)
             ));
         }
     }
@@ -724,6 +799,37 @@ mod tests {
             statements(r#";e fput "search";move "go trapdoor""#),
             Some((vec!["search-for-the-exit"], "go trapdoor".to_string()))
         );
+    }
+
+    /// The condition picks the command, not the cost. With Water Walking you
+    /// walk; without it you swim, and the crossing is neither slower nor
+    /// forbidden.
+    #[test]
+    fn water_walking_chooses_between_two_commands() {
+        assert_eq!(
+            water_walk(";e if checkspell(112) then move 'west' else move 'swim west' end; waitrt?"),
+            Some(("west".to_string(), "swim west".to_string()))
+        );
+        assert_eq!(
+            water_walk(";e if Spell[112].active?; move 'east';else; move 'swim east';end"),
+            Some(("east".to_string(), "swim east".to_string()))
+        );
+    }
+
+    /// The order carries the meaning, and a second branch that is not a swim
+    /// is some other conditional this cannot read.
+    #[test]
+    fn a_conditional_that_is_not_the_swim_pair_is_refused() {
+        assert_eq!(
+            water_walk(";e if checkspell(112) then move 'west' end"),
+            None
+        );
+        assert_eq!(
+            water_walk(";e if checkspell(112) then move 'west' else move 'north' end"),
+            None,
+            "two plain moves is a choice this does not understand"
+        );
+        assert_eq!(water_walk(";e move 'west'"), None);
     }
 
     /// `fput` sends any command. Only the ones that are ways out of a room

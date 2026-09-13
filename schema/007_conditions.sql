@@ -125,11 +125,55 @@ CREATE TABLE condition_effects (
 -- satisfy. A row naming an edge that is not there is inert rather than wrong,
 -- which is the same call `connector_destinations.to_uid` makes, and the same
 -- property test covers it: every row here names a real edge.
+-- # When a condition picks the command
+--
+-- `condition_effects` says a traversal is slower, dearer or impossible. It
+-- cannot say the third thing the mapdb actually does:
+--
+--   ;e if checkspell(112) then move 'west' else move 'swim west' end
+--
+-- Water Walking (spell 112) does not make the crossing slower or forbidden. It
+-- changes what you send. Without it you swim.
+--
+-- That cannot live on the condition, because a condition is shared -- the
+-- whole point of `ice-slip` is that one rule covers 132 edges -- and the
+-- alternative command differs per edge: `swim west` here, `swim north` next
+-- door. So it lives on the link, which is the only per-edge, per-condition
+-- place there is.
+--
+-- The same shape as the `rewrite` remedy in `009_traversal_failures.sql`,
+-- which repairs `go` to `climb` after the game complains. This is the
+-- predictive half of it: knowing in advance rather than being told.
+--
+-- # When a condition picks the command
+--
+-- `condition_effects` says a traversal is slower, dearer or impossible. It
+-- cannot say the third thing the mapdb actually does:
+--
+--   ;e if checkspell(112) then move 'west' else move 'swim west' end
+--
+-- Water Walking (spell 112) does not make the crossing slower or forbidden. It
+-- changes what you send: without it, you swim.
+--
+-- That cannot live on the condition, because a condition is shared -- the
+-- whole point of `ice-slip` is that one rule covers 132 edges -- while the
+-- alternative command differs per edge: `swim west` here, `swim north` next
+-- door. So it lives on the link, which is the only per-edge, per-condition
+-- place there is.
+--
+-- The same shape as the `rewrite` remedy in `009_traversal_failures.sql`,
+-- which repairs `go` to `climb` once the game has complained. This is the
+-- predictive half: knowing in advance instead of being told.
+--
 CREATE TABLE edge_conditions (
     from_uid     INTEGER NOT NULL,
     to_uid       INTEGER NOT NULL,
     command      TEXT    NOT NULL,
     condition_id TEXT    NOT NULL REFERENCES conditions(id) ON DELETE CASCADE,
+    -- Send this instead of `command` while the condition holds -- see the note
+    -- above. Empty in the usual case, where a condition costs time or forbids
+    -- the road rather than changing the way you take it.
+    instead      TEXT    NOT NULL DEFAULT '',
     PRIMARY KEY (from_uid, to_uid, command, condition_id)
 ) WITHOUT ROWID;
 

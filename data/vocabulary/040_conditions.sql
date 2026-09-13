@@ -41,3 +41,12 @@ INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VAL
 INSERT INTO condition_effects(condition_id, effect, amount) VALUES
   ('ice-slip',         'delay_ms', 4000),
   ('ice-slip-resolve', 'delay_ms', 6000);
+
+-- Water Walking (spell 112). Without it you swim, which is neither slower nor
+-- forbidden -- it is a different command, carried on `edge_conditions.instead`
+-- because the alternative differs per edge: `swim west` here, `swim north`
+-- next door.
+INSERT INTO conditions(id, description) VALUES
+  ('no-water-walking', 'the character is not under Water Walking (spell 112)');
+INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
+  ('no-water-walking', 0, 0, 'spell', 'Water Walking', 'absent', '');
