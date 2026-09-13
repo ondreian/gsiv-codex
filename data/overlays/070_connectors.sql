@@ -57,6 +57,32 @@ INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, ti
    'spiraling out to form a swirling viridian portal hanging in midair', 5000),
   ('periapt:sanctum', 'fixed', 4216057, 1, 'go #{portal}', '', 3000);
 
+-- # What this gets you, and what it does not
+--
+-- Measured after publishing it: the Sanctum went from 2% reachable to 3%.
+-- The periapt works -- it is symmetric, and from the Pit it will take you
+-- back to the gateway and home in 188 steps, so it is not a trap. But the
+-- Pit itself has **no published edges at all**, in or out, so the other 76
+-- rooms of the Sanctum stay dark.
+--
+-- The Pit's one exit in the mapdb is a stance-gated climb:
+--
+--   ;e save_stance = XMLData.stance_text;
+--      fput 'stance offensive' if save_stance != 'offensive';
+--      move('climb wide hole');
+--      fput "stance #{save_stance}" if save_stance != XMLData.stance_text;
+--      $go2_restart = true;
+--
+-- which is a prelude (`stance offensive`, the same family as `kneel-to-fit`),
+-- a move, and a postlude. It is not extracted, and the reason is the last
+-- statement: `$go2_restart` is Lich's "re-plan after this", which it sets when
+-- where you land is not reliably where the record says. Publishing a fixed
+-- edge on that would be publishing a road whose far end is a guess, and a
+-- wrong edge is worse than a missing one.
+--
+-- So: the way in is published, the way onward is not, and somebody who knows
+-- whether that climb lands in one room or several can close it in a line.
+
 -- No periapt, no road. This is Lich's `Periapt.exists? ? 5 : nil` said once
 -- instead of twice per direction -- and `nil` is exactly `forbid`.
 INSERT INTO conditions(id, description) VALUES
