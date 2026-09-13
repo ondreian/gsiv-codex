@@ -64,3 +64,34 @@ CREATE INDEX idx_edge_preludes_prelude ON edge_preludes(prelude_id);
 -- because the cost vector does not exist yet, and that is worth remembering
 -- when it does -- a router that cannot see the 2000 silvers will happily plan
 -- a route the character cannot afford.
+
+-- # The climbs, and why they are not published
+--
+-- 16 of the rooms with no way in are behind a body shaped like this:
+--
+--   ;e Spell[9704].cast if known? and !active? and affordable?;
+--      empty_hands;
+--      fput 'stance offensive' if Skills.climbing < 20;
+--      move 'climb boulder';
+--      waitrt?; fput 'stance defensive'; fill_hands
+--
+-- The road is `climb boulder`. Everything around it is preparation, and three
+-- quarters of it this schema can already say: `stance offensive` gated on
+-- `skill climbing lt 20` is a prelude with a condition, exactly like
+-- `kneel-to-fit`.
+--
+-- `empty_hands` is the one that stops it. It is a prelude no client here can
+-- perform -- the WIT exposes no hands, which is already why `empty-hands` is
+-- one of the three remedies a guest declines in `009_traversal_failures.sql`.
+-- Publishing the edge without it would route a character into a climb that
+-- aborts, and route them there *instead* of around, which is worse than
+-- leaving the road unlisted.
+--
+-- `fill_hands` afterwards is the other half: the character is meant to be
+-- carrying things again when they arrive. A prelude vocabulary that can empty
+-- hands must be able to fill them, or it leaves people standing in the snow
+-- holding nothing.
+--
+-- So this wants two things, in order: hands on the guest's state surface, and
+-- a prelude pair that takes and restores. Then 16 rooms and every other climb
+-- in the game become expressible together.
