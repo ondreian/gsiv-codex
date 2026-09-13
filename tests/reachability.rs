@@ -259,8 +259,8 @@ fn the_rooms_nothing_can_walk_into() {
     // 134 of these have no inbound edge in the mapdb either and may never be
     // fixable from this data.
     assert!(
-        stuck <= 341,
-        "{stuck} rooms have no way in, up from 341 -- an extraction regressed"
+        stuck <= 340,
+        "{stuck} rooms have no way in, up from 340 -- an extraction regressed"
     );
     println!("{stuck} rooms with no inbound edge");
 }

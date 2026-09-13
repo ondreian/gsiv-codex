@@ -236,10 +236,28 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
         if st.is_empty() {
             continue;
         }
+        // `unless (move 'go door')` -- the move, with "and if that failed"
+        // hanging off it. What follows is the waiting, which is the client's
+        // business.
+        let st = st.strip_prefix("unless ").unwrap_or(st);
+        let st = st
+            .strip_prefix('(')
+            .and_then(|inner| inner.strip_suffix(')'))
+            .unwrap_or(st);
         // The move itself, single- or double-quoted.
         if let Some(found) = quoted_after(st, "move") {
-            if moved.replace(found).is_some() {
-                return None; // two moves is not one edge
+            // Two *different* moves is not one edge. The same move twice is:
+            //
+            //   ;e unless (move 'go door'); echo 'Waiting for the door...';
+            //      waitfor 'You hear a soft click'; move 'go door'
+            //
+            // which is one road, tried, waited on, and tried again. The
+            // waiting is the client's business -- and the failure vocabulary
+            // already knows `way-is-closed`.
+            if let Some(first) = moved.replace(found.clone()) {
+                if first != found {
+                    return None;
+                }
             }
             continue;
         }
@@ -305,7 +323,15 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             continue;
         }
         // Waiting is what the walker does before every send regardless.
-        if st == "waitrt?" || st == "true" || st.starts_with("sleep ") || st.starts_with("pause ") {
+        if st == "waitrt?"
+            || st == "true"
+            || st.starts_with("sleep ")
+            || st.starts_with("pause ")
+            // Waiting for the game to say something, and Lich talking to its
+            // own console. Both are the client's business.
+            || st.starts_with("waitfor ")
+            || st.starts_with("echo ")
+        {
             continue;
         }
         return None;
@@ -902,7 +928,14 @@ mod tests {
         assert_eq!(
             statements(";e move 'north'; move 'south'"),
             None,
-            "two moves is not one edge"
+            "two different moves is not one edge"
+        );
+        assert_eq!(
+            statements(
+                ";e unless (move 'go door'); waitfor 'You hear a soft click'; move 'go door'"
+            ),
+            Some((vec![], "go door".to_string())),
+            "the same move twice is one road, tried and tried again"
         );
         assert_eq!(statements(";e waitrt?"), None, "housekeeping and no move");
     }
