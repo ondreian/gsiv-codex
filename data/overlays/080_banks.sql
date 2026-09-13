@@ -98,6 +98,14 @@ UPDATE replenishers SET account = 'Cysaegir Bank'
 UPDATE replenishers SET account = 'United City-States Bank'
  WHERE resource = 'silver' AND room_uid IN (13103004, 14106002);
 
+-- Clenchfist Bros. Banking is in the Northern Caravansary and draws on the
+-- Landing's bank -- a `474xxxx` uid, next door to Solhaven's in the same
+-- block, on First Elanith's books. Watched moving 627,185 -> 627,190 on a
+-- five-silver deposit. One more reason none of this is inferable from where
+-- a room sits.
+UPDATE replenishers SET account = 'First Elanith Secured Bank'
+ WHERE resource = 'silver' AND room_uid = 4746114;
+
 -- # The Isle of Four Winds has no road, so it has no gate either
 --
 -- `[Four Winds Bank, Teller Windows]` cannot be reached and is left unmapped.
@@ -123,3 +131,26 @@ UPDATE replenishers SET account = 'United City-States Bank'
 -- forbids nothing, which is exactly how the Voln gate shipped offering a
 -- Voln-only road to everybody. It belongs with the connector, when there is
 -- one.
+
+-- # Observed, and deliberately not acted on
+--
+-- Walking to Brindlestoat's Moneylender (7503260) on 2026-09-13 got 167 steps
+-- and then:
+--
+--   step 167: no-such-exit -- You can't go there.
+--   travel failed: no-such-exit on "climb sliver", and no other route
+--
+-- The edge is 4132054 [Abbey, Teleportation Chamber] -> 7503253, and the map
+-- database records it as a plain unconditional `climb sliver`.
+--
+-- No overlay is written for it, on purpose. One character being refused does
+-- not establish that a road does not exist -- the Abbey is a way into the
+-- Hinterwilds and the sliver is far more likely *gated* on something Norhaak
+-- has not done than absent. Excluding it would invent "this road is not there"
+-- exactly as publishing it ungated invented "anyone may take it".
+--
+-- What it needs is a character who can use it, to say what the gate is. Until
+-- then the router handles it correctly on its own: the refusal classifies as
+-- `no-such-exit`, `travel::avoid` drops the edge, and the journey re-plans --
+-- which is the whole point of the failure vocabulary and cost nothing but the
+-- walk.
