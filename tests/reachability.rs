@@ -86,20 +86,45 @@ fn load_dir(conn: &Connection, dir: &std::path::Path) {
 /// than no measure, because it answers "yes" to the question somebody is
 /// actually asking with a fact about something else.
 fn coverage(conn: &Connection) -> Vec<(String, usize, usize, usize)> {
+    // Connectors are roads too, and they live in a different table. Without
+    // this every mechanism expressed makes the numbers move not at all, which
+    // is how a measure stops measuring the thing it is named after.
+    //
+    // Conditions are deliberately ignored. This asks what the *data* connects,
+    // not what a particular character can walk -- a periapt-gated road is a
+    // road, and who may take it is a question for a client with a snapshot.
+    //
+    // `only` origins alone. Every connector published today is one, and an
+    // `anywhere` connector would join every room to its destinations and drown
+    // the measurement rather than inform it.
     let sql = "
         WITH RECURSIVE
+          hop(from_uid, to_uid) AS (
+            SELECT CAST(t.value AS INTEGER), d.to_uid
+              FROM connectors c
+              JOIN room_set_terms t
+                ON t.set_name = c.origin_set AND t.op = 'room'
+              JOIN connector_destinations d
+                ON d.connector_id = c.id AND d.kind = 'fixed'
+             WHERE c.origin_mode = 'only'
+          ),
+          road(from_uid, to_uid) AS (
+            SELECT from_uid, to_uid FROM edges
+            UNION ALL
+            SELECT from_uid, to_uid FROM hop
+          ),
           out_of_wl(uid) AS (
             SELECT room_uid FROM room_facets
              WHERE type = 'location' AND detail = ?1
             UNION
-            SELECT e.to_uid FROM edges e JOIN out_of_wl r ON e.from_uid = r.uid
+            SELECT e.to_uid FROM road e JOIN out_of_wl r ON e.from_uid = r.uid
           ),
           -- The same edges, walked backwards: every room that can get home.
           into_wl(uid) AS (
             SELECT room_uid FROM room_facets
              WHERE type = 'location' AND detail = ?1
             UNION
-            SELECT e.from_uid FROM edges e JOIN into_wl c ON e.to_uid = c.uid
+            SELECT e.from_uid FROM road e JOIN into_wl c ON e.to_uid = c.uid
           )
         SELECT f.detail,
                count(*),
@@ -141,7 +166,10 @@ const REGIONS: &[(&str, usize, usize)] = &[
     ("Wehnimer's Landing", 100, 100),
     ("Moonsedge", 98, 98),
     ("Icemule Trace", 94, 94),
-    ("the Hinterwilds", 90, 0), // in by `climb sliver`; the caravan is the way out
+    // In by `climb sliver`, a 15,000s discouragement. Out by the caravan,
+    // which is published now -- and the return is 2%, because reaching the
+    // caravan stop from inside is its own problem.
+    ("the Hinterwilds", 90, 0),
     ("River's Rest", 84, 0),
     ("Solhaven", 89, 98),
     // Two of seventy-eight rooms: the Fangs of the Serpent gateway, and one
@@ -149,10 +177,12 @@ const REGIONS: &[(&str, usize, usize)] = &[
     // small bone periapt -- `rub` it for a viridian portal, `go` the portal.
     ("the shadow of the Sanctum", 0, 0),
     // Nothing at all. Each is one `;e` mechanism away.
-    ("the Rift", 0, 0),            // `fput 'go sphere'` + an ethereal-fog loop
-    ("Zul Logoth", 0, 0),          // `buy ticket` -- the gnome cart
-    ("Kharam-Dzu", 0, 0),          // `ask portmaster about travel 4` -- the ferry
-    ("the Pinefar forests", 0, 0), // `inquire; order 2; order confirm`
+    ("the Rift", 0, 0),   // `fput 'go sphere'` + an ethereal-fog loop
+    ("Zul Logoth", 0, 0), // `buy ticket` -- the gnome cart
+    ("Kharam-Dzu", 0, 0), // `ask portmaster about travel 4` -- the ferry
+    // Both of these went from nothing to whole when Symbol of Seeking was
+    // published: the Trading Post is one of its eight outposts.
+    ("the Pinefar forests", 95, 55),
 ];
 
 #[test]
@@ -199,13 +229,8 @@ fn the_unreachable_regions_are_the_ones_we_know_about() {
     sealed.sort_unstable();
     assert_eq!(
         sealed,
-        [
-            "Kharam-Dzu",
-            "Zul Logoth",
-            "the Pinefar forests",
-            "the Rift",
-            "the shadow of the Sanctum",
-        ]
+        ["Kharam-Dzu", "Zul Logoth", "the shadow of the Sanctum"],
+        "the Rift and Pinefar both left this list when Symbol of Seeking landed"
     );
 }
 

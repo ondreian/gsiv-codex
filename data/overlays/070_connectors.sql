@@ -135,3 +135,48 @@ INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, ti
   ('sphere:rift', 'fixed', 4568001, 0, 'go sphere', '', 0),
   ('sphere:rift', 'fixed', 4568001, 1, 'east',
    'You feel every shred of yourself torn to tiny pieces and reformed', 30000);
+
+-- ---------------------------------------------------------------------------
+-- Out of the Hinterwilds, by caravan
+-- ---------------------------------------------------------------------------
+--
+-- 93% of the Hinterwilds was reachable and 0% could get home. The way in is
+-- `climb sliver`, a plain edge the mapdb prices at 15,000 seconds -- four
+-- hours, which is Lich saying "technically, please do not". The way out is a
+-- caravan, and it was a `;e` so it was dropped.
+--
+--   7503002  the caravan stop
+--     order 1  ->  4128001  the southern snowfields   (and so, Icemule)
+--     order 2  ->  13205005 Ta'Illistim
+--
+-- Lich sets `UserVars.mapdb_hinterwilds_location` afterwards. That is its own
+-- bookkeeping for routing you back later, not part of the mechanism, and it is
+-- not recorded: a client that needs to know where it came from knows already.
+--
+-- Cost is the mapdb's own 3,600s. An hour is not a wait, it is a timetable --
+-- the caravan leaves when it leaves. The router will now plan an hour's wait
+-- over a four-hour climb, which is right, and both numbers are the kind of
+-- thing a resource-aware cost vector should eventually say properly.
+
+INSERT INTO room_sets(name, description) VALUES
+  ('hinterwilds-caravan', 'The caravan stop in the Hinterwilds.');
+INSERT INTO room_set_terms(set_name, seq, op, value) VALUES
+  ('hinterwilds-caravan', 0, 'room', '7503002');
+
+INSERT INTO connectors(id, origin_mode, origin_set, overhead_ms, description) VALUES
+  ('caravan:hinterwilds', 'only', 'hinterwilds-caravan', 0,
+   'The caravan out of the Hinterwilds. Order 1 for the snowfields, 2 for Ta''Illistim.');
+
+INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES
+  ('caravan:hinterwilds', 'fixed', 4128001, 3600000),
+  ('caravan:hinterwilds', 'fixed', 13205005, 3600000);
+
+INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms) VALUES
+  ('caravan:hinterwilds', 'fixed', 4128001, 0, 'inquire', '', 0),
+  ('caravan:hinterwilds', 'fixed', 4128001, 1, 'order 1', '', 0),
+  ('caravan:hinterwilds', 'fixed', 4128001, 2, 'order confirm',
+   'The wagon comes to a halt', 3600000),
+  ('caravan:hinterwilds', 'fixed', 13205005, 0, 'inquire', '', 0),
+  ('caravan:hinterwilds', 'fixed', 13205005, 1, 'order 2', '', 0),
+  ('caravan:hinterwilds', 'fixed', 13205005, 2, 'order confirm',
+   'The wagon comes to a halt', 3600000);
