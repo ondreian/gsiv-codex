@@ -170,16 +170,22 @@ const REGIONS: &[(&str, usize, usize)] = &[
     // which is published now -- and the return is 2%, because reaching the
     // caravan stop from inside is its own problem.
     ("the Hinterwilds", 90, 0),
-    ("River's Rest", 84, 0),
+    ("River's Rest", 84, 95),
     ("Solhaven", 89, 98),
     // Two of seventy-eight rooms: the Fangs of the Serpent gateway, and one
     // more. The hunting ground is the other seventy-six, and the way in is a
     // small bone periapt -- `rub` it for a viridian portal, `go` the portal.
-    ("the shadow of the Sanctum", 0, 0),
-    // Nothing at all. Each is one `;e` mechanism away.
-    ("the Rift", 0, 0),   // `fput 'go sphere'` + an ethereal-fog loop
-    ("Zul Logoth", 0, 0), // `buy ticket` -- the gnome cart
-    ("Kharam-Dzu", 0, 0), // `ask portmaster about travel 4` -- the ferry
+    // Published now, and this barely moved: it lands you in the
+    // Subterrain Pit, whose own onward edges are few. The mechanism was never
+    // the whole problem here.
+    ("the shadow of the Sanctum", 2, 2),
+    // 0% until Symbol of Seeking and the sphere were published together:
+    // Seeking reaches Koar's Shrine, the sphere is three rooms on.
+    ("the Rift", 65, 0),
+    // 0% both ways until the portmasters. Nine piers, sixty-two routes.
+    ("Kharam-Dzu", 85, 95),
+    // Still nothing: `buy ticket`, the gnome cart, and out of scope.
+    ("Zul Logoth", 0, 0),
     // Both of these went from nothing to whole when Symbol of Seeking was
     // published: the Trading Post is one of its eight outposts.
     ("the Pinefar forests", 95, 55),
@@ -229,8 +235,9 @@ fn the_unreachable_regions_are_the_ones_we_know_about() {
     sealed.sort_unstable();
     assert_eq!(
         sealed,
-        ["Kharam-Dzu", "Zul Logoth", "the shadow of the Sanctum"],
-        "the Rift and Pinefar both left this list when Symbol of Seeking landed"
+        ["Zul Logoth", "the shadow of the Sanctum"],
+        "Kharam-Dzu left when the portmasters landed; the Rift and Pinefar \
+         when Symbol of Seeking did"
     );
 }
 

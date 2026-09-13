@@ -68,6 +68,32 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("ferry") => {
+            let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
+                eprintln!(
+                    "usage: codex ferry --from vendor/map.json --out data/overlays/076_ferry.sql"
+                );
+                return ExitCode::from(2);
+            };
+            match std::fs::read_to_string(&from)
+                .map_err(|e| format!("{from}: {e}"))
+                .and_then(|json| gsiv_codex::ferry::routes(&json).map_err(|e| e.to_string()))
+                .and_then(|r| {
+                    let n: usize = r.values().map(Vec::len).sum();
+                    std::fs::write(&out, gsiv_codex::ferry::to_sql(&r))
+                        .map(|()| (r.len(), n))
+                        .map_err(|e| format!("{out}: {e}"))
+                }) {
+                Ok((piers, n)) => {
+                    eprintln!("{piers} piers, {n} routes -> {out}");
+                    ExitCode::SUCCESS
+                }
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::from(1)
+                }
+            }
+        }
         Some("seeking") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
                 eprintln!(

@@ -6,6 +6,7 @@
 pub mod conditions;
 pub mod connectors;
 pub mod extract;
+pub mod ferry;
 pub mod ingest;
 pub mod lich_move;
 pub mod mapdb;
