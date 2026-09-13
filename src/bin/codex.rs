@@ -94,6 +94,32 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("fwi") => {
+            let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
+                eprintln!(
+                    "usage: codex fwi --from vendor/map.json --out data/overlays/077_fwi.sql"
+                );
+                return ExitCode::from(2);
+            };
+            match std::fs::read_to_string(&from)
+                .map_err(|e| format!("{from}: {e}"))
+                .and_then(|json| gsiv_codex::fwi::read(&json).map_err(|e| e.to_string()))
+                .and_then(|isle| {
+                    let counts = (isle.anchors.len(), isle.locations.len());
+                    std::fs::write(&out, gsiv_codex::fwi::to_sql(&isle))
+                        .map(|()| counts)
+                        .map_err(|e| format!("{out}: {e}"))
+                }) {
+                Ok((anchors, locations)) => {
+                    eprintln!("{anchors} anchors, {locations} island locations -> {out}");
+                    ExitCode::SUCCESS
+                }
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::FAILURE
+                }
+            }
+        }
         Some("seeking") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
                 eprintln!(
@@ -148,7 +174,9 @@ fn main() -> ExitCode {
             }
         },
         _ => {
-            eprintln!("usage: codex (build | extract | stats | conditions) ...");
+            eprintln!(
+                "usage: codex (build | extract | stats | conditions | seeking | ferry | fwi) ..."
+            );
             ExitCode::from(2)
         }
     }
