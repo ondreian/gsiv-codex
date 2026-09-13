@@ -41,6 +41,10 @@ const MIGRATIONS: &[(&str, &str)] = &[
         "010_room_titles",
         include_str!("../schema/010_room_titles.sql"),
     ),
+    (
+        "011_connector_costs",
+        include_str!("../schema/011_connector_costs.sql"),
+    ),
 ];
 
 /// How many migrations this build knows.
