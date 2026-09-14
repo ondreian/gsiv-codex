@@ -40,12 +40,21 @@ jobs:
       # can read it, and what it is built from.
       - name: describe it
         run: |
-          sqlite3 codex.db3 "SELECT key || '=' || value FROM codex_meta ORDER BY key" > meta.txt
+          eval "$(grep -E '^(repo|commit)=' vendor/mapdb.source)"
           {
             echo "| | |"
             echo "| --- | --- |"
-            sed 's/^\([^=]*\)=\(.*\)$/| `\1` | \2 |/' meta.txt
-            echo "| \`mapdb\` | [\`${{ steps.pin.outputs.sha }}\`](https://github.com/FarFigNewGut/lich-mapdb-room) |"
+            # Empty meta is not worth a row: `urnon_max` is normally empty and
+            # means "no known ceiling", which a blank cell states badly.
+            sqlite3 codex.db3 \
+              "SELECT '| \`' || key || '\` | ' ||
+                      CASE key WHEN 'built_at'
+                        THEN datetime(CAST(value AS INTEGER), 'unixepoch') || ' UTC'
+                        ELSE value END || ' |'
+                 FROM codex_meta WHERE value <> '' ORDER BY key"
+            echo "| \`mapdb\` | [$repo@\`$commit\`](https://github.com/$repo/tree/$commit) |"
+            echo
+            echo "Reads with no flag: urnon's \`World::load_any\` recognises the schema."
             echo
             echo "\`\`\`sh"
             echo "zstd -d codex.db3.zst -o ~/.local/share/urnon/codex.db3"
