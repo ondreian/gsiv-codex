@@ -235,7 +235,8 @@ fn stamp(
     // 0.1.2 is worse than no canary -- a client comparing versions would see
     // no reason to take it, and a bug report would name a release that does
     // not contain the bug.
-    let version = std::env::var("CODEX_VERSION").unwrap_or_else(|_| gsiv_codex::VERSION.to_string());
+    let version =
+        std::env::var("CODEX_VERSION").unwrap_or_else(|_| gsiv_codex::VERSION.to_string());
     let entries: [(&str, String); 7] = [
         ("version", version),
         ("schema_version", schema.to_string()),
