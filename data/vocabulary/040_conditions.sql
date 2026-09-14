@@ -36,22 +36,26 @@ INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VAL
 --   ('ice-slip-resolve', 1, 0, 'skill',       'survival', 'lt',  '50'),
 --   ('ice-slip-resolve', 2, 0, 'encumbrance', '',         'gte', '50');
 
--- 2500, not the mapdb's 4000. Measured on 4044101 <-> 4044102 on the Icemule
--- Trail over 190 crossings at Survival 0, 49 and 202: at Survival 0, the worst
--- case this condition exists for, fifty-three crossings at two seconds or more
--- produced no fall, and below two seconds the fall rate climbs to 100% within
--- a second. Half a second is added over the measured floor because the trials
--- timestamp the gap before the command leaves the machine, which biases every
--- row short.
+-- 3500, measured rather than copied. 190 crossings on 4044101 <-> 4044102 on
+-- the Icemule Trail: at Survival 0 the fall rate slides 100% -> 83% -> 33% ->
+-- 17% -> 0% between 2.5 and 3.25 seconds, and thirty-two crossings at 3.25s or
+-- more produced no fall. 3500 is that boundary with a quarter second on it.
 --
--- It is a roll rather than a gate -- the rate slides across the band instead of
--- flipping -- so this buys margin, not certainty, and the `slipped` failure
--- class still has to catch the ones that get through.
+-- The mapdb's 4000 was close, which is not what the first pass at this
+-- concluded: that harness stamped arrival 1.07s late and briefly published
+-- 2500, a number inside the band that still falls.
 --
--- docs/ice-slip-measured.md in urnon has the table and the two harnesses that
--- reported confident nulls before this one worked.
+-- It is a roll rather than a gate, so this buys margin and not certainty, and
+-- the `slipped` failure class still has to catch the ones that get through.
+--
+-- The `survival < 50` escape above is sound but its reason is not: 202 ranks
+-- still falls one crossing in thirteen when hurried. What makes skipping right
+-- is that a fall costs six seconds of roundtime, so `P(fall) x 6s` beats the
+-- pause well before the slipping stops.
+--
+-- docs/ice-slip-measured.md in urnon has the table.
 INSERT INTO condition_effects(condition_id, effect, amount) VALUES
-  ('ice-slip', 'delay_ms', 2500);
+  ('ice-slip', 'delay_ms', 3500);
 --   ('ice-slip-resolve', 'delay_ms', 6000);
 
 -- Water Walking (spell 112). Without it you swim, which is neither slower nor
