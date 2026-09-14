@@ -11,9 +11,7 @@
 
 INSERT INTO conditions(id, description) VALUES
   ('ice-slip',
-   'Pause before crossing, or slip. 150 edges across six regions: Griffin''s Keen, the Icemule Trail, Ta''Vaalor, Zul Logoth, the Ice Plains, the southern snowfields.'),
-  ('ice-slip-resolve',
-   'The Sleeping Lady variant, 21 edges. Waits 6s not 4s, ignores the run preference, and Haste does not excuse low Survival. Whether that is a harder mountain or a newer author is unresolved.');
+   'Pause before crossing, or slip. 150 edges across six regions: Griffin''s Keen, the Icemule Trail, Ta''Vaalor, Zul Logoth, the Ice Plains, the southern snowfields.');
 
 -- ice_mode == 'wait'
 --   OR (ice_mode != 'run' AND encumbrance > 50)
@@ -33,14 +31,28 @@ INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VAL
 -- Note `>=` where the other says `>`. A boundary that moves by one between two
 -- copies of a rule is exactly the artifact the shortlist hunts for, so it is
 -- recorded as written rather than quietly aligned.
-INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
-  ('ice-slip-resolve', 0, 0, 'preference',  'ice_mode', 'eq',  'wait'),
-  ('ice-slip-resolve', 1, 0, 'skill',       'survival', 'lt',  '50'),
-  ('ice-slip-resolve', 2, 0, 'encumbrance', '',         'gte', '50');
+-- INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
+--   ('ice-slip-resolve', 0, 0, 'preference',  'ice_mode', 'eq',  'wait'),
+--   ('ice-slip-resolve', 1, 0, 'skill',       'survival', 'lt',  '50'),
+--   ('ice-slip-resolve', 2, 0, 'encumbrance', '',         'gte', '50');
 
+-- 2500, not the mapdb's 4000. Measured on 4044101 <-> 4044102 on the Icemule
+-- Trail over 190 crossings at Survival 0, 49 and 202: at Survival 0, the worst
+-- case this condition exists for, fifty-three crossings at two seconds or more
+-- produced no fall, and below two seconds the fall rate climbs to 100% within
+-- a second. Half a second is added over the measured floor because the trials
+-- timestamp the gap before the command leaves the machine, which biases every
+-- row short.
+--
+-- It is a roll rather than a gate -- the rate slides across the band instead of
+-- flipping -- so this buys margin, not certainty, and the `slipped` failure
+-- class still has to catch the ones that get through.
+--
+-- docs/ice-slip-measured.md in urnon has the table and the two harnesses that
+-- reported confident nulls before this one worked.
 INSERT INTO condition_effects(condition_id, effect, amount) VALUES
-  ('ice-slip',         'delay_ms', 4000),
-  ('ice-slip-resolve', 'delay_ms', 6000);
+  ('ice-slip', 'delay_ms', 2500);
+--   ('ice-slip-resolve', 'delay_ms', 6000);
 
 -- Water Walking (spell 112). Without it you swim, which is neither slower nor
 -- forbidden -- it is a different command, carried on `edge_conditions.instead`
@@ -50,3 +62,37 @@ INSERT INTO conditions(id, description) VALUES
   ('no-water-walking', 'the character is not under Water Walking (spell 112)');
 INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
   ('no-water-walking', 0, 0, 'spell', 'Water Walking', 'absent', '');
+
+-- # ice-slip-resolve is known and not published
+--
+-- The Sleeping Lady's 21 ice edges wait six seconds rather than four, ignore
+-- the run preference, and do not accept Haste as an excuse for low Survival.
+-- That is real and worth writing down, and it is commented out rather than
+-- published because **nothing attaches it to an edge**, and a condition
+-- referenced by nothing forbids nothing -- which is precisely how the Voln
+-- gate shipped offering a rank-26 road to everybody.
+--
+-- The reason it attaches to nothing is a shape the extractor does not handle.
+-- These scripts do not end in a move; they end in a *recovery*:
+--
+--   result = fput 'down'
+--   if result =~ /^Rushing heedlessly/
+--     haste.cast if haste.known? && haste.affordable? && !haste.active?
+--     fput 'stand'
+--   end
+--
+-- `looks_like_movement` wants the last statement to be the move, so all 21 are
+-- dropped -- and dropped *without* a `script_edge_disposition` row, which is
+-- the second bug: that table exists so nothing vanishes without saying so.
+--
+-- Three things to do, in order:
+--   1. teach the extractor the move-then-recovery shape, and make sure
+--      anything it declines lands in the audit;
+--   2. add "Rushing heedlessly" to the `slipped` failure class, where the
+--      recovery already belongs -- the walker stands up and re-tries without
+--      the edge needing to say so;
+--   3. attach this condition, and uncomment it.
+--
+-- Until then these 21 edges are published with no pause at all, which is a
+-- hazard worth stating plainly rather than papering over with a condition
+-- that covers nothing.

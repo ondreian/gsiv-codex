@@ -22,11 +22,16 @@ fn main() -> ExitCode {
         Some("build") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
                 eprintln!(
-                    "usage: codex build --from <map.db3> --out <codex.db3> [--vocabulary <dir>]"
+                    "usage: codex build --from <map.db3> --out <codex.db3> [--vocabulary <dir>] [--notes <text>]"
                 );
                 return ExitCode::from(2);
             };
-            match build(&from, &out, flag("--vocabulary").as_deref()) {
+            match build(
+                &from,
+                &out,
+                flag("--vocabulary").as_deref(),
+                flag("--notes"),
+            ) {
                 Ok(()) => ExitCode::SUCCESS,
                 Err(e) => {
                     eprintln!("error: {e}");
@@ -209,10 +214,47 @@ fn main() -> ExitCode {
     }
 }
 
+/// Write what this file is, inside the file.
+///
+/// Done last, after the schema version is settled and everything is loaded, so
+/// the numbers describe what actually landed rather than what was intended.
+fn stamp(
+    conn: &rusqlite::Connection,
+    source: &str,
+    notes: Option<String>,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let schema: i64 = conn.query_row("PRAGMA user_version", [], |r| r.get(0))?;
+    let built_at = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs())
+        .unwrap_or(0);
+
+    let entries: [(&str, String); 7] = [
+        ("version", gsiv_codex::VERSION.to_string()),
+        ("schema_version", schema.to_string()),
+        ("urnon_min", gsiv_codex::URNON_MIN.to_string()),
+        ("urnon_max", gsiv_codex::URNON_MAX.to_string()),
+        // Seconds since the epoch rather than a formatted string: no
+        // dependency, no timezone, and a reader that wants it pretty can
+        // format it.
+        ("built_at", built_at.to_string()),
+        ("source", source.to_string()),
+        ("notes", notes.unwrap_or_default()),
+    ];
+    for (key, value) in entries {
+        conn.execute(
+            "INSERT OR REPLACE INTO codex_meta(key, value) VALUES (?1, ?2)",
+            rusqlite::params![key, value],
+        )?;
+    }
+    Ok(())
+}
+
 fn build(
     from: &str,
     out: &str,
     vocabulary: Option<&str>,
+    notes: Option<String>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     // Rebuilt from scratch every time. A build that appends to whatever was
     // there before is a build whose output depends on its history, which is
@@ -319,6 +361,7 @@ fn build(
     // journal build plans normally -- and a shipped artifact will sit in a
     // directory somebody has locked down.
     conn.execute_batch("PRAGMA journal_mode = DELETE;")?;
+    stamp(&conn, from, notes)?;
     eprintln!("built {out}");
     Ok(())
 }

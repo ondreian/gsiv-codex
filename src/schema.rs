@@ -54,6 +54,7 @@ const MIGRATIONS: &[(&str, &str)] = &[
         "014_transient_exits",
         include_str!("../schema/014_transient_exits.sql"),
     ),
+    ("015_meta", include_str!("../schema/015_meta.sql")),
 ];
 
 /// How many migrations this build knows.
