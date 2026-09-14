@@ -117,7 +117,9 @@ codex upgrade canary
 codex rollback          # back to the stable release you were on
 ```
 
-Stable releases are proposed rather than cut by hand. release-please keeps one
+Stable releases are proposed rather than cut by hand — by `urnon-bot` where
+one is configured, and otherwise by the workflow itself, which costs a click
+on the release pull request's CI. `docs/the-bot.md` says why and how. release-please keeps one
 open pull request holding every unreleased change, with the version bump and
 the changelog already written from the commit messages; merging it tags the
 release and attaches the artifact. So the commit subject is the changelog

@@ -18,9 +18,34 @@ jobs:
       released: ${{ steps.release.outputs.release_created }}
       tag: ${{ steps.release.outputs.tag_name }}
     steps:
+      # A token that belongs to the bot rather than to the workflow.
+      #
+      # `GITHUB_TOKEN` can open the release pull request but deliberately
+      # cannot make it *do* anything: a run triggered by one is held at
+      # `action_required` so a workflow cannot start itself in a loop. That
+      # means the release pull request's own CI needs a click before it can go
+      # green, and CI is a required check -- so the release waits on a human
+      # for a reason that has nothing to do with whether the release is good.
+      #
+      # An installation token from a GitHub App is a different actor, so the
+      # pull request it opens triggers workflows normally. Preferred over a
+      # personal access token because it is scoped to this repository, lasts an
+      # hour, and is not the maintainer's own account.
+      #
+      # Optional: with no app configured this step fails, the fallback below
+      # picks `github.token`, and everything works exactly as it did -- with
+      # the click.
+      - uses: actions/create-github-app-token@v2
+        id: bot
+        continue-on-error: true
+        with:
+          app-id: ${{ vars.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
       - uses: googleapis/release-please-action@v4
         id: release
         with:
+          token: ${{ steps.bot.outputs.token || github.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
