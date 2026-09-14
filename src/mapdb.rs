@@ -202,6 +202,10 @@ pub fn import(conn: &Connection, json: &str) -> Result<Stats, Box<dyn std::error
             "INSERT OR IGNORE INTO edges(from_uid, to_uid, command, class, time_ms)
              VALUES (?1, ?2, ?3, 'walk', ?4)",
         )?;
+        let mut unpublished = conn.prepare(
+            "INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, \
+             disposition, reason) VALUES (?1, ?2, ?3, 'unhandled', ?4)",
+        )?;
         for room in &rooms {
             let Some(&from) = uid_of.get(&room.id) else {
                 continue;
@@ -209,6 +213,25 @@ pub fn import(conn: &Connection, json: &str) -> Result<Stats, Box<dyn std::error
             for (target, command) in &room.wayto {
                 if is_script(command) {
                     stats.edges_script += 1;
+                    // Ruby is somebody else's problem -- `codex extract` reads
+                    // it and dispositions every one. What lands here and is
+                    // *not* Ruby is a wayto holding several commands on
+                    // several lines, and `edges` has one command per row. Two
+                    // of those exist and both used to vanish counted as
+                    // script, which is the one thing this table exists to stop.
+                    if !command.trim_start().starts_with(";e") {
+                        if let (Some(&from), Some(&to)) = (
+                            uid_of.get(&room.id),
+                            target.parse::<i64>().ok().and_then(|i| uid_of.get(&i)),
+                        ) {
+                            unpublished.execute(rusqlite::params![
+                                from,
+                                to,
+                                command.replace('\n', " ; ").chars().take(90).collect::<String>(),
+                                "several commands in one wayto; an edge carries one, so this needs a prelude",
+                            ])?;
+                        }
+                    }
                     continue;
                 }
                 let Ok(target_id) = target.parse::<i64>() else {

@@ -35,16 +35,28 @@ Nothing here depends on it.
 
 ## Building one
 
+Build from the vendored mapdb. It is the source of record, and the whole
+pipeline is reproducible from a clone.
+
 ```sh
-codex build --from ~/.local/share/urnon/map.db3 \
+codex build --from vendor/map.json \
             --out  /tmp/codex.db3 \
             --vocabulary data
 ```
 
 ```
-rooms 28446, edges 62012 (skipped 3037 script, 2 ambiguous)
-locations 28192, facets from tags 374425
+rooms 28727 (skipped 7884 unmapped, 281 instanced)
+edges 61664 (skipped 7720 script, 529 dangling, 5 ambiguous), facets 406066
+overlays applied: 1874
 ```
+
+`--from` also takes urnon's already-imported `map.db3`, which was the way in
+before the mapdb importer existed. **Do not ship a build made that way.** That
+store keeps only Lich rooms carrying exactly one uid, so the 281 instanced
+rooms and every edge touching them are gone — 546 plain-command edges dropped
+with nothing said, and the Sleeping Lady unreachable. The path stays for
+comparing the two; `every_wayto_is_published_or_accounted_for` fails on it,
+which is the point.
 
 urnon reads it with no flag — `World::load_any` recognises the schema:
 

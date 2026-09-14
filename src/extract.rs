@@ -561,7 +561,14 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                         Some(found) => found,
                         None => match table_move(command) {
                             Some(moved) => ("", moved),
-                            None => continue,
+                            // Nothing recognised it. Handing the whole body to
+                            // `classify` makes it `Unrecognised`, which earns a
+                            // disposition row -- where `continue` here earned
+                            // nothing, and 5,158 script edges left no trace of
+                            // having been looked at. The header above this loop
+                            // claims every script edge is superseded, excluded
+                            // or listed; this is what makes that true.
+                            None => (command, String::new()),
                         },
                     },
                 },
@@ -572,6 +579,9 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                 .and_then(serde_json::Value::as_f64)
                 .map(|s| (s * 1000.0).round() as i64)
                 .unwrap_or(200);
+            // Read before `moved` is handed to the struct, because the body
+            // below depends on whether a command came out of the parse.
+            let no_move = moved.is_empty();
             out.push(Extracted {
                 from_uid: from,
                 to_uid: to,
@@ -580,6 +590,14 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                 body: match (excluded, swim_instead) {
                     (Some(why), _) => Body::Excluded(why),
                     (None, Some(swim)) => Body::Instead("no-water-walking", swim),
+                    // No move came out of it, so there is nothing to hang a
+                    // condition on. `classify` would still recognise the ice
+                    // body and return a condition for an edge whose command is
+                    // empty -- which is a foreign key failure at build time,
+                    // and would be a road nobody can walk if it were not.
+                    (None, None) if no_move => Body::Unrecognised(
+                        body.split_whitespace().collect::<Vec<_>>().join(" "),
+                    ),
                     (None, None) => classify(body),
                 },
                 preludes,
@@ -707,7 +725,14 @@ pub fn to_sql(found: &[Extracted]) -> String {
                 -- says so.\n",
     );
     for (e, excerpt) in &skipped {
-        let reason = format!("ends in a move but the body is not modelled: {excerpt}");
+        // Two shapes reach here and the reason has to tell them apart: a body
+        // that ends in a move this cannot read, and a body no recogniser
+        // matched at all. The second has no command to publish.
+        let reason = if e.command.is_empty() {
+            format!("no recogniser matched: {excerpt}")
+        } else {
+            format!("ends in a move but the body is not modelled: {excerpt}")
+        };
         s.push_str(&format!(
             "INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, \
              disposition, reason) VALUES ({}, {}, {}, 'unhandled', {});\n",
@@ -791,12 +816,24 @@ mod tests {
 
     /// A `move` that is not the last statement is not a move we can take:
     /// something happens afterwards and we do not know what it was for.
+    ///
+    /// Listed rather than dropped. It used to be neither — a bare `continue`
+    /// that left no command and no record, which is how 5,158 script edges
+    /// came to have been looked at and leave no trace of it.
     #[test]
-    fn a_move_with_a_tail_is_not_extracted() {
+    fn a_move_with_a_tail_is_listed_but_carries_no_command() {
         let found = from_mapdb(SAMPLE).expect("parse");
+        let e = found
+            .iter()
+            .find(|e| e.to_uid == 500)
+            .expect("looked at, so recorded");
         assert!(
-            !found.iter().any(|e| e.to_uid == 500),
+            e.command.is_empty(),
             "$go2_restart after the move means the destination is not fixed"
+        );
+        assert!(
+            matches!(e.body, Body::Unrecognised(_)),
+            "and it must say so, or somebody will assume nobody looked"
         );
     }
 
