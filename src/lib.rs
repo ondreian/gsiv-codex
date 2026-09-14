@@ -12,6 +12,7 @@ pub mod ingest;
 pub mod lich_move;
 pub mod mapdb;
 pub mod overlays;
+pub mod rift;
 pub mod schema;
 pub mod seeking;
 pub mod sets;

@@ -94,6 +94,33 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("rift") => {
+            let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
+                eprintln!(
+                    "usage: codex rift --from vendor/map.json --out data/overlays/078_rift.sql"
+                );
+                return ExitCode::from(2);
+            };
+            match std::fs::read_to_string(&from)
+                .map_err(|e| format!("{from}: {e}"))
+                .and_then(|json| gsiv_codex::rift::read(&json).map_err(|e| e.to_string()))
+                .and_then(|c| {
+                    let n = c.len();
+                    let entries: usize = c.values().map(|x| x.entries.len()).sum();
+                    std::fs::write(&out, gsiv_codex::rift::to_sql(&c))
+                        .map(|()| (n, entries))
+                        .map_err(|e| format!("{out}: {e}"))
+                }) {
+                Ok((n, entries)) => {
+                    eprintln!("{n} circuits, {entries} entry rooms -> {out}");
+                    ExitCode::SUCCESS
+                }
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::FAILURE
+                }
+            }
+        }
         Some("fwi") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
                 eprintln!(
@@ -175,7 +202,7 @@ fn main() -> ExitCode {
         },
         _ => {
             eprintln!(
-                "usage: codex (build | extract | stats | conditions | seeking | ferry | fwi) ..."
+                "usage: codex (build | extract | stats | conditions | seeking | ferry | fwi | rift) ..."
             );
             ExitCode::from(2)
         }
