@@ -14,82 +14,43 @@
 -- picks this over walking across the street.
 
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (18003, '[Graveyard]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (18003, 0, '[Graveyard]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (42019, '[Darkstone, Dungeon]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (42019, 0, '[Darkstone, Dungeon]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (67043, '[Coastal Cliffs, Cemetery]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (67043, 0, '[Coastal Cliffs, Cemetery]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (95186, '[Monastery, Misty Chamber]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (95186, 0, '[Monastery, Misty Chamber]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (312033, '[Courtyard]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (312033, 0, '[Courtyard]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (319014, '[Ruined Courtyard]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (319014, 0, '[Ruined Courtyard]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (376040, '[Marsh Keep, Inner Portcullis]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (376040, 0, '[Marsh Keep, Inner Portcullis]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (377010, '[Council War Room]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (377010, 0, '[Council War Room]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (480225, '[Red Forest, Inner Weald]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (480225, 0, '[Red Forest, Inner Weald]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (630004, '[Abandoned Village]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (630004, 0, '[Abandoned Village]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (2102029, '[Citadel, Outside]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (2102029, 0, '[Citadel, Outside]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (2123004, '[Upper Trollfang, Winding Trees]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (2123004, 0, '[Upper Trollfang, Winding Trees]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (3003048, '[Temple, Meditation Sanctum]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3003048, 0, '[Temple, Meditation Sanctum]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (3031107, '[Ruined Temple, Nexus]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3031107, 0, '[Ruined Temple, Nexus]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (3041001, '[Luukos'' Gullet, Overhang]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3041001, 0, '[Luukos'' Gullet, Overhang]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (3041025, '[Temple of Luukos, Steam Chamber]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (3041025, 0, '[Temple of Luukos, Steam Chamber]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4007020, '[Deep Woods, Overgrowth]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4007020, 0, '[Deep Woods, Overgrowth]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4043800, '[Icemule Trace, Ice Garden]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4043800, 0, '[Icemule Trace, Ice Garden]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4124060, '[Frozen Bramble Patch]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4124060, 0, '[Frozen Bramble Patch]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4124105, '[A Frozen Garden]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4124105, 0, '[A Frozen Garden]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4132024, '[Abbey Cellar]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4132024, 0, '[Abbey Cellar]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4132024, 1, '[Abbey, Cellar]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4132201, '[Den of Rot, Portal]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4132201, 0, '[Den of Rot, Portal]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4212201, '[Vornavis, Wooded Plains]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4212201, 0, '[Vornavis, Wooded Plains]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4285055, '[Pentagram Chamber]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4285055, 0, '[Pentagram Chamber]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4562035, '[Birthing Sands, Cavern of Ages]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4562035, 0, '[Birthing Sands, Cavern of Ages]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4563032, '[Nightmare Gorge]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4563032, 0, '[Nightmare Gorge]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4749706, '[Fasthr''s Lance, Crown]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4749706, 0, '[Fasthr''s Lance, Crown]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (4750070, '[Castle Varunar, Great Hall]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (4750070, 0, '[Castle Varunar, Great Hall]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (5000108, '[Courtyard]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (5000108, 0, '[Courtyard]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (5004055, '[Oteska''s Haven, Niima''s Shrine]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (5004055, 0, '[Oteska''s Haven, Niima''s Shrine]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (10000110, '[Courtyard]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (10000110, 0, '[Courtyard]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (13022005, '[Maaghara Labyrinth]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13022005, 0, '[Maaghara Labyrinth]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (13027016, '[Wraithenmist, Fishing Dock]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13027016, 0, '[Wraithenmist, Fishing Dock]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (13036211, '[High Plains, Moorgate]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13036211, 0, '[High Plains, Moorgate]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (13109002, '[Hall of Patrons, Vestibule]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (13109002, 0, '[Hall of Patrons, Vestibule]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (14011055, '[Plains of Bone, Ruins]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (14011055, 0, '[Plains of Bone, Ruins]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (14016039, '[Lunule Weald, Perish Glen]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (14016039, 0, '[Lunule Weald, Perish Glen]');
 INSERT OR IGNORE INTO rooms(uid, title) VALUES (14116002, '[Voln Forecourt]');
-INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES (14116002, 0, '[Voln Forecourt]');
 
 INSERT INTO conditions(id, description) VALUES
   ('voln-seeking', 'a member of the Order of Voln at rank 26 or better');
@@ -120,30 +81,39 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 18003, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 18003, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 18003, 0, '[Graveyard]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 42019, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 42019, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 42019, 0, '[Darkstone, Dungeon]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 67043, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 67043, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 67043, 0, '[Coastal Cliffs, Cemetery]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 95186, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 95186, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 95186, 0, '[Monastery, Misty Chamber]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 312033, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 312033, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 312033, 0, '[Courtyard]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 480225, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 480225, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 480225, 0, '[Red Forest, Inner Weald]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 2123004, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 2123004, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 2123004, 0, '[Upper Trollfang, Winding Trees]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 4285055, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 4285055, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 4285055, 0, '[Pentagram Chamber]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:312033', 'fixed', 4750070, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:312033', 'fixed', 4750070, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:312033', 'fixed', 4750070, 0, '[Castle Varunar, Great Hall]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:3003048', 'A Voln outpost Symbol of Seeking works from.');
@@ -160,12 +130,15 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:3003048', 'fixed', 3031107, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:3003048', 'fixed', 3031107, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:3003048', 'fixed', 3031107, 0, '[Ruined Temple, Nexus]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:3003048', 'fixed', 3041001, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:3003048', 'fixed', 3041001, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:3003048', 'fixed', 3041001, 0, '[Luukos'' Gullet, Overhang]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:3003048', 'fixed', 3041025, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:3003048', 'fixed', 3041025, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:3003048', 'fixed', 3041025, 0, '[Temple of Luukos, Steam Chamber]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:4043800', 'A Voln outpost Symbol of Seeking works from.');
@@ -185,21 +158,28 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4043800', 'fixed', 4124060, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4043800', 'fixed', 4124060, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4124060, 0, '[Frozen Bramble Patch]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4043800', 'fixed', 4124105, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4043800', 'fixed', 4124105, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4124105, 0, '[A Frozen Garden]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4043800', 'fixed', 4132024, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4043800', 'fixed', 4132024, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4132024, 0, '[Abbey Cellar]');
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4132024, 0, '[Abbey, Cellar]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4043800', 'fixed', 4132201, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4043800', 'fixed', 4132201, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4132201, 0, '[Den of Rot, Portal]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4043800', 'fixed', 4562035, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4043800', 'fixed', 4562035, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4562035, 0, '[Birthing Sands, Cavern of Ages]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4043800', 'fixed', 4563032, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4043800', 'fixed', 4563032, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4043800', 'fixed', 4563032, 0, '[Nightmare Gorge]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:4749706', 'A Voln outpost Symbol of Seeking works from.');
@@ -218,18 +198,23 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4749706', 'fixed', 319014, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4749706', 'fixed', 319014, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4749706', 'fixed', 319014, 0, '[Ruined Courtyard]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4749706', 'fixed', 630004, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4749706', 'fixed', 630004, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4749706', 'fixed', 630004, 0, '[Abandoned Village]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4749706', 'fixed', 4007020, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4749706', 'fixed', 4007020, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4749706', 'fixed', 4007020, 0, '[Deep Woods, Overgrowth]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4749706', 'fixed', 4212201, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4749706', 'fixed', 4212201, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4749706', 'fixed', 4212201, 0, '[Vornavis, Wooded Plains]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:4749706', 'fixed', 4750070, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:4749706', 'fixed', 4750070, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:4749706', 'fixed', 4750070, 0, '[Castle Varunar, Great Hall]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:5000108', 'A Voln outpost Symbol of Seeking works from.');
@@ -247,15 +232,19 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:5000108', 'fixed', 376040, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:5000108', 'fixed', 376040, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:5000108', 'fixed', 376040, 0, '[Marsh Keep, Inner Portcullis]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:5000108', 'fixed', 377010, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:5000108', 'fixed', 377010, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:5000108', 'fixed', 377010, 0, '[Council War Room]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:5000108', 'fixed', 2102029, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:5000108', 'fixed', 2102029, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:5000108', 'fixed', 2102029, 0, '[Citadel, Outside]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:5000108', 'fixed', 5004055, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:5000108', 'fixed', 5004055, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:5000108', 'fixed', 5004055, 0, '[Oteska''s Haven, Niima''s Shrine]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:10000110', 'A Voln outpost Symbol of Seeking works from.');
@@ -273,15 +262,20 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:10000110', 'fixed', 4124105, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:10000110', 'fixed', 4124105, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:10000110', 'fixed', 4124105, 0, '[A Frozen Garden]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:10000110', 'fixed', 4132024, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:10000110', 'fixed', 4132024, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:10000110', 'fixed', 4132024, 0, '[Abbey Cellar]');
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:10000110', 'fixed', 4132024, 0, '[Abbey, Cellar]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:10000110', 'fixed', 4562035, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:10000110', 'fixed', 4562035, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:10000110', 'fixed', 4562035, 0, '[Birthing Sands, Cavern of Ages]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:10000110', 'fixed', 4563032, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:10000110', 'fixed', 4563032, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:10000110', 'fixed', 4563032, 0, '[Nightmare Gorge]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:13109002', 'A Voln outpost Symbol of Seeking works from.');
@@ -298,12 +292,15 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:13109002', 'fixed', 13022005, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:13109002', 'fixed', 13022005, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:13109002', 'fixed', 13022005, 0, '[Maaghara Labyrinth]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:13109002', 'fixed', 13027016, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:13109002', 'fixed', 13027016, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:13109002', 'fixed', 13027016, 0, '[Wraithenmist, Fishing Dock]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:13109002', 'fixed', 13036211, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:13109002', 'fixed', 13036211, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:13109002', 'fixed', 13036211, 0, '[High Plains, Moorgate]');
 
 INSERT INTO room_sets(name, description) VALUES
   ('voln-outpost:14116002', 'A Voln outpost Symbol of Seeking works from.');
@@ -320,10 +317,13 @@ INSERT INTO connector_destinations(connector_id, kind, to_uid, cost_ms) VALUES (
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:14116002', 'fixed', 480225, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:14116002', 'fixed', 480225, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:14116002', 'fixed', 480225, 0, '[Red Forest, Inner Weald]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:14116002', 'fixed', 14011055, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:14116002', 'fixed', 14011055, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:14116002', 'fixed', 14011055, 0, '[Plains of Bone, Ruins]');
 INSERT INTO connector_steps(connector_id, kind, to_uid, seq, command, expect, timeout_ms, action, capture, attempts) VALUES
   ('voln:seeking:14116002', 'fixed', 14016039, 0, 'symbol of seeking', '', 6000, 'cycle', '<style id="roomName" />(.*?)$', 20),
   ('voln:seeking:14116002', 'fixed', 14016039, 1, 'symbol of seeking confirm', 'Your surroundings blur into a white fog', 6000, 'send', '', 0);
+INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) VALUES ('voln:seeking:14116002', 'fixed', 14016039, 0, '[Lunule Weald, Perish Glen]');
 

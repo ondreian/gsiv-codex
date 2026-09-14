@@ -184,13 +184,12 @@ pub fn to_sql(recorded: &Recorded) -> String {
         pairs.len() * distinct.len(),
     ));
 
-    // The rooms these roads name, with every title they answer to.
+    // The rooms these roads name.
     //
     // Published here rather than assumed from the import, because the import
     // does not have all of them: uid 480225, the Red Forest's Inner Weald, is
-    // in the map database and not in urnon's copy of it. Without this, two of
-    // the thirty-seven roads point at a room the codex cannot name -- and a
-    // destination nothing can name is a destination nothing can ask for.
+    // in the map database and not in urnon's copy of it. A destination the
+    // codex cannot name is a destination nothing can ask for.
     //
     // `OR IGNORE`, so a room the import did bring across keeps whatever else
     // it carries. This only fills gaps.
@@ -200,12 +199,6 @@ pub fn to_sql(recorded: &Recorded) -> String {
             "INSERT OR IGNORE INTO rooms(uid, title) VALUES ({uid}, {});\n",
             quote(first)
         ));
-        for (seq, name) in names.iter().enumerate() {
-            s.push_str(&format!(
-                "INSERT OR IGNORE INTO room_titles(uid, seq, title) VALUES ({uid}, {seq}, {});\n",
-                quote(name)
-            ));
-        }
     }
     s.push('\n');
 
@@ -253,6 +246,22 @@ pub fn to_sql(recorded: &Recorded) -> String {
                  ('{id}', 'fixed', {to}, 1, 'symbol of seeking confirm', \
                  'Your surroundings blur into a white fog', 6000, 'send', '', 0);\n"
             ));
+            // Every name this room answers to. The mechanism offers a room by
+            // *printing its name*, and a room may have more than one --
+            // `[Abbey Cellar]` and `[Abbey, Cellar]` are both uid 4132024, a
+            // destination on this list. A client holding one spelling asks
+            // straight past its own destination twenty times.
+            //
+            // Taken from the map database's title array here, at generation
+            // time, so the set is complete rather than however much somebody
+            // remembered to publish.
+            for name in recorded.titles.get(to).into_iter().flatten() {
+                s.push_str(&format!(
+                    "INSERT INTO connector_step_matches(connector_id, kind, to_uid, seq, value) \
+                     VALUES ('{id}', 'fixed', {to}, 0, {});\n",
+                    quote(name)
+                ));
+            }
         }
         s.push('\n');
     }
@@ -331,17 +340,23 @@ mod tests {
         );
     }
 
-    /// Every spelling, not just the first. `[Abbey Cellar]` and `[Abbey,
-    /// Cellar]` are one room, and a client holding one of them asks straight
-    /// past its own destination.
+    /// Every spelling the mechanism might offer, on the step that waits for
+    /// it. `[Abbey Cellar]` and `[Abbey, Cellar]` are one room, and a client
+    /// holding one of them asks straight past its own destination.
     #[test]
-    fn a_room_with_two_names_publishes_both() {
+    fn a_room_with_two_names_is_accepted_by_either() {
         let sql = to_sql(&recorded(SAMPLE).expect("parse"));
-        assert!(sql.contains("room_titles(uid, seq, title) VALUES (200, 0, '[Abbey Cellar]')"));
-        assert!(sql.contains("room_titles(uid, seq, title) VALUES (200, 1, '[Abbey, Cellar]')"));
+        assert!(sql.contains(
+            "connector_step_matches(connector_id, kind, to_uid, seq, value) \
+             VALUES ('voln:seeking:100', 'fixed', 200, 0, '[Abbey Cellar]')"
+        ));
+        assert!(sql.contains(
+            "connector_step_matches(connector_id, kind, to_uid, seq, value) \
+             VALUES ('voln:seeking:100', 'fixed', 200, 0, '[Abbey, Cellar]')"
+        ));
         assert!(
             sql.contains("INSERT OR IGNORE INTO rooms(uid, title) VALUES (200, '[Abbey Cellar]')"),
-            "and the first stays the one a person reads"
+            "and the first is still the name a person reads"
         );
     }
 }

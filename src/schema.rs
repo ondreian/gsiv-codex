@@ -38,8 +38,8 @@ const MIGRATIONS: &[(&str, &str)] = &[
         include_str!("../schema/009_traversal_failures.sql"),
     ),
     (
-        "010_room_titles",
-        include_str!("../schema/010_room_titles.sql"),
+        "010_step_matches",
+        include_str!("../schema/010_step_matches.sql"),
     ),
     (
         "011_connector_costs",
