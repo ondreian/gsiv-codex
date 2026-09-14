@@ -47,6 +47,13 @@ jobs:
             # The tag's own subject, first and alone on its line. A consumer
             # listing what it has installed shows one line per release, and
             # without this the first line of a release body is the meta table.
+            #
+            # Refetched because checkout leaves a *lightweight* tag at the
+            # triggering ref, and `contents:subject` on one of those falls back
+            # to the commit's subject -- which is how the last release said
+            # "fix(release): lead the notes with the tag's own subject"
+            # instead of what the tag actually said.
+            git fetch --tags --force --quiet
             git tag -l --format='%(contents:subject)' "$GITHUB_REF_NAME"
             echo
             echo "| | |"

@@ -1,6 +1,6 @@
 [package]
 name = "gsiv-codex"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 description = "A unified data layer for GemStone IV: world, verbs, foes, items"
 license = "MIT"
