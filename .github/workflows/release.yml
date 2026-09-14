@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
 
@@ -42,6 +44,11 @@ jobs:
         run: |
           eval "$(grep -E '^(repo|commit)=' vendor/mapdb.source)"
           {
+            # The tag's own subject, first and alone on its line. A consumer
+            # listing what it has installed shows one line per release, and
+            # without this the first line of a release body is the meta table.
+            git tag -l --format='%(contents:subject)' "$GITHUB_REF_NAME"
+            echo
             echo "| | |"
             echo "| --- | --- |"
             # Empty meta is not worth a row: `urnon_max` is normally empty and
