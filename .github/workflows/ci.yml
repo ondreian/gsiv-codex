@@ -1,0 +1,76 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  # Fast, and needs no mapdb. A contributor gets the obvious mistakes back in
+  # under a minute rather than after a 41 MB download.
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test --release --lib
+
+  # The real gate: build the artifact and ask it whether it is fit to publish.
+  # A schema that accepts a row says nothing about whether the row is right,
+  # which is what `tests/publishable.rs` is for.
+  artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      # Keyed on the pin, so a refresh re-downloads and nothing else does.
+      - id: pin
+        run: echo "sha=$(grep '^sha256=' vendor/mapdb.source | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: vendor/map.json
+          key: mapdb-${{ steps.pin.outputs.sha }}
+      - run: ./scripts/vendor.sh
+
+      - run: cargo run --release --bin codex -- build
+               --from vendor/map.json --out codex.db3 --vocabulary data
+      - name: is it fit to publish
+        run: CODEX=codex.db3 cargo test --release --test publishable --test reachability
+
+      # Every green run leaves a database somebody can open, which is worth
+      # more than a green tick.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: codex.db3
+          path: codex.db3
+          retention-days: 14
+
+  # The generated overlays are committed so a reviewer can read them, which
+  # means they can drift from the generator that made them. Regenerate and
+  # diff: a PR that edits one by hand fails here, with the diff as the message.
+  generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - id: pin
+        run: echo "sha=$(grep '^sha256=' vendor/mapdb.source | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: vendor/map.json
+          key: mapdb-${{ steps.pin.outputs.sha }}
+      - run: ./scripts/vendor.sh
+      - run: ./scripts/generate.sh
+      - name: committed overlays match their generator
+        run: git diff --exit-code -- data/overlays

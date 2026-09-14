@@ -150,10 +150,10 @@ fn waitfor_text(command: &str) -> String {
     };
     let rest = &command[at + 8..];
     for q in ['\'', '"'] {
-        if let Some(inner) = rest.strip_prefix(q) {
-            if let Some(end) = inner.find(q) {
-                return inner[..end].to_string();
-            }
+        if let Some(inner) = rest.strip_prefix(q)
+            && let Some(end) = inner.find(q)
+        {
+            return inner[..end].to_string();
         }
     }
     String::new()

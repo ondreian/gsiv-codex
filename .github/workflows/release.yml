@@ -1,0 +1,61 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - id: pin
+        run: echo "sha=$(grep '^sha256=' vendor/mapdb.source | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: vendor/map.json
+          key: mapdb-${{ steps.pin.outputs.sha }}
+      - run: ./scripts/vendor.sh
+
+      - name: the tag must be the crate version
+        run: |
+          crate=$(grep '^version' Cargo.toml | head -1 | cut -d'"' -f2)
+          tag=${GITHUB_REF_NAME#v}
+          # A release whose filename disagrees with the version stamped inside
+          # it is a support question nobody can answer.
+          [ "$crate" = "$tag" ] || { echo "tag $tag != crate $crate"; exit 1; }
+
+      - run: cargo run --release --bin codex -- build
+               --from vendor/map.json --out codex.db3 --vocabulary data
+      - name: it does not ship unless it is fit to publish
+        run: CODEX=codex.db3 cargo test --release --test publishable
+
+      # What a consumer needs before downloading 30 MB: which engine versions
+      # can read it, and what it is built from.
+      - name: describe it
+        run: |
+          sqlite3 codex.db3 "SELECT key || '=' || value FROM codex_meta ORDER BY key" > meta.txt
+          {
+            echo "| | |"
+            echo "| --- | --- |"
+            sed 's/^\([^=]*\)=\(.*\)$/| `\1` | \2 |/' meta.txt
+            echo "| \`mapdb\` | [\`${{ steps.pin.outputs.sha }}\`](https://github.com/FarFigNewGut/lich-mapdb-room) |"
+            echo
+            echo "\`\`\`sh"
+            echo "zstd -d codex.db3.zst -o ~/.local/share/urnon/codex.db3"
+            echo "\`\`\`"
+          } > notes.md
+      - run: zstd -19 codex.db3 -o codex.db3.zst && sha256sum codex.db3.zst > codex.db3.zst.sha256
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          body_path: notes.md
+          files: |
+            codex.db3.zst
+            codex.db3.zst.sha256

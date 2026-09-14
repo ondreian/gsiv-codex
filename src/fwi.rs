@@ -81,11 +81,11 @@ pub fn read(json: &str) -> Result<Isle, Box<dyn std::error::Error>> {
         // Both of the map database's own spellings, and everything the game
         // files under them -- the private homes read as "Arborsong, inside the
         // island town of Mist Harbor" and the trinket works there too.
-        if let Some(loc) = r.get("location").and_then(serde_json::Value::as_str) {
-            if loc.contains("Mist Harbor") || loc.contains("Four Winds") {
-                island.insert(uid);
-                locations.insert(loc.to_string());
-            }
+        if let Some(loc) = r.get("location").and_then(serde_json::Value::as_str)
+            && (loc.contains("Mist Harbor") || loc.contains("Four Winds"))
+        {
+            island.insert(uid);
+            locations.insert(loc.to_string());
         }
         // An anchor is a room that reaches the island by the trinket: either
         // it carries the implementation itself, or it delegates to the room

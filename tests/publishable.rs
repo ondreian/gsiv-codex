@@ -221,11 +221,9 @@ fn the_artifact_says_what_it_is() {
     let Some(conn) = codex() else { return };
     for key in ["version", "schema_version", "urnon_min", "built_at"] {
         let value: String = conn
-            .query_row(
-                "SELECT value FROM codex_meta WHERE key = ?1",
-                [key],
-                |r| r.get(0),
-            )
+            .query_row("SELECT value FROM codex_meta WHERE key = ?1", [key], |r| {
+                r.get(0)
+            })
             .unwrap_or_default();
         assert!(!value.is_empty(), "codex_meta is missing {key}");
     }
@@ -332,7 +330,11 @@ fn every_wayto_is_published_or_accounted_for() {
             }
             silent.push(format!(
                 "{from} -> {to}: {}",
-                command.replace('\n', " ; ").chars().take(70).collect::<String>()
+                command
+                    .replace('\n', " ; ")
+                    .chars()
+                    .take(70)
+                    .collect::<String>()
             ));
         }
     }

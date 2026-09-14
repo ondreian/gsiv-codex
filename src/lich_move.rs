@@ -404,10 +404,10 @@ fn branches_of(source: &str) -> Vec<(u32, Vec<String>)> {
         // `line == '...'`
         for quote in ['\'', '"'] {
             let head = format!("line == {quote}");
-            if let Some(rest) = t.strip_prefix(&head) {
-                if let Some(lit) = rest.strip_suffix(quote) {
-                    found.push((line, vec![escape(lit)]));
-                }
+            if let Some(rest) = t.strip_prefix(&head)
+                && let Some(lit) = rest.strip_suffix(quote)
+            {
+                found.push((line, vec![escape(lit)]));
             }
         }
     }

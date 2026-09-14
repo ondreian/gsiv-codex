@@ -38,7 +38,8 @@ fn codex() -> &'static std::path::PathBuf {
         let _ = std::fs::remove_file(&out);
 
         let conn = gsiv_codex::schema::open(&out).expect("open");
-        for phase in ["vocabulary"] {
+        {
+            let phase = "vocabulary";
             load_dir(&conn, &root.join("data").join(phase));
         }
         let json = std::fs::read_to_string(root.join("vendor/map.json")).expect("vendor/map.json");
@@ -150,7 +151,7 @@ fn coverage(conn: &Connection) -> Vec<(String, usize, usize, usize)> {
 }
 
 fn pct(part: usize, whole: usize) -> usize {
-    if whole == 0 { 0 } else { part * 100 / whole }
+    (part * 100).checked_div(whole).unwrap_or(0)
 }
 
 /// What fraction of each region the published data reaches, as a floor.

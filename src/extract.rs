@@ -155,10 +155,10 @@ fn water_walk(command: &str) -> Option<(String, String)> {
         let after = &rest[at + 5..];
         let mut taken = None;
         for q in ['\'', '"'] {
-            if let Some(inner) = after.strip_prefix(q) {
-                if let Some(end) = inner.find(q) {
-                    taken = Some((inner[..end].to_string(), end + 1));
-                }
+            if let Some(inner) = after.strip_prefix(q)
+                && let Some(end) = inner.find(q)
+            {
+                taken = Some((inner[..end].to_string(), end + 1));
             }
         }
         let (m, used) = taken?;
@@ -254,10 +254,10 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             // which is one road, tried, waited on, and tried again. The
             // waiting is the client's business -- and the failure vocabulary
             // already knows `way-is-closed`.
-            if let Some(first) = moved.replace(found.clone()) {
-                if first != found {
-                    return None;
-                }
+            if let Some(first) = moved.replace(found.clone())
+                && first != found
+            {
+                return None;
             }
             continue;
         }
@@ -385,11 +385,11 @@ fn dothistimeout_command(statement: &str, bound: &[(String, String)]) -> Option<
     let inner = {
         let mut found = None;
         for q in ['\'', '"'] {
-            if let Some(after) = rest.strip_prefix(q) {
-                if let Some(end) = after.find(q) {
-                    found = Some(after[..end].to_string());
-                    break;
-                }
+            if let Some(after) = rest.strip_prefix(q)
+                && let Some(end) = after.find(q)
+            {
+                found = Some(after[..end].to_string());
+                break;
             }
         }
         found?
@@ -414,13 +414,13 @@ fn fput_call(statement: &str) -> Option<(String, String)> {
     let rest = statement.strip_prefix("fput ")?;
     let rest = rest.trim();
     for q in ['\'', '"'] {
-        if let Some(inner) = rest.strip_prefix(q) {
-            if let Some(end) = inner.find(q) {
-                return Some((
-                    inner[..end].to_string(),
-                    inner[end + 1..].trim().to_string(),
-                ));
-            }
+        if let Some(inner) = rest.strip_prefix(q)
+            && let Some(end) = inner.find(q)
+        {
+            return Some((
+                inner[..end].to_string(),
+                inner[end + 1..].trim().to_string(),
+            ));
         }
     }
     None
@@ -439,12 +439,12 @@ fn quoted_after(statement: &str, keyword: &str) -> Option<String> {
 fn unquote(s: &str) -> Option<&str> {
     let s = s.trim();
     for q in ['\'', '"'] {
-        if let Some(inner) = s.strip_prefix(q) {
-            if let Some(end) = inner.find(q) {
-                // Trailing text means this statement does more than the call.
-                if inner[end + 1..].trim().is_empty() {
-                    return Some(&inner[..end]);
-                }
+        if let Some(inner) = s.strip_prefix(q)
+            && let Some(end) = inner.find(q)
+        {
+            // Trailing text means this statement does more than the call.
+            if inner[end + 1..].trim().is_empty() {
+                return Some(&inner[..end]);
             }
         }
     }
@@ -595,9 +595,9 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                     // body and return a condition for an edge whose command is
                     // empty -- which is a foreign key failure at build time,
                     // and would be a road nobody can walk if it were not.
-                    (None, None) if no_move => Body::Unrecognised(
-                        body.split_whitespace().collect::<Vec<_>>().join(" "),
-                    ),
+                    (None, None) if no_move => {
+                        Body::Unrecognised(body.split_whitespace().collect::<Vec<_>>().join(" "))
+                    }
                     (None, None) => classify(body),
                 },
                 preludes,

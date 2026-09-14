@@ -219,18 +219,18 @@ pub fn import(conn: &Connection, json: &str) -> Result<Stats, Box<dyn std::error
                     // several lines, and `edges` has one command per row. Two
                     // of those exist and both used to vanish counted as
                     // script, which is the one thing this table exists to stop.
-                    if !command.trim_start().starts_with(";e") {
-                        if let (Some(&from), Some(&to)) = (
+                    if !command.trim_start().starts_with(";e")
+                        && let (Some(&from), Some(&to)) = (
                             uid_of.get(&room.id),
                             target.parse::<i64>().ok().and_then(|i| uid_of.get(&i)),
-                        ) {
-                            unpublished.execute(rusqlite::params![
+                        )
+                    {
+                        unpublished.execute(rusqlite::params![
                                 from,
                                 to,
                                 command.replace('\n', " ; ").chars().take(90).collect::<String>(),
                                 "several commands in one wayto; an edge carries one, so this needs a prelude",
                             ])?;
-                        }
                     }
                     continue;
                 }

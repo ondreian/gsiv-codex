@@ -1,0 +1,15 @@
+# Where the bootstrap comes from, pinned.
+#
+# The mapdb is community data, maintained by somebody else and updated by a
+# cron job. `main` therefore moves under us, and a build pinned to it is not
+# reproducible -- a refresh would arrive as an unreviewable diff in a 41 MB
+# JSON file, which is exactly what this repo's bootstrap decision set out to
+# avoid.
+#
+# So the pin is a commit, and the checksum is the contract. Refreshing is a
+# deliberate act: change these two lines, run `scripts/vendor.sh`, rebuild,
+# and let the publishable suite tell you what moved.
+repo=FarFigNewGut/lich-mapdb-room
+path=data/map.json
+commit=82825046b64a
+sha256=94220ab8ca6701bba7ffcdd909d84c0c031914304447d847f26e582e01071462
