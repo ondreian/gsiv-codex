@@ -21,7 +21,17 @@ A personal access token solves that and costs more than it looks:
 | when it expires | CI breaks, on a day nobody chose | never; the key is long-lived, the tokens are not |
 | revoking it | rotates everything it was used for | uninstall, and only this stops |
 
-## Making one
+## The one that exists
+
+`urnon-bot`, app id **4946103**, owned by `ondreian`, installed on `gsiv-codex`
+and `urnon` — [github.com/apps/urnon-bot](https://github.com/apps/urnon-bot).
+Its id is in the repository variable `BOT_APP_ID` and its key in the secret
+`BOT_PRIVATE_KEY`.
+
+It holds exactly two permissions: contents, and pull requests. It cannot merge
+anything, and it is not a bypass actor on the branch ruleset.
+
+## Making another
 
 Ten minutes, once. It belongs to a personal account — no organisation needed.
 
