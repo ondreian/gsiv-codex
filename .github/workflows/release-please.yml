@@ -1,0 +1,89 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # Keeps one open pull request holding every unreleased change, with the
+  # version bump and the changelog already written. Cutting a release is
+  # merging it; nothing here decides *when*.
+  propose:
+    runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # The artifact is attached to the release release-please just made.
+  #
+  # In this job rather than its own workflow on the tag: a tag pushed by
+  # GITHUB_TOKEN does not trigger `on: push: tags`, so a release cut this way
+  # would sit there with notes and no database.
+  publish:
+    needs: propose
+    if: needs.propose.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.propose.outputs.tag }}
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - id: pin
+        run: echo "sha=$(grep '^sha256=' vendor/mapdb.source | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: vendor/map.json
+          key: mapdb-${{ steps.pin.outputs.sha }}
+      - run: ./scripts/vendor.sh
+
+      - run: cargo run --release --bin codex -- build
+               --from vendor/map.json --out codex.db3 --vocabulary data
+      - name: it does not ship unless it is fit to publish
+        run: CODEX=codex.db3 cargo test --release --test publishable
+
+      - run: zstd -19 codex.db3 -o codex.db3.zst && sha256sum codex.db3.zst > codex.db3.zst.sha256
+
+      # Appended, not replaced: release-please wrote the changelog into the
+      # body and that is the part a person reads.
+      - name: describe it
+        run: |
+          eval "$(grep -E '^(repo|commit)=' vendor/mapdb.source)"
+          {
+            gh release view "${{ needs.propose.outputs.tag }}" --json body --jq .body
+            echo
+            echo "| | |"
+            echo "| --- | --- |"
+            sqlite3 codex.db3 \
+              "SELECT '| \`' || key || '\` | ' ||
+                      CASE key WHEN 'built_at'
+                        THEN datetime(CAST(value AS INTEGER), 'unixepoch') || ' UTC'
+                        ELSE value END || ' |'
+                 FROM codex_meta WHERE value <> '' ORDER BY key"
+            echo "| \`mapdb\` | [$repo@\`$commit\`](https://github.com/$repo/tree/$commit) |"
+            echo
+            echo "\`\`\`sh"
+            echo "codex upgrade      # from urnon, in place, without dropping a session"
+            echo "\`\`\`"
+          } > notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.propose.outputs.tag }}
+          body_path: notes.md
+          files: |
+            codex.db3.zst
+            codex.db3.zst.sha256

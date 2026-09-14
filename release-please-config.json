@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "release-type": "rust",
+      "package-name": "gsiv-codex",
+      "changelog-sections": [
+        { "type": "feat", "section": "New" },
+        { "type": "fix", "section": "Fixed" },
+        { "type": "perf", "section": "Fixed" },
+        { "type": "refactor", "section": "Changed" },
+        { "type": "docs", "section": "Measured and written down" },
+        { "type": "test", "section": "Measured and written down" },
+        { "type": "chore", "section": "Housekeeping", "hidden": true }
+      ]
+    }
+  },
+  "bootstrap-sha": "da4776b16ba4a1f4e57fd0d5a5c0d62b9db51a52"
+}

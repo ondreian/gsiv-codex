@@ -100,6 +100,30 @@ Change `commit` and `sha256` in `vendor/mapdb.source`, run
 publishable suite says. It is a deliberate act with a reviewable result, which
 is the point of pinning a commit rather than tracking `main`.
 
+## How a change gets released
+
+`main` is protected: every change arrives as a pull request, and CI's three
+jobs have to be green. `scripts/protect.sh` installs the ruleset from
+`.github/ruleset-main.json`, which is the state — GitHub holds a copy.
+
+Merging to main publishes a **canary** immediately: a rolling prerelease at the
+`canary` tag, built from that commit and put through the same publishable suite
+a real release is. It is there to be walked before anybody promises anything.
+`codex upgrade` never takes it — that asks for the newest *stable* release, and
+a prerelease is not one — so taking a canary is opting in by name:
+
+```sh
+codex upgrade canary
+codex rollback          # back to the stable release you were on
+```
+
+Stable releases are proposed rather than cut by hand. release-please keeps one
+open pull request holding every unreleased change, with the version bump and
+the changelog already written from the commit messages; merging it tags the
+release and attaches the artifact. So the commit subject is the changelog
+entry — `feat:` and `fix:` decide the version, and `docs:` on a measurement is
+what makes the finding show up in the notes.
+
 ## Style
 
 `cargo fmt` and `cargo clippy --all-targets -- -D warnings` are clean, and CI

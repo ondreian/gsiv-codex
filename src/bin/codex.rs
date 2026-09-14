@@ -229,8 +229,15 @@ fn stamp(
         .map(|d| d.as_secs())
         .unwrap_or(0);
 
+    // `CODEX_VERSION` overrides the crate's own, and exists for one caller:
+    // the canary build, which publishes every merge to main and must not
+    // stamp itself with the last tagged version. A canary claiming to be
+    // 0.1.2 is worse than no canary -- a client comparing versions would see
+    // no reason to take it, and a bug report would name a release that does
+    // not contain the bug.
+    let version = std::env::var("CODEX_VERSION").unwrap_or_else(|_| gsiv_codex::VERSION.to_string());
     let entries: [(&str, String); 7] = [
-        ("version", gsiv_codex::VERSION.to_string()),
+        ("version", version),
         ("schema_version", schema.to_string()),
         ("urnon_min", gsiv_codex::URNON_MIN.to_string()),
         ("urnon_max", gsiv_codex::URNON_MAX.to_string()),

@@ -1,0 +1,87 @@
+name: canary
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+# A merge lands while the previous canary is still building. Cancel it: the
+# canary is "whatever main is right now", and a queue of them is a queue of
+# answers to a question nobody is asking any more.
+concurrency:
+  group: canary
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - id: pin
+        run: echo "sha=$(grep '^sha256=' vendor/mapdb.source | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: vendor/map.json
+          key: mapdb-${{ steps.pin.outputs.sha }}
+      - run: ./scripts/vendor.sh
+
+      # The next version, marked. Built from the crate's version rather than
+      # the last tag so that a canary always sorts above the release it
+      # follows and below the release it becomes.
+      - id: v
+        run: |
+          base=$(grep '^version' Cargo.toml | head -1 | cut -d'"' -f2)
+          echo "version=$base-canary.${{ github.run_number }}+$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - run: cargo run --release --bin codex -- build
+               --from vendor/map.json --out codex.db3 --vocabulary data
+        env:
+          CODEX_VERSION: ${{ steps.v.outputs.version }}
+
+      # The same gate the tagged release uses. A canary is unfinished, not
+      # unchecked -- shipping one that fails the publishable suite would teach
+      # everybody to ignore the suite.
+      - name: it does not ship unless it is fit to publish
+        run: CODEX=codex.db3 cargo test --release --test publishable
+
+      - run: zstd -19 codex.db3 -o codex.db3.zst && sha256sum codex.db3.zst > codex.db3.zst.sha256
+
+      - name: describe it
+        run: |
+          eval "$(grep -E '^(repo|commit)=' vendor/mapdb.source)"
+          {
+            echo "Built from \`main\` at [\`$(git rev-parse --short HEAD)\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) — $(git log -1 --format=%s)"
+            echo
+            echo "> Unreleased. \`codex upgrade\` takes the newest **stable** release and"
+            echo "> ignores this one; \`codex upgrade canary\` asks for it by name."
+            echo
+            echo "| | |"
+            echo "| --- | --- |"
+            sqlite3 codex.db3 \
+              "SELECT '| \`' || key || '\` | ' ||
+                      CASE key WHEN 'built_at'
+                        THEN datetime(CAST(value AS INTEGER), 'unixepoch') || ' UTC'
+                        ELSE value END || ' |'
+                 FROM codex_meta WHERE value <> '' ORDER BY key"
+            echo "| \`mapdb\` | [$repo@\`$commit\`](https://github.com/$repo/tree/$commit) |"
+          } > notes.md
+
+      # One rolling release rather than one per merge. `canary` is a place, not
+      # a version -- the version is inside the file, and the tag moving is the
+      # whole point.
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: canary
+          name: canary
+          prerelease: true
+          body_path: notes.md
+          # Marked as a prerelease, so `releases/latest` -- which is what a
+          # client upgrading asks for -- does not see it at all.
+          files: |
+            codex.db3.zst
+            codex.db3.zst.sha256
