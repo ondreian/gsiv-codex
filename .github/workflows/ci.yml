@@ -19,6 +19,10 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
+      # Before the compiler, because it is instant and it answers a question
+      # the compiler never asks: does this belong in the repository at all.
+      - name: only the file types this repository keeps
+        run: ./scripts/check-tree.sh
       - run: cargo fmt --check
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test --release --lib

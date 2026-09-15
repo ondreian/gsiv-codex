@@ -6,6 +6,21 @@ something about one.
 Read `CONTRIBUTING.md` for what a change should be. This is how to make one
 without losing an afternoon to something the repo already knows.
 
+## First, once
+
+```sh
+git config core.hooksPath .githooks
+```
+
+A pre-commit hook that refuses files this repository does not keep — a stray
+`.py`, a private key, anything over four megabytes. CI runs the same script
+over every tracked file, so the hook is only the fast answer; skipping it means
+finding out on the pull request instead.
+
+The rules live in `scripts/check-tree.sh` and each refusal says what to do
+about it. Adding a file type is a one-line diff there, which is the point: it
+is a decision, and it should look like one.
+
 ## The loop
 
 ```sh

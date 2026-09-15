@@ -130,6 +130,12 @@ release and attaches the artifact. So the commit subject is the changelog
 entry — `feat:` and `fix:` decide the version, and `docs:` on a measurement is
 what makes the finding show up in the notes.
 
+## The tree
+
+`git config core.hooksPath .githooks` once, and a pre-commit hook refuses
+anything this repository does not keep. CI checks the same thing, so the hook
+saves a round trip rather than being the guard.
+
 ## Style
 
 `cargo fmt` and `cargo clippy --all-targets -- -D warnings` are clean, and CI

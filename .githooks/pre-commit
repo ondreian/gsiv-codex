@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Installed by `git config core.hooksPath .githooks`.
+#
+# A courtesy, not the guard: CI runs the same script over every tracked file,
+# because a hook that has to be installed protects whoever remembered to
+# install it.
+exec "$(git rev-parse --show-toplevel)/scripts/check-tree.sh" --staged
