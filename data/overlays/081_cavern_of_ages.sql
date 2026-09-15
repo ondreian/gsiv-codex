@@ -34,8 +34,51 @@ INSERT OR REPLACE INTO circuit_moves(circuit_id, seq, command) VALUES
 -- the room's exits as well as its description, so this works as written.
 INSERT OR REPLACE INTO circuit_exits(circuit_id, noun, command) VALUES
   ('cavern:water-tunnel:4562040', 'up', 'up');
+-- **All three uids, not one.** Lich room 2642 carries uid
+-- `[4562040, 4562041, 4562042]` -- one room in its map, three rooms to the
+-- game -- and the importer projects a Lich room onto its *first* uid. So 4562041
+-- and 4562042 exist in the world and in no table here, and a character standing
+-- in one of them is nowhere as far as the router is concerned. Measured by
+-- swimming it: 4562042 -> 4562041 -> 4562040 -> [Lake of Tears].
 INSERT OR REPLACE INTO circuit_entries(circuit_id, room_uid, seq) VALUES
-  ('cavern:water-tunnel:4562040', 4562040, 0);
+  ('cavern:water-tunnel:4562040', 4562040, 0),
+  ('cavern:water-tunnel:4562040', 4562041, 0),
+  ('cavern:water-tunnel:4562040', 4562042, 0);
+
+-- 1b. The same tunnel, swum the other way.
+--
+--    ;e until checkpaths.include?('up'); fput 'swim ' + ['southwest','southeast'][rand(2)]; waitrt?; end
+--
+-- The Water Tunnel has two rings and only one was published, which made the
+-- cavern a one-way trip: you could swim from the Pool out to the Lake of Tears
+-- and never back. That is the whole return journey -- the Lake is the side the
+-- Breach and the sphere are on, and the Pool is the side the Altar of the Elder
+-- and the way home are on.
+--
+-- Identical in shape to the northward ring and alternating for the same reason:
+-- a ring is ridden in order and the two directions are interchangeable, so
+-- alternation covers the same ground without randomness the walker does not
+-- have.
+INSERT OR REPLACE INTO circuits(id, to_uid, description) VALUES
+  ('cavern:water-tunnel:south', 4562044,
+   'Swim between the two southward passages until the way up appears; watch for up.');
+INSERT OR REPLACE INTO circuit_moves(circuit_id, seq, command) VALUES
+  ('cavern:water-tunnel:south', 0, 'swim southwest'),
+  ('cavern:water-tunnel:south', 1, 'swim southeast'),
+  ('cavern:water-tunnel:south', 2, 'swim southwest'),
+  ('cavern:water-tunnel:south', 3, 'swim southeast');
+INSERT OR REPLACE INTO circuit_exits(circuit_id, noun, command) VALUES
+  ('cavern:water-tunnel:south', 'up', 'up');
+INSERT OR REPLACE INTO circuit_entries(circuit_id, room_uid, seq) VALUES
+  ('cavern:water-tunnel:south', 4562040, 0),
+  ('cavern:water-tunnel:south', 4562041, 0),
+  ('cavern:water-tunnel:south', 4562042, 0);
+
+INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
+  (4562040, 4562044,
+   'until checkpaths.include?(''up''); fput ''swim '' + [sw,se][rand(2)]',
+   'connector',
+   'published as circuit cavern:water-tunnel:south -- ride until the way up appears');
 
 INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
   (4562040, 4562039,

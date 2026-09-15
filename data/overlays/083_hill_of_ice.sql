@@ -25,33 +25,54 @@
 -- door does not open: rotate the ring until a virtue lines up, pour a hundred
 -- mana into the crown a spell at a time, touch it, and name the place.
 --
--- **Published without the puzzle, and deliberately.** The charge is a property
--- of the crown, not of the character -- whoever passed last left it as they
--- found it -- so `go door` is the move and the puzzle is a recovery. Modelling
--- it as a prelude would be worse than leaving it out: a prelude runs every
--- time, and `push tine` on a crown that is already aligned rotates it *off*
--- alignment, so the one thing an unconditional prelude reliably does here is
--- shut a door that was open.
+-- **Walked to, and it does not open.** On 2026-09-15 a level 100 Ranger stood
+-- at the door and did everything the Ruby does, in order:
 --
--- What a character walking into a closed door gets today is a refused move and
--- a report naming the room. That is honest, it costs one command, and they are
--- one step from where they came in. Open questions, for someone who can go and
--- look: does the crown hold its charge between visitors, and what does the
--- game say when the door will not open? The second is a failure class the
--- moment somebody reads it.
+--   go door               -> "The stone door appears to be closed."
+--   push tine             -> "...the tine set with the veil iron stone aligned
+--                             with the word 'Piety'."   (any of the six counts)
+--   prepare 650; cast crown  x2  -> "A soft glow surrounds the bas-relief
+--                             crown for a moment, but quickly fades away."
+--   look crown            -> "The crown is bathed in a brilliant aura."
+--   touch crown           -> "You touch the crown.  It feels hot."
+--   say Aenatumgana
+--   go door               -> "The stone door appears to be closed."
 --
--- The hundred mana is beyond travel in any case. A script cannot see the game's
--- own text and cannot know which spells the character has, so "cast anything,
--- a hundred mana's worth" is not something a walker can be asked to do.
+-- Charged to a brilliant aura, and still shut. Sent as one burst the way Lich
+-- sends it -- touch, say, go, no pause between -- and still shut. `open door`
+-- answers "There doesn't seem to be any way to do that", so the `open-the-way`
+-- remedy is wrong for this edge as well.
+--
+-- So the crown does *not* hold its charge between visitors, and charging it is
+-- *not* sufficient. Something else gates this door and the mapdb's Ruby does
+-- not know what -- a virtue that has to be chosen rather than landed on, a
+-- quest flag, a group, or a script that went stale. That is a question for
+-- somebody who knows the game, not something to measure blind, and until it is
+-- answered nobody can walk into the Cavern of Ages.
+--
+-- **The edge stays published anyway**, which is a deliberate choice and not an
+-- oversight. There is no second road: refusing it turns the whole cavern into
+-- "no route", which tells a reader nothing. Published, a walk arrives at the
+-- door and stops on the game's own words -- and "The stone door appears to be
+-- closed" already matches the `way-is-closed` pattern
+-- `(?:appears|seems) to be closed\.$`, so the failure is named rather than
+-- mysterious. A character is one step from where they came in and out nothing
+-- but the walk.
+--
+-- The hundred mana is beyond a walker regardless: a script cannot see the
+-- game's own text and cannot know which spells the character has, so "cast
+-- anything, a hundred mana's worth" is not something it can be asked to do.
+-- And it could never be a prelude -- a prelude runs every time, and `push tine`
+-- on an aligned crown rotates it off.
 INSERT OR REPLACE INTO edge_overlays(from_uid, to_uid, command, class, time_ms, source, note) VALUES
   (4561131, 4562001, 'go door', 'walk', 12000, 'manual',
-   'The door under the crown of Aenatumgana. Open when the crown is charged, which is a property of the crown and not of the character. Lich recharges it -- push tine until a virtue aligns, cast 100 mana at the crown, touch crown, say Aenatumgana -- and that recovery is not published: it needs spells a walker cannot choose, and pushing the tine on an aligned crown would shut a door that was open.');
+   'The door under the crown of Aenatumgana, and the only way into the Cavern of Ages. Measured 2026-09-15: closed, and Lich''s whole recovery -- push tine, 100 mana into the crown, touch crown, say Aenatumgana -- charges it to a brilliant aura without opening it. Something else gates this and the mapdb does not know what. Published because there is no second road and a named refusal beats no route at all.');
 
 INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
   (4561131, 4562001,
    ';e unless (move ''go door''); push tine ... cast 100 mana at ''crown'' ... touch crown; say Aenatumgana; end; move ''go door''',
    'overlay',
-   'the road is `go door`; the recharge behind it is not published -- see 083_hill_of_ice.sql');
+   'the road is `go door`; the recharge behind it is not published, and measured on 2026-09-15 the recharge does not open the door either -- see 083_hill_of_ice.sql');
 
 -- 2. The Stairs of Ice. Not published, and here is exactly why.
 --
@@ -95,3 +116,29 @@ UPDATE script_edge_disposition
    SET reason = 'the four flights are ordered differently every time: `look` lists them, each is on a named wall, and the command is `climb [second|third|fourth] steps` by which position your wall came in. The walls map north->4562020 (the Altar of the Elder, and the sphere beyond it), east->4562015, south->4562014, west->4562013. Needs a step action that picks a command from a matched reply -- no overlay, circuit or cycle can express it. See 083_hill_of_ice.sql.'
  WHERE from_uid = 4562019
    AND to_uid IN (4562013, 4562014, 4562015, 4562020);
+
+
+-- 3. And the way back out, which mattered more than anything above.
+--
+-- `4561131 --go door--> 4562001` was published and nothing came back, so the
+-- Cavern of Ages was a one-way trip: a character could walk in over the
+-- mountain and the router had no route home from any room inside it. That is
+-- not a missing shortcut, it is a trap, and it is the reason `travel icemule`
+-- answers "no route" for anybody standing in the shrine or the Rift beyond it.
+--
+-- The road out is the brass ring on its chain -- pull until the stone door
+-- grinds up, then walk through -- published here with the `pull-the-ring`
+-- prelude. Lich empties its hands first and fills them after; nothing here can
+-- say that yet, so a character with both hands full gets told by the game,
+-- whose words the `hands-full` class already knows.
+INSERT OR REPLACE INTO edge_overlays(from_uid, to_uid, command, class, time_ms, source, note) VALUES
+  (4562001, 4561131, 'go door', 'walk', 12000, 'manual',
+   'Out of the Hill of Ice: pull the brass ring until the stone door rises, then go door. Lich empties both hands before pulling and refills them after, which nothing here can express -- the hands-full failure class catches the refusal instead.');
+INSERT OR REPLACE INTO edge_preludes(from_uid, to_uid, command, prelude_id) VALUES
+  (4562001, 4561131, 'go door', 'pull-the-ring');
+
+INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
+  (4562001, 4561131,
+   ';e if checkleft and checkright; empty_hands; ... dothistimeout ''pull ring'' ... move ''go door''',
+   'overlay',
+   'published as `go door` with the `pull-the-ring` prelude; the empty_hands/fill_hands around it is not expressible -- see 083_hill_of_ice.sql');
