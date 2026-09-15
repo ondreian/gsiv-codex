@@ -384,8 +384,29 @@ fn remedies_are_numbered_without_gaps() {
 #[test]
 fn the_whole_of_lichs_move_is_here() {
     let conn = failures();
-    assert_eq!(count(&conn, "SELECT count(*) FROM failure_classes"), 29);
-    assert_eq!(count(&conn, "SELECT count(*) FROM failure_patterns"), 124);
+    // Lich's half, counted by where the rows say they came from. The
+    // vocabulary is Lich's plus what we have measured -- `rifted` came from
+    // gswiki, and more will -- so a total would grow every time we learn
+    // something and stop guarding the thing it was written to guard: that
+    // Lich's own branches are all still here.
+    let lich = "source LIKE 'global_defs.rb:%'";
+    assert_eq!(
+        count(
+            &conn,
+            &format!("SELECT count(*) FROM failure_classes WHERE {lich}")
+        ),
+        29
+    );
+    assert_eq!(
+        count(
+            &conn,
+            &format!(
+                "SELECT count(*) FROM failure_patterns WHERE class_id IN
+                   (SELECT id FROM failure_classes WHERE {lich})"
+            )
+        ),
+        124
+    );
     assert_eq!(count(&conn, "SELECT count(*) FROM failure_remedies"), 40);
 
     // One of each of the three verdicts that are not `retry`, because each is
