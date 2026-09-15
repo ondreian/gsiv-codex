@@ -103,3 +103,30 @@ INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, dispos
   (4216902, 4744007, 'dothistimeout "inquire", 5, /(\d)\) Vornavis/',            'unhandled', 'reads its ordinal back from the menu; needs a match step'),
   (4216903, 4216101, 'dothistimeout "inquire", 5, /(\d)\) the Sea of Fire/',     'unhandled', 'reads its ordinal back from the menu; needs a match step'),
   (4216901, 4216101, 'dothistimeout "inquire", 5, /(\d)\) the Sea of Fire/',     'unhandled', 'reads its ordinal back from the menu; needs a match step');
+
+-- What a seat costs.
+--
+-- Measured at the Abbey Stables conductor on 2026-09-15, all three fares in one
+-- sitting: Wehnimer's Landing 3,000, Pinefar 3,000, the Hinterwilds 3,000. Flat,
+-- regardless of distance. `order <n>` quotes the price and opens a sixty-second
+-- window, so asking costs nothing and confirms nothing.
+--
+-- **An unpriced ride is worse than a wrongly priced one.** Without these rows the
+-- router planned a character with 84 silver onto a 3,000 silver cart and the walk
+-- ended at the counter: "It doesn't look like you have enough silver to pay."
+-- That is not a failure it can recover from -- the plan had no bank in it, because
+-- nothing in the plan ever said money was needed. With the cost published, the
+-- silver is a resource like any other and the router relaxes through a
+-- replenisher: walk around, pay, or withdraw and pay, decided as one question.
+--
+-- Illistim's and the Hinterwilds' own wagons are priced at the same 3,000 and have
+-- not been measured. That is a guess, and it is the safe direction to guess in: too
+-- high buys a bank stop nobody needed, too absent strands somebody at a counter.
+-- Whoever rides one, read the fare and correct the row.
+INSERT OR REPLACE INTO connector_costs(connector_id, kind, to_uid, resource, amount) VALUES
+  ('caravan:abbey',      'fixed', 9004,     'silver', 3000.0),
+  ('caravan:abbey',      'fixed', 4564001,  'silver', 3000.0),
+  ('caravan:abbey',      'fixed', 7503001,  'silver', 3000.0),
+  ('caravan:illistim',   'fixed', 7503001,  'silver', 3000.0),
+  ('caravan:hinterwilds','fixed', 4128001,  'silver', 3000.0),
+  ('caravan:hinterwilds','fixed', 13205005, 'silver', 3000.0);
