@@ -1,5 +1,9 @@
 # Contributing
 
+Pointing an agent at this repo? `AGENTS.md` is the operational half — the exact
+commands, what the tests mean, and the traps that have already cost somebody an
+afternoon.
+
 The deliverable is a SQLite file. Everything here exists to produce one and to
 prove things about it.
 
