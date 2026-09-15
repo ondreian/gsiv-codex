@@ -27,6 +27,10 @@ pub mod tsv;
 ///
 /// `URNON_MAX` empty means no known ceiling — the normal case, and a weaker
 /// claim than "anything works". It says nothing has broken this yet.
+// `relocated` is a disposition older engines cannot read. They refuse to guess
+// at one rather than act on it, so an old client sees the vertigo line as
+// unrecognised -- which is what it does today. Nothing breaks; the behaviour
+// simply does not arrive until the engine has it.
 pub const URNON_MIN: &str = "0.1.0";
 pub const URNON_MAX: &str = "";
 
