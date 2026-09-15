@@ -268,7 +268,10 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             let [first, second] = parts.as_slice() else {
                 return None;
             };
-            if unquote(first)? != "search" {
+            // `search` or `search wall` -- the same prelude either way. The
+            // noun says where to look and the walker looks there; what matters
+            // to the route is that the exit is not visible until you do.
+            if !is_search(unquote(first)?) {
                 return None;
             }
             preludes.push("search-for-the-exit");
@@ -286,7 +289,9 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
                 // two sources for one rule. On any other command a guard
                 // changes what happens and the body stays unhandled.
                 "kneel" => preludes.push("kneel-to-fit"),
-                "search" if guard.is_empty() => preludes.push("search-for-the-exit"),
+                other if guard.is_empty() && is_search(other) => {
+                    preludes.push("search-for-the-exit")
+                }
                 // Housekeeping the walker does anyway.
                 "stand" if guard.is_empty() => {}
                 // `fput 'go narrow door'` is a move, said the long way. Only
@@ -322,6 +327,18 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             }
             continue;
         }
+        // `UserVars.mapdb_talondown_origin = nil` -- Lich clearing a
+        // breadcrumb it left itself. A UserVar is client state and cannot
+        // change where the move lands, so it says nothing about the edge.
+        //
+        // Deliberately *not* the same as `$go2_restart = true`, which is
+        // refused below and must stay refused: that one says the destination
+        // is not fixed, which is a fact about the road rather than
+        // housekeeping. The difference is the whole reason this is a narrow
+        // rule about `UserVars.` and not a general "ignore assignments".
+        if st.starts_with("UserVars.") && st.contains('=') {
+            continue;
+        }
         // Waiting is what the walker does before every send regardless.
         if st == "waitrt?"
             || st == "true"
@@ -337,6 +354,17 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
         return None;
     }
     moved.map(|m| (preludes, m))
+}
+
+/// `search`, or `search` at something.
+///
+/// The Pool's crevice is only there once you `search wall`, which is the same
+/// fact about the room as a bare `search` -- the exit is not visible until you
+/// look. Taking only the bare form left that edge unpublished and the Cavern of
+/// Ages a step further away.
+fn is_search(command: &str) -> bool {
+    let c = command.trim();
+    c == "search" || c.starts_with("search ")
 }
 
 /// Is this command a way out of a room, rather than something you do in one?
