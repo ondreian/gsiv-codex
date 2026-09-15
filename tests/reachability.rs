@@ -236,9 +236,11 @@ fn the_unreachable_regions_are_the_ones_we_know_about() {
     sealed.sort_unstable();
     assert_eq!(
         sealed,
-        ["Zul Logoth", "the shadow of the Sanctum"],
+        ["the shadow of the Sanctum"],
         "Kharam-Dzu left when the portmasters landed; the Rift and Pinefar \
-         when Symbol of Seeking did"
+         when Symbol of Seeking did; Zul Logoth when the extractor learned \
+         that `UserVars.x = nil` is Lich clearing its own breadcrumb rather \
+         than anything about the road"
     );
 }
 

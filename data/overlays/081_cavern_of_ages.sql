@@ -1,0 +1,62 @@
+-- The road to the Cavern of Ages, and so to the Rift.
+--
+-- The Rift is entered from `[Breach, Cavern of Ages]` through the sphere, and
+-- `sphere:rift` has no conditions at all -- it was never gated on Voln.
+-- Symbol of Seeking is simply the fast way; the slow way is a hundred and
+-- thirty-five steps, and it was unwalkable because seven of them were
+-- unpublished.
+--
+-- Two of those seven are here, because the extractor cannot derive either and
+-- should not be taught to guess at them.
+
+-- 1. The Water Tunnel is a circuit, outside the Rift.
+--
+--    ;e until checkpaths.include?('up'); fput 'swim ' + ['northwest','northeast'][rand(2)]; waitrt?; end
+--
+-- Swim one of two ways at random until `up` appears, then take it. That is
+-- exactly the shape the Rift's wandering doors have -- ride until the way out
+-- turns up -- which is worth noticing: circuits are not a Rift feature, they
+-- are how this game writes "the exit is not always in the same place".
+--
+-- The random choice becomes alternation. A ring is ridden in order and the
+-- two directions are interchangeable, so alternating covers the same ground
+-- without needing randomness the walker does not have.
+INSERT OR REPLACE INTO circuits(id, to_uid, description) VALUES
+  ('cavern:water-tunnel:4562040', 4562039,
+   'Swim between two passages until the way up appears; watch for up.');
+INSERT OR REPLACE INTO circuit_moves(circuit_id, seq, command) VALUES
+  ('cavern:water-tunnel:4562040', 0, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 1, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 2, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 3, 'swim northeast');
+-- `up` is an obvious path rather than an object, which is what
+-- `checkpaths.include?` was asking. The walker matches a watch noun against
+-- the room's exits as well as its description, so this works as written.
+INSERT OR REPLACE INTO circuit_exits(circuit_id, noun, command) VALUES
+  ('cavern:water-tunnel:4562040', 'up', 'up');
+INSERT OR REPLACE INTO circuit_entries(circuit_id, room_uid, seq) VALUES
+  ('cavern:water-tunnel:4562040', 4562040, 0);
+
+INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
+  (4562040, 4562039,
+   'until checkpaths.include?(''up''); fput ''swim '' + [nw,ne][rand(2)]',
+   'connector',
+   'published as circuit cavern:water-tunnel:4562040 -- ride until the way up appears');
+
+-- 2. The icy ledge above Aenatumgana.
+--
+--    ;e 8.times { ...cast Celerity if known...; dothistimeout 'search', 3,
+--      /discover a narrow icy ledge!|don't find anything of interest/;
+--      break if move 'go ledge' }
+--
+-- Search until the ledge is found, then take it. The Celerity casting is an
+-- optimisation -- it makes searching faster, and the edge works without it --
+-- so it is not part of what the road *is*.
+--
+-- The prelude already exists and says the same thing about seventy-two other
+-- edges: the exit is not visible until you look for it.
+INSERT OR REPLACE INTO edge_overlays(from_uid, to_uid, command, class, time_ms, source, note) VALUES
+  (4561129, 4561130, 'go ledge', 'walk', 8000, 'manual',
+   'Searched for, not seen: the ledge appears only after searching. Lich tries eight times and casts Celerity to hurry the search; neither is part of the road.');
+INSERT OR REPLACE INTO edge_preludes(from_uid, to_uid, command, prelude_id) VALUES
+  (4561129, 4561130, 'go ledge', 'search-for-the-exit');

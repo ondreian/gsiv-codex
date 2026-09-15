@@ -545,19 +545,44 @@ mod tests {
 
     #[test]
     fn the_committed_vocabulary_is_what_lich_says_today() {
+        /// Whether a row came out of Lich rather than out of a measurement.
+        fn is_lich(source: &str) -> bool {
+            source.starts_with("global_defs.rb:")
+        }
+
         let Some(source) = lich_source() else {
             eprintln!("no lich-5 checkout alongside this repo; skipping");
             return;
         };
         let files = render(&source).expect("render");
+        let dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("data/vocabulary");
+
+        // The committed vocabulary is Lich's plus ours. `rifted` was measured
+        // from gswiki rather than read out of `global_defs.rb`, and there will
+        // be more like it -- the game is the source for things Lich never
+        // encoded. So this compares the Lich-derived half and leaves the rest
+        // alone, which is still the point: catching the day Lich changes a
+        // branch under us.
+        //
+        // Both files are keyed by class id in the first column, and only the
+        // classes file records where a row came from, so the ids are gathered
+        // there once and used for both.
+        let classes =
+            std::fs::read_to_string(dir.join("060_failure_classes.tsv")).expect("classes");
+        let measured: Vec<&str> = classes
+            .lines()
+            .filter(|l| !l.split('\t').next_back().is_some_and(is_lich))
+            .filter_map(|l| l.split('\t').next())
+            .collect();
+
         for (name, body) in files {
-            let committed = std::fs::read_to_string(
-                Path::new(env!("CARGO_MANIFEST_DIR"))
-                    .join("data/vocabulary")
-                    .join(name),
-            )
-            .expect("committed file");
-            assert_eq!(body, committed, "{name} is stale; run `codex failures`");
+            let committed = std::fs::read_to_string(dir.join(name)).expect("committed file");
+            let lich_half: String = committed
+                .lines()
+                .filter(|l| !l.split('\t').next().is_some_and(|c| measured.contains(&c)))
+                .map(|l| format!("{l}\n"))
+                .collect();
+            assert_eq!(body, lich_half, "{name} is stale; run `codex failures`");
         }
     }
 }
