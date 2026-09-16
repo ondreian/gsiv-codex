@@ -60,6 +60,10 @@ const MIGRATIONS: &[(&str, &str)] = &[
         "017_circuit_exit_preludes",
         include_str!("../schema/017_circuit_exit_preludes.sql"),
     ),
+    (
+        "018_edge_costs",
+        include_str!("../schema/018_edge_costs.sql"),
+    ),
 ];
 
 /// How many migrations this build knows.

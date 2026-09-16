@@ -1,0 +1,23 @@
+-- Gates that charge to pass.
+--
+-- Measured 2026-09-16, walking a character into Wehnimer's from the west:
+--
+--   > go gate
+--   The town guard steps in front of you and says, "Excuse me, sir, there's an
+--   entrance fee to use this gate.  Five silvers please."
+--
+-- The mapdb records this as an ordinary exit, because to Lich it is one: it
+-- walks people through and lets the guard sort it out. A router that plans
+-- ahead cannot, and a character routed through a gate they cannot pay for is
+-- stopped by somebody standing in front of them with no idea why the plan
+-- thought that was a road.
+--
+-- Five silver is not much, which is exactly why it is worth publishing: a
+-- character carrying four is not obviously broke, and the failure looks like a
+-- map error rather than an empty pocket.
+--
+-- Only the gate that was measured. Other towns have guards and other gates
+-- have fees; none of them have been walked into and asked, and a guessed toll
+-- would route people around a gate that is free.
+INSERT OR REPLACE INTO edge_costs(from_uid, to_uid, command, resource, amount) VALUES
+  (9010, 7006, 'go gate', 'silver', 5.0);
