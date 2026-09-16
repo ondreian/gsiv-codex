@@ -236,11 +236,19 @@ fn the_unreachable_regions_are_the_ones_we_know_about() {
     sealed.sort_unstable();
     assert_eq!(
         sealed,
-        ["the shadow of the Sanctum"],
+        ["Zul Logoth", "the shadow of the Sanctum"],
         "Kharam-Dzu left when the portmasters landed; the Rift and Pinefar \
-         when Symbol of Seeking did; Zul Logoth when the extractor learned \
-         that `UserVars.x = nil` is Lich clearing its own breadcrumb rather \
-         than anything about the road"
+         when Symbol of Seeking did.\n\n\
+         Zul Logoth left once and has come back, and the round trip is the \
+         point. It was opened by an edge reading `go exit passage` out of \
+         Talondown Arena -- one command the mapdb records nine times, once per \
+         room somebody has walked in from, because the arena returns you to \
+         whichever one you used. Read as nine roads it was a wormhole between \
+         four towns, and one of the nine happened to land in Zul Logoth. \
+         Nobody could ever walk it: you only arrive where you came from. The \
+         fan-out check in `extract::to_sql` refuses all nine now, and this \
+         line going back is what an honest map looks like -- a region that was \
+         never reachable saying so again."
     );
 }
 

@@ -20,7 +20,7 @@
 //! than a missing one: a missing edge fails to route, and a wrong edge routes
 //! a character somewhere they did not ask to go.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 
 /// What the body before the final `move` turned out to be.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -71,6 +71,69 @@ fn trailing_move(command: &str) -> Option<(&str, String)> {
         .trim_matches(';')
         .trim();
     Some((body, inner[..end].to_string()))
+}
+
+/// `result = fput 'down'` -- the move, with its reply kept so the body can look
+/// at what happened.
+///
+/// The Sleeping Lady's icy slopes are written this way and nothing else in the
+/// mapdb is. `classify` has recognised the body as `ice-slip-resolve` since the
+/// ice work -- Sigil of Resolve, `mapdb_ice_mode`, Survival under 50, the
+/// six-second pause -- but no recogniser found a *command* in it, so `no_move`
+/// forced the whole thing to `Unrecognised` and three edges were dropped with a
+/// condition already written for them.
+///
+/// Three edges, and they were the only walking road between Pinefar and the
+/// rest of Elanthia. Without them the Trading Post, Mount Aenatumgana and the
+/// Cavern of Ages -- 288 rooms, and the whole slow road to the Rift -- hung off
+/// a 3,000 silver caravan fare.
+///
+/// **The assignment is the tell.** A bare `fput 'stand'` is housekeeping and
+/// there are hundreds of those; capturing the reply and testing it means the
+/// body cares what the game said, and in this family what it says is whether
+/// you slipped. So this wants exactly one captured `fput` and takes that as the
+/// move.
+///
+/// The `$go2_restart = true` after it is not refused here, and that is not a
+/// loosening of the rule below. There it means "the destination is not fixed",
+/// a fact about the road. Here it sits inside `if result =~ /^Rushing
+/// heedlessly/` and means "you fell over, start again" -- which is a failure
+/// class the vocabulary already carries and the walker already answers by
+/// standing up and re-planning.
+fn captured_fput(command: &str) -> Option<String> {
+    let mut found = None;
+    for raw in command.split(['\n', ';']) {
+        let st = raw.trim();
+        let Some((lhs, rhs)) = st.split_once('=') else {
+            continue;
+        };
+        // `result = fput 'down'`, and nothing cleverer: a plain identifier on
+        // the left, a quoted literal on the right.
+        if lhs.trim().is_empty()
+            || !lhs
+                .trim()
+                .chars()
+                .all(|c| c.is_ascii_alphanumeric() || c == '_')
+        {
+            continue;
+        }
+        let Some(arg) = rhs.trim().strip_prefix("fput ") else {
+            continue;
+        };
+        let arg = arg.trim();
+        let Some(inner) = arg
+            .strip_prefix('\'')
+            .and_then(|i| i.split_once('\''))
+            .map(|(c, _)| c)
+        else {
+            continue;
+        };
+        // Two captured sends are two decisions and this reads neither.
+        if found.replace(inner.to_string()).is_some() {
+            return None;
+        }
+    }
+    found
 }
 
 /// `;e table = "red"; fput "go #{table} table" if dothistimeout("go #{table}
@@ -231,7 +294,23 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
     // the command be read as what it is.
     let mut bound: Vec<(String, String)> = Vec::new();
 
-    for raw in body.split(';') {
+    // Ruby ends a statement with a semicolon *or* a newline, and the mapdb uses
+    // both -- often in the same file. Splitting on `;` alone made
+    //
+    //     ;e fput 'search'
+    //     move 'go snowy path'
+    //
+    // a single unreadable statement, so the whole body fell through to
+    // `trailing_move`, which found the move but handed back `fput 'search'` as a
+    // body nothing could classify. The Northern Slopes is what that cost: the
+    // trail between Pinefar and Icemule is written this way, and without it
+    // Pinefar is an island of 161 rooms whose only link to the rest of Elanthia
+    // is a caravan fare.
+    //
+    // A newline inside a quoted regex splits wrongly, which is harmless: the
+    // halves are unreadable, `statements` returns None, and the body falls
+    // through exactly as it does today.
+    for raw in body.split([';', '\n']) {
         let st = raw.trim().trim_end_matches(';').trim();
         if st.is_empty() {
             continue;
@@ -244,6 +323,22 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             .strip_prefix('(')
             .and_then(|inner| inner.strip_suffix(')'))
             .unwrap_or(st);
+        // `move 'south' while Room.current.id == 2925` -- send it again while
+        // you are still standing where you started.
+        //
+        // The same idea as `start=Room.current.id` below and dropped for the
+        // same reason: the walker already retries by room id, and does it
+        // better, because it checks the id it was actually given rather than
+        // one pasted into the map. On the Northward Trail's snow plains a
+        // single `south` does not always move you, and this is the mapdb
+        // saying so.
+        //
+        // Only this exact guard, and only on a `move`. Any other trailing
+        // condition changes what happens and the body stays unhandled.
+        let st = match st.split_once(" while Room.current.id") {
+            Some((head, _)) if head.trim_start().starts_with("move ") => head.trim_end(),
+            _ => st,
+        };
         // The move itself, single- or double-quoted.
         if let Some(found) = quoted_after(st, "move") {
             // Two *different* moves is not one edge. The same move twice is:
@@ -328,14 +423,22 @@ fn statements(body: &str) -> Option<(Vec<&'static str>, String)> {
             continue;
         }
         // `UserVars.mapdb_talondown_origin = nil` -- Lich clearing a
-        // breadcrumb it left itself. A UserVar is client state and cannot
-        // change where the move lands, so it says nothing about the edge.
+        // breadcrumb it left itself. The move still happens and the command is
+        // still the command, so the assignment is read past rather than
+        // refused.
+        //
+        // **Reading past it is not the same as it meaning nothing.** That
+        // breadcrumb is how Lich knows which of Talondown's nine exits to take,
+        // and taking this rule as proof the edge is ordinary published nine
+        // wormholes out of one arena. What stops that is the fan-out check in
+        // `to_sql`, which refuses any command naming more than one destination
+        // no matter which recogniser read it -- because the tell is the shape
+        // of the result, not the shape of the Ruby.
         //
         // Deliberately *not* the same as `$go2_restart = true`, which is
         // refused below and must stay refused: that one says the destination
         // is not fixed, which is a fact about the road rather than
-        // housekeeping. The difference is the whole reason this is a narrow
-        // rule about `UserVars.` and not a general "ignore assignments".
+        // housekeeping.
         if st.starts_with("UserVars.") && st.contains('=') {
             continue;
         }
@@ -589,6 +692,16 @@ pub fn from_mapdb(json: &str) -> Result<Vec<Extracted>, Box<dyn std::error::Erro
                         Some(found) => found,
                         None => match table_move(command) {
                             Some(moved) => ("", moved),
+                            // The ice bodies, whose move is a captured `fput`.
+                            // The body goes on to `classify`, which has known
+                            // this family all along and only ever lacked a
+                            // command to hang it on.
+                            None if captured_fput(command).is_some() => {
+                                match captured_fput(command) {
+                                    Some(moved) => (command, moved),
+                                    None => (command, String::new()),
+                                }
+                            }
                             // Nothing recognised it. Handing the whole body to
                             // `classify` makes it `Unrecognised`, which earns a
                             // disposition row -- where `continue` here earned
@@ -642,15 +755,68 @@ fn quote(s: &str) -> String {
 
 /// Render the extractions as reviewable SQL.
 pub fn to_sql(found: &[Extracted]) -> String {
-    let (mut safe, mut skipped, mut excluded) = (Vec::new(), Vec::new(), Vec::new());
+    let (mut safe, mut skipped, mut excluded): (
+        Vec<&Extracted>,
+        Vec<_>,
+        Vec<(&Extracted, String)>,
+    ) = (Vec::new(), Vec::new(), Vec::new());
     for e in found {
         match &e.body {
             Body::Unrecognised(excerpt) => skipped.push((e, excerpt)),
-            Body::Excluded(why) => excluded.push((e, *why)),
+            Body::Excluded(why) => excluded.push((e, (*why).to_string())),
             Body::Instead(..) => safe.push(e),
             _ => safe.push(e),
         }
     }
+
+    // One command, several destinations: the map is describing a mechanism and
+    // not an exit, and none of the destinations is publishable.
+    //
+    // `mapdb::load` already refuses these, but it looks at the raw wayto and
+    // skips anything scripted -- so a command that *becomes* ambiguous once the
+    // Ruby around it is read has never been checked by anything. Talondown
+    // Arena is what that costs. Nine rooms across four towns reach it, and
+    // every one of them writes down where you came from:
+    //
+    //   ;e move('go doorframe');UserVars.mapdb_talondown_origin = 417;
+    //   ;e move('go exit passage');UserVars.mapdb_talondown_origin = nil;
+    //
+    // The arena's exit passage returns you to whichever of the nine you came in
+    // by, which Lich knows because it left itself the breadcrumb. Read as nine
+    // separate roads it is a wormhole from the Landing to Icemule, Solhaven,
+    // Ta'Vaalor and back -- and a character sent through it walks in, walks
+    // straight back out where it started, and does it again. That is journey
+    // history, the same thing `caravan:hinterwilds` publishes two roads on, and
+    // `condition_terms` cannot express it.
+    //
+    // So the rule belongs here, downstream of every recogniser, rather than
+    // beside the one that let this through. Whatever the next extractor rule
+    // learns to read, it cannot turn one command into several roads.
+    let mut fan: HashMap<(i64, &str), usize> = HashMap::new();
+    for e in &safe {
+        *fan.entry((e.from_uid, e.command.as_str())).or_default() += 1;
+    }
+    let (kept, wormholes): (Vec<&Extracted>, Vec<&Extracted>) = safe.into_iter().partition(|e| {
+        fan.get(&(e.from_uid, e.command.as_str()))
+            .copied()
+            .unwrap_or(0)
+            <= 1
+    });
+    for e in wormholes {
+        let n = fan
+            .get(&(e.from_uid, e.command.as_str()))
+            .copied()
+            .unwrap_or(0);
+        excluded.push((
+            e,
+            format!(
+                "one command, {n} destinations from room {}: {:?} is a mechanism rather than an \
+                 exit, and which room it reaches depends on something the map does not record",
+                e.from_uid, e.command
+            ),
+        ));
+    }
+    let safe = kept;
 
     let mut s = String::new();
     s.push_str(&format!(
