@@ -755,8 +755,11 @@ fn quote(s: &str) -> String {
 
 /// Render the extractions as reviewable SQL.
 pub fn to_sql(found: &[Extracted]) -> String {
-    let (mut safe, mut skipped, mut excluded): (Vec<&Extracted>, Vec<_>, Vec<(&Extracted, String)>) =
-        (Vec::new(), Vec::new(), Vec::new());
+    let (mut safe, mut skipped, mut excluded): (
+        Vec<&Extracted>,
+        Vec<_>,
+        Vec<(&Extracted, String)>,
+    ) = (Vec::new(), Vec::new(), Vec::new());
     for e in found {
         match &e.body {
             Body::Unrecognised(excerpt) => skipped.push((e, excerpt)),
@@ -793,9 +796,12 @@ pub fn to_sql(found: &[Extracted]) -> String {
     for e in &safe {
         *fan.entry((e.from_uid, e.command.as_str())).or_default() += 1;
     }
-    let (kept, wormholes): (Vec<&Extracted>, Vec<&Extracted>) = safe
-        .into_iter()
-        .partition(|e| fan.get(&(e.from_uid, e.command.as_str())).copied().unwrap_or(0) <= 1);
+    let (kept, wormholes): (Vec<&Extracted>, Vec<&Extracted>) = safe.into_iter().partition(|e| {
+        fan.get(&(e.from_uid, e.command.as_str()))
+            .copied()
+            .unwrap_or(0)
+            <= 1
+    });
     for e in wormholes {
         let n = fan
             .get(&(e.from_uid, e.command.as_str()))
