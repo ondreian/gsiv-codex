@@ -442,7 +442,12 @@ fn extract_to(from: &str, out: &str) -> Result<(), Box<dyn std::error::Error>> {
         .iter()
         .filter(|e| matches!(e.body, gsiv_codex::extract::Body::Condition(_)))
         .count();
-    std::fs::write(out, gsiv_codex::extract::to_sql(&found))?;
+    let json = std::fs::read_to_string(from)?;
+    let wandering = gsiv_codex::extract::wandering_rooms(&json)?;
+    let mut sql = gsiv_codex::extract::to_sql(&found);
+    sql.push_str(&gsiv_codex::extract::wanders_sql(&wandering));
+    std::fs::write(out, sql)?;
+    eprintln!("{} rooms wander", wandering.len());
     eprintln!(
         "{} extracted ({tagged} with a condition), {skipped} left alone -> {out}",
         found.len() - skipped

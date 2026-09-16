@@ -753,6 +753,63 @@ fn quote(s: &str) -> String {
     format!("'{}'", s.replace('\'', "''"))
 }
 
+/// Rooms a move may not move you out of.
+///
+/// The mapdb writes them as `move 'south' while Room.current.id == N`: send it
+/// again while you are still standing where you started. 314 edges across the
+/// Snow Plains, Mistydeep, the Eastern Waterway, the Teras shallows and Lost
+/// In The Woods -- everywhere the game answers a direction with "You wander
+/// off into the blowing snow..." and leaves the room id alone.
+///
+/// Published against the *room*, not the exit, which is where the mapdb keeps
+/// it. Lich records only the exits somebody has walked; the snow swallows all
+/// eight equally, and a client told about two of them is told the wrong shape.
+pub fn wandering_rooms(json: &str) -> Result<Vec<i64>, Box<dyn std::error::Error>> {
+    let rooms: Vec<serde_json::Value> = serde_json::from_str(json)?;
+    let mut found: Vec<i64> = Vec::new();
+    for room in &rooms {
+        let Some(uid) = room
+            .get("uid")
+            .and_then(serde_json::Value::as_array)
+            .and_then(|a| a.first())
+            .and_then(serde_json::Value::as_i64)
+        else {
+            continue;
+        };
+        let wanders = room
+            .get("wayto")
+            .and_then(serde_json::Value::as_object)
+            .is_some_and(|w| {
+                w.values()
+                    .filter_map(serde_json::Value::as_str)
+                    .any(|c| c.contains("while Room.current.id"))
+            });
+        if wanders {
+            found.push(uid);
+        }
+    }
+    found.sort_unstable();
+    found.dedup();
+    Ok(found)
+}
+
+/// `wandering_rooms` as the facet rows that say so.
+pub fn wanders_sql(rooms: &[i64]) -> String {
+    let mut s = String::from(
+        "\n-- Rooms a move may not move you out of: the game answers the\n\
+         -- direction, describes the wandering, and leaves the room id alone.\n\
+         -- A walker sends the command again rather than concluding the road is\n\
+         -- wrong -- which is what the mapdb's own `while Room.current.id == N`\n\
+         -- has always meant.\n",
+    );
+    for uid in rooms {
+        s.push_str(&format!(
+            "INSERT OR IGNORE INTO room_facets(room_uid, type) VALUES ({uid}, 'wanders');\n"
+        ));
+    }
+    s
+}
+
 /// Render the extractions as reviewable SQL.
 pub fn to_sql(found: &[Extracted]) -> String {
     let (mut safe, mut skipped, mut excluded): (

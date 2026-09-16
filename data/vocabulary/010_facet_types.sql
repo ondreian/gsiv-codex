@@ -16,6 +16,20 @@ INSERT INTO facet_types(type, class, description) VALUES ('locker', 'poi', 'stor
 INSERT INTO facet_types(type, class, description) VALUES ('locksmith', 'poi', 'lockpick / box opener');
 INSERT INTO facet_types(type, class, description) VALUES ('node', 'poi', 'resting node');
 INSERT INTO facet_types(type, class, description) VALUES ('nomagic', 'property', 'magic is forbidden here');
+-- A room you can walk in and not leave.
+--
+-- The Snow Plains answer a direction with "You wander off into the blowing
+-- snow..." and put you back where you started, room id and all. Mistydeep, the
+-- Eastern Waterway and the Teras shallows do the same in water and fog. The
+-- mapdb writes it as `move 'south' while Room.current.id == N` -- 314 edges of
+-- it -- and that guard *is* the fact: the move is not refused, it simply may
+-- not have happened.
+--
+-- A property of the room rather than of the exit, which is where the mapdb
+-- keeps it. Lich only records the exits somebody happened to walk; the snow
+-- swallows every direction equally, and a client told about two of eight is
+-- told the wrong shape.
+INSERT INTO facet_types(type, class, description) VALUES ('wanders', 'property', 'a move from here may leave you where you were; send it again');
 INSERT INTO facet_types(type, class, description) VALUES ('pawnshop', 'poi', 'pawnshop / general buyer');
 INSERT INTO facet_types(type, class, description) VALUES ('playershop', 'poi', 'player shop');
 INSERT INTO facet_types(type, class, description) VALUES ('profession_guild', 'poi', 'a profession guild hall');
