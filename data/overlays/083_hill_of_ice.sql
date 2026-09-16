@@ -25,54 +25,50 @@
 -- door does not open: rotate the ring until a virtue lines up, pour a hundred
 -- mana into the crown a spell at a time, touch it, and name the place.
 --
--- **Walked to, and it does not open.** On 2026-09-15 a level 100 Ranger stood
--- at the door and did everything the Ruby does, in order:
+-- **Walked to, and opened.** On 2026-09-15 a level 100 Ranger stood at the
+-- door and did what the Ruby does, in order:
 --
 --   go door               -> "The stone door appears to be closed."
---   push tine             -> "...the tine set with the veil iron stone aligned
---                             with the word 'Piety'."   (any of the six counts)
+--   push tine             -> "...the veil iron stone aligned with the word
+--                             'Piety'."           <- wrong pair, push again
+--   push tine             -> "...the milky white stone aligned with the word
+--                             'Piety'."           <- right pair
 --   prepare 650; cast crown  x2  -> "A soft glow surrounds the bas-relief
---                             crown for a moment, but quickly fades away."
+--                             crown..."  (100 mana, any spells)
 --   look crown            -> "The crown is bathed in a brilliant aura."
 --   touch crown           -> "You touch the crown.  It feels hot."
 --   say Aenatumgana
---   go door               -> "The stone door appears to be closed."
+--   go door               -> [Antechamber, Hill of Ice]
 --
--- Charged to a brilliant aura, and still shut. Sent as one burst the way Lich
--- sends it -- touch, say, go, no pause between -- and still shut. `open door`
+-- **The pairing is the puzzle and it is easy to miss.** The `until` clause
+-- accepts six alignments and only six: reflective glass with Honor, clear
+-- crystal with Truth, milky white with Piety, dull grey with Humility,
+-- flawless silver with Faith, veil iron with Courage. Each stone must meet its
+-- own word. A first attempt here read the loop as "push once, then charge",
+-- landed veil iron on Piety, charged the crown to a brilliant aura and found
+-- the door still shut -- which looked like a second undiscovered gate and was
+-- simply the ring in the wrong place.
+--
+-- The charge does not persist: the door was closed on arrival, and `open door`
 -- answers "There doesn't seem to be any way to do that", so the `open-the-way`
--- remedy is wrong for this edge as well.
+-- remedy is wrong for this edge.
 --
--- So the crown does *not* hold its charge between visitors, and charging it is
--- *not* sufficient. Something else gates this door and the mapdb's Ruby does
--- not know what -- a virtue that has to be chosen rather than landed on, a
--- quest flag, a group, or a script that went stale. That is a question for
--- somebody who knows the game, not something to measure blind, and until it is
--- answered nobody can walk into the Cavern of Ages.
---
--- **The edge stays published anyway**, which is a deliberate choice and not an
--- oversight. There is no second road: refusing it turns the whole cavern into
--- "no route", which tells a reader nothing. Published, a walk arrives at the
--- door and stops on the game's own words -- and "The stone door appears to be
--- closed" already matches the `way-is-closed` pattern
--- `(?:appears|seems) to be closed\.$`, so the failure is named rather than
--- mysterious. A character is one step from where they came in and out nothing
--- but the walk.
---
--- The hundred mana is beyond a walker regardless: a script cannot see the
--- game's own text and cannot know which spells the character has, so "cast
--- anything, a hundred mana's worth" is not something it can be asked to do.
--- And it could never be a prelude -- a prelude runs every time, and `push tine`
--- on an aligned crown rotates it off.
+-- **Published without the recovery.** The hundred mana is beyond a walker -- a
+-- script cannot see the game's own text and cannot know which spells the
+-- character has -- and it could never be a prelude, because a prelude runs
+-- every time and `push tine` on an aligned crown rotates it off. So `go door`
+-- is the road, the recharge is a human's job, and a character who arrives at a
+-- cold crown is told by the game: "The stone door appears to be closed" already
+-- matches the `way-is-closed` pattern `(?:appears|seems) to be closed\.$`.
 INSERT OR REPLACE INTO edge_overlays(from_uid, to_uid, command, class, time_ms, source, note) VALUES
   (4561131, 4562001, 'go door', 'walk', 12000, 'manual',
-   'The door under the crown of Aenatumgana, and the only way into the Cavern of Ages. Measured 2026-09-15: closed, and Lich''s whole recovery -- push tine, 100 mana into the crown, touch crown, say Aenatumgana -- charges it to a brilliant aura without opening it. Something else gates this and the mapdb does not know what. Published because there is no second road and a named refusal beats no route at all.');
+   'The door under the crown of Aenatumgana, and the only way into the Cavern of Ages. Opens when the crown is charged, which is a property of the crown and not of the character -- measured 2026-09-15: found closed, recharged by hand, walked through. The recharge is push tine until a stone meets its own word, 100 mana cast at the crown, touch crown, say Aenatumgana; it is not published because a walker cannot choose spells and pushing the tine on an aligned crown would shut a door that was open.');
 
 INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
   (4561131, 4562001,
    ';e unless (move ''go door''); push tine ... cast 100 mana at ''crown'' ... touch crown; say Aenatumgana; end; move ''go door''',
    'overlay',
-   'the road is `go door`; the recharge behind it is not published, and measured on 2026-09-15 the recharge does not open the door either -- see 083_hill_of_ice.sql');
+   'the road is `go door`; the recharge behind it needs spells a walker cannot choose -- see 083_hill_of_ice.sql');
 
 -- 2. The Stairs of Ice. Not published, and here is exactly why.
 --
@@ -142,3 +138,54 @@ INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, dispos
    ';e if checkleft and checkright; empty_hands; ... dothistimeout ''pull ring'' ... move ''go door''',
    'overlay',
    'published as `go door` with the `pull-the-ring` prelude; the empty_hands/fill_hands around it is not expressible -- see 083_hill_of_ice.sql');
+
+
+-- 4. The Stairs of Ice, at last.
+--
+-- Four flights, one per wall, listed in a different order every time. Measured
+-- in the room on 2026-09-15:
+--
+--   climb northern steps    -> "I could not find what you were referring to."
+--   climb ascending steps   -> "I could not find what you were referring to."
+--   climb second steps      -> [Altar of the Elder]
+--
+-- The game has no name for a flight but its position, and the position moves.
+-- So the command is published with the position left open, and the walker
+-- fills it from the room it is standing in -- `#{ordinal:northern wall}`
+-- becomes "", "second ", "third " or "fourth " by counting how many walls are
+-- named before that one.
+--
+-- That the walls map to fixed rooms is the fact worth writing down, and it is
+-- the part Lich's script encodes too:
+--
+--   northern -> 4562020  [Altar of the Elder], and the sphere beyond it
+--   eastern  -> 4562015  [Platform of Ice]
+--   southern -> 4562014  [Platform of Ice]
+--   western  -> 4562013  [Platform of Ice]
+--
+-- Filled by the guest and not at plan time, deliberately: the order is what it
+-- is when you are standing there, and a plan made ten minutes and two hundred
+-- steps earlier would carry an ordinal that has since moved.
+--
+-- These close the loop. Before them the Cavern of Ages and the Rift beyond it
+-- could be entered and never left, in either direction, and `travel icemule`
+-- from inside answered "no route".
+INSERT OR REPLACE INTO edge_overlays(from_uid, to_uid, command, class, time_ms, source, note) VALUES
+  (4562019, 4562020, 'climb #{ordinal:northern wall} steps', 'walk', 3000, 'manual',
+   'The flight on the northern wall. Which ordinal that is changes every time, so the walker counts it from the room.'),
+  (4562019, 4562015, 'climb #{ordinal:eastern wall} steps', 'walk', 3000, 'manual',
+   'The flight on the eastern wall.'),
+  (4562019, 4562014, 'climb #{ordinal:southern wall} steps', 'walk', 3000, 'manual',
+   'The flight on the southern wall.'),
+  (4562019, 4562013, 'climb #{ordinal:western wall} steps', 'walk', 3000, 'manual',
+   'The flight on the western wall.');
+
+INSERT OR REPLACE INTO script_edge_disposition(from_uid, to_uid, excerpt, disposition, reason) VALUES
+  (4562019, 4562020, ';e clear; put ''look''; ... if $3 == ''northern'' move ''climb steps'' elsif ...', 'overlay',
+   'published as `climb #{ordinal:northern wall} steps` -- the walker reads the order out of the room'),
+  (4562019, 4562015, ';e clear; put ''look''; ... if $3 == ''eastern'' ...', 'overlay',
+   'published as `climb #{ordinal:eastern wall} steps`'),
+  (4562019, 4562014, ';e clear; put ''look''; ... if $3 == ''southern'' ...', 'overlay',
+   'published as `climb #{ordinal:southern wall} steps`'),
+  (4562019, 4562013, ';e clear; put ''look''; ... if $3 == ''western'' ...', 'overlay',
+   'published as `climb #{ordinal:western wall} steps`');
