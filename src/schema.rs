@@ -56,6 +56,10 @@ const MIGRATIONS: &[(&str, &str)] = &[
     ),
     ("015_meta", include_str!("../schema/015_meta.sql")),
     ("016_relocated", include_str!("../schema/016_relocated.sql")),
+    (
+        "017_circuit_exit_preludes",
+        include_str!("../schema/017_circuit_exit_preludes.sql"),
+    ),
 ];
 
 /// How many migrations this build knows.

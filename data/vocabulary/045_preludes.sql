@@ -53,3 +53,24 @@ INSERT INTO preludes(id, description, condition_id) VALUES
    NULL);
 INSERT INTO prelude_steps(prelude_id, seq, command, expect) VALUES
   ('pull-the-ring', 0, 'pull ring', 'the stone door begins to rise');
+
+-- The Scatter's fissure, which has to be widened before it can be entered.
+--
+--   5.times { ... 'push fissure' ...
+--             break if result =~ /^A wide fissure cannot be opened any farther/ }
+--
+-- Lich pushes until the game says it will go no wider. A walker cannot read
+-- that -- scripts do not see the game's own text -- so it pushes the full five
+-- times instead. Pushing a fissure that is already wide answers "A wide fissure
+-- cannot be opened any farther" and does nothing else, so the extra sends cost
+-- a little roundtime and nothing else. Stopping early would need the reply.
+INSERT INTO preludes(id, description, condition_id) VALUES
+  ('widen-the-fissure',
+   'A fissure in the Rift is a crack until it is pushed open. Lich pushes until the game refuses to widen it further; five is that bound, sent blind.',
+   NULL);
+INSERT INTO prelude_steps(prelude_id, seq, command, expect) VALUES
+  ('widen-the-fissure', 0, 'push fissure', ''),
+  ('widen-the-fissure', 1, 'push fissure', ''),
+  ('widen-the-fissure', 2, 'push fissure', ''),
+  ('widen-the-fissure', 3, 'push fissure', ''),
+  ('widen-the-fissure', 4, 'push fissure', 'A wide fissure cannot be opened any farther');

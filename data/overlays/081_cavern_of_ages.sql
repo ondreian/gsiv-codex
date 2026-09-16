@@ -24,11 +24,38 @@
 INSERT OR REPLACE INTO circuits(id, to_uid, description) VALUES
   ('cavern:water-tunnel:4562040', 4562039,
    'Swim between two passages until the way up appears; watch for up.');
+-- **Twenty, not four.** Lich loops `until checkpaths.include?('up')` with no
+-- bound at all, and it needs one: the tunnel is turbulent and a swim often
+-- leaves you in the room you started in, so "one lap" is not four swims, it is
+-- however many the water allows. Four gave up while still in the tunnel and
+-- stranded a character in a room the graph does not know -- 4562041 and 4562042
+-- are the same Lich room as 4562040 and have no edges of their own.
+--
+-- Twenty is a bound rather than a guess at the distance: far past what the
+-- three-room tunnel needs, and still an end, because a ring whose exit never
+-- appears is a ring that is not working today and swimming it forever looks
+-- exactly like swimming it successfully.
 INSERT OR REPLACE INTO circuit_moves(circuit_id, seq, command) VALUES
   ('cavern:water-tunnel:4562040', 0, 'swim northwest'),
   ('cavern:water-tunnel:4562040', 1, 'swim northeast'),
   ('cavern:water-tunnel:4562040', 2, 'swim northwest'),
-  ('cavern:water-tunnel:4562040', 3, 'swim northeast');
+  ('cavern:water-tunnel:4562040', 3, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 4, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 5, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 6, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 7, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 8, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 9, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 10, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 11, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 12, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 13, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 14, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 15, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 16, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 17, 'swim northeast'),
+  ('cavern:water-tunnel:4562040', 18, 'swim northwest'),
+  ('cavern:water-tunnel:4562040', 19, 'swim northeast');
 -- `up` is an obvious path rather than an object, which is what
 -- `checkpaths.include?` was asking. The walker matches a watch noun against
 -- the room's exits as well as its description, so this works as written.
@@ -62,11 +89,13 @@ INSERT OR REPLACE INTO circuit_entries(circuit_id, room_uid, seq) VALUES
 INSERT OR REPLACE INTO circuits(id, to_uid, description) VALUES
   ('cavern:water-tunnel:south', 4562044,
    'Swim between the two southward passages until the way up appears; watch for up.');
-INSERT OR REPLACE INTO circuit_moves(circuit_id, seq, command) VALUES
-  ('cavern:water-tunnel:south', 0, 'swim southwest'),
-  ('cavern:water-tunnel:south', 1, 'swim southeast'),
-  ('cavern:water-tunnel:south', 2, 'swim southwest'),
-  ('cavern:water-tunnel:south', 3, 'swim southeast');
+INSERT OR REPLACE INTO circuit_moves(circuit_id, seq, command)
+SELECT 'cavern:water-tunnel:south', seq, command
+  FROM circuit_moves
+ WHERE circuit_id = 'cavern:water-tunnel:4562040';
+UPDATE circuit_moves
+   SET command = replace(command, 'north', 'south')
+ WHERE circuit_id = 'cavern:water-tunnel:south';
 INSERT OR REPLACE INTO circuit_exits(circuit_id, noun, command) VALUES
   ('cavern:water-tunnel:south', 'up', 'up');
 INSERT OR REPLACE INTO circuit_entries(circuit_id, room_uid, seq) VALUES
