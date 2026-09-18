@@ -134,10 +134,12 @@ fn main() -> ExitCode {
                         for (name, level) in &l.filled {
                             eprintln!("  filled  {name} = {level}");
                         }
-                        // Not resolved here. A level is a world fact and two
-                        // sources differing by one is for a person to settle.
+                        // Lich's stands: it is the measurement, the wiki is a
+                        // reckoning of the same creature, and they differ by
+                        // one or two. Printed so a re-run that would have
+                        // taken a different answer says so.
                         for (name, ours, theirs) in &l.disagreed {
-                            eprintln!("  differs {name}: lich {ours}, wiki {theirs}");
+                            eprintln!("  kept lich {ours} for {name} (wiki says {theirs})");
                         }
                     }
                     ExitCode::SUCCESS

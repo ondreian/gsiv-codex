@@ -5,9 +5,12 @@
 -- attack; the area is a set of rooms to walk to. Neither was expressible here
 -- before, so a parsed bounty was a sentence rather than a destination.
 --
--- Harvested from lich-5's creature files, which carry the measurement this
--- repository cannot make from a map: somebody hunted there and wrote down the
--- room ids. 584 of its 627 creatures carry uids, across 127 areas and 9,680
+-- Harvested once from lich-5's creature files, which carry the measurement
+-- this repository cannot make from a map: somebody hunted there and wrote down
+-- the room ids. A bootstrap, not a feed -- after this the codex is the record,
+-- and a re-run is for picking up new measurements rather than for reconciling
+-- two sources forever. Levels the files lack come from gswiki; where the two
+-- differ, lich's stands, because only one of them is a measurement. 584 of its 627 creatures carry uids, across 127 areas and 9,680
 -- rooms, and 94.7% of those rooms are ones this database already knows.
 --
 -- **Spawn, not encounter.** `creature_habitats` says where a creature *comes

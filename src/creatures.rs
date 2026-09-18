@@ -200,15 +200,26 @@ fn match_key(name: &str) -> String {
 pub struct Levelling {
     /// Creatures that had no level and now have one.
     pub filled: Vec<(String, u32)>,
-    /// `(creature, ours, wiki)`. Left as-is: a level is a world fact, and two
-    /// sources differing by one is something for a person to settle rather
-    /// than for a build to pick a winner in.
+    /// `(creature, lich, wiki)` where the two differ. Lich's value is kept.
+    ///
+    /// It is the measurement: somebody fought the thing and wrote down what it
+    /// was. The wiki is a reckoning of the same creature by people who mostly
+    /// did the same, and the eight it disagrees about differ by one or two --
+    /// which is drift, not a dispute worth arbitrating twice.
+    ///
+    /// Reported rather than silenced, because a re-run that quietly took a
+    /// different answer than the last one should say so.
     pub disagreed: Vec<(String, u32, u32)>,
     /// Ours that the wiki has never heard of.
     pub unknown_to_wiki: Vec<String>,
 }
 
 /// Fill in the levels lich-5 did not have.
+///
+/// Fills only. Where lich has a level, lich keeps it: this runs once to
+/// bootstrap a table that did not exist, and after it the codex is the record
+/// -- so the question is not "which source is right today" but "what did the
+/// measurement say", and only one of the two sources is a measurement.
 pub fn apply_levels(harvest: &mut Harvest, wiki: &BTreeMap<String, u32>) -> Levelling {
     let mut out = Levelling::default();
     for creature in &mut harvest.creatures {
@@ -462,9 +473,10 @@ mod tests {
         assert_eq!(match_key("  ki-lin  "), "ki lin");
     }
 
-    /// A level the wiki knows fills a gap; one that disagrees is reported and
-    /// left alone. A build picking a winner between two sources is a build
-    /// deciding a world fact, which is not its job.
+    /// A level the wiki knows fills a gap; where it disagrees, lich's stands.
+    /// Lich's files are a measurement and the wiki is a reckoning, and this
+    /// runs once to bootstrap the table rather than to reconcile two feeds
+    /// forever.
     #[test]
     fn the_wiki_fills_gaps_and_reports_disagreements() {
         let mut harvest = Harvest {
