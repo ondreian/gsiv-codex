@@ -80,7 +80,22 @@ fn main() -> ExitCode {
             };
             let dir = std::path::Path::new(&lich).join("lib/gemstone/creatures");
             match gsiv_codex::creatures::harvest(&dir) {
-                Ok(harvest) => {
+                Ok(mut harvest) => {
+                    // Levels the wiki knows and lich-5 does not. Optional so a
+                    // harvest still runs without the network having been near
+                    // this checkout; `vendor/wiki_levels.tsv` is committed, so
+                    // in practice it is always there.
+                    let wiki = flag("--wiki").unwrap_or_else(|| "vendor/wiki_levels.tsv".into());
+                    let levelling =
+                        match gsiv_codex::creatures::read_levels(std::path::Path::new(&wiki)) {
+                            Ok(levels) => {
+                                Some(gsiv_codex::creatures::apply_levels(&mut harvest, &levels))
+                            }
+                            Err(e) => {
+                                eprintln!("no wiki levels ({wiki}): {e}");
+                                None
+                            }
+                        };
                     let out_dir = std::path::Path::new(&out);
                     let mut written = 0usize;
                     for (name, body) in gsiv_codex::creatures::to_tsv(&harvest) {
@@ -108,6 +123,22 @@ fn main() -> ExitCode {
                     }
                     for (who, why) in &harvest.unreadable {
                         eprintln!("unreadable: {who}: {why}");
+                    }
+                    if let Some(l) = levelling {
+                        eprintln!(
+                            "wiki: {} levels filled, {} disagreements, {} it has never heard of",
+                            l.filled.len(),
+                            l.disagreed.len(),
+                            l.unknown_to_wiki.len()
+                        );
+                        for (name, level) in &l.filled {
+                            eprintln!("  filled  {name} = {level}");
+                        }
+                        // Not resolved here. A level is a world fact and two
+                        // sources differing by one is for a person to settle.
+                        for (name, ours, theirs) in &l.disagreed {
+                            eprintln!("  differs {name}: lich {ours}, wiki {theirs}");
+                        }
                     }
                     ExitCode::SUCCESS
                 }

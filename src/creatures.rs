@@ -164,6 +164,73 @@ pub fn parse_one(text: &str) -> Result<Creature, String> {
     })
 }
 
+/// Base levels read off gswiki, keyed for matching against creature names.
+///
+/// `vendor/wiki_levels.tsv`, one `name\tlevel` per line. Names are matched
+/// loosely -- case, hyphens and apostrophes differ between the two sources for
+/// the same creature, and `black-winged daggerbeak` is not a different animal
+/// from `Black-Winged Daggerbeak`.
+pub fn read_levels(path: &Path) -> Result<BTreeMap<String, u32>, Box<dyn std::error::Error>> {
+    let mut out = BTreeMap::new();
+    for line in std::fs::read_to_string(path)?.lines() {
+        if let Some((name, level)) = line.split_once('\t')
+            && let Ok(level) = level.trim().parse()
+        {
+            out.insert(match_key(name), level);
+        }
+    }
+    Ok(out)
+}
+
+/// What two spellings of one creature have in common.
+fn match_key(name: &str) -> String {
+    name.to_lowercase()
+        .replace('\u{2019}', "'")
+        .chars()
+        .map(|c| if c == '-' { ' ' } else { c })
+        .filter(|c| c.is_ascii_alphanumeric() || *c == ' ')
+        .collect::<String>()
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ")
+}
+
+/// What the wiki said that lich-5 did not, and where the two disagree.
+#[derive(Debug, Default)]
+pub struct Levelling {
+    /// Creatures that had no level and now have one.
+    pub filled: Vec<(String, u32)>,
+    /// `(creature, ours, wiki)`. Left as-is: a level is a world fact, and two
+    /// sources differing by one is something for a person to settle rather
+    /// than for a build to pick a winner in.
+    pub disagreed: Vec<(String, u32, u32)>,
+    /// Ours that the wiki has never heard of.
+    pub unknown_to_wiki: Vec<String>,
+}
+
+/// Fill in the levels lich-5 did not have.
+pub fn apply_levels(harvest: &mut Harvest, wiki: &BTreeMap<String, u32>) -> Levelling {
+    let mut out = Levelling::default();
+    for creature in &mut harvest.creatures {
+        let Some(&wiki_level) = wiki.get(&match_key(&creature.name)) else {
+            out.unknown_to_wiki.push(creature.name.clone());
+            continue;
+        };
+        match creature.level {
+            None => {
+                creature.level = Some(wiki_level);
+                out.filled.push((creature.name.clone(), wiki_level));
+            }
+            Some(ours) if ours != wiki_level => {
+                out.disagreed
+                    .push((creature.name.clone(), ours, wiki_level));
+            }
+            Some(_) => {}
+        }
+    }
+    out
+}
+
 /// Read every `*.rb` in a lich-5 `lib/gemstone/creatures` directory.
 pub fn harvest(dir: &Path) -> Result<Harvest, Box<dyn std::error::Error>> {
     let mut out = Harvest::default();
@@ -375,6 +442,67 @@ mod tests {
             tsv["072_creature_rooms.tsv"],
             "kobold\tOld Mine Road\t20002\t20018\nrolton\tOld Mine Road\t20019\t20030\n"
         );
+    }
+
+    /// The two sources spell one creature differently, and neither is wrong.
+    #[test]
+    fn a_name_matches_across_the_two_spellings() {
+        assert_eq!(
+            match_key("Black-Winged Daggerbeak"),
+            "black winged daggerbeak"
+        );
+        assert_eq!(
+            match_key("black-winged daggerbeak"),
+            "black winged daggerbeak"
+        );
+        assert_eq!(
+            match_key("cook\u{2019}s assistant"),
+            match_key("cook's assistant")
+        );
+        assert_eq!(match_key("  ki-lin  "), "ki lin");
+    }
+
+    /// A level the wiki knows fills a gap; one that disagrees is reported and
+    /// left alone. A build picking a winner between two sources is a build
+    /// deciding a world fact, which is not its job.
+    #[test]
+    fn the_wiki_fills_gaps_and_reports_disagreements() {
+        let mut harvest = Harvest {
+            creatures: vec![
+                Creature {
+                    name: "ki-lin".into(),
+                    noun: "ki-lin".into(),
+                    level: None,
+                    habitats: BTreeMap::new(),
+                },
+                Creature {
+                    name: "direbear".into(),
+                    noun: "direbear".into(),
+                    level: Some(65),
+                    habitats: BTreeMap::new(),
+                },
+                Creature {
+                    name: "Grimswarm".into(),
+                    noun: "Grimswarm".into(),
+                    level: None,
+                    habitats: BTreeMap::new(),
+                },
+            ],
+            ..Harvest::default()
+        };
+        let wiki = BTreeMap::from([("ki lin".to_string(), 28), ("direbear".to_string(), 64)]);
+        let out = apply_levels(&mut harvest, &wiki);
+
+        assert_eq!(out.filled, vec![("ki-lin".to_string(), 28)]);
+        assert_eq!(harvest.creatures[0].level, Some(28));
+
+        assert_eq!(out.disagreed, vec![("direbear".to_string(), 65, 64)]);
+        assert_eq!(harvest.creatures[1].level, Some(65), "ours is left alone");
+
+        // The Grimswarm scale, so neither source has a level and that is the
+        // answer rather than a gap.
+        assert_eq!(out.unknown_to_wiki, vec!["Grimswarm".to_string()]);
+        assert_eq!(harvest.creatures[2].level, None);
     }
 
     /// The committed vocabulary loads into the committed schema.

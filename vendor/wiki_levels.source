@@ -1,0 +1,13 @@
+# Where the creature levels come from.
+#
+# https://gswiki.play.net/Category:Creatures_by_Level, expanded through the
+# MediaWiki `action=parse` API because the page itself is a table of 120
+# `{{Level N creatures}}` transclusions.
+#
+# A wiki has no commit to pin, so this records the fetch rather than a hash,
+# and `vendor/wiki_levels.tsv` is committed: a build never needs the network,
+# and a change to the wiki arrives as a reviewable diff when somebody re-runs
+# `scripts/wiki-levels.sh` rather than as a silent shift under a build.
+url=https://gswiki.play.net/Category:Creatures_by_Level
+fetched=2026-09-18
+creatures=587
