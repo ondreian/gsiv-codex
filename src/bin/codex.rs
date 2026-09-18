@@ -73,6 +73,50 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("creatures") => {
+            let (Some(lich), Some(out)) = (flag("--lich"), flag("--out")) else {
+                eprintln!("usage: codex creatures --lich <lich-5 checkout> --out data/vocabulary");
+                return ExitCode::from(2);
+            };
+            let dir = std::path::Path::new(&lich).join("lib/gemstone/creatures");
+            match gsiv_codex::creatures::harvest(&dir) {
+                Ok(harvest) => {
+                    let out_dir = std::path::Path::new(&out);
+                    let mut written = 0usize;
+                    for (name, body) in gsiv_codex::creatures::to_tsv(&harvest) {
+                        if let Err(e) = std::fs::write(out_dir.join(name), body) {
+                            eprintln!("error: {name}: {e}");
+                            return ExitCode::from(1);
+                        }
+                        written += 1;
+                    }
+                    let placed = harvest.creatures.len() - harvest.without_habitat.len();
+                    eprintln!(
+                        "{} creatures, {placed} with a habitat -> {written} files in {out}",
+                        harvest.creatures.len()
+                    );
+                    // The burndown, said out loud. A creature the wiki knows
+                    // and nobody has hunted with a notebook is the next piece
+                    // of work, and a harvest that swallowed the list would
+                    // make it invisible.
+                    if !harvest.without_habitat.is_empty() {
+                        eprintln!(
+                            "{} without a habitat: {}",
+                            harvest.without_habitat.len(),
+                            harvest.without_habitat.join(", ")
+                        );
+                    }
+                    for (who, why) in &harvest.unreadable {
+                        eprintln!("unreadable: {who}: {why}");
+                    }
+                    ExitCode::SUCCESS
+                }
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::from(1)
+                }
+            }
+        }
         Some("ferry") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
                 eprintln!(
