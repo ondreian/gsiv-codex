@@ -5,6 +5,7 @@
 
 pub mod conditions;
 pub mod connectors;
+pub mod creatures;
 pub mod extract;
 pub mod ferry;
 pub mod fwi;

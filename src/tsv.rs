@@ -14,9 +14,19 @@
 //! There is no header row. The column order is the schema's column order, and
 //! a header would be a second declaration of it that can disagree with the
 //! first.
+//!
+//! A cell of `\N` is SQL NULL; every other cell is text, and SQLite's column
+//! affinity turns it into a number where the column says so. The convention is
+//! borrowed from `COPY` and `mysqldump` for the reason they needed one: a text
+//! format has no way to say "absent", and the alternative was a sentinel per
+//! column. Thirty creatures have no level -- the Grimswarm scale with whoever
+//! meets them -- and `0` would be a lie that reads as a fact.
 
 use rusqlite::Connection;
 use std::path::Path;
+
+/// The cell that means SQL NULL rather than the two characters it looks like.
+const NULL_CELL: &str = r"\N";
 
 /// Table name from a file name: `060_failure_classes.tsv` -> `failure_classes`.
 fn table_of(path: &Path) -> Option<String> {
@@ -65,7 +75,11 @@ pub fn load(conn: &Connection, path: &Path) -> Result<usize, Box<dyn std::error:
             .into());
         }
         if let Some(s) = stmt.as_mut() {
-            s.execute(rusqlite::params_from_iter(cells))?;
+            let values: Vec<Option<&str>> = cells
+                .iter()
+                .map(|c| if *c == NULL_CELL { None } else { Some(*c) })
+                .collect();
+            s.execute(rusqlite::params_from_iter(values))?;
         }
         n += 1;
     }

@@ -73,6 +73,83 @@ fn main() -> ExitCode {
                 }
             }
         }
+        Some("creatures") => {
+            let (Some(lich), Some(out)) = (flag("--lich"), flag("--out")) else {
+                eprintln!("usage: codex creatures --lich <lich-5 checkout> --out data/vocabulary");
+                return ExitCode::from(2);
+            };
+            let dir = std::path::Path::new(&lich).join("lib/gemstone/creatures");
+            match gsiv_codex::creatures::harvest(&dir) {
+                Ok(mut harvest) => {
+                    // Levels the wiki knows and lich-5 does not. Optional so a
+                    // harvest still runs without the network having been near
+                    // this checkout; `vendor/wiki_levels.tsv` is committed, so
+                    // in practice it is always there.
+                    let wiki = flag("--wiki").unwrap_or_else(|| "vendor/wiki_levels.tsv".into());
+                    let levelling =
+                        match gsiv_codex::creatures::read_levels(std::path::Path::new(&wiki)) {
+                            Ok(levels) => {
+                                Some(gsiv_codex::creatures::apply_levels(&mut harvest, &levels))
+                            }
+                            Err(e) => {
+                                eprintln!("no wiki levels ({wiki}): {e}");
+                                None
+                            }
+                        };
+                    let out_dir = std::path::Path::new(&out);
+                    let mut written = 0usize;
+                    for (name, body) in gsiv_codex::creatures::to_tsv(&harvest) {
+                        if let Err(e) = std::fs::write(out_dir.join(name), body) {
+                            eprintln!("error: {name}: {e}");
+                            return ExitCode::from(1);
+                        }
+                        written += 1;
+                    }
+                    let placed = harvest.creatures.len() - harvest.without_habitat.len();
+                    eprintln!(
+                        "{} creatures, {placed} with a habitat -> {written} files in {out}",
+                        harvest.creatures.len()
+                    );
+                    // The burndown, said out loud. A creature the wiki knows
+                    // and nobody has hunted with a notebook is the next piece
+                    // of work, and a harvest that swallowed the list would
+                    // make it invisible.
+                    if !harvest.without_habitat.is_empty() {
+                        eprintln!(
+                            "{} without a habitat: {}",
+                            harvest.without_habitat.len(),
+                            harvest.without_habitat.join(", ")
+                        );
+                    }
+                    for (who, why) in &harvest.unreadable {
+                        eprintln!("unreadable: {who}: {why}");
+                    }
+                    if let Some(l) = levelling {
+                        eprintln!(
+                            "wiki: {} levels filled, {} disagreements, {} it has never heard of",
+                            l.filled.len(),
+                            l.disagreed.len(),
+                            l.unknown_to_wiki.len()
+                        );
+                        for (name, level) in &l.filled {
+                            eprintln!("  filled  {name} = {level}");
+                        }
+                        // Lich's stands: it is the measurement, the wiki is a
+                        // reckoning of the same creature, and they differ by
+                        // one or two. Printed so a re-run that would have
+                        // taken a different answer says so.
+                        for (name, ours, theirs) in &l.disagreed {
+                            eprintln!("  kept lich {ours} for {name} (wiki says {theirs})");
+                        }
+                    }
+                    ExitCode::SUCCESS
+                }
+                Err(e) => {
+                    eprintln!("error: {e}");
+                    ExitCode::from(1)
+                }
+            }
+        }
         Some("ferry") => {
             let (Some(from), Some(out)) = (flag("--from"), flag("--out")) else {
                 eprintln!(
