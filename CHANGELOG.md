@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.2.0...gsiv-codex-v0.3.0) (2026-09-22)
+
+
+### New
+
+* **weapons:** what kind of weapon that is ([#13](https://github.com/ondreian/gsiv-codex/issues/13)) ([83624bc](https://github.com/ondreian/gsiv-codex/commit/83624bce303f0b7ea5a080d6a6bc9f9e6088ff94))
+
 ## [0.2.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.1.2...gsiv-codex-v0.2.0) (2026-09-18)
 
 
