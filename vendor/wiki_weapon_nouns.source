@@ -1,0 +1,18 @@
+# Where the weapon nouns come from.
+#
+# https://gswiki.play.net/List_of_alternative_weapon_names, the approved
+# alteration list: every noun a weapon of a given base may legitimately be
+# called, in eight tables, one per weapon skill.
+#
+# It is here because nothing in an item says what kind of weapon it is. The
+# game hands you "a vultite longsword" and `riposte` needs an edged weapon,
+# so getting from the noun to the skill is the whole question, and this page
+# is the only place the mapping is written down.
+#
+# A wiki has no commit to pin, so this records the fetch rather than a hash,
+# and `vendor/wiki_weapon_nouns.tsv` is committed: a build never needs the
+# network, and a change to the wiki arrives as a reviewable diff when somebody
+# re-runs `scripts/wiki-weapon-nouns.sh`.
+url=https://gswiki.play.net/List_of_alternative_weapon_names
+fetched=2026-09-21
+nouns=434
