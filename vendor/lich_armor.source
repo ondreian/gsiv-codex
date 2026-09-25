@@ -1,0 +1,11 @@
+# Where the armor table comes from.
+#
+# lich-5's lib/gemstone/armaments/armor_stats.rb: eighteen armor sub-groups
+# with type, penalties, spell hindrance by circle, the Armor Use training that
+# clears each, and the nouns each goes by. Re-run scripts/lich-armor.sh against
+# a newer checkout to pick up corrections; the TSVs are committed so a build
+# never needs lich.
+repo=elanthia-online/lich-5
+path=lib/gemstone/armaments/armor_stats.rb
+commit=236a9a2c6974339927d68c7bd07895b3f785d8e5
+fetched=2026-09-25
