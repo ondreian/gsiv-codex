@@ -19,5 +19,15 @@
 -- Only the gate that was measured. Other towns have guards and other gates
 -- have fees; none of them have been walked into and asked, and a guessed toll
 -- would route people around a gate that is free.
-INSERT OR REPLACE INTO edge_costs(from_uid, to_uid, command, resource, amount) VALUES
-  (9010, 7006, 'go gate', 'silver', 5.0);
+--
+-- Citizens of the Landing pass free (Benjamin), so the fee is waived for
+-- anyone whose citizenship is Wehnimer's Landing. urnon probes CITIZENSHIP at
+-- login; a character never probed pays, which is the safe way round -- the
+-- other way routes somebody with no silver into a guard's outstretched hand.
+INSERT OR IGNORE INTO conditions(id, description) VALUES
+  ('is-citizen:wehnimers-landing', 'the character is a citizen of Wehnimer''s Landing');
+INSERT OR IGNORE INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
+  ('is-citizen:wehnimers-landing', 0, 0, 'stat', 'citizenship', 'eq', 'Wehnimer''s Landing');
+
+INSERT OR REPLACE INTO edge_costs(from_uid, to_uid, command, resource, amount, waived_by) VALUES
+  (9010, 7006, 'go gate', 'silver', 5.0, 'is-citizen:wehnimers-landing');

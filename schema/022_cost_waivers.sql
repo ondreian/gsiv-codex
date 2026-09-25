@@ -1,0 +1,11 @@
+-- World, slice 22: a charge some characters do not pay.
+--
+-- The West Gate into Wehnimer's charges five silver -- but not to citizens of
+-- the Landing, who walk through free (Benjamin). An edge cost was a fact about
+-- the edge; this one is a fact about the edge *and* who is walking it.
+--
+-- A condition on the cost row rather than a new condition effect: the effect
+-- list is a CHECK constraint that would need its table rebuilt, and a waiver
+-- belongs to one charge, not to every charge an edge makes. NULL is the common
+-- case and means everybody pays.
+ALTER TABLE edge_costs ADD COLUMN waived_by TEXT REFERENCES conditions(id);
