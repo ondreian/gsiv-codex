@@ -74,6 +74,10 @@ const MIGRATIONS: &[(&str, &str)] = &[
         "022_cost_waivers",
         include_str!("../schema/022_cost_waivers.sql"),
     ),
+    (
+        "023_armor_coverage",
+        include_str!("../schema/023_armor_coverage.sql"),
+    ),
 ];
 
 /// How many migrations this build knows.
