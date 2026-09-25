@@ -63,13 +63,22 @@ CIRCLES = {
     19: "Lost Arts",
 }
 
+# What each sub-group covers, from the same file's `find_coverage`. Parsed
+# from the source rather than restated, so a correction upstream arrives here.
+cov_src = src[src.index("def self.find_coverage"):]
+cov_src = cov_src[: cov_src.index("coverage.each")]
+COVERAGE = {}
+for name, asgs in re.findall(r"(\w+):\s*\[([\d,\s]+)\]", cov_src):
+    for n in asgs.split(","):
+        COVERAGE[int(n)] = name
+
 subgroups, nouns, hindrances = [], set(), []
 for m in FIELDS.finditer(body):
     asg = int(m["asg"])
     base = m["base"].replace("_", " ")
     subgroups.append((asg, int(m["ag"]), m["type"], base, int(m["weight"]),
                       int(m["min_rt"]), int(m["ap"]), int(m["cva"]),
-                      int(m["mcva"]), int(m["hmax"])))
+                      int(m["mcva"]), int(m["hmax"]), COVERAGE[asg]))
     for n in re.findall(r'"([^"]+)"', m["names"]):
         # "corslet/corselet" is two spellings of one noun.
         for spelling in n.split("/"):
@@ -91,7 +100,7 @@ def write(path, rows, header=None):
             f.write("\t".join(str(x) for x in r) + "\n")
 
 sg_cols = ["asg", "armor_group", "type", "base_name", "base_weight", "min_rt",
-           "action_penalty", "normal_cva", "magical_cva", "hindrance_max"]
+           "action_penalty", "normal_cva", "magical_cva", "hindrance_max", "coverage"]
 # vendor/ keeps a header for people; data/vocabulary/ has none, since the
 # column order is the schema's (docs/bootstrap-format.md).
 write("vendor/lich_armor_subgroups.tsv", subgroups, sg_cols)
