@@ -817,3 +817,28 @@ INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('yellowed salt reedgras
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('yellowish green twisted-fan', 'herb', 'exact', 'yellowish_green_twisted_fan');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('yew twig', 'herb', 'exact', 'yew_twig');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('zucchini', 'herb', 'exact', 'zucchini');
+
+-- Chartered houses. Every room inside one is tagged `meta:che:<House>`, and
+-- the door is members-only: a non-member is stopped with "You're not a
+-- member of this house". Mapped to a `house` property whose detail is the
+-- house as PROFILE FULL names it (lich-5 infomon `ProfileHouseCHE`), because
+-- that is the string the door's condition compares against. Silvergate Inn
+-- and Silvergate Manor tag the same 42 rooms: one house, two names.
+-- Facility tags (`meta:che:<slug>:locker` and friends) are separate rules.
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Arcane Masters', 'house', 'exact', 'Arcane Masters');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Beacon Hall Archive', 'house', 'exact', 'Beacon Hall');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Cairnfang Manor', 'house', 'exact', 'Cairnfang Manor');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Helden Hall', 'house', 'exact', 'Helden Hall');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:House Brigatta', 'house', 'exact', 'Brigatta');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:House Sovyn', 'house', 'exact', 'Sovyn');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:House Sylvanfair', 'house', 'exact', 'Sylvanfair');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:House of Paupers', 'house', 'exact', 'Paupers');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:House of the Argent Aspis', 'house', 'exact', 'Argent Aspis');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:House of the Rising Phoenix', 'house', 'exact', 'Rising Phoenix');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Moonstone Abbey', 'house', 'exact', 'Moonstone Abbey');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Obsidian Tower', 'house', 'exact', 'Obsidian Tower');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Silvergate Inn', 'house', 'exact', 'Silvergate Inn');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Silvergate Manor', 'house', 'exact', 'Silvergate Inn');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Twilight Hall', 'house', 'exact', 'Twilight Hall');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:White Haven', 'house', 'exact', 'White Haven');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('meta:che:Willow Hall', 'house', 'exact', 'Willow Hall');

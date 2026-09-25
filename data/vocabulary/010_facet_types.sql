@@ -16,6 +16,7 @@ INSERT INTO facet_types(type, class, description) VALUES ('locker', 'poi', 'stor
 INSERT INTO facet_types(type, class, description) VALUES ('locksmith', 'poi', 'lockpick / box opener');
 INSERT INTO facet_types(type, class, description) VALUES ('node', 'poi', 'resting node');
 INSERT INTO facet_types(type, class, description) VALUES ('nomagic', 'property', 'magic is forbidden here');
+INSERT INTO facet_types(type, class, description) VALUES ('house', 'property', 'inside a chartered house; members only (detail = the house as PROFILE FULL names it)');
 -- A room you can walk in and not leave.
 --
 -- The Snow Plains answer a direction with "You wander off into the blowing
