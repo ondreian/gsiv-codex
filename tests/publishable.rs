@@ -59,6 +59,7 @@ fn every_condition_is_hung_on_something() {
           WHERE NOT EXISTS (SELECT 1 FROM edge_conditions e WHERE e.condition_id = c.id)
             AND NOT EXISTS (SELECT 1 FROM connector_conditions k WHERE k.condition_id = c.id)
             AND NOT EXISTS (SELECT 1 FROM preludes p WHERE p.condition_id = c.id)
+            AND NOT EXISTS (SELECT 1 FROM edge_costs w WHERE w.waived_by = c.id)
           ORDER BY c.id",
     );
     assert!(
