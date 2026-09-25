@@ -17,23 +17,13 @@
 -- otherwise -- the safe way round: the other way strands a non-member at a
 -- door they cannot open.
 
-INSERT OR IGNORE INTO conditions(id, description)
-SELECT DISTINCT 'not-house-member:' || lower(replace(detail, ' ', '-')),
-       'the character is not a member of ' || detail
-  FROM room_facets WHERE type = 'house';
-
-INSERT OR IGNORE INTO condition_terms(condition_id, grp, seq, subject, key, op, value)
-SELECT DISTINCT 'not-house-member:' || lower(replace(detail, ' ', '-')), 0, 0,
-       'stat', 'house', 'ne', detail
-  FROM room_facets WHERE type = 'house';
-
-INSERT OR IGNORE INTO condition_effects(condition_id, effect, amount)
-SELECT DISTINCT 'not-house-member:' || lower(replace(detail, ' ', '-')), 'forbid', 0
-  FROM room_facets WHERE type = 'house';
-
-INSERT OR IGNORE INTO edge_conditions(from_uid, to_uid, command, condition_id)
-SELECT e.from_uid, e.to_uid, e.command,
-       'not-house-member:' || lower(replace(inside.detail, ' ', '-'))
+-- The doors first, as a view the rest reads from: a house with no edge leading
+-- into it from outside gets no condition at all. Argent Aspis is one -- sixty
+-- tagged rooms and nothing in the mapdb walks in -- and a condition hung on
+-- nothing is what `every_condition_is_hung_on_something` refuses to publish.
+CREATE TEMP VIEW house_doors AS
+SELECT e.from_uid, e.to_uid, e.command, inside.detail AS house,
+       'not-house-member:' || lower(replace(inside.detail, ' ', '-')) AS condition_id
   FROM edges e
   JOIN room_facets inside
     ON inside.room_uid = e.to_uid AND inside.type = 'house'
@@ -41,6 +31,24 @@ SELECT e.from_uid, e.to_uid, e.command,
        SELECT 1 FROM room_facets f
         WHERE f.room_uid = e.from_uid AND f.type = 'house'
           AND f.detail = inside.detail);
+
+INSERT OR IGNORE INTO conditions(id, description)
+SELECT DISTINCT condition_id, 'the character is not a member of ' || house
+  FROM house_doors;
+
+INSERT OR IGNORE INTO condition_terms(condition_id, grp, seq, subject, key, op, value)
+SELECT DISTINCT condition_id, 0, 0, 'stat', 'house', 'ne', house
+  FROM house_doors;
+
+INSERT OR IGNORE INTO condition_effects(condition_id, effect, amount)
+SELECT DISTINCT condition_id, 'forbid', 0
+  FROM house_doors;
+
+INSERT OR IGNORE INTO edge_conditions(from_uid, to_uid, command, condition_id)
+SELECT from_uid, to_uid, command, condition_id
+  FROM house_doors;
+
+DROP VIEW house_doors;
 
 -- And if a plan made before this was published walks into the door anyway,
 -- the refusal is named rather than waited out. Here rather than in
