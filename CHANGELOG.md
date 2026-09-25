@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.4.0...gsiv-codex-v0.5.0) (2026-09-25)
+
+
+### New
+
+* **houses:** a chartered house's door is members-only ([#17](https://github.com/ondreian/gsiv-codex/issues/17)) ([05a0a18](https://github.com/ondreian/gsiv-codex/commit/05a0a18d3e087a11f32e5a72ad4c93a1f2cc9950))
+
 ## [0.4.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.3.0...gsiv-codex-v0.4.0) (2026-09-25)
 
 
