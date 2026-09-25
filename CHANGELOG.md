@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.5.0...gsiv-codex-v0.6.0) (2026-09-25)
+
+
+### New
+
+* **tolls:** citizens of the Landing pass the West Gate free ([#19](https://github.com/ondreian/gsiv-codex/issues/19)) ([5a30342](https://github.com/ondreian/gsiv-codex/commit/5a3034214029c2fb8af24712a44fe167e3ccb845))
+
 ## [0.5.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.4.0...gsiv-codex-v0.5.0) (2026-09-25)
 
 
