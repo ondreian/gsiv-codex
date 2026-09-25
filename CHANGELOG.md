@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.3.0...gsiv-codex-v0.4.0) (2026-09-25)
+
+
+### New
+
+* **armor:** what a body is wearing, and what that costs it ([#15](https://github.com/ondreian/gsiv-codex/issues/15)) ([afbe1ed](https://github.com/ondreian/gsiv-codex/commit/afbe1ed46e4aa17a3d27332ec69a810eda4b563b))
+
 ## [0.3.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.2.0...gsiv-codex-v0.3.0) (2026-09-22)
 
 
