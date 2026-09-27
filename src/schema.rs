@@ -78,6 +78,10 @@ const MIGRATIONS: &[(&str, &str)] = &[
         "023_armor_coverage",
         include_str!("../schema/023_armor_coverage.sql"),
     ),
+    (
+        "024_creature_combat",
+        include_str!("../schema/024_creature_combat.sql"),
+    ),
 ];
 
 /// How many migrations this build knows.

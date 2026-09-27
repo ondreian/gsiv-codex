@@ -1,0 +1,2999 @@
+Agresh bear	physical_attacks	0	Claw	as	144	179
+Agresh bear	physical_attacks	1	Bite	as	174	174
+Agresh troll chieftain	maneuvers	0	+40 AS boost	\N	\N	\N
+Agresh troll chieftain	maneuvers	1	Pounce	\N	\N	\N
+Agresh troll chieftain	physical_attacks	0	Flail	as	247	247
+Agresh troll chieftain	physical_attacks	1	Military pick	as	227	227
+Agresh troll scout	physical_attacks	0	War hammer	as	171	171
+Agresh troll scout	physical_attacks	1	Ensnare	\N	\N	\N
+Agresh troll scout	physical_attacks	2	Pound	\N	\N	\N
+Agresh troll scout	physical_attacks	3	Stomp	\N	\N	\N
+Agresh troll warrior	physical_attacks	0	War hammer	as	165	165
+Agresh troll warrior	physical_attacks	1	Fist	as	115	115
+Grimswarm orc archer	physical_attacks	0	Plain wooden arrow	as	267	267
+Grimswarm orc hunter	physical_attacks	0	Ball and chain	as	256	256
+Grimswarm orc pillager	maneuvers	0	Dust Kick	\N	\N	\N
+Grimswarm orc pillager	physical_attacks	0	Polished longsword	as	197	197
+Grimswarm orc raider	maneuvers	0	Dust Kick	\N	\N	\N
+Grimswarm orc ranger	maneuvers	0	Stomp	\N	\N	\N
+Grimswarm orc ranger	physical_attacks	0	Mace	as	231	231
+Grimswarm orc ranger	physical_attacks	1	Plain wooden arrow	as	274	465
+Grimswarm orc ranger	physical_attacks	2	Trident	as	269	269
+Grimswarm orc skirmisher	physical_attacks	0	Handaxe	as	87	87
+Grimswarm orc sorceress	maneuvers	0	Gesture	\N	\N	\N
+Grimswarm troll ranger	physical_attacks	0	Dagger	as	279	279
+Grimswarm troll ranger	physical_attacks	1	Plain wooden bolt	as	124	124
+Grimswarm troll ranger	physical_attacks	2	Plain wooden arrow	as	408	408
+Grimswarm troll scourge	physical_attacks	0	Dagger	as	228	228
+Grimswarm troll skirmisher	maneuvers	0	Sand Kick	\N	\N	\N
+Grimswarm troll skirmisher	physical_attacks	0	Wooden heavy crossbow bolt	as	474	474
+Grimswarm troll soldier	maneuvers	0	Sand Kick	\N	\N	\N
+Grimswarm troll soldier	physical_attacks	0	Twohanded sword	as	456	456
+Illoke elder	maneuvers	0	Divine Wrath	\N	\N	\N
+Illoke elder	maneuvers	1	Ethereal Wave	\N	\N	\N
+Illoke elder	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+Illoke elder	offensive_spells	1	Elemental Disjunction (530)	\N	\N	\N
+Illoke elder	offensive_spells	2	Sandstorm (914)	\N	\N	\N
+Illoke elder	physical_attacks	0	Stomp (attack)	\N	\N	\N
+Illoke elder	physical_attacks	1	Sledgehammer	\N	\N	\N
+Illoke elder	physical_attacks	2	Stalagmite	\N	\N	\N
+Illoke elder	physical_attacks	3	Rock (hurled)	\N	\N	\N
+Illoke elder	physical_attacks	4	Enormous stalagmite	as	419	419
+Illoke elder	physical_attacks	5	Fist	as	389	389
+Illoke elder	physical_attacks	6	Foot	as	292	292
+Illoke elder	physical_attacks	7	Giant granite sledgehammer	as	417	417
+Illoke elder	physical_attacks	8	Heavy earthen fists	as	431	431
+Illoke elder	physical_attacks	9	Heavy stone hammer	as	409	409
+Illoke elder	physical_attacks	10	Large rock	as	429	429
+Illoke elder	warding_spells	0	Stone Fist (514)	\N	\N	\N
+Illoke jarl	maneuvers	0	Mstrike	\N	\N	\N
+Illoke jarl	maneuvers	1	Divine Wrath	\N	\N	\N
+Illoke jarl	maneuvers	2	Feint	\N	\N	\N
+Illoke jarl	maneuvers	3	Ground Slam	\N	\N	\N
+Illoke jarl	maneuvers	4	Charge	\N	\N	\N
+Illoke jarl	maneuvers	5	Ethereal Wave	\N	\N	\N
+Illoke jarl	maneuvers	6	Shield Charge	\N	\N	\N
+Illoke jarl	offensive_spells	0	Spirit Strike (117)	\N	\N	\N
+Illoke jarl	physical_attacks	0	Fist	as	392	392
+Illoke jarl	physical_attacks	1	Hammer	as	422	435
+Illoke jarl	physical_attacks	2	Foot	as	405	405
+Illoke jarl	physical_attacks	3	Heavy earthen fists	as	419	419
+Illoke jarl	physical_attacks	4	Huge rock	as	434	434
+Illoke jarl	warding_spells	0	Divine Strike (1615)	cs	363	375
+Illoke jarl	warding_spells	1	Heavy black stone hammer	cs	366	366
+Illoke jarl	warding_spells	2	Slate grey stone hammer	cs	338	338
+Illoke jarl	warding_spells	3	Charge	cs	363	363
+Illoke mystic	maneuvers	0	Divine Wrath	\N	\N	\N
+Illoke mystic	physical_attacks	0	Giant stone hammer	as	341	341
+Illoke mystic	physical_attacks	1	Heavy stone hammer	as	255	255
+Illoke mystic	physical_attacks	2	Large rock	as	356	356
+Illoke shaman	maneuvers	0	Divine Wrath	\N	\N	\N
+Illoke shaman	maneuvers	1	Ground Slam	\N	\N	\N
+Illoke shaman	offensive_spells	0	Earthen Fury	\N	\N	\N
+Illoke shaman	physical_attacks	0	War mattock	\N	\N	\N
+Illoke shaman	physical_attacks	1	Fist	as	337	337
+Illoke shaman	physical_attacks	2	Foot	as	303	303
+Illoke shaman	physical_attacks	3	Huge stone maul	as	316	316
+Illoke shaman	physical_attacks	4	Massive granite hammer	as	325	335
+Illoke shaman	warding_spells	0	Interdiction	cs	282	282
+Illoke shaman	warding_spells	1	Interference (212)	cs	282	282
+Illoke shaman	warding_spells	2	Huge stone maul	cs	291	291
+Ilvari pixie	bolt_spells	0	Major Acid (1710)	as	352	352
+Ilvari pixie	maneuvers	0	Point	\N	\N	\N
+Ilvari pixie	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+Ilvari pixie	offensive_spells	1	Major Elemental Wave (435)	\N	\N	\N
+Ilvari pixie	physical_attacks	0	Giant bee stinger	as	348	348
+Ilvari pixie	warding_spells	0	Pain (711)	cs	339	339
+Ilvari sprite	offensive_spells	0	Spirit Dispel (119)	\N	\N	\N
+Ilvari sprite	warding_spells	0	Bone Shatter (1106)	cs	306	315
+Ilvari sprite	warding_spells	1	Repel (Fear)	cs	306	315
+Ilvari sprite	warding_spells	2	Wither (1115)	cs	306	315
+Ilvari sprite	warding_spells	3	Sympathy (1120)	\N	\N	\N
+Ithzir adept	bolt_spells	0	Cone of Elements (518)	as	379	379
+Ithzir adept	bolt_spells	1	Major Cold (907)	as	379	379
+Ithzir adept	bolt_spells	2	Major Fire (908)	as	379	379
+Ithzir adept	bolt_spells	3	Major Shock (910)	as	379	379
+Ithzir adept	bolt_spells	4	Minor Acid (904)	as	379	379
+Ithzir adept	bolt_spells	5	Minor Fire (906)	as	379	379
+Ithzir adept	bolt_spells	6	Minor Water (903)	as	379	379
+Ithzir adept	maneuvers	0	Palm Thrust	\N	\N	\N
+Ithzir adept	offensive_spells	0	Call Wind (912)	\N	\N	\N
+Ithzir adept	offensive_spells	1	Lightning mote	\N	\N	\N
+Ithzir adept	physical_attacks	0	Quarterstaff	as	408	408
+Ithzir adept	physical_attacks	1	Twisted crystal-tipped staff	as	408	428
+Ithzir adept	warding_spells	0	Weapon Fire (915)	cs	402	402
+Ithzir adept	warding_spells	1	Twisted crystal-tipped staff	cs	402	402
+Ithzir champion	maneuvers	0	Disarm Weapon	\N	\N	\N
+Ithzir champion	maneuvers	1	Bull Rush	\N	\N	\N
+Ithzir champion	maneuvers	2	True Strike	\N	\N	\N
+Ithzir champion	maneuvers	3	Charge	\N	\N	\N
+Ithzir champion	offensive_spells	0	Arm of the Arkati (1605)	\N	\N	\N
+Ithzir champion	physical_attacks	0	Flamberge	as	446	456
+Ithzir champion	physical_attacks	1	Maul	as	440	461
+Ithzir champion	special_abilities	0	Quickstrike	\N	\N	\N
+Ithzir champion	special_abilities	1	Seanette's Shout	\N	\N	\N
+Ithzir herald	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+Ithzir herald	offensive_spells	1	Mass Calm (619)	\N	\N	\N
+Ithzir herald	physical_attacks	0	Falchion	\N	\N	\N
+Ithzir herald	physical_attacks	1	Curved crystal-edged blade	as	413	413
+Ithzir herald	physical_attacks	2	Curved silvery blade	as	413	416
+Ithzir herald	warding_spells	0	Lullabye (1005)	\N	\N	\N
+Ithzir herald	warding_spells	1	Song of Depression (1015)	cs	384	384
+Ithzir herald	warding_spells	2	Song of Rage (1016)	\N	\N	\N
+Ithzir herald	warding_spells	3	Song of Sonic Disruption (1030)	cs	384	384
+Ithzir herald	warding_spells	4	Vibration Chant (1002)	cs	384	384
+Ithzir herald	warding_spells	5	Curved silvery blade	cs	375	375
+Ithzir initiate	bolt_spells	0	Fire Spirit (111)	as	407	407
+Ithzir initiate	bolt_spells	1	Web (118)	as	407	407
+Ithzir initiate	maneuvers	0	Mind Stun	\N	\N	\N
+Ithzir initiate	maneuvers	1	Ground Slam	\N	\N	\N
+Ithzir initiate	offensive_spells	0	Heroism (215)	\N	\N	\N
+Ithzir initiate	offensive_spells	1	Spirit Strike (117)	\N	\N	\N
+Ithzir initiate	physical_attacks	0	Quarterstaff	as	433	433
+Ithzir initiate	physical_attacks	1	Twisted crystal-tipped staff	as	428	503
+Ithzir initiate	warding_spells	0	Bind (214)	cs	386	386
+Ithzir initiate	warding_spells	1	Divine Fury (317)	cs	386	386
+Ithzir initiate	warding_spells	2	Divine Wrath (335)	cs	386	386
+Ithzir initiate	warding_spells	3	Fervent Reproach (312)	cs	386	386
+Ithzir initiate	warding_spells	4	Mass Interference (217)	cs	386	386
+Ithzir initiate	warding_spells	5	Web (118)	cs	398	398
+Ithzir initiate	warding_spells	6	Twisted crystal-tipped staff	cs	383	383
+Ithzir janissary	maneuvers	0	Disarm Weapon	\N	\N	\N
+Ithzir janissary	maneuvers	1	Trip	\N	\N	\N
+Ithzir janissary	maneuvers	2	Warcries	\N	\N	\N
+Ithzir janissary	maneuvers	3	Disarm	\N	\N	\N
+Ithzir janissary	physical_attacks	0	Longsword	as	428	428
+Ithzir janissary	physical_attacks	1	Military fork	\N	\N	\N
+Ithzir janissary	physical_attacks	2	Mace	as	421	421
+Ithzir janissary	physical_attacks	3	Smash	as	453	453
+Ithzir janissary	physical_attacks	4	Spiral-hafted crystal-edged handaxe	as	402	423
+Ithzir janissary	physical_attacks	5	Spiral-hafted handaxe	as	413	421
+Ithzir janissary	physical_attacks	6	Twisted crystal-tipped staff	as	431	431
+Ithzir janissary	physical_attacks	7	Gleaming crystal-edged broadsword	as	413	413
+Ithzir scout	maneuvers	0	Cheapshots	\N	\N	\N
+Ithzir scout	maneuvers	1	Sweep	\N	\N	\N
+Ithzir scout	maneuvers	2	Stomp	\N	\N	\N
+Ithzir scout	physical_attacks	0	Broadsword	as	414	436
+Ithzir scout	physical_attacks	1	Closed fist	as	402	402
+Ithzir scout	physical_attacks	2	Smash	as	443	459
+Ithzir seer	bolt_spells	0	Fire Spirit	as	476	476
+Ithzir seer	bolt_spells	1	Telekinesis	as	476	476
+Ithzir seer	bolt_spells	2	Web	as	476	476
+Ithzir seer	offensive_spells	0	Spirit Strike	\N	\N	\N
+Ithzir seer	offensive_spells	1	Spiritual Abolition	\N	\N	\N
+Ithzir seer	offensive_spells	2	Bravery (211)	\N	\N	\N
+Ithzir seer	offensive_spells	3	Elemental Focus (513)	\N	\N	\N
+Ithzir seer	physical_attacks	0	Quarterstaff	as	398	398
+Ithzir seer	physical_attacks	1	Twisted crystal-tipped staff	as	411	499
+Ithzir seer	physical_attacks	2	Gleaming crystal-edged broadsword	as	341	341
+Ithzir seer	special_abilities	0	Psionic stun	\N	\N	\N
+Ithzir seer	warding_spells	0	Bone Shatter	cs	423	423
+Ithzir seer	warding_spells	1	Frenzy	cs	411	431
+Ithzir seer	warding_spells	2	Mass Interference	cs	411	431
+Ithzir seer	warding_spells	3	Silence	cs	425	431
+Ithzir seer	warding_spells	4	Torment	cs	411	411
+Ithzir seer	warding_spells	5	Web	cs	431	431
+Ithzir seer	warding_spells	6	Twisted crystal-tipped staff	cs	431	431
+Sheruvian harbinger	maneuvers	0	Pale Arm	\N	\N	\N
+Sheruvian harbinger	offensive_spells	0	Heroism (215)	\N	\N	\N
+Sheruvian harbinger	offensive_spells	1	Spirit Strike (117)	\N	\N	\N
+Sheruvian harbinger	physical_attacks	0	Broadsword	as	324	404
+Sheruvian harbinger	warding_spells	0	Bind (214)	cs	284	284
+Sheruvian harbinger	warding_spells	1	Frenzy (216)	cs	284	284
+Sheruvian harbinger	warding_spells	2	Mind Jolt (706)	cs	291	291
+Sheruvian harbinger	warding_spells	3	Silence (210)	cs	284	284
+Sheruvian harbinger	warding_spells	4	Black steel broadsword	cs	284	284
+Sheruvian initiate	physical_attacks	0	Jeddart-axe	as	230	280
+Sheruvian initiate	physical_attacks	1	Lunge	as	220	220
+Sheruvian initiate	physical_attacks	2	Closed fist	as	220	220
+Sheruvian initiate	special_abilities	0	Healing	\N	\N	\N
+Sheruvian monk	physical_attacks	0	Jeddart-axe	as	239	314
+Sheruvian monk	physical_attacks	1	Lunge	as	269	299
+Sheruvian monk	special_abilities	0	Healing	\N	\N	\N
+Sheruvian priest	physical_attacks	0	Runestaff	as	253	253
+Sheruvian warlock	physical_attacks	0	Runestaff	as	253	253
+Vvrael destroyer	maneuvers	0	Mighty Blow	\N	\N	\N
+Vvrael destroyer	maneuvers	1	Sunder Shield	\N	\N	\N
+Vvrael destroyer	maneuvers	2	Tackle	\N	\N	\N
+Vvrael destroyer	maneuvers	3	Warcry	\N	\N	\N
+Vvrael destroyer	maneuvers	4	Weapon Bonding	\N	\N	\N
+Vvrael destroyer	maneuvers	5	Lash	\N	\N	\N
+Vvrael destroyer	maneuvers	6	Pounce	\N	\N	\N
+Vvrael destroyer	physical_attacks	0	Claidhmore	as	450	469
+Vvrael destroyer	physical_attacks	1	Maul	as	450	470
+Vvrael warlock	bolt_spells	0	Balefire (713)	as	379	379
+Vvrael warlock	maneuvers	0	Gesture	\N	\N	\N
+Vvrael warlock	maneuvers	1	Pounce	\N	\N	\N
+Vvrael warlock	maneuvers	2	Wing Buffet	\N	\N	\N
+Vvrael warlock	offensive_spells	0	Spirit Strike (117)	\N	\N	\N
+Vvrael warlock	offensive_spells	1	Bravery (211)	\N	\N	\N
+Vvrael warlock	offensive_spells	2	Elemental Dispel (417)	\N	\N	\N
+Vvrael warlock	physical_attacks	0	Whip	as	356	401
+Vvrael warlock	physical_attacks	1	Ball of greenish-black flame	as	459	466
+Vvrael warlock	physical_attacks	2	Midnight black longsword	as	470	470
+Vvrael warlock	warding_spells	0	Corrupt Essence (703)	cs	360	360
+Vvrael warlock	warding_spells	1	Curse (715)	cs	360	360
+Vvrael warlock	warding_spells	2	Elemental Blast (409)	cs	364	364
+Vvrael warlock	warding_spells	3	Evil Eye (717)	cs	360	360
+Vvrael warlock	warding_spells	4	Dark Catalyst (719)	cs	360	360
+Vvrael warlock	warding_spells	5	Torment (718)	cs	360	360
+Vvrael warlock	warding_spells	6	Midnight black longsword	cs	364	364
+Vvrael warlock	warding_spells	7	Midnight black spiked whip	cs	360	360
+Vvrael witch	maneuvers	0	Anti-mana Wave	\N	\N	\N
+Vvrael witch	maneuvers	1	Lash	\N	\N	\N
+Vvrael witch	physical_attacks	0	Minor Acid (904)	\N	\N	\N
+Vvrael witch	physical_attacks	1	Chunk of ice	as	349	349
+Vvrael witch	physical_attacks	2	Large boulder	as	314	349
+Vvrael witch	physical_attacks	3	Midnight black morning star	as	323	355
+Vvrael witch	physical_attacks	4	Powerful lightning bolt	as	314	360
+Vvrael witch	physical_attacks	5	Stream of fire	as	349	349
+Vvrael witch	physical_attacks	6	Midnight black curved dagger	as	374	374
+Vvrael witch	physical_attacks	7	Midnight black spiked whip	as	362	362
+Vvrael witch	warding_spells	0	Earthen Fury (917)	\N	\N	\N
+Vvrael witch	warding_spells	1	Elemental Dispel (417)	\N	\N	\N
+Vvrael witch	warding_spells	2	Midnight black morning star	cs	352	352
+Withered shadow-cloaked draugr	maneuvers	0	Shield Bash	\N	\N	\N
+Withered shadow-cloaked draugr	maneuvers	1	Charge	\N	\N	\N
+Withered shadow-cloaked draugr	physical_attacks	0	greatsword	as	586	693
+Withered shadow-cloaked draugr	physical_attacks	1	Dagger-sharp beak	as	610	622
+Withered shadow-cloaked draugr	physical_attacks	2	Lunge	as	545	545
+Withered shadow-cloaked draugr	physical_attacks	3	Shadow-drenched fist down	as	582	647
+Withered shadow-cloaked draugr	physical_attacks	4	Shining metallic spear	as	654	654
+Withered shadow-cloaked draugr	physical_attacks	5	Smash	as	582	662
+Withered shadow-cloaked draugr	physical_attacks	6	Talons	as	600	610
+Withered shadow-cloaked draugr	physical_attacks	7	Yellowed brittle bone cudgel	as	608	608
+Withered shadow-cloaked draugr	physical_attacks	8	?: Blow raises a welt	as	657	657
+Withered shadow-cloaked draugr	physical_attacks	9	Shark-like teeth	as	465	465
+aivren	maneuvers	0	Wing Buffet	\N	\N	\N
+aivren	physical_attacks	0	Bite (attack)	as	398	398
+aivren	physical_attacks	1	Claw (attack)	as	378	378
+aivren	physical_attacks	2	Bite	as	403	403
+aivren	physical_attacks	3	Massive beak	as	358	358
+aivren	physical_attacks	4	Razor-sharp claw	as	410	410
+aivren	physical_attacks	5	Swoop	as	410	410
+albino tomb spider	maneuvers	0	Web	\N	\N	\N
+albino tomb spider	physical_attacks	0	Claw	as	106	116
+albino tomb spider	physical_attacks	1	Pincer (attack)	as	116	116
+albino tomb spider	physical_attacks	2	Pincer	as	116	116
+albino tomb spider	special_abilities	0	Web	\N	\N	\N
+algae-draped merrow oracle	maneuvers	0	Lash	\N	\N	\N
+ancient ghoul master	maneuvers	0	Gas cloud	\N	\N	\N
+ancient ghoul master	maneuvers	1	Gesture	\N	\N	\N
+ancient ghoul master	physical_attacks	0	Battle axe	as	147	147
+ancient ghoul master	warding_spells	0	Torment (718)	cs	127	127
+animated slush	bolt_spells	0	Minor Water (903)	as	291	291
+animated slush	maneuvers	0	Elemental Wave (410)	\N	\N	\N
+animated slush	maneuvers	1	Major Elemental Wave	\N	\N	\N
+animated slush	maneuvers	2	Slush wall	\N	\N	\N
+animated slush	maneuvers	3	Tail Swipe	\N	\N	\N
+animated slush	maneuvers	4	Ethereal Wave	\N	\N	\N
+animated slush	physical_attacks	0	Pound	\N	\N	\N
+animated slush	physical_attacks	1	Icy appendage	as	263	267
+animated slush	physical_attacks	2	Stream of water	as	243	243
+animated slush	warding_spells	0	Torment (718)	cs	127	127
+arachne acolyte	maneuvers	0	Disarm	\N	\N	\N
+arachne acolyte	maneuvers	1	Tackle	\N	\N	\N
+arachne acolyte	maneuvers	2	Pounce	\N	\N	\N
+arachne acolyte	offensive_spells	0	Spirit Strike (117)	\N	\N	\N
+arachne acolyte	physical_attacks	0	War hammer	as	161	161
+arachne acolyte	warding_spells	0	Frenzy (216)	cs	118	118
+arachne acolyte	warding_spells	1	Web (118)	cs	118	118
+arachne priest	maneuvers	0	Point	\N	\N	\N
+arachne priest	offensive_spells	0	Spirit Strike (117)	\N	\N	\N
+arachne priest	offensive_spells	1	Heroism (215)	\N	\N	\N
+arachne priest	offensive_spells	2	Benediction (307)	\N	\N	\N
+arachne priest	physical_attacks	0	Broadsword	as	219	219
+arachne priest	physical_attacks	1	Scimitar	as	294	294
+arachne priest	physical_attacks	2	Short sword	as	266	266
+arachne priest	warding_spells	0	Web (118)	cs	118	118
+arachne servant	physical_attacks	0	Morning star	as	150	190
+arch wight	maneuvers	0	Gesture	\N	\N	\N
+arch wight	maneuvers	1	Web	\N	\N	\N
+arch wight	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+arch wight	offensive_spells	1	Gas cloud	\N	\N	\N
+arch wight	physical_attacks	0	Scimitar	as	144	156
+arch wight	physical_attacks	1	Claw	as	136	136
+arch wight	physical_attacks	2	Twohanded sword	as	150	150
+arch wight	warding_spells	0	Mind Jolt (706)	cs	123	123
+arch wight	warding_spells	1	Empathy (1108)	\N	\N	\N
+arch wight	warding_spells	2	Scimitar	cs	129	129
+arch wight	warding_spells	3	Twohanded sword	cs	117	117
+arctic manticore	physical_attacks	0	Bite	as	194	194
+arctic manticore	physical_attacks	1	Claw	as	194	194
+arctic puma	maneuvers	0	Pounce	\N	\N	\N
+arctic puma	physical_attacks	0	Claw	as	168	168
+arctic puma	physical_attacks	1	Bite	as	168	168
+arctic titan	bolt_spells	0	Major Shock (910)	as	185	185
+arctic titan	maneuvers	0	Stomp	\N	\N	\N
+arctic titan	maneuvers	1	Ground Slam	\N	\N	\N
+arctic titan	physical_attacks	0	Handaxe	as	262	262
+arctic titan	physical_attacks	1	Closed fist	as	242	242
+arctic titan	physical_attacks	2	Stomp (attack)	as	232	232
+arctic titan	warding_spells	0	Weapon Fire (915)	cs	184	184
+arctic wolverine	physical_attacks	0	Bite	as	155	194
+arctic wolverine	physical_attacks	1	Claw	as	184	204
+arctic wolverine	physical_attacks	2	(quarantine-recovered)	as	238	238
+ash guardian	maneuvers	0	Feint	\N	\N	\N
+ash guardian	maneuvers	1	Dirtkick	\N	\N	\N
+ash guardian	maneuvers	2	Shield Bash	\N	\N	\N
+ash guardian	maneuvers	3	Dust Kick	\N	\N	\N
+ash guardian	physical_attacks	0	Falchion	as	402	402
+ash guardian	physical_attacks	1	Ensnare	as	346	346
+ash guardian	physical_attacks	2	Jagged shard of obsidian	as	406	406
+ash guardian	physical_attacks	3	Sharp beak	as	295	295
+ash guardian	physical_attacks	4	Beak	as	375	375
+ash hag	bolt_spells	0	Minor Fire (906)	as	200	200
+ash hag	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+ash hag	offensive_spells	1	Fire Storm	\N	\N	\N
+ash hag	physical_attacks	0	Slap	as	210	210
+ash hag	physical_attacks	1	Bite (attack)	as	180	180
+ash hag	warding_spells	0	Immolation (519)	cs	183	183
+ashen patrician vampire	maneuvers	0	Disarm Weapon	\N	\N	\N
+ashen patrician vampire	maneuvers	1	Feint	\N	\N	\N
+ashen patrician vampire	maneuvers	2	Pounce	\N	\N	\N
+ashen patrician vampire	physical_attacks	0	Rapier	as	\N	\N
+ashen patrician vampire	physical_attacks	1	Charge	as	530	530
+ashen patrician vampire	special_abilities	0	Mstrike	\N	\N	\N
+ashen patrician vampire	special_abilities	1	Cripple	\N	\N	\N
+ashen patrician vampire	warding_spells	0	Blind	cs	455	455
+athletic dark-eyed incubus	maneuvers	0	Spellsong	\N	\N	\N
+athletic dark-eyed incubus	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+athletic dark-eyed incubus	physical_attacks	0	Ensnare	as	\N	\N
+athletic dark-eyed incubus	warding_spells	0	Song of Depression (1015)	cs	300	300
+athletic dark-eyed incubus	warding_spells	1	Repel (Fear)	\N	\N	\N
+baesrukha	bolt_spells	0	Major Fire (908)	as	220	220
+baesrukha	physical_attacks	0	Claw	as	247	273
+baesrukha	physical_attacks	1	Bite	as	187	262
+baesrukha	physical_attacks	2	Roaring ball of fire	as	220	220
+baesrukha	warding_spells	0	Cold Snap (512)	\N	\N	\N
+baesrukha	warding_spells	1	Elemental Blast (409)	cs	212	212
+banded rattlesnake	physical_attacks	0	Bite	as	182	182
+banded rattlesnake	physical_attacks	1	(quarantine-recovered)	as	163	163
+banded rattlesnake	special_abilities	0	Coil Strike	\N	\N	\N
+bandit	maneuvers	0	Cheapshots	\N	\N	\N
+bandit	maneuvers	1	Cutthroat	\N	\N	\N
+bandit	maneuvers	2	Feint	\N	\N	\N
+bandit	maneuvers	3	Shield Bash	\N	\N	\N
+bandit	maneuvers	4	Subdual Strike	\N	\N	\N
+bandit	maneuvers	5	Sweep	\N	\N	\N
+banshee	physical_attacks	0	Claw (attack)	as	275	275
+banshee	physical_attacks	1	Claw	as	265	275
+banshee	warding_spells	0	Scream	cs	230	230
+banshee	warding_spells	1	Claw	cs	230	230
+barbed cavern urchin	maneuvers	0	Spine Barrage	\N	\N	\N
+barbed cavern urchin	physical_attacks	0	Barbed spines	as	176	176
+barghest	physical_attacks	0	Charge (attack)	as	229	229
+barghest	physical_attacks	1	Bite	as	197	234
+barghest	physical_attacks	2	Charge	as	206	214
+battle-worn empyrean captain	bolt_spells	0	???	as	\N	\N
+battle-worn empyrean captain	maneuvers	0	Eviscerate	\N	\N	\N
+battle-worn empyrean captain	maneuvers	1	Garrote	\N	\N	\N
+battle-worn empyrean captain	maneuvers	2	Coup de Grace	\N	\N	\N
+battle-worn empyrean captain	maneuvers	3	Cheapshot	\N	\N	\N
+battle-worn empyrean captain	maneuvers	4	Slippery Mind	\N	\N	\N
+battle-worn empyrean captain	maneuvers	5	Spell Thieve	\N	\N	\N
+battle-worn empyrean captain	offensive_spells	0	???	\N	\N	\N
+battle-worn empyrean captain	special_abilities	0	Telekinetic Choke	\N	\N	\N
+battle-worn empyrean captain	special_abilities	1	Aura Shift	\N	\N	\N
+battle-worn empyrean captain	warding_spells	0	???	cs	\N	\N
+bent being	bolt_spells	0	Major Shock (910)	as	374	374
+bent being	physical_attacks	0	Stomp	as	386	386
+bent being	physical_attacks	1	Claw	as	356	356
+bent being	physical_attacks	2	Foot	as	386	386
+big ugly kobold	physical_attacks	0	Short sword	as	55	55
+big ugly kobold	physical_attacks	1	Unknown	as	62	62
+bighorn sheep	physical_attacks	0	Impale	as	168	183
+black bear	physical_attacks	0	Bite (attack)	as	180	180
+black bear	physical_attacks	1	Claw (attack)	as	190	190
+black bear	physical_attacks	2	Charge (attack)	as	190	190
+black bear	physical_attacks	3	Bite	as	150	150
+black bear	physical_attacks	4	Claw	as	171	171
+black bear	special_abilities	0	Pounce	\N	\N	\N
+black boar	maneuvers	0	Charge	\N	\N	\N
+black boar	physical_attacks	0	Bite	as	153	171
+black boar	physical_attacks	1	Charge (attack)	as	181	181
+black boar	special_abilities	0	Charge	\N	\N	\N
+black forest ogre	bolt_spells	0	Hand of Tonis (505)	as	379	379
+black forest ogre	bolt_spells	1	Minor Acid (904)	as	379	379
+black forest ogre	bolt_spells	2	Minor Fire (906)	as	379	379
+black forest ogre	bolt_spells	3	Major Cold (907)	as	379	379
+black forest ogre	maneuvers	0	Cheapshots	\N	\N	\N
+black forest ogre	maneuvers	1	Swiftkick	\N	\N	\N
+black forest ogre	maneuvers	2	Stomp	\N	\N	\N
+black forest ogre	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+black forest ogre	offensive_spells	1	Tremors (909)	\N	\N	\N
+black forest ogre	offensive_spells	2	Call Wind (912)	\N	\N	\N
+black forest ogre	offensive_spells	3	Elemental Focus (513)	\N	\N	\N
+black forest ogre	offensive_spells	4	Elemental Targeting (425)	\N	\N	\N
+black forest ogre	physical_attacks	0	DharaDhara (Rogues)	as	340	340
+black forest ogre	physical_attacks	1	Closed fistClosed fist (Wizards)	as	294	294
+black forest ogre	physical_attacks	2	Closed fist	as	273	273
+black forest ogre	physical_attacks	3	Rust-covered dhara	as	336	336
+black forest ogre	special_abilities	0	Familiar Gate (930)	\N	\N	\N
+black forest ogre	special_abilities	1	Foam	\N	\N	\N
+black forest ogre	warding_spells	0	Cold Snap (512)	cs	222	222
+black forest viper	maneuvers	0	Venomous spit	\N	\N	\N
+black forest viper	maneuvers	1	Spit	\N	\N	\N
+black forest viper	physical_attacks	0	Bite	as	340	340
+black leopard	maneuvers	0	Pounce	\N	\N	\N
+black leopard	maneuvers	1	Leap	\N	\N	\N
+black leopard	physical_attacks	0	Claw	as	134	168
+black leopard	physical_attacks	1	Bite	as	128	168
+black rolton	physical_attacks	0	Bite	as	23	23
+black rolton	physical_attacks	1	Unknown	as	36	36
+black-winged daggerbeak	physical_attacks	0	Bite	as	36	36
+black-winged daggerbeak	physical_attacks	1	Unknown	as	36	36
+blackened decaying tumbleweed	maneuvers	0	Tumbleweed roll	\N	\N	\N
+blackened decaying tumbleweed	physical_attacks	0	Stinger (attack)	\N	\N	\N
+blackened decaying tumbleweed	physical_attacks	1	Stinger	as	252	252
+blazing red phoenix	bolt_spells	0	Major Fire (908)	as	345	345
+blazing red phoenix	maneuvers	0	Ethereal Wave	\N	\N	\N
+blazing red phoenix	maneuvers	1	Shield Bash	\N	\N	\N
+blazing red phoenix	offensive_spells	0	Firestorm (1715)	\N	\N	\N
+blazing red phoenix	offensive_spells	1	Major Elemental Wave (435)	\N	\N	\N
+blazing red phoenix	physical_attacks	0	Claw (attack)	as	330	390
+blazing red phoenix	physical_attacks	1	Bite (attack)	as	380	380
+blazing red phoenix	physical_attacks	2	Beak	as	375	375
+blazing red phoenix	physical_attacks	3	Beak of flame	as	393	393
+blazing red phoenix	physical_attacks	4	Flaming maw	as	396	396
+blazing red phoenix	physical_attacks	5	Lash	as	402	402
+blazing red phoenix	physical_attacks	6	Roaring ball of fire	as	357	357
+blazing red phoenix	physical_attacks	7	Sharp beak	as	377	377
+blazing red phoenix	physical_attacks	8	Stream of fire	as	361	361
+blazing red phoenix	warding_spells	0	Immolation (519)	cs	377	377
+bloated kiramon broodtender	maneuvers	0	Leap	\N	\N	\N
+bloated kiramon broodtender	physical_attacks	0	Barbed stinger	as	557	557
+bloated kiramon broodtender	physical_attacks	1	Bladed forelegs	as	523	523
+blood eagle	physical_attacks	0	Claw	as	100	100
+blood eagle	physical_attacks	1	Bite	\N	\N	\N
+blood eagle	physical_attacks	2	Pound	\N	\N	\N
+blood eagle	physical_attacks	3	Ensnare	as	96	96
+blood eagle	physical_attacks	4	Black fists	as	86	86
+blood eagle	special_abilities	0	Carry and drop prey while in flight	\N	\N	\N
+blubbery humpbacked merrow	special_abilities	0	Charm Toxin	\N	\N	\N
+blubbery humpbacked merrow	special_abilities	1	Reactive Spines	\N	\N	\N
+blubbery humpbacked merrow	special_abilities	2	Regenerate	\N	\N	\N
+bobcat	maneuvers	0	Leap	\N	\N	\N
+bobcat	physical_attacks	0	Bite (attack)	as	80	80
+bobcat	physical_attacks	1	Claw (attack)	as	90	90
+bobcat	physical_attacks	2	Charge (attack)	as	90	90
+bobcat	physical_attacks	3	Bite	as	72	72
+bobcat	physical_attacks	4	Claw	as	81	81
+bog spectre	physical_attacks	0	Claw	as	242	269
+bog spectre	physical_attacks	1	Ensnare	as	220	275
+bog spectre	special_abilities	0	Gaze Attack	\N	\N	\N
+bog spectre	warding_spells	0	Corrupt Essence (703)	cs	226	226
+bog spectre	warding_spells	1	Disintegrate (705)	\N	\N	\N
+bog spectre	warding_spells	2	Grasp of the Grave (709)	\N	\N	\N
+bog troll	physical_attacks	0	Thick Wooden Knurl	as	244	314
+bog troll	physical_attacks	1	Claw	as	234	234
+bog wight	physical_attacks	0	Bite	as	270	274
+bog wight	physical_attacks	1	Claw	as	204	284
+bog wraith	maneuvers	0	Lash	\N	\N	\N
+bog wraith	physical_attacks	0	Claw	as	216	216
+bog wraith	physical_attacks	1	Ensnare	as	94	239
+bog wraith	warding_spells	0	Ensnare	cs	206	206
+bone golem	maneuvers	0	Tail sweep	\N	\N	\N
+bone golem	maneuvers	1	Tail Swipe	\N	\N	\N
+bone golem	physical_attacks	0	Ensnare	as	97	97
+bone golem	physical_attacks	1	Pound	as	107	107
+bone golem	physical_attacks	2	Skeletal fist	as	97	97
+bony tenthsworn occultist	maneuvers	0	Crimson Smoke	\N	\N	\N
+bony tenthsworn occultist	offensive_spells	0	Condemn (309)	\N	\N	\N
+bony tenthsworn occultist	offensive_spells	1	Grasp of the Grave (709)	\N	\N	\N
+bony tenthsworn occultist	warding_spells	0	Blood Burst (701)	cs	274	283
+brackish bilge mass	physical_attacks	0	Huge black alloy greatsword	as	592	592
+branded goliath diviner	offensive_spells	0	Mystic Impedance (1708)	\N	\N	\N
+branded goliath diviner	special_abilities	0	Runestone	\N	\N	\N
+branded goliath diviner	special_abilities	1	Fate Shadows	\N	\N	\N
+branded goliath diviner	special_abilities	2	Doom Sign	\N	\N	\N
+branded goliath diviner	special_abilities	3	Force Burst	\N	\N	\N
+branded goliath diviner	special_abilities	4	Time Spike	\N	\N	\N
+branded goliath diviner	warding_spells	0	Mana Burst (1414)	cs	369	396
+branded goliath diviner	warding_spells	1	Thought Lash (1210)	cs	384	390
+bresnahanini rolton	physical_attacks	0	Bite (attack)	as	60	60
+bresnahanini rolton	physical_attacks	1	Charge (attack)	as	70	70
+bresnahanini rolton	physical_attacks	2	Bite	as	48	50
+bresnahanini rolton	physical_attacks	3	Charge	as	63	63
+bristly black tapir	maneuvers	0	Charge	\N	\N	\N
+bristly black tapir	physical_attacks	0	Bite	as	184	232
+bristly black tapir	physical_attacks	1	Charge (attack)	as	194	242
+bristly black tapir	special_abilities	0	Charge	\N	\N	\N
+brown boar	physical_attacks	0	Bite	as	121	171
+brown boar	physical_attacks	1	Charge (attack)	as	187	187
+brown boar	physical_attacks	2	Charge	as	151	151
+brown boar	special_abilities	0	Charge	\N	\N	\N
+brown gak	physical_attacks	0	Impale	as	48	48
+brown gak	physical_attacks	1	Tusk	as	43	43
+brown spinner	maneuvers	0	Web	\N	\N	\N
+brown spinner	physical_attacks	0	Claw	\N	\N	\N
+brown spinner	physical_attacks	1	Pincer (attack)	\N	\N	\N
+brown spinner	physical_attacks	2	Pincer	as	107	107
+brown spinner	special_abilities	0	Web	\N	\N	\N
+burly goliath engineer	maneuvers	0	Bearhug	\N	\N	\N
+burly goliath engineer	maneuvers	1	Sucker Punch	\N	\N	\N
+burly goliath engineer	offensive_spells	0	Interference (212)	\N	\N	\N
+burly goliath engineer	special_abilities	0	Hand Cannon	\N	\N	\N
+burly goliath engineer	special_abilities	1	Mech Vine	\N	\N	\N
+burly goliath engineer	special_abilities	2	Shard Bomb	\N	\N	\N
+burly goliath engineer	special_abilities	3	Bombing Run	\N	\N	\N
+burly reiver	physical_attacks	0	Steel dirk	as	232	232
+cadaverous tatterdemalion ghast	maneuvers	0	Tackle	\N	\N	\N
+cadaverous tatterdemalion ghast	maneuvers	1	Swiftkick	\N	\N	\N
+cadaverous tatterdemalion ghast	maneuvers	2	Pounce	\N	\N	\N
+cadaverous tatterdemalion ghast	physical_attacks	0	Claw (attack)	as	484	484
+cadaverous tatterdemalion ghast	physical_attacks	1	Pound (attack)	as	484	484
+cadaverous tatterdemalion ghast	physical_attacks	2	Bite	as	524	555
+cadaverous tatterdemalion ghast	physical_attacks	3	Fist	as	484	519
+cadaverous tatterdemalion ghast	physical_attacks	4	Kick	as	530	530
+cadaverous tatterdemalion ghast	physical_attacks	5	Charge	as	565	565
+cadaverous tatterdemalion ghast	special_abilities	0	Leap	\N	\N	\N
+caedera	maneuvers	0	Burrow	\N	\N	\N
+caedera	maneuvers	1	Burrow Ambush	\N	\N	\N
+caedera	physical_attacks	0	Bite	as	369	411
+caedera	physical_attacks	1	Charge (attack)	\N	\N	\N
+caedera	physical_attacks	2	Ensnare (attack)	\N	\N	\N
+caedera	physical_attacks	3	Charge	as	421	421
+caedera	physical_attacks	4	Ensnare	as	421	421
+carceris	maneuvers	0	Gesture	\N	\N	\N
+carceris	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+carceris	offensive_spells	1	Earthen Fury (917)	\N	\N	\N
+carceris	physical_attacks	0	Major Cold (907)	as	160	160
+carceris	physical_attacks	1	Major Fire (908)	as	160	160
+carceris	physical_attacks	2	Major Shock (910)	as	160	160
+carceris	physical_attacks	3	Bite	as	189	189
+carceris	physical_attacks	4	Claw	as	139	139
+caribou	physical_attacks	0	Charge	as	238	238
+caribou	physical_attacks	1	Kick	as	232	232
+caribou	physical_attacks	2	(quarantine-recovered)	as	238	238
+caribou	physical_attacks	3	Antlers	as	238	238
+carrion worm	physical_attacks	0	Charge	as	39	39
+carrion worm	physical_attacks	1	Bite	as	29	29
+carrion worm	physical_attacks	2	Unknown	as	29	29
+cave bear	physical_attacks	0	Claw	as	217	227
+cave bear	physical_attacks	1	Bite	as	202	225
+cave gnoll	physical_attacks	0	Scimitar	as	58	68
+cave gnoll	physical_attacks	1	Unknown	as	73	73
+cave gnoll	physical_attacks	2	Closed fist	as	52	52
+cave gnome	physical_attacks	0	Cudgel	as	52	52
+cave gnome	physical_attacks	1	Handaxe	as	52	52
+cave gnome	physical_attacks	2	Short sword	as	46	52
+cave gnome	physical_attacks	3	Unknown	as	52	52
+cave gnome	physical_attacks	4	Closed fist	as	42	42
+cave lizard	maneuvers	0	Tail Sweep	\N	\N	\N
+cave lizard	maneuvers	1	Tail Swipe	\N	\N	\N
+cave lizard	physical_attacks	0	Claw	as	183	203
+cave lizard	physical_attacks	1	Bite	as	189	189
+cave nipper	physical_attacks	0	Charge	as	43	63
+cave nipper	physical_attacks	1	Unknown	as	53	53
+cave nipper	physical_attacks	2	Claw	as	53	53
+cave troll	maneuvers	0	Web	\N	\N	\N
+cave troll	physical_attacks	0	Short sword	as	191	191
+cave troll	physical_attacks	1	Spear	as	191	191
+cave troll	physical_attacks	2	Pitted battle axe	as	191	191
+cave troll	physical_attacks	3	Unknown	as	191	191
+cave worm	physical_attacks	0	Ensnare	as	139	139
+cave worm	physical_attacks	1	Bite	as	129	129
+cave worm	physical_attacks	2	Charge (attack)	as	139	139
+cave worm	physical_attacks	3	Charge	as	119	119
+centaur	maneuvers	0	Kick	\N	\N	\N
+centaur	maneuvers	1	Bull Rush	\N	\N	\N
+centaur	maneuvers	2	Charge	\N	\N	\N
+centaur	maneuvers	3	Tail Swipe	\N	\N	\N
+centaur	physical_attacks	0	Longsword	as	208	208
+centaur	physical_attacks	1	Greatsword	as	208	208
+centaur	physical_attacks	2	Scimitar	as	166	166
+centaur ranger	maneuvers	0	Kick	\N	\N	\N
+centaur ranger	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+centaur ranger	offensive_spells	1	Sounds (607)	\N	\N	\N
+centaur ranger	offensive_spells	2	Tangleweed (610)	\N	\N	\N
+centaur ranger	physical_attacks	0	Long bow	as	208	208
+centaur ranger	physical_attacks	1	Plain wooden arrow	as	209	209
+chitinous kiramon myrmidon	maneuvers	0	Feint	\N	\N	\N
+chitinous kiramon myrmidon	maneuvers	1	Headbutt	\N	\N	\N
+chitinous kiramon myrmidon	maneuvers	2	Crowd Press	\N	\N	\N
+chitinous kiramon myrmidon	maneuvers	3	Charge	\N	\N	\N
+chitinous kiramon myrmidon	physical_attacks	0	Bite	\N	\N	\N
+chitinous kiramon myrmidon	physical_attacks	1	Pincer (attack)	\N	\N	\N
+chitinous kiramon myrmidon	physical_attacks	2	Bladed forelegs	as	532	541
+chitinous kiramon myrmidon	special_abilities	0	Kiramon lunge	\N	\N	\N
+chitinous kiramon myrmidon	special_abilities	1	Durable Carapace	\N	\N	\N
+chitinous kiramon myrmidon	special_abilities	2	Chitin Disarm	\N	\N	\N
+cinder wasp	physical_attacks	0	Stinger (attack)	as	276	276
+cinder wasp	physical_attacks	1	Stinger	as	276	276
+cinereous chthonian sybil	bolt_spells	0	Astral Spear (1408)	as	569	569
+cinereous chthonian sybil	offensive_spells	0	Condemn (309)	\N	\N	\N
+cinereous chthonian sybil	offensive_spells	1	Meteor Swarm (525)	\N	\N	\N
+cinereous chthonian sybil	warding_spells	0	Dark Catalyst (719)	cs	557	557
+cinereous chthonian sybil	warding_spells	1	Mindwipe (1225)	cs	536	536
+cloud sprite bully	maneuvers	0	Groin Kick	\N	\N	\N
+cloud sprite bully	maneuvers	1	Kneebash	\N	\N	\N
+cloud sprite bully	maneuvers	2	Footstomp	\N	\N	\N
+cloud sprite bully	maneuvers	3	Kick	\N	\N	\N
+cloud sprite bully	physical_attacks	0	Mace	as	185	235
+cloud sprite meddler	offensive_spells	0	Sounds (607)	\N	\N	\N
+cloud sprite meddler	offensive_spells	1	Call Swarm (615)	\N	\N	\N
+cloud sprite meddler	physical_attacks	0	Short bow	as	216	216
+cloud sprite meddler	physical_attacks	1	Wooden mace	as	209	209
+cloud sprite meddler	warding_spells	0	Sleep (501)	cs	149	149
+cloud sprite meddler	warding_spells	1	Slow (504)	cs	149	149
+cloud sprite meddler	warding_spells	2	Unknown	cs	149	149
+cobra	physical_attacks	0	Bite	as	68	68
+cockatrice	maneuvers	0	Dust Kick	\N	\N	\N
+cockatrice	physical_attacks	0	Claw (attack)	as	99	99
+cockatrice	physical_attacks	1	Pincer (attack)	as	99	99
+cockatrice	physical_attacks	2	Charge (attack)	as	109	109
+cockatrice	physical_attacks	3	Strike	as	80	99
+coconut crab	physical_attacks	0	Claw	as	43	43
+coconut crab	physical_attacks	1	Unknown	as	53	53
+cold guardian	bolt_spells	0	Major Cold (907)	as	193	193
+cold guardian	physical_attacks	0	Closed fist	as	240	240
+cold guardian	physical_attacks	1	Charge	as	220	220
+colossus vulture	maneuvers	0	Wing Buffet	\N	\N	\N
+colossus vulture	physical_attacks	0	Bite	as	235	235
+colossus vulture	physical_attacks	1	Claw	as	220	245
+colossus vulture	physical_attacks	2	Impale	as	235	235
+colossus vulture	physical_attacks	3	Swoop	as	220	245
+colossus vulture	physical_attacks	4	Beak	as	211	211
+colossus vulture	special_abilities	0	Wing buffet	\N	\N	\N
+cook's assistant	bolt_spells	0	Minor Acid (904)	as	194	194
+cook's assistant	offensive_spells	0	Call Wind (912)	\N	\N	\N
+cook's assistant	offensive_spells	1	Elemental Dispel (417)	\N	\N	\N
+cook's assistant	offensive_spells	2	Elemental Wave (410)	\N	\N	\N
+cook's assistant	offensive_spells	3	Gas cloud	\N	\N	\N
+cook's assistant	physical_attacks	0	Quarterstaff	as	208	208
+cook's assistant	physical_attacks	1	Cleaver	as	188	188
+corpulent kresh ravager	physical_attacks	0	Bladed forelegs	as	532	532
+corpulent kresh ravager	special_abilities	0	Keening Cry	\N	\N	\N
+corpulent kresh ravager	special_abilities	1	Acid Blood	\N	\N	\N
+corpulent kresh ravager	special_abilities	2	Giant Fall	\N	\N	\N
+cougar	maneuvers	0	Charge	\N	\N	\N
+cougar	maneuvers	1	Kick	\N	\N	\N
+cougar	maneuvers	2	Leap	\N	\N	\N
+cougar	physical_attacks	0	Bite	as	196	203
+cougar	physical_attacks	1	Claw	as	208	208
+coyote	physical_attacks	0	Bite	as	76	95
+coyote	physical_attacks	1	Charge	as	85	95
+crackling lightning fiend	maneuvers	0	Jagged Jolt(?)	\N	\N	\N
+crackling lightning fiend	maneuvers	1	Charge	\N	\N	\N
+crackling lightning fiend	maneuvers	2	Ethereal Wave	\N	\N	\N
+crackling lightning fiend	maneuvers	3	Ground Slam	\N	\N	\N
+crackling lightning fiend	physical_attacks	0	Lightning Torrent(?)	\N	\N	\N
+crackling lightning fiend	physical_attacks	1	Crackling blue and golden spark	as	317	317
+crazed canine	physical_attacks	0	Bite	as	94	118
+crazed canine	physical_attacks	1	Charge (attack)	as	128	128
+crazed canine	physical_attacks	2	Charge	as	128	128
+crazed canine	special_abilities	0	Leap maneuver	\N	\N	\N
+crazed zombie	physical_attacks	0	Bite	as	181	202
+crazed zombie	physical_attacks	1	Claw	as	202	202
+crested basilisk	physical_attacks	0	Bite	as	206	220
+crested basilisk	physical_attacks	1	Claw	as	221	221
+crested basilisk	special_abilities	0	Paralyzing Gaze	\N	\N	\N
+crocodile	physical_attacks	0	Charge (attack)	as	137	137
+crocodile	physical_attacks	1	Bite	as	127	127
+crocodile	physical_attacks	2	Charge	as	70	137
+crocodile	special_abilities	0	Disease (on hit)	\N	\N	\N
+crystal crab	physical_attacks	0	Ensnare	as	109	122
+crystal crab	physical_attacks	1	Claw	as	100	112
+crystal golem	maneuvers	0	Foot stomp	\N	\N	\N
+crystal golem	maneuvers	1	Ground Slam	\N	\N	\N
+crystal golem	physical_attacks	0	Ensnare	as	140	140
+crystal golem	physical_attacks	1	Pound	as	134	134
+crystal golem	physical_attacks	2	Stomp	as	144	144
+crystal golem	physical_attacks	3	Crystalline fist	as	117	117
+csetairi	bolt_spells	0	Major Fire (908)	as	352	352
+csetairi	maneuvers	0	Multi-strike	\N	\N	\N
+csetairi	maneuvers	1	Dispel	\N	\N	\N
+csetairi	maneuvers	2	Point	\N	\N	\N
+csetairi	maneuvers	3	Air Blast	\N	\N	\N
+csetairi	offensive_spells	0	Bravery (211)	\N	\N	\N
+csetairi	offensive_spells	1	Heroism (215)	\N	\N	\N
+csetairi	physical_attacks	0	Scimitar	as	369	417
+csetairi	warding_spells	0	Web (118)	cs	329	329
+csetairi	warding_spells	1	Bind (214)	cs	329	329
+csetairi	warding_spells	2	Frenzy (216)	cs	329	329
+cyclops	physical_attacks	0	Cudgel	as	238	238
+cyclops	physical_attacks	1	Pound (attack)	as	238	238
+cyclops	physical_attacks	2	Stomp (attack)	as	238	238
+cyclops	physical_attacks	3	Splintered tree trunk	as	187	187
+cyclops	physical_attacks	4	Fist	as	175	175
+dark apparition	physical_attacks	0	Bite	as	48	48
+dark apparition	physical_attacks	1	Claw	as	58	58
+dark apparition	warding_spells	0	Blood Burst (701)	cs	46	46
+dark apparition	warding_spells	1	Mana Disruption (702)	cs	46	46
+dark apparition	warding_spells	2	Bite	cs	46	46
+dark apparition	warding_spells	3	Claw	cs	46	46
+dark frosty plant	maneuvers	0	Point	\N	\N	\N
+dark frosty plant	physical_attacks	0	ranged: frosty seed	as	260	260
+dark frosty plant	physical_attacks	1	Frost-covered crystalline flower	as	138	260
+dark frosty plant	physical_attacks	2	melee: stab	as	260	260
+dark frosty plant	physical_attacks	3	Stinger	as	242	242
+dark orc	physical_attacks	0	Halberd	as	147	157
+dark orc	physical_attacks	1	Scimitar	as	157	157
+dark orc	physical_attacks	2	Morning star	as	157	157
+dark orc	physical_attacks	3	Falchion	as	157	157
+dark panther	maneuvers	0	Leap	\N	\N	\N
+dark panther	physical_attacks	0	Claw	as	178	198
+dark panther	physical_attacks	1	Bite	as	198	198
+dark shambler	physical_attacks	0	Two-handed sword	as	175	175
+dark shambler	physical_attacks	1	Immense dark steel bidenhander	as	165	165
+dark shambler	physical_attacks	2	Twohanded sword	as	175	175
+dark shambler	physical_attacks	3	Broadsword	as	175	175
+dark vortece	warding_spells	0	Unknown	cs	224	224
+dark vysan	physical_attacks	0	Ensnare	as	54	54
+dark vysan	physical_attacks	1	Pound	as	44	44
+dark vysan	physical_attacks	2	Charge (attack)	as	54	54
+dark vysan	physical_attacks	3	Fist	as	44	44
+dark vysan	physical_attacks	4	Unknown	as	44	44
+dark vysan	physical_attacks	5	Charge	as	54	54
+darkly inked fetish master	offensive_spells	0	Sounds (607)	\N	\N	\N
+darkly inked fetish master	offensive_spells	1	Spike Thorn (616)	\N	\N	\N
+darkly inked fetish master	warding_spells	0	Silence (210)	\N	\N	\N
+darkly inked fetish master	warding_spells	1	Unbalance (110)	cs	455	455
+darkwoode	bolt_spells	0	Minor Water (903)	as	125	125
+darkwoode	bolt_spells	1	Major Shock (910)	as	125	125
+darkwoode	maneuvers	0	Mystic Gesture	\N	\N	\N
+darkwoode	offensive_spells	0	Call Wind (912)	\N	\N	\N
+darkwoode	offensive_spells	1	Tremors (909)	\N	\N	\N
+darkwoode	physical_attacks	0	Claw	as	127	127
+darkwoode	physical_attacks	1	Ensnare	as	137	137
+death dirge	physical_attacks	0	Closed fist	as	98	98
+death dirge	physical_attacks	1	Black scimitar	as	98	98
+death dirge	warding_spells	0	Calm (201)	cs	53	53
+death dirge	warding_spells	1	Closed fist	cs	49	49
+deathsworn fanatic	maneuvers	0	Disarm	\N	\N	\N
+deathsworn fanatic	maneuvers	1	Strike	\N	\N	\N
+deathsworn fanatic	physical_attacks	0	Major Fire	as	462	462
+deathsworn fanatic	physical_attacks	1	Bronze cutlass	as	549	549
+deathsworn fanatic	physical_attacks	2	Ensnare	as	413	413
+deathsworn fanatic	physical_attacks	3	Heel of his hand	as	420	420
+deathsworn fanatic	physical_attacks	4	Strike	as	459	459
+deathsworn fanatic	warding_spells	0	Finger (Pestilence?)	cs	431	431
+deathsworn fanatic	warding_spells	1	Corrupt Essence (703)	\N	\N	\N
+deathsworn fanatic	warding_spells	2	Dark Catalyst (719)	\N	\N	\N
+deathsworn fanatic	warding_spells	3	Ensnare	cs	443	443
+decaying citadel guardsman	maneuvers	0	Charge	\N	\N	\N
+decaying citadel guardsman	maneuvers	1	Trip	\N	\N	\N
+decaying citadel guardsman	maneuvers	2	Polearm Plant	\N	\N	\N
+decaying citadel guardsman	physical_attacks	0	Hammer of Kai	as	327	327
+deranged sentry	maneuvers	0	Disarm Weapon	\N	\N	\N
+deranged sentry	maneuvers	1	Tackle	\N	\N	\N
+deranged sentry	maneuvers	2	Trip	\N	\N	\N
+deranged sentry	maneuvers	3	Halberd Sweep	\N	\N	\N
+deranged sentry	physical_attacks	0	Halberd	as	167	167
+desiccated half-krolvin strigoi	physical_attacks	0	Closed fist	\N	\N	\N
+desiccated half-krolvin strigoi	physical_attacks	1	Ensnare (attack)	\N	\N	\N
+desiccated half-krolvin strigoi	special_abilities	0	Vampire bite?	\N	\N	\N
+dhu goleras	bolt_spells	0	Balefire (713)	as	364	364
+dhu goleras	maneuvers	0	Energy Maelstrom (710)	\N	\N	\N
+dhu goleras	maneuvers	1	Quake (709)	\N	\N	\N
+dhu goleras	physical_attacks	0	Dagger	as	379	387
+dhu goleras	warding_spells	0	Bind (214)	cs	342	342
+dhu goleras	warding_spells	1	Blood Burst (701)	cs	353	353
+dhu goleras	warding_spells	2	Calm (201)	cs	342	342
+dhu goleras	warding_spells	3	Corrupt Essence (703)	cs	353	353
+dhu goleras	warding_spells	4	Curse (715)	cs	353	353
+dhu goleras	warding_spells	5	Dark Catalyst (719)	cs	353	353
+dhu goleras	warding_spells	6	Disintegrate (705)	cs	353	353
+dhu goleras	warding_spells	7	Limb Disruption (708)	cs	353	353
+direbear	maneuvers	0	Bearhug	\N	\N	\N
+direbear	maneuvers	1	Charge	\N	\N	\N
+direbear	offensive_spells	0	Bertrandt's Bellow	\N	\N	\N
+direbear	offensive_spells	1	Gerrelle's Growl	\N	\N	\N
+direbear	offensive_spells	2	Red eyes (AS boost)	\N	\N	\N
+direbear	physical_attacks	0	Bite (attack)	as	349	349
+direbear	physical_attacks	1	Claw (attack)	as	340	355
+direbear	physical_attacks	2	Bite	as	270	280
+disfigured hive thrall	bolt_spells	0	Major Acid	\N	\N	\N
+disfigured hive thrall	bolt_spells	1	Web bolt	\N	\N	\N
+disfigured hive thrall	maneuvers	0	Bull Rush	\N	\N	\N
+disfigured hive thrall	maneuvers	1	Bearhug	\N	\N	\N
+disfigured hive thrall	maneuvers	2	Charge	\N	\N	\N
+disfigured hive thrall	offensive_spells	0	Powersink	\N	\N	\N
+disfigured hive thrall	physical_attacks	0	Charge	\N	\N	\N
+disfigured hive thrall	physical_attacks	1	Claw	\N	\N	\N
+disfigured hive thrall	physical_attacks	2	Barbed stinger	as	557	557
+disfigured hive thrall	special_abilities	0	Spirit Strike	\N	\N	\N
+disfigured hive thrall	special_abilities	1	Project Misery	\N	\N	\N
+disfigured hive thrall	special_abilities	2	Psychic Assault	\N	\N	\N
+disfigured hive thrall	warding_spells	0	Wild Entropy	\N	\N	\N
+disfigured hive thrall	warding_spells	1	Charge	cs	447	447
+dobrem	maneuvers	0	Canine lunge	\N	\N	\N
+dobrem	maneuvers	1	Lunge	\N	\N	\N
+dobrem	physical_attacks	0	Bite	\N	\N	\N
+dobrem	physical_attacks	1	Claw	as	198	249
+dreadnought raptor	maneuvers	0	Wing Buffet	\N	\N	\N
+dreadnought raptor	physical_attacks	0	Impale	as	271	274
+dreadnought raptor	physical_attacks	1	Bite	\N	\N	\N
+dreadnought raptor	physical_attacks	2	Claw	as	275	281
+dreadnought raptor	physical_attacks	3	Swoop	as	252	281
+dreadnought raptor	physical_attacks	4	Beak	as	234	234
+dreadnought raptor	special_abilities	0	Buffet	\N	\N	\N
+dybbuk	physical_attacks	0	Length of Rusted Chain	as	293	298
+earth elemental	physical_attacks	0	Pound (attack)	as	401	401
+earth elemental	physical_attacks	1	Foot	as	422	422
+earth elemental	physical_attacks	2	Heavy earthen fists	as	421	421
+ebon swine	physical_attacks	0	Bite	as	158	158
+ebon swine	physical_attacks	1	Charge	as	181	181
+eidolon	physical_attacks	0	Closed fist	as	248	307
+eidolon	warding_spells	0	Pain (711)	\N	\N	\N
+eidolon	warding_spells	1	Curse (715)	\N	\N	\N
+eidolon	warding_spells	2	Pestilence (716)	\N	\N	\N
+eidolon	warding_spells	3	Torment (718)	\N	\N	\N
+eidolon	warding_spells	4	Repel (fear)	cs	251	251
+eidolon	warding_spells	5	Point	cs	272	272
+elder ghoul master	physical_attacks	0	Claidhmore	as	128	128
+elder tree spirit	bolt_spells	0	Major Shock (910)	as	208	220
+elder tree spirit	maneuvers	0	Gesture	\N	\N	\N
+elder tree spirit	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+elder tree spirit	offensive_spells	1	Call Lightning (125)	\N	\N	\N
+elder tree spirit	physical_attacks	0	Ensnare (attack)	\N	\N	\N
+elder tree spirit	physical_attacks	1	Ensnare	as	182	182
+elder tree spirit	warding_spells	0	Unbalance (110)	cs	157	169
+emaciated hierophant	offensive_spells	0	Sounds	\N	\N	\N
+emaciated hierophant	offensive_spells	1	Tangle Weed	\N	\N	\N
+emaciated hierophant	offensive_spells	2	Spike Thorn	\N	\N	\N
+emaciated hierophant	offensive_spells	3	Spirit Strike	\N	\N	\N
+emaciated hierophant	physical_attacks	0	Espadon	as	331	331
+emaciated hierophant	warding_spells	0	Unbalance	cs	279	279
+enormous mosquito	maneuvers	0	Blood drain	\N	\N	\N
+enormous mosquito	maneuvers	1	Dive	\N	\N	\N
+enormous mosquito	physical_attacks	0	Dive	as	216	216
+enormous mosquito	physical_attacks	1	(quarantine-recovered)	as	216	216
+enormous rift crawler	maneuvers	0	Burrow	\N	\N	\N
+enormous rift crawler	maneuvers	1	Tail slam	\N	\N	\N
+enormous rift crawler	maneuvers	2	Tail Swipe	\N	\N	\N
+enormous rift crawler	maneuvers	3	Shield Charge	\N	\N	\N
+enormous rift crawler	physical_attacks	0	Bite	as	449	461
+enormous rift crawler	physical_attacks	1	Charge (attack)	as	447	447
+enormous rift crawler	physical_attacks	2	Charge	as	459	475
+ethereal mage apprentice	physical_attacks	0	Hissing stream of acid	as	293	293
+ethereal mage apprentice	physical_attacks	1	Large boulder	as	261	261
+ethereal mage apprentice	physical_attacks	2	Polished black oak runestaff	as	288	288
+ethereal mage apprentice	physical_attacks	3	Roaring ball of fire	as	265	265
+ethereal mage apprentice	physical_attacks	4	Stream of fire	as	288	288
+ethereal triton psionicist	bolt_spells	0	Telekinesis (1206)	as	365	365
+ethereal triton psionicist	bolt_spells	1	Astral Spear (1408)	as	365	365
+ethereal triton psionicist	maneuvers	0	Claw Curse	\N	\N	\N
+ethereal triton psionicist	physical_attacks	0	Unarmed combat	as	\N	\N
+ethereal triton psionicist	warding_spells	0	Thought Lash (1210)	cs	448	448
+ethereal triton psionicist	warding_spells	1	Vertigo (1219)	cs	448	448
+ethereal triton psionicist	warding_spells	2	Mindwipe (1225)	cs	448	448
+ethereal triton psionicist	warding_spells	3	Mana Burst (1414)	cs	457	457
+ethereal triton psionicist	warding_spells	4	Jab	cs	448	448
+ethereal triton psionicist	warding_spells	5	Lash	cs	448	448
+ethereal triton psionicist	warding_spells	6	Claw Curse	cs	460	460
+ethereal triton sentry	maneuvers	0	Claw Curse	\N	\N	\N
+ethereal triton sentry	offensive_spells	0	Implosion (720)	\N	\N	\N
+ethereal triton sentry	offensive_spells	1	Major Elemental Wave (435)	\N	\N	\N
+ethereal triton sentry	warding_spells	0	Dark Catalyst (719)	cs	451	457
+ethereal triton sentry	warding_spells	1	Mana Disruption (702)	cs	451	457
+ethereal triton sentry	warding_spells	2	Disintegrate (705)	cs	451	457
+ethereal triton sentry	warding_spells	3	Mind Jolt (706)	cs	451	457
+fallen crusader	maneuvers	0	Charge	\N	\N	\N
+fallen crusader	maneuvers	1	Feint	\N	\N	\N
+fallen crusader	maneuvers	2	Shield Charge	\N	\N	\N
+fallen crusader	maneuvers	3	Tail Swipe	\N	\N	\N
+fallen crusader	maneuvers	4	Gesture	\N	\N	\N
+fallen crusader	physical_attacks	0	Barbed tentacle	as	428	450
+fallen crusader	physical_attacks	1	Gilt-edged steel talon sword	as	506	515
+fallen crusader	physical_attacks	2	Gold-spiked black morning star	as	440	506
+fallen crusader	warding_spells	0	Gilt-edged steel talon sword	cs	411	411
+fallen crusader	warding_spells	1	Gold-spiked black morning star	cs	408	408
+fanged goblin	physical_attacks	0	Handaxe	as	36	46
+fanged goblin	physical_attacks	1	Spear	as	36	46
+fanged goblin	physical_attacks	2	Unknown	as	36	36
+fanged rodent	physical_attacks	0	Bite	as	44	44
+fanged rodent	physical_attacks	1	Unknown	as	44	44
+fanged viper	physical_attacks	0	Bite	as	68	68
+fanged viper	physical_attacks	1	Unknown	as	68	68
+farlook	bolt_spells	0	Major Shock (910)	as	347	347
+farlook	bolt_spells	1	Hand of Tonis	as	347	347
+farlook	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+farlook	offensive_spells	1	Call Wind (912)	\N	\N	\N
+farlook	offensive_spells	2	Sandstorm (914)	\N	\N	\N
+farlook	offensive_spells	3	Earthen Fury (917)	\N	\N	\N
+farlook	special_abilities	0	Lightning mote	\N	\N	\N
+fenghai	bolt_spells	0	Minor Acid (904)	as	167	167
+fenghai	bolt_spells	1	Major Cold (907)	as	160	167
+fenghai	bolt_spells	2	Major Fire (908)	as	178	178
+fenghai	bolt_spells	3	Minor Shock (901)	as	167	167
+fenghai	physical_attacks	0	kris	as	146	173
+fenghai	physical_attacks	1	Freezing ball of pure cold	as	200	200
+fenghai	physical_attacks	2	Hissing stream of acid	as	206	206
+fenghai	physical_attacks	3	Large boulder	as	123	123
+fenghai	physical_attacks	4	Powerful lightning bolt	as	208	208
+fenghai	physical_attacks	5	Scimitar	as	209	209
+fenghai	physical_attacks	6	Small surge of electricity	as	202	202
+fenghai	physical_attacks	7	Stream of fire	as	167	167
+fenghai	physical_attacks	8	Fist	as	133	133
+fenghai	warding_spells	0	Point	cs	145	145
+festering taint	bolt_spells	0	Fire Spirit (111)	as	369	369
+festering taint	maneuvers	0	Putrid Air	\N	\N	\N
+festering taint	maneuvers	1	Point	\N	\N	\N
+festering taint	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+festering taint	offensive_spells	1	Grasp of the Grave (709)	\N	\N	\N
+festering taint	physical_attacks	0	Claw	as	370	408
+festering taint	warding_spells	0	Curse (715)	cs	379	379
+festering taint	warding_spells	1	Dark Catalyst (719)	cs	379	379
+festering taint	warding_spells	2	Disease (716)	cs	379	379
+festering taint	warding_spells	3	Disintegrate (705)	cs	379	379
+festering taint	warding_spells	4	Mind Jolt (706)	cs	379	379
+festering taint	warding_spells	5	Unbalance (110)	cs	366	366
+festering taint	warding_spells	6	Claw	cs	367	367
+fire ant	physical_attacks	0	Bite	as	41	41
+fire ant	physical_attacks	1	Charge	as	51	51
+fire ant	physical_attacks	2	Unknown	as	6	6
+fire cat	physical_attacks	0	Claw	as	135	164
+fire cat	physical_attacks	1	Bite	as	157	170
+fire cat	special_abilities	0	Pounce	\N	\N	\N
+fire elemental	offensive_spells	0	Major Elemental Wave	\N	\N	\N
+fire elemental	physical_attacks	0	Ensnare	as	346	346
+fire giant	bolt_spells	0	Major Fire (908)	as	200	200
+fire giant	bolt_spells	1	Minor Fire (906)	as	200	200
+fire giant	physical_attacks	0	War mattock	as	209	262
+fire guardian	bolt_spells	0	Minor Fire (906)	as	124	124
+fire guardian	bolt_spells	1	Major Fire (908)	as	124	124
+fire guardian	physical_attacks	0	Closed fist	as	122	152
+fire guardian	physical_attacks	1	Ensnare (attack)	as	152	152
+fire guardian	physical_attacks	2	Charge (attack)	as	152	152
+fire mage	bolt_spells	0	Major Fire (908)	as	311	311
+fire mage	maneuvers	0	Fire Bolt	\N	\N	\N
+fire mage	physical_attacks	0	Closed fist	as	115	115
+fire mage	physical_attacks	1	Gnarled black staff	as	274	274
+fire mage	warding_spells	0	Earthen Fury	\N	\N	\N
+fire mage	warding_spells	1	Firestorm	\N	\N	\N
+fire mage	warding_spells	2	Sleep	\N	\N	\N
+fire mage	warding_spells	3	Tremors	\N	\N	\N
+fire mage	warding_spells	4	Weapon Fire	\N	\N	\N
+fire mage	warding_spells	5	Feras mattock	cs	324	324
+fire ogre	bolt_spells	0	Major Fire (908)	as	167	167
+fire ogre	physical_attacks	0	Flail	as	245	245
+fire rat	physical_attacks	0	Bite	as	139	169
+fire rat	physical_attacks	1	Claw	as	169	169
+fire salamander	physical_attacks	0	Bite	as	42	42
+fire salamander	physical_attacks	1	Charge	as	52	52
+fire salamander	physical_attacks	2	Claw	as	42	42
+fire salamander	physical_attacks	3	Unknown	as	52	52
+fire sprite	bolt_spells	0	Major Fire	\N	\N	\N
+fire sprite	offensive_spells	0	Elemental Dispel	\N	\N	\N
+fire sprite	physical_attacks	0	Closed fist	as	294	327
+firebird	bolt_spells	0	Major Fire (908)	as	302	302
+firebird	maneuvers	0	Wing Buffet	\N	\N	\N
+firebird	maneuvers	1	Screech	\N	\N	\N
+firebird	maneuvers	2	Fire Mote	\N	\N	\N
+firebird	maneuvers	3	Drop	\N	\N	\N
+firebird	maneuvers	4	Fire flares	\N	\N	\N
+firebird	maneuvers	5	Dive	\N	\N	\N
+firebird	maneuvers	6	Ethereal Wave	\N	\N	\N
+firebird	maneuvers	7	Shield Bash	\N	\N	\N
+firebird	physical_attacks	0	Claw (attack)	as	288	385
+firebird	physical_attacks	1	Bite (attack)	as	375	375
+firebird	physical_attacks	2	Impale (attack)	as	380	380
+firebird	physical_attacks	3	Beak	as	375	375
+firebird	physical_attacks	4	Roaring ball of fire	as	302	302
+firebird	physical_attacks	5	Sharp beak	as	381	381
+firebird	physical_attacks	6	Stream of fire	as	322	322
+firephantom	bolt_spells	0	Minor Fire (906)	as	69	69
+firephantom	bolt_spells	1	Major Fire (908)	as	69	69
+firephantom	physical_attacks	0	Closed fist	as	77	77
+firethorn shoot	offensive_spells	0	Tangleweed (610)	\N	\N	\N
+firethorn shoot	physical_attacks	0	Ensnare (attack)	as	244	244
+firethorn shoot	physical_attacks	1	Stinger (attack)	as	254	254
+firethorn shoot	physical_attacks	2	Stinger	as	254	254
+flayed gigas disciple	bolt_spells	0	903	as	521	521
+flayed gigas disciple	maneuvers	0	Point	\N	\N	\N
+flayed gigas disciple	physical_attacks	0	Gigantic hand	as	597	597
+flayed gigas disciple	physical_attacks	1	Skinless fist down	as	587	587
+flayed gigas disciple	warding_spells	0	1115	cs	521	521
+flayed gigas disciple	warding_spells	1	719	cs	535	535
+flayed gigas disciple	warding_spells	2	Point	cs	517	517
+flesh golem	maneuvers	0	Noxious Cloud	\N	\N	\N
+flesh golem	maneuvers	1	Twin Hammerfists	\N	\N	\N
+flesh golem	maneuvers	2	Ground Slam	\N	\N	\N
+flesh golem	maneuvers	3	Miasma	\N	\N	\N
+flesh golem	maneuvers	4	Shield Bash	\N	\N	\N
+flesh golem	physical_attacks	0	Pound (double attack)	as	300	300
+flesh golem	physical_attacks	1	Stomp	as	300	300
+flesh golem	physical_attacks	2	Fist	as	230	304
+flickering mist-wreathed banshee	maneuvers	0	Point	\N	\N	\N
+flickering mist-wreathed banshee	offensive_spells	0	Curse (715)	\N	\N	\N
+flickering mist-wreathed banshee	physical_attacks	0	Bite	as	520	520
+flickering mist-wreathed banshee	physical_attacks	1	Kick	as	555	555
+flickering mist-wreathed banshee	special_abilities	0	Dispel	\N	\N	\N
+flickering mist-wreathed banshee	warding_spells	0	Point	cs	448	448
+forest bendith	maneuvers	0	Cheapshots#Eyepoke	\N	\N	\N
+forest bendith	physical_attacks	0	Scimitar	as	230	256
+forest bendith	physical_attacks	1	Morning star	as	235	256
+forest ogre	maneuvers	0	Tackle	\N	\N	\N
+forest ogre	maneuvers	1	Pounce	\N	\N	\N
+forest ogre	physical_attacks	0	Closed fist	as	178	178
+forest ogre	physical_attacks	1	Falchion	as	160	186
+forest ogre	physical_attacks	2	Pound	as	178	178
+forest ogre	physical_attacks	3	Stomp	as	178	178
+forest trali	physical_attacks	0	Broadsword	as	244	274
+forest trali	physical_attacks	1	Dart	as	298	298
+forest trali shaman	maneuvers	0	Gesture	\N	\N	\N
+forest trali shaman	offensive_spells	0	Phoen's Strength (606)	\N	\N	\N
+forest trali shaman	offensive_spells	1	Spirit Strike (117)	\N	\N	\N
+forest trali shaman	offensive_spells	2	Spike Thorn (616)	\N	\N	\N
+forest trali shaman	physical_attacks	0	Mace	as	271	271
+forest trali shaman	warding_spells	0	Bind (214)	cs	224	224
+forest trali shaman	warding_spells	1	Calm (201)	\N	\N	\N
+forest trali shaman	warding_spells	2	Silence (210)	\N	\N	\N
+forest trali shaman	warding_spells	3	Unbalance (110)	\N	\N	\N
+forest troll	physical_attacks	0	Cudgel	as	173	201
+forest troll	physical_attacks	1	Scimitar	as	173	173
+forest troll	physical_attacks	2	Bite	as	153	153
+forest troll	physical_attacks	3	Claw	as	153	153
+forest troll	physical_attacks	4	Dagger	as	173	173
+forest troll	physical_attacks	5	Flail	as	173	173
+forest troll	physical_attacks	6	Mace	as	173	173
+forest troll	physical_attacks	7	War mattock	as	173	173
+forest troll	physical_attacks	8	Unknown	as	201	201
+forest troll	special_abilities	0	Attack strength boost (howl)	\N	\N	\N
+forest troll	special_abilities	1	Attack strength boost (snarl)	\N	\N	\N
+frenzied monk	bolt_spells	0	Major Cold (907)	as	174	174
+frenzied monk	offensive_spells	0	Bravery (211)	\N	\N	\N
+frenzied monk	warding_spells	0	Cold Snap (512)	cs	150	150
+frost giant	bolt_spells	0	Major Cold (907)	as	177	222
+frost giant	maneuvers	0	Stomp	\N	\N	\N
+frost giant	physical_attacks	0	War hammer	\N	\N	\N
+frost giant	physical_attacks	1	Battle axe	as	251	251
+frost giant	physical_attacks	2	Freezing ball of pure cold	as	204	204
+frost giant	physical_attacks	3	Frost-covered battle-axe	as	244	244
+frost giant	physical_attacks	4	Morning star	as	216	216
+frost giant	special_abilities	0	AS Boost	\N	\N	\N
+frozen corpse	physical_attacks	0	Ice Pick	as	282	286
+fulminating stormborn primordial	bolt_spells	0	Cone of Elements (518)	as	\N	\N
+fulminating stormborn primordial	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+fulminating stormborn primordial	offensive_spells	1	Call Wind (912)	\N	\N	\N
+fulminating stormborn primordial	physical_attacks	0	Crackling Sparks	as	476	476
+fulminating stormborn primordial	special_abilities	0	Lightning Lash	\N	\N	\N
+fulminating stormborn primordial	special_abilities	1	Sundering Spark	\N	\N	\N
+fulminating stormborn primordial	special_abilities	2	Enervation Beam	\N	\N	\N
+fulminating stormborn primordial	warding_spells	0	Elemental Strike (415)	cs	\N	\N
+gaudy phantasmic conjurer	maneuvers	0	Pounce	\N	\N	\N
+gaudy phantasmic conjurer	physical_attacks	0	Bite	as	520	547
+gaudy phantasmic conjurer	warding_spells	0	458 CS	\N	\N	\N
+gaunt feral selkie	maneuvers	0	Headbutt	\N	\N	\N
+gaunt feral selkie	maneuvers	1	Bull Rush	\N	\N	\N
+gaunt feral selkie	maneuvers	2	Sweep	\N	\N	\N
+gaunt feral selkie	maneuvers	3	Charge	\N	\N	\N
+gaunt feral selkie	offensive_spells	0	Hand of Tonis (505)	\N	\N	\N
+gaunt feral selkie	offensive_spells	1	Earthen Fury (917)	\N	\N	\N
+gaunt feral selkie	physical_attacks	0	Hand of Tonis (505)	\N	\N	\N
+gaunt feral selkie	physical_attacks	1	Major Cold (907)	\N	\N	\N
+gaunt feral selkie	physical_attacks	2	Charge	as	298	298
+ghost	physical_attacks	0	Short sword	as	58	58
+ghost wolf	physical_attacks	0	Bite	as	143	143
+ghost wolf	physical_attacks	1	Claw	as	143	143
+ghost wolf	physical_attacks	2	Unknown	as	143	143
+ghostly mara	offensive_spells	0	Lullabye	\N	\N	\N
+ghostly mara	physical_attacks	0	Longsword	as	208	208
+ghostly mara	physical_attacks	1	Falchion	as	208	208
+ghostly pooka	physical_attacks	0	Bite	as	189	217
+ghostly warrior	physical_attacks	0	Broadsword	as	173	173
+ghostly warrior	physical_attacks	1	Morning star	as	168	168
+ghostly warrior	physical_attacks	2	Flail	as	153	153
+ghoul master	physical_attacks	0	Bite	as	137	137
+ghoul master	physical_attacks	1	Claw	as	147	147
+ghoul master	physical_attacks	2	Pound (attack)	as	137	137
+ghoul master	physical_attacks	3	Fist	as	137	137
+ghoul master	warding_spells	0	Bite	cs	88	88
+ghoul master	warding_spells	1	Claw	cs	88	88
+giant albino scorpion	physical_attacks	0	Pincer (attack)	as	197	197
+giant albino scorpion	physical_attacks	1	Stinger (attack)	as	207	207
+giant albino scorpion	physical_attacks	2	Pincer	as	157	177
+giant albino scorpion	physical_attacks	3	Stinger	as	207	207
+giant albino tomb spider	maneuvers	0	Web	\N	\N	\N
+giant albino tomb spider	physical_attacks	0	Ensnare	as	222	222
+giant albino tomb spider	physical_attacks	1	Bite	as	212	212
+giant albino tomb spider	special_abilities	0	Web	\N	\N	\N
+giant ant	physical_attacks	0	Bite	as	36	41
+giant ant	physical_attacks	1	Charge (attack)	as	46	46
+giant ant	physical_attacks	2	Unknown	as	46	46
+giant fog beetle	physical_attacks	0	Pincer (attack)	as	228	228
+giant fog beetle	physical_attacks	1	Pincer	as	205	208
+giant fog beetle	special_abilities	0	Gas cloud	\N	\N	\N
+giant hawk-owl	maneuvers	0	Lash	\N	\N	\N
+giant hawk-owl	physical_attacks	0	Impale	as	247	247
+giant hawk-owl	physical_attacks	1	Bite	as	247	247
+giant hawk-owl	physical_attacks	2	Claw	as	203	247
+giant hawk-owl	physical_attacks	3	Swoop	as	194	194
+giant marmot	physical_attacks	0	Bite	as	131	131
+giant marmot	physical_attacks	1	Claw	as	121	131
+giant rat	physical_attacks	0	Bite	as	34	34
+giant rat	physical_attacks	1	Unknown	as	34	34
+giant veaba	maneuvers	0	Charge	\N	\N	\N
+giant veaba	maneuvers	1	Rear	\N	\N	\N
+giant veaba	physical_attacks	0	Bite	as	178	178
+giant veaba	physical_attacks	1	Claw	as	189	189
+giant weasel	physical_attacks	0	Bite	as	151	151
+giant weasel	physical_attacks	1	Claw	as	144	166
+gigantic lightning whelk	maneuvers	0	Headbutt	\N	\N	\N
+gigantic lightning whelk	maneuvers	1	Bull Rush	\N	\N	\N
+gigantic lightning whelk	physical_attacks	0	Huge hooves	as	519	519
+gigantic lightning whelk	physical_attacks	1	Tusks	as	519	519
+gigantic lightning whelk	special_abilities	0	Shock Beam	\N	\N	\N
+gigantic lightning whelk	special_abilities	1	Snailguard	\N	\N	\N
+glacial morph	maneuvers	0	Ethereal Wave	\N	\N	\N
+glacial morph	physical_attacks	0	Pound	\N	\N	\N
+glacial morph	physical_attacks	1	Ensnare	\N	\N	\N
+glacial morph	physical_attacks	2	Elongated block of ice	as	310	310
+glistening cerebralite	bolt_spells	0	Balefire (713)	as	402	402
+glistening cerebralite	bolt_spells	1	Empathic Assault (1110)	as	402	402
+glistening cerebralite	bolt_spells	2	Major Shock (910)	as	402	402
+glistening cerebralite	maneuvers	0	Tail Swipe	\N	\N	\N
+glistening cerebralite	maneuvers	1	Lash	\N	\N	\N
+glistening cerebralite	offensive_spells	0	Heroism (215)	\N	\N	\N
+glistening cerebralite	offensive_spells	1	Song of Depression (1015)	\N	\N	\N
+glistening cerebralite	offensive_spells	2	Spiritual Abolition (230)	\N	\N	\N
+glistening cerebralite	physical_attacks	0	Barbed tentacle	as	176	410
+glistening cerebralite	physical_attacks	1	Bladed forearms	as	476	476
+glistening cerebralite	warding_spells	0	Cloak of Shadows (712)	cs	406	406
+glistening cerebralite	warding_spells	1	Sympathy (1120)	cs	424	424
+gnarled being	maneuvers	0	Ground Slam	\N	\N	\N
+gnarled being	physical_attacks	0	Claw	as	406	406
+gnarled being	physical_attacks	1	Impale	as	396	396
+gnarled being	physical_attacks	2	Smash	as	398	412
+gnarled being	physical_attacks	3	Tusk	as	356	356
+gnoll miner	physical_attacks	0	Handaxe	as	125	125
+gnoll ranger	offensive_spells	0	Sounds (607)	\N	\N	\N
+gnoll ranger	physical_attacks	0	Handaxe	as	171	171
+gnoll ranger	physical_attacks	1	Unknown	as	150	150
+gnoll thief	physical_attacks	0	Short sword	as	162	162
+gnoll thief	physical_attacks	1	Unknown	as	159	159
+gnoll thief	special_abilities	0	Hurl	\N	\N	\N
+gnoll worker	physical_attacks	0	Hatchet	as	112	125
+gnoll worker	physical_attacks	1	Unknown	as	125	125
+goblin	physical_attacks	0	Flail	as	46	46
+goblin	physical_attacks	1	Scimitar	as	36	36
+goblin	physical_attacks	2	Unknown	as	46	46
+great boar	maneuvers	0	Charge	\N	\N	\N
+great boar	physical_attacks	0	Charge	as	138	148
+great boar	physical_attacks	1	Bite	as	128	138
+great boar	special_abilities	0	Charge	\N	\N	\N
+great brown bear	physical_attacks	0	Claw	as	189	191
+great brown bear	physical_attacks	1	Bite	as	182	184
+great brown bear	physical_attacks	2	Charge (attack)	as	194	194
+great brown bear	physical_attacks	3	Charge	as	179	179
+great stag	physical_attacks	0	Charge (attack)	as	165	165
+great stag	physical_attacks	1	Impale (attack)	as	165	165
+great stag	physical_attacks	2	Antlers	as	148	148
+great stag	physical_attacks	3	Charge	as	148	148
+greater bog troll	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+greater bog troll	offensive_spells	1	Sounds (607)	\N	\N	\N
+greater bog troll	offensive_spells	2	Tangleweed (610)	\N	\N	\N
+greater bog troll	physical_attacks	0	Axe	as	262	262
+greater burrow orc	physical_attacks	0	Short sword	as	118	128
+greater burrow orc	physical_attacks	1	Unknown	as	108	108
+greater construct	maneuvers	0	Crush	\N	\N	\N
+greater construct	maneuvers	1	Tandem Dispel	\N	\N	\N
+greater construct	maneuvers	2	Team Swat	\N	\N	\N
+greater construct	maneuvers	3	Ground Slam	\N	\N	\N
+greater construct	maneuvers	4	Slam	\N	\N	\N
+greater construct	physical_attacks	0	Stomp	\N	\N	\N
+greater construct	physical_attacks	1	Arm	as	449	460
+greater construct	physical_attacks	2	Smash	as	459	468
+greater earth elemental	maneuvers	0	Ethereal Wave	\N	\N	\N
+greater earth elemental	physical_attacks	0	Pound (attack)	\N	\N	\N
+greater earth elemental	physical_attacks	1	Thrown Rock	as	419	419
+greater earth elemental	physical_attacks	2	Fist	as	397	397
+greater earth elemental	physical_attacks	3	Heavy earthen fists	as	439	439
+greater earth elemental	physical_attacks	4	Large rock	as	423	423
+greater earth elemental	physical_attacks	5	Foot	as	440	440
+greater faeroth	physical_attacks	0	Bite	as	302	342
+greater faeroth	physical_attacks	1	Claw	as	318	340
+greater faeroth	physical_attacks	2	Pound	as	305	338
+greater faeroth	physical_attacks	3	Fist	as	297	297
+greater fetid corpse	maneuvers	0	Claw	\N	\N	\N
+greater fetid corpse	physical_attacks	0	Bite	as	262	262
+greater ghoul	physical_attacks	0	Claw	as	63	63
+greater ghoul	physical_attacks	1	Unknown	as	63	63
+greater ice giant	bolt_spells	0	Major Cold (907)	as	215	215
+greater ice giant	offensive_spells	0	Spirit Dispel	\N	\N	\N
+greater ice giant	physical_attacks	0	Battle-axe	as	236	306
+greater ice spider	maneuvers	0	Web	\N	\N	\N
+greater ice spider	offensive_spells	0	Webbed	\N	\N	\N
+greater ice spider	physical_attacks	0	Pincer (attack)	as	48	48
+greater ice spider	physical_attacks	1	Stinger (attack)	as	71	71
+greater ice spider	physical_attacks	2	Pincer	as	54	54
+greater kappa	physical_attacks	0	Handaxe	as	107	107
+greater krynch	maneuvers	0	Ethereal Wave	\N	\N	\N
+greater krynch	physical_attacks	0	Pound (attack)	as	427	427
+greater krynch	physical_attacks	1	Fist	as	427	427
+greater krynch	physical_attacks	2	Heavy earthen fists	as	417	417
+greater krynch	special_abilities	0	Krynch boulder	\N	\N	\N
+greater moor wight	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+greater moor wight	physical_attacks	0	Broadsword	\N	\N	\N
+greater moor wight	physical_attacks	1	Handaxe	as	226	252
+greater moor wight	physical_attacks	2	Rusty steel flyssa	as	246	246
+greater moor wight	physical_attacks	3	Wickedly curved scimitar	as	226	226
+greater moor wight	warding_spells	0	Cold Snap (512)	cs	203	203
+greater moor wight	warding_spells	1	Claw Curse	cs	189	189
+greater orc	physical_attacks	0	Spear	as	126	126
+greater orc	physical_attacks	1	War mattock	as	113	113
+greater orc	physical_attacks	2	Mace	as	113	113
+greater orc	physical_attacks	3	Scimitar	as	113	113
+greater orc	physical_attacks	4	Short sword	as	113	113
+greater skayl	bolt_spells	0	Balefire (713)	as	342	342
+greater skayl	maneuvers	0	Fire Wave	\N	\N	\N
+greater skayl	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+greater skayl	physical_attacks	0	Pound	as	392	392
+greater skayl	physical_attacks	1	Ensnare	as	404	424
+greater skayl	physical_attacks	2	Fist	as	358	410
+greater spider	maneuvers	0	Web	\N	\N	\N
+greater spider	physical_attacks	0	Claw	as	104	116
+greater spider	physical_attacks	1	Pincer (attack)	as	116	116
+greater spider	physical_attacks	2	Pincer	as	104	104
+greater spider	physical_attacks	3	Unknown	as	116	116
+greater spider	special_abilities	0	Web	\N	\N	\N
+greater vruul	physical_attacks	0	Claw	as	213	238
+greater vruul	warding_spells	0	Bind (214)	cs	295	295
+greater vruul	warding_spells	1	Calm (201)	cs	295	295
+greater vruul	warding_spells	2	Frenzy (216)	cs	295	295
+greater vruul	warding_spells	3	Interference (212)	cs	295	295
+greater vruul	warding_spells	4	Silence (210)	cs	295	295
+greater vruul	warding_spells	5	Unbalance (110)	cs	295	295
+greater water elemental	bolt_spells	0	Minor Water (903)	as	540	540
+greater water elemental	maneuvers	0	Water blast	\N	\N	\N
+greater water elemental	maneuvers	1	Charge	\N	\N	\N
+greater water elemental	maneuvers	2	Repel	\N	\N	\N
+greater water elemental	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+greater water elemental	offensive_spells	1	Elemental Disjunction (530)	\N	\N	\N
+greater water elemental	physical_attacks	0	Pound	as	441	441
+greater water elemental	physical_attacks	1	Fist	as	425	500
+greater water elemental	warding_spells	0	Elemental Strike (415)	cs	495	495
+greenwing hornet	physical_attacks	0	Stinger (attack)	as	172	172
+greenwing hornet	physical_attacks	1	Stinger	as	172	172
+greenwing hornet	special_abilities	0	Sting	\N	\N	\N
+gremlock	maneuvers	0	Garrote	\N	\N	\N
+gremlock	physical_attacks	0	Claw	as	325	427
+grey orc	bolt_spells	0	Minor Fire (906)	as	130	130
+grey orc	offensive_spells	0	Gas cloud	\N	\N	\N
+grey orc	physical_attacks	0	Composite bow	as	139	139
+grey-plumed steelwing harpy	maneuvers	0	Brace	\N	\N	\N
+grifflet	offensive_spells	0	Call Wind (912)	\N	\N	\N
+grifflet	offensive_spells	1	Screech	\N	\N	\N
+grifflet	physical_attacks	0	Impale	as	342	342
+grifflet	physical_attacks	1	Bite	as	342	342
+grifflet	physical_attacks	2	Claw	as	352	352
+grifflet	physical_attacks	3	Swoop	as	342	342
+grisly corpse hulk	maneuvers	0	Tackle	\N	\N	\N
+grisly corpse hulk	maneuvers	1	Lash	\N	\N	\N
+grisly corpse hulk	physical_attacks	0	Stomp (attack)	as	310	310
+grisly corpse hulk	physical_attacks	1	Closed fist	as	310	310
+grisly corpse hulk	physical_attacks	2	Ensnare	as	326	326
+grisly corpse hulk	special_abilities	0	Tremors	\N	\N	\N
+grizzly bear	maneuvers	0	Charge	\N	\N	\N
+grizzly bear	physical_attacks	0	Charge	as	286	286
+grizzly bear	physical_attacks	1	Claw	as	242	285
+grizzly bear	physical_attacks	2	Bite	as	269	269
+grutik savage	physical_attacks	0	Spear	as	188	230
+grutik savage	physical_attacks	1	Dart	as	249	249
+grutik savage	physical_attacks	2	Closed fist	as	200	200
+grutik savage	physical_attacks	3	Crude stone axe	as	206	206
+grutik savage	physical_attacks	4	Crude wooden club	as	215	215
+grutik shaman	bolt_spells	0	Minor Acid (904)	as	205	205
+grutik shaman	maneuvers	0	Gesture	\N	\N	\N
+grutik shaman	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+grutik shaman	offensive_spells	1	Earthen Fury (917)	\N	\N	\N
+grutik shaman	offensive_spells	2	Elemental Wave (410)	\N	\N	\N
+grutik shaman	offensive_spells	3	Tremors (909)	\N	\N	\N
+grutik shaman	physical_attacks	0	Quarterstaff	as	220	220
+grutik shaman	warding_spells	0	Sleep (501)	cs	165	165
+grutik shaman	warding_spells	1	Burrow Ambush	cs	165	165
+grutik shaman	warding_spells	2	Gnarled wooden staff	cs	165	165
+haggard veiki herald	maneuvers	0	Ethereal Wave	\N	\N	\N
+haggard veiki herald	maneuvers	1	Ground Slam	\N	\N	\N
+haggard veiki herald	maneuvers	2	Shield Bash	\N	\N	\N
+haggard veiki herald	warding_spells	0	Templar's Verdict (1603)	cs	375	375
+hapless charmed corsair	maneuvers	0	Bearhug	\N	\N	\N
+hapless charmed corsair	maneuvers	1	Haymaker	\N	\N	\N
+hapless charmed corsair	maneuvers	2	Berserk	\N	\N	\N
+hapless charmed corsair	maneuvers	3	Slippery Mind	\N	\N	\N
+hapless charmed corsair	offensive_spells	0	Intensity (1130)	\N	\N	\N
+hapless charmed corsair	physical_attacks	0	Cudgel	as	605	605
+hapless charmed corsair	physical_attacks	1	Huge black alloy greatsword	as	592	592
+hapless charmed corsair	special_abilities	0	Cyclonic Slash	\N	\N	\N
+hapless charmed corsair	special_abilities	1	Grasping Ward	\N	\N	\N
+hill troll	physical_attacks	0	Two-handed sword	\N	\N	\N
+hill troll	physical_attacks	1	War mattock	\N	\N	\N
+hill troll	physical_attacks	2	War hammer	\N	\N	\N
+hill troll	physical_attacks	3	Spear	\N	\N	\N
+hill troll	physical_attacks	4	Cudgel	as	207	207
+hill troll	physical_attacks	5	Military pick	as	194	194
+hill troll	physical_attacks	6	Unknown	as	182	182
+hill troll	special_abilities	0	Attack strength boost (bellow)	\N	\N	\N
+hill troll	special_abilities	1	Attack strength boost - (snarl)	\N	\N	\N
+hisskra chieftain	maneuvers	0	Tail Swipe	\N	\N	\N
+hisskra chieftain	physical_attacks	0	Dart	as	260	260
+hisskra chieftain	physical_attacks	1	Trident	as	235	235
+hisskra shaman	offensive_spells	0	Sounds (607)	\N	\N	\N
+hisskra shaman	offensive_spells	1	Tangleweed (610)	\N	\N	\N
+hisskra shaman	physical_attacks	0	Trident	as	208	222
+hisskra shaman	warding_spells	0	Blood Burst (701)	cs	165	165
+hisskra shaman	warding_spells	1	Mana Disruption (702)	cs	165	165
+hisskra warrior	maneuvers	0	Lash	\N	\N	\N
+hisskra warrior	maneuvers	1	Tail Swipe	\N	\N	\N
+hisskra warrior	physical_attacks	0	Dart	as	247	247
+hisskra warrior	physical_attacks	1	Trident	as	205	227
+hobgoblin	physical_attacks	0	Claidhmore	as	68	68
+hobgoblin	physical_attacks	1	Handaxe	as	68	68
+hobgoblin	physical_attacks	2	Rapier	as	68	68
+hobgoblin	physical_attacks	3	Iron battle axe	as	58	58
+hobgoblin	physical_attacks	4	Morning star	as	54	54
+hobgoblin	physical_attacks	5	Unknown	as	68	68
+hobgoblin acolyte	bolt_spells	0	Minor Shock (901)	as	104	104
+hobgoblin acolyte	bolt_spells	1	Minor Water (903)	as	104	104
+hobgoblin acolyte	physical_attacks	0	Leather whip	\N	\N	\N
+hobgoblin shaman	bolt_spells	0	Minor Shock (901)	as	89	89
+hobgoblin shaman	bolt_spells	1	Minor Water (903)	as	89	89
+hobgoblin shaman	physical_attacks	0	Leather whip	as	111	111
+hobgoblin shaman	physical_attacks	1	Mace	as	111	111
+hooded figure	bolt_spells	0	Cone of Elements (518)	as	182	233
+hooded figure	bolt_spells	1	Major Cold (907)	as	182	233
+hooded figure	bolt_spells	2	Major Fire (908)	as	182	233
+hooded figure	bolt_spells	3	Major Shock (910)	as	182	233
+hooded figure	bolt_spells	4	Minor Fire (906)	as	182	233
+hooded figure	bolt_spells	5	Minor Shock (901)	as	182	233
+hooded figure	bolt_spells	6	Minor Water (903)	as	182	233
+hooded figure	maneuvers	0	Gesture	\N	\N	\N
+hooded figure	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+hooded figure	offensive_spells	1	Elemental Wave (410)	\N	\N	\N
+hooded figure	offensive_spells	2	Tremors (909)	\N	\N	\N
+hooded figure	offensive_spells	3	Weapon Deflection (412)	\N	\N	\N
+hooded figure	physical_attacks	0	Broadsword	\N	\N	\N
+hooded figure	physical_attacks	1	Morning star	\N	\N	\N
+hooded figure	physical_attacks	2	Falchion	as	186	231
+hooded figure	physical_attacks	3	Short sword	as	231	231
+hooded figure	warding_spells	0	Blood Burst (701)	cs	168	195
+hooded figure	warding_spells	1	Corrupt Essence (703)	cs	168	195
+hooded figure	warding_spells	2	Elemental Blast (409)	cs	168	195
+hooded figure	warding_spells	3	Elemental Saturation (413)	cs	168	195
+hooded figure	warding_spells	4	Elemental Strike (415)	cs	168	195
+hooded figure	warding_spells	5	Immolation (519)	cs	168	195
+hooded figure	warding_spells	6	Mana Disruption (702)	cs	168	195
+hooded figure	warding_spells	7	Dagger	cs	168	168
+hooded figure	warding_spells	8	Falchion	cs	195	195
+hooded figure	warding_spells	9	Short sword	cs	195	195
+horned basalt grotesque	bolt_spells	0	Hurl Boulder (510)	as	387	417
+horned basalt grotesque	maneuvers	0	Haymaker	\N	\N	\N
+horned basalt grotesque	maneuvers	1	Bearhug	\N	\N	\N
+horned basalt grotesque	maneuvers	2	Charge	\N	\N	\N
+horned basalt grotesque	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+horned basalt grotesque	offensive_spells	1	Call Wind (912)	\N	\N	\N
+horned basalt grotesque	offensive_spells	2	Earthen Fury (917)	\N	\N	\N
+horned basalt grotesque	physical_attacks	0	Closed fist	as	525	565
+horned basalt grotesque	physical_attacks	1	Stomp	as	526	555
+horned basalt grotesque	physical_attacks	2	Bite	as	530	530
+horned basalt grotesque	warding_spells	0	Stone Fist (514)	cs	452	452
+horned vor'taz	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+horned vor'taz	offensive_spells	1	Sounds (607)	\N	\N	\N
+horned vor'taz	offensive_spells	2	Spirit Strike (117)	\N	\N	\N
+horned vor'taz	offensive_spells	3	Tangleweed (610)	\N	\N	\N
+horned vor'taz	physical_attacks	0	Charge	as	290	296
+horned vor'taz	warding_spells	0	Sun Burst (609)	cs	225	225
+huge air elemental	bolt_spells	0	Hand of Tonis (505)	as	448	448
+huge air elemental	offensive_spells	0	Call Wind (912)	\N	\N	\N
+huge air elemental	offensive_spells	1	Elemental Wave (410)	\N	\N	\N
+huge air elemental	offensive_spells	2	Major Elemental Wave (435)	\N	\N	\N
+huge air elemental	offensive_spells	3	Wind blast	\N	\N	\N
+huge air elemental	warding_spells	0	Slow (504)	cs	335	335
+huge earth elemental	bolt_spells	0	Hurl Boulder (510)	as	463	463
+huge earth elemental	maneuvers	0	Ground slap	\N	\N	\N
+huge earth elemental	physical_attacks	0	Pound	as	460	460
+huge earth elemental	special_abilities	0	Stone touch	\N	\N	\N
+huge earth elemental	special_abilities	1	Earthquake	\N	\N	\N
+huge fire elemental	bolt_spells	0	Major Fire (908)	as	469	469
+huge fire elemental	bolt_spells	1	Minor Fire (906)	as	469	469
+huge fire elemental	maneuvers	0	Mass Boil Earth	\N	\N	\N
+huge fire elemental	maneuvers	1	Lash	\N	\N	\N
+huge fire elemental	physical_attacks	0	Claw	as	460	460
+huge fire elemental	physical_attacks	1	Roaring ball of fire	as	469	469
+huge fire elemental	physical_attacks	2	Stream of fire	as	469	469
+huge ice elemental	bolt_spells	0	Major Cold (907)	as	438	438
+huge ice elemental	bolt_spells	1	Minor Cold (1709)	as	438	438
+huge ice elemental	maneuvers	0	Slush wall	\N	\N	\N
+huge ice elemental	physical_attacks	0	Pound	as	430	430
+huge jungle toad	maneuvers	0	poisonous glob of phlegm	\N	\N	\N
+huge jungle toad	maneuvers	1	Glob	\N	\N	\N
+huge jungle toad	physical_attacks	0	Bite (attack)	as	222	222
+huge jungle toad	physical_attacks	1	Charge (attack)	as	232	232
+huge jungle toad	physical_attacks	2	Bite	as	199	230
+huge jungle toad	special_abilities	0	Poison spit	\N	\N	\N
+huge lava elemental	bolt_spells	0	Major Fire (908)	as	469	469
+huge lava elemental	maneuvers	0	Lava glob	\N	\N	\N
+huge lava elemental	physical_attacks	0	Pound (double attack)	as	450	450
+huge lava elemental	physical_attacks	1	Molten fist	as	409	496
+huge lava elemental	physical_attacks	2	Roaring ball of fire	as	469	469
+huge lightning elemental	bolt_spells	0	Major Shock (910)	as	469	469
+huge lightning elemental	bolt_spells	1	Cone of Elements (518)	as	469	469
+huge lightning elemental	maneuvers	0	Lava glob	\N	\N	\N
+huge lightning elemental	maneuvers	1	Major Elemental Wave	\N	\N	\N
+huge lightning elemental	maneuvers	2	Burrow Ambush	\N	\N	\N
+huge lightning elemental	offensive_spells	0	Lightning mote	\N	\N	\N
+huge lightning elemental	physical_attacks	0	Charge	as	460	495
+huge lightning elemental	physical_attacks	1	Powerful lightning bolt	as	469	469
+huge lightning elemental	warding_spells	0	Elemental Strike (415)	cs	335	335
+huge lightning elemental	warding_spells	1	Mind Jolt (706)	cs	322	322
+huge mein golem	maneuvers	0	Ground Slam	\N	\N	\N
+huge mein golem	physical_attacks	0	Ensnare	as	250	250
+huge mein golem	physical_attacks	1	Heavy mein right fist	as	234	255
+huge steam elemental	bolt_spells	0	Minor Steam	as	454	454
+huge steam elemental	maneuvers	0	Major Elemental Wave	\N	\N	\N
+huge steam elemental	maneuvers	1	Ethereal Wave	\N	\N	\N
+huge steam elemental	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+huge steam elemental	physical_attacks	0	Ensnare	as	460	460
+huge steam elemental	physical_attacks	1	Boiling tendril	as	469	491
+huge water elemental	bolt_spells	0	Minor Water (903)	as	452	452
+huge water elemental	maneuvers	0	Water blast	\N	\N	\N
+huge water elemental	offensive_spells	0	Mystic Impedance (1708)	\N	\N	\N
+huge water elemental	physical_attacks	0	Pound	as	450	450
+hulking forest ape	maneuvers	0	Pounce	\N	\N	\N
+hulking forest ape	physical_attacks	0	Pound (attack)	as	200	278
+hulking forest ape	physical_attacks	1	Bite (attack)	as	200	278
+hulking forest ape	physical_attacks	2	Charge (attack)	as	200	278
+hulking forest ape	special_abilities	0	Pounce	\N	\N	\N
+humpbacked puma	maneuvers	0	Stomp	\N	\N	\N
+humpbacked puma	physical_attacks	0	Bite (attack)	as	168	168
+humpbacked puma	physical_attacks	1	Claw (attack)	as	168	168
+humpbacked puma	physical_attacks	2	Bite	as	148	148
+humpbacked puma	physical_attacks	3	Claw	as	142	142
+humpbacked puma	physical_attacks	4	Unknown	as	145	145
+humpbacked puma	special_abilities	0	Leap	\N	\N	\N
+hunch-backed dogmatist	bolt_spells	0	Fire Spirit (111)	as	356	356
+hunch-backed dogmatist	offensive_spells	0	Spirit Dispel (119)	\N	\N	\N
+hunch-backed dogmatist	physical_attacks	0	Kaskara	as	350	350
+hunch-backed dogmatist	special_abilities	0	Gaze	\N	\N	\N
+hunch-backed dogmatist	warding_spells	0	Mass Interference (217)	cs	320	320
+hunch-backed dogmatist	warding_spells	1	Fervent Reproach (312)	cs	320	320
+hunch-backed dogmatist	warding_spells	2	Censure (316)	cs	320	320
+hunch-backed dogmatist	warding_spells	3	Interdiction	cs	320	320
+hunter troll	maneuvers	0	Trip	\N	\N	\N
+hunter troll	physical_attacks	0	Jeddart-axe	as	232	232
+hunter troll	physical_attacks	1	Bite	as	212	222
+hunter troll	physical_attacks	2	Claw	as	212	212
+ice golem	maneuvers	0	Ground Slam	\N	\N	\N
+ice golem	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+ice golem	offensive_spells	1	Tremors (909)	\N	\N	\N
+ice golem	physical_attacks	0	Pound	\N	\N	\N
+ice golem	physical_attacks	1	Stomp	as	319	319
+ice golem	physical_attacks	2	Ensnare	as	333	333
+ice golem	physical_attacks	3	Fist	as	327	335
+ice golem	physical_attacks	4	Foot	as	265	333
+ice hound	bolt_spells	0	Major Cold (907)	as	171	171
+ice hound	physical_attacks	0	Bite	as	192	192
+ice hound	physical_attacks	1	Freezing ball of pure cold	as	171	171
+ice troll	bolt_spells	0	Major Cold (907)	as	158	158
+ice troll	physical_attacks	0	Sword	as	228	228
+ice troll	physical_attacks	1	Battle-axe	as	205	205
+ice troll	physical_attacks	2	Enruned ice-covered battle axe	as	200	200
+ice troll	physical_attacks	3	Freezing ball of pure cold	as	179	185
+ice wraith	maneuvers	0	Point	\N	\N	\N
+ice wraith	physical_attacks	0	Kaskara	as	238	238
+ice wraith	warding_spells	0	Point	cs	227	227
+imposing elk	physical_attacks	0	Antlers	as	139	139
+imposing elk	physical_attacks	1	Charge	as	148	148
+infernal death knight	maneuvers	0	Spell Cleave	\N	\N	\N
+infernal death knight	maneuvers	1	Disarm	\N	\N	\N
+infernal death knight	maneuvers	2	Pounce	\N	\N	\N
+infernal death knight	offensive_spells	0	Elemental Wave	\N	\N	\N
+infernal death knight	physical_attacks	0	Trio of blue-black diamonds	as	610	645
+infernal death knight	physical_attacks	1	Bite	as	520	520
+infernal death knight	physical_attacks	2	Charge	as	565	565
+infernal death knight	physical_attacks	3	Kick	as	520	520
+infernal death knight	warding_spells	0	Corrupt Essence	cs	452	452
+infernal death knight	warding_spells	1	Disarm	cs	459	459
+infernal death knight	warding_spells	2	Massive black ora sword adorned with a trio of blue-black diamonds	cs	456	456
+jungle feyling	maneuvers	0	Hamstring	\N	\N	\N
+jungle feyling	maneuvers	1	Fist-scythe	\N	\N	\N
+jungle feyling	physical_attacks	0	Fist-scythe	as	198	198
+jungle troll	maneuvers	0	Lash	\N	\N	\N
+jungle troll	physical_attacks	0	Falchion	as	209	209
+jungle troll	physical_attacks	1	Claw (attack)	as	199	199
+jungle troll	physical_attacks	2	Bamboo-hilted machete	as	209	209
+jungle troll chieftain	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+jungle troll chieftain	offensive_spells	1	Tangleweed (610)	\N	\N	\N
+jungle troll chieftain	physical_attacks	0	Bastard sword	as	212	212
+jungle troll chieftain	physical_attacks	1	Claw (attack)	as	227	227
+jungle troll chieftain	physical_attacks	2	Vine-wrapped rusting bastard sword	as	272	272
+kiramon defender	maneuvers	0	Hamstring	\N	\N	\N
+kiramon defender	physical_attacks	0	Tongue Strike	as	256	256
+kiramon defender	physical_attacks	1	Charge (attack)	as	262	262
+kiramon defender	physical_attacks	2	Claw	as	230	256
+kiramon defender	physical_attacks	3	Charge	as	236	236
+kiramon defender	special_abilities	0	Lunge	\N	\N	\N
+kiramon defender	warding_spells	0	Disease	cs	\N	\N
+kiramon worker	physical_attacks	0	Claw	as	236	236
+kiramon worker	physical_attacks	1	Charge (attack)	as	246	246
+kiramon worker	physical_attacks	2	Charge	as	196	196
+kiramon worker	special_abilities	0	Lunge	\N	\N	\N
+kiramon worker	warding_spells	0	Disease	\N	\N	\N
+kobold	physical_attacks	0	Short sword	as	36	36
+kobold	physical_attacks	1	(quarantine-recovered)	as	16	16
+kobold	physical_attacks	2	Javelin	as	36	36
+kobold	physical_attacks	3	Unknown	as	36	36
+kobold shepherd	bolt_spells	0	Minor Shock (901)	as	30	30
+kobold shepherd	bolt_spells	1	Minor Water (903)	as	30	30
+kobold shepherd	physical_attacks	0	Quarterstaff	as	50	50
+kobold shepherd	physical_attacks	1	Unknown	as	50	50
+kobold shepherd	warding_spells	0	Mana Disruption (702)	cs	35	35
+krag dweller	physical_attacks	0	Pound	as	400	400
+krag dweller	physical_attacks	1	Fist	as	383	383
+krag dweller	special_abilities	0	Krag dweller boulder	\N	\N	\N
+krag yeti	maneuvers	0	Arm Entrapment/Bear Hug	\N	\N	\N
+krag yeti	maneuvers	1	Ground slap	\N	\N	\N
+krag yeti	maneuvers	2	Hairy hand	\N	\N	\N
+krag yeti	physical_attacks	0	Hairy hand	as	328	364
+krag yeti	physical_attacks	1	Ensnare	as	335	335
+krag yeti	physical_attacks	2	Closed fist	as	346	388
+krolvin corsair	physical_attacks	0	Tackle	\N	\N	\N
+krolvin corsair	physical_attacks	1	Plain steel cutlass	as	228	228
+krolvin mercenary	maneuvers	0	Cheapshot	\N	\N	\N
+krolvin mercenary	maneuvers	1	Stomp	\N	\N	\N
+krolvin mercenary	physical_attacks	0	Broadsword	as	178	178
+krolvin mercenary	physical_attacks	1	Unknown	as	178	178
+krolvin slaver	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+krolvin slaver	offensive_spells	1	Tremors (909)	\N	\N	\N
+krolvin slaver	physical_attacks	0	Scimitar	as	212	230
+krolvin slaver	warding_spells	0	Bind (214)	\N	\N	\N
+krolvin slaver	warding_spells	1	Silence (210)	\N	\N	\N
+krolvin warfarer	bolt_spells	0	Fire Spirit (111)	as	179	179
+krolvin warfarer	maneuvers	0	Gesture	\N	\N	\N
+krolvin warfarer	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+krolvin warfarer	physical_attacks	0	Awl-pike	as	200	200
+krolvin warfarer	physical_attacks	1	Claidhmore	as	200	200
+krolvin warfarer	physical_attacks	2	Falchion	as	162	200
+krolvin warfarer	physical_attacks	3	Morning star	as	196	196
+krolvin warfarer	physical_attacks	4	Broadsword	as	204	204
+krolvin warfarer	warding_spells	0	Elemental Blast (409)	cs	127	127
+krolvin warfarer	warding_spells	1	Unbalance (110)	cs	130	130
+krolvin warrior	physical_attacks	0	War mattock	as	156	195
+krolvin warrior	physical_attacks	1	Morning star	as	166	195
+krolvin warrior	physical_attacks	2	Jeddart-axe	as	185	185
+krynch	physical_attacks	0	Pound	\N	\N	\N
+krynch	physical_attacks	1	Fist	as	250	250
+krynch	special_abilities	0	Tremors	\N	\N	\N
+large ogre	maneuvers	0	Tackle	\N	\N	\N
+large ogre	maneuvers	1	Pounce	\N	\N	\N
+large ogre	physical_attacks	0	Claw	as	145	145
+large ogre	physical_attacks	1	Closed fist	as	130	155
+large ogre	physical_attacks	2	Flail	as	165	165
+large ogre	physical_attacks	3	Two-handed sword	as	165	165
+large ogre	physical_attacks	4	Mace	as	155	155
+large ogre	physical_attacks	5	Spear	as	165	165
+large ring-tailed lemur	physical_attacks	0	Bite (attack)	as	118	118
+large ring-tailed lemur	physical_attacks	1	Closed fist	as	118	118
+large ring-tailed lemur	physical_attacks	2	Bite	as	111	111
+large ring-tailed lemur	physical_attacks	3	Charge	as	208	208
+large ring-tailed lemur	physical_attacks	4	Sharp claws	as	117	117
+large thorned shrub	physical_attacks	0	small glistening thorn	as	299	299
+large thorned shrub	physical_attacks	1	Twig	as	279	279
+lava golem	physical_attacks	0	Pound (attack)	as	325	325
+lava golem	physical_attacks	1	Stomp (attack)	as	320	320
+lava golem	physical_attacks	2	Fist	as	331	345
+lava golem	physical_attacks	3	Foot	as	321	321
+lava troll	maneuvers	0	Tackle	\N	\N	\N
+lava troll	maneuvers	1	Pounce	\N	\N	\N
+lava troll	physical_attacks	0	Maul	as	215	215
+lava troll	physical_attacks	1	Warsword	as	215	215
+lava troll	physical_attacks	2	Leather-wound ruddy steel sledgehammer	as	215	215
+leaper	physical_attacks	0	Bite	as	84	94
+leaper	physical_attacks	1	Claw	as	94	94
+leaper	physical_attacks	2	Stomp	as	94	94
+leaper	physical_attacks	3	Foot	as	84	84
+lesser burrow orc	physical_attacks	0	Short sword	as	101	127
+lesser construct	maneuvers	0	Foot Stomp	\N	\N	\N
+lesser construct	maneuvers	1	Ground Slam	\N	\N	\N
+lesser construct	physical_attacks	0	Flail	\N	\N	\N
+lesser construct	physical_attacks	1	Stomp	as	404	404
+lesser construct	physical_attacks	2	Massive arm	as	404	424
+lesser construct	physical_attacks	3	Smash	as	404	416
+lesser faeroth	physical_attacks	0	Bite	as	257	281
+lesser faeroth	physical_attacks	1	Claw	as	236	291
+lesser faeroth	physical_attacks	2	Pound	as	271	281
+lesser frost shade	physical_attacks	0	Handaxe	as	33	43
+lesser frost shade	physical_attacks	1	Unknown	as	23	23
+lesser frost shade	warding_spells	0	Calm (201)	cs	10	10
+lesser frost shade	warding_spells	1	Repel	cs	14	14
+lesser frost shade	warding_spells	2	Handaxe	cs	14	14
+lesser ghoul	physical_attacks	0	Claw	as	31	31
+lesser ghoul	physical_attacks	1	Unknown	as	31	31
+lesser griffin	maneuvers	0	Screech	\N	\N	\N
+lesser griffin	maneuvers	1	Wing Swat	\N	\N	\N
+lesser griffin	maneuvers	2	Dive	\N	\N	\N
+lesser griffin	maneuvers	3	Wing Buffet	\N	\N	\N
+lesser griffin	physical_attacks	0	Impale	as	341	341
+lesser griffin	physical_attacks	1	Bite	as	338	341
+lesser griffin	physical_attacks	2	Claw	as	348	351
+lesser griffin	physical_attacks	3	Beak	as	329	329
+lesser griffin	physical_attacks	4	Swoop	as	315	344
+lesser griffin	special_abilities	0	Buffet	\N	\N	\N
+lesser griffin	special_abilities	1	Screech	\N	\N	\N
+lesser griffin	special_abilities	2	Wing Swat	\N	\N	\N
+lesser ice elemental	bolt_spells	0	Minor Cold (1709)	as	251	251
+lesser ice elemental	maneuvers	0	Ground Slam	\N	\N	\N
+lesser ice elemental	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+lesser ice elemental	offensive_spells	1	Elemental Wave (410)	\N	\N	\N
+lesser ice elemental	offensive_spells	2	Major Elemental Wave (435)	\N	\N	\N
+lesser ice elemental	physical_attacks	0	Ensnare	\N	\N	\N
+lesser ice elemental	physical_attacks	1	Lash	as	255	301
+lesser ice giant	maneuvers	0	AS Booster	\N	\N	\N
+lesser ice giant	maneuvers	1	Ground Slam	\N	\N	\N
+lesser ice giant	physical_attacks	0	Massive Icicle	as	299	299
+lesser minotaur	maneuvers	0	Bull Rush	\N	\N	\N
+lesser minotaur	maneuvers	1	Feint	\N	\N	\N
+lesser minotaur	physical_attacks	0	Greataxe	as	338	338
+lesser minotaur	physical_attacks	1	Waraxe	as	341	376
+lesser moor wight	maneuvers	0	Point	\N	\N	\N
+lesser moor wight	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+lesser moor wight	offensive_spells	1	Gas cloud	\N	\N	\N
+lesser moor wight	physical_attacks	0	Broadsword	as	250	250
+lesser moor wight	physical_attacks	1	Blackened twisted steel longsword	as	225	250
+lesser moor wight	physical_attacks	2	Slender enruned steel longsword	as	250	250
+lesser mummy	physical_attacks	0	Claw	as	108	108
+lesser mummy	physical_attacks	1	Ensnare	as	118	118
+lesser orc	physical_attacks	0	Cudgel	as	108	108
+lesser orc	physical_attacks	1	Short sword	as	88	108
+lesser orc	physical_attacks	2	Unknown	as	108	108
+lesser red orc	physical_attacks	0	Scimitar	as	99	111
+lesser shade	physical_attacks	0	Short sword	as	33	43
+lesser shade	physical_attacks	1	Falchion	as	43	43
+lesser shade	warding_spells	0	Calm (201)	cs	10	10
+lesser shade	warding_spells	1	Repel (fear)	cs	14	14
+lesser shade	warding_spells	2	Mottled grey falchion	cs	10	10
+lesser stone gargoyle	physical_attacks	0	Bite	as	180	201
+lesser stone gargoyle	physical_attacks	1	Claw	as	201	201
+lesser vruul	maneuvers	0	Gesture	\N	\N	\N
+lesser vruul	physical_attacks	0	Battle axe	as	248	263
+lesser vruul	physical_attacks	1	Short sword	as	263	263
+lesser vruul	warding_spells	0	Bind (214)	cs	205	205
+lesser vruul	warding_spells	1	Calm (201)	cs	205	205
+lesser vruul	warding_spells	2	Frenzy (216)	cs	205	205
+lesser vruul	warding_spells	3	Interference (212)	cs	205	205
+lesser vruul	warding_spells	4	Silence (210)	cs	205	205
+lesser vruul	warding_spells	5	Unbalance (110)	cs	205	205
+lesser vruul	warding_spells	6	Battle axe	cs	205	205
+lesser wood sprite	offensive_spells	0	Sounds (607)	\N	\N	\N
+lesser wood sprite	offensive_spells	1	Tangleweed (610)	\N	\N	\N
+lesser wood sprite	physical_attacks	0	Estoc	as	190	222
+lesser wood sprite	physical_attacks	1	Composite bow	\N	\N	\N
+lesser wood sprite	physical_attacks	2	Impale	as	198	198
+lich	bolt_spells	0	Major Cold (907)	as	422	422
+lich	maneuvers	0	Point	\N	\N	\N
+lich	maneuvers	1	Lash	\N	\N	\N
+lich	maneuvers	2	Pounce	\N	\N	\N
+lich	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+lich	offensive_spells	1	Tremors (909)	\N	\N	\N
+lich	offensive_spells	2	Elemental Disjunction (530)	\N	\N	\N
+lich	physical_attacks	0	Runestaff	as	466	466
+lich	physical_attacks	1	Crystal-set smooth ironwood scepter	as	466	466
+lich	physical_attacks	2	Barbed tentacle	as	430	430
+lich	physical_attacks	3	Bladed forearms	as	487	487
+lich	warding_spells	0	Cold Snap (512)	cs	500	500
+lich	warding_spells	1	Dark Catalyst (719)	cs	477	489
+lich	warding_spells	2	Burrow Ambush	cs	477	477
+lich qyn'arj	bolt_spells	0	Minor Cold (1709)	as	370	370
+lich qyn'arj	bolt_spells	1	Web (118)	as	351	351
+lich qyn'arj	maneuvers	0	Gesture	\N	\N	\N
+lich qyn'arj	maneuvers	1	Ground Slam	\N	\N	\N
+lich qyn'arj	physical_attacks	0	Bite	as	368	382
+lich qyn'arj	physical_attacks	1	Smash	as	363	363
+lich qyn'arj	warding_spells	0	Unbalance (110)	cs	341	341
+lich qyn'arj	warding_spells	1	Web (118)	cs	341	341
+lithe veiled sentinel	maneuvers	0	Feint	\N	\N	\N
+lithe veiled sentinel	maneuvers	1	Bull Rush	\N	\N	\N
+lithe veiled sentinel	maneuvers	2	Disarm	\N	\N	\N
+lithe veiled sentinel	maneuvers	3	Martial Strike	\N	\N	\N
+lithe veiled sentinel	maneuvers	4	Charge	\N	\N	\N
+lithe veiled sentinel	offensive_spells	0	Spirit Strike	\N	\N	\N
+lithe veiled sentinel	offensive_spells	1	Force Projection	\N	\N	\N
+lithe veiled sentinel	offensive_spells	2	Powersink	\N	\N	\N
+lithe veiled sentinel	physical_attacks	0	Kick	as	418	484
+lithe veiled sentinel	physical_attacks	1	Bloated arms	as	450	450
+lithe veiled sentinel	physical_attacks	2	Bronze cutlass	as	481	553
+lithe veiled sentinel	physical_attacks	3	Heel of her hand	as	433	438
+lithe veiled sentinel	physical_attacks	4	Heel of his hand	as	408	483
+lithe veiled sentinel	special_abilities	0	Unholy Quickening	\N	\N	\N
+lithe veiled sentinel	warding_spells	0	Thought Lash	cs	438	447
+lithe veiled sentinel	warding_spells	1	Lash	cs	462	462
+lithe veiled sentinel	warding_spells	2	Charge	cs	462	462
+lost soul	maneuvers	0	Point	\N	\N	\N
+lost soul	maneuvers	1	Pounce	\N	\N	\N
+lost soul	physical_attacks	0	Scythe	as	370	493
+lost soul	physical_attacks	1	Scorched black ball and chain	as	404	501
+lost soul	warding_spells	0	Elemental Dispel (417)	\N	\N	\N
+lost soul	warding_spells	1	Gleaming silvery scythe	cs	383	383
+lost soul	warding_spells	2	Scorched black ball and chain	cs	380	380
+luminous arachnid	maneuvers	0	Web	\N	\N	\N
+luminous arachnid	physical_attacks	0	Bite	as	150	150
+luminous arachnid	physical_attacks	1	Ensnare	as	148	152
+luminous arachnid	special_abilities	0	Web	\N	\N	\N
+luminous worm	physical_attacks	0	Charge (attack)	as	156	156
+luminous worm	physical_attacks	1	Charge	as	154	162
+magna vereri	maneuvers	0	Gesture	\N	\N	\N
+magna vereri	maneuvers	1	Spellsong	\N	\N	\N
+magna vereri	physical_attacks	0	Repel (Fear)	\N	\N	\N
+magna vereri	physical_attacks	1	Decaying fists	as	354	354
+magna vereri	physical_attacks	2	Leather whip	as	363	363
+magna vereri	physical_attacks	3	Mouth full of rotting teeth	as	327	364
+magna vereri	physical_attacks	4	Slash	as	354	360
+magru	physical_attacks	0	Pound	as	210	210
+magru	physical_attacks	1	Fist	as	260	260
+magru	special_abilities	0	Stream of Fluid	\N	\N	\N
+major glacei	bolt_spells	0	Major Cold (907)	as	212	212
+major glacei	physical_attacks	0	Lash	as	259	259
+major glacei	physical_attacks	1	Strike	as	234	281
+major spider	maneuvers	0	Web	\N	\N	\N
+major spider	physical_attacks	0	Bite	as	168	168
+major spider	physical_attacks	1	Ensnare	as	178	186
+mammoth arachnid	maneuvers	0	Web	\N	\N	\N
+mammoth arachnid	physical_attacks	0	Bite	as	190	215
+mammoth arachnid	physical_attacks	1	Ensnare	as	204	226
+mammoth arachnid	special_abilities	0	Web	\N	\N	\N
+manticore	physical_attacks	0	Claw	as	112	112
+manticore	physical_attacks	1	Closed fist	as	122	122
+manticore	physical_attacks	2	Unknown	as	122	122
+martial eagle	maneuvers	0	Web	\N	\N	\N
+martial eagle	physical_attacks	0	Bite	as	230	230
+martial eagle	physical_attacks	1	Claw	as	230	230
+martial eagle	physical_attacks	2	Swoop	as	220	220
+masked goliath plunderer	maneuvers	0	Feint	\N	\N	\N
+masked goliath plunderer	maneuvers	1	Hamstring	\N	\N	\N
+masked goliath plunderer	maneuvers	2	Mug	\N	\N	\N
+masked goliath plunderer	maneuvers	3	Garrote	\N	\N	\N
+masked goliath plunderer	maneuvers	4	Subdue	\N	\N	\N
+masked goliath plunderer	maneuvers	5	Templeshot	\N	\N	\N
+masked goliath plunderer	maneuvers	6	Coup de Grace	\N	\N	\N
+masked goliath plunderer	maneuvers	7	Cutthroat	\N	\N	\N
+masked goliath plunderer	maneuvers	8	Silent Strike	\N	\N	\N
+massive black boar	maneuvers	0	Charge	\N	\N	\N
+massive black boar	physical_attacks	0	Charge (attack)	as	335	335
+massive black boar	physical_attacks	1	Impale (attack)	as	292	292
+massive black boar	physical_attacks	2	Bite (attack)	as	312	312
+massive black boar	physical_attacks	3	Bite	as	325	325
+massive black boar	physical_attacks	4	Charge	as	335	335
+massive black boar	physical_attacks	5	Tusk	as	325	325
+massive grahnk	maneuvers	0	Tackle	\N	\N	\N
+massive grahnk	maneuvers	1	Pounce	\N	\N	\N
+massive grahnk	physical_attacks	0	Cudgel	\N	\N	\N
+massive grahnk	physical_attacks	1	Foot	as	151	151
+massive grahnk	physical_attacks	2	Heavy stone club	as	192	192
+massive pyrothag	maneuvers	0	Massive glaes club	\N	\N	\N
+massive pyrothag	physical_attacks	0	Quarterstaff	as	302	302
+massive pyrothag	physical_attacks	1	Stomp (attack)	as	253	253
+massive pyrothag	physical_attacks	2	Pound (attack)	as	283	283
+massive pyrothag	physical_attacks	3	Massive glaes club	as	243	302
+massive troll king	maneuvers	0	Enrage	\N	\N	\N
+massive troll king	physical_attacks	0	Bite	as	339	339
+massive troll king	physical_attacks	1	Claw	as	522	522
+massive troll king	physical_attacks	2	Bite (enraged)	\N	\N	\N
+massive troll king	physical_attacks	3	Claw (enraged)	\N	\N	\N
+massive troll king	physical_attacks	4	Fist	as	502	502
+mastodonic leopard	maneuvers	0	Caterwaul	\N	\N	\N
+mastodonic leopard	maneuvers	1	Leap	\N	\N	\N
+mastodonic leopard	physical_attacks	0	Bite	as	242	269
+mastodonic leopard	physical_attacks	1	Claw	as	279	279
+mastodonic leopard	special_abilities	0	Pounce	\N	\N	\N
+maw spore	physical_attacks	0	Stinger (attack)	as	227	227
+maw spore	physical_attacks	1	Stinger	as	227	227
+mezic	bolt_spells	0	Minor Acid (904)	as	236	236
+mezic	bolt_spells	1	Minor Fire (906)	as	220	220
+mezic	bolt_spells	2	Minor Shock (901)	as	236	236
+mezic	offensive_spells	0	Call Wind (912)	\N	\N	\N
+mezic	physical_attacks	0	Ball and chain	\N	\N	\N
+mezic	physical_attacks	1	Stream of water	as	198	198
+mezic	warding_spells	0	Cold Snap (512)	cs	180	180
+minor glacei	physical_attacks	0	Lash	as	217	246
+minor glacei	physical_attacks	1	Strike	as	247	250
+minotaur magus	bolt_spells	0	Fire Spirit (111)	as	379	379
+minotaur magus	maneuvers	0	Gesture	\N	\N	\N
+minotaur magus	offensive_spells	0	Heroism (215)	\N	\N	\N
+minotaur magus	offensive_spells	1	Spirit Strike (117)	\N	\N	\N
+minotaur magus	physical_attacks	0	Runestaff	as	336	336
+minotaur magus	warding_spells	0	Divine Fury (317)	cs	336	336
+minotaur warrior	maneuvers	0	Bull Rush	\N	\N	\N
+minotaur warrior	maneuvers	1	Disarm	\N	\N	\N
+minotaur warrior	maneuvers	2	Charge	\N	\N	\N
+minotaur warrior	maneuvers	3	Ground Slam	\N	\N	\N
+minotaur warrior	physical_attacks	0	Greataxe	as	368	368
+minotaur warrior	physical_attacks	1	Moon axe	as	368	384
+minotaur warrior	physical_attacks	2	Lustrous steel battle axe	as	348	348
+mist wraith	physical_attacks	0	Closed fist	as	81	81
+mist wraith	physical_attacks	1	Claw	as	71	71
+mist wraith	physical_attacks	2	Ensnare	as	71	81
+mistydeep siren	physical_attacks	0	Dagger	as	50	50
+mistydeep siren	physical_attacks	1	Unknown	as	30	30
+mistydeep siren	warding_spells	0	Calm (201)	cs	10	10
+mistydeep siren	warding_spells	1	Vibration Chant (1002)	cs	2	2
+moaning phantom	bolt_spells	0	Minor Shock (901)	as	50	50
+moaning phantom	physical_attacks	0	Closed fist	as	28	28
+moaning phantom	physical_attacks	1	Unknown	as	28	28
+moaning spirit	maneuvers	0	Mystic Gesture	\N	\N	\N
+moaning spirit	physical_attacks	0	Claw	as	218	235
+moaning spirit	physical_attacks	1	Closed fist	as	228	245
+moaning spirit	warding_spells	0	Claw	cs	159	159
+moaning spirit	warding_spells	1	Closed fist	cs	154	154
+monastic lich	bolt_spells	0	Major Cold (907)	as	178	193
+monastic lich	offensive_spells	0	Bravery (211)	\N	\N	\N
+monastic lich	physical_attacks	0	claidhmore	as	180	255
+monastic lich	physical_attacks	1	kris	as	180	255
+monastic lich	physical_attacks	2	whip	as	180	255
+monastic lich	special_abilities	0	Forget	\N	\N	\N
+monastic lich	special_abilities	1	AS Boost	\N	\N	\N
+monastic lich	special_abilities	2	Spirit Drain	\N	\N	\N
+monastic lich	warding_spells	0	Blind (311)	cs	150	150
+monastic lich	warding_spells	1	Cold Snap (512)	cs	159	162
+monastic lich	warding_spells	2	Silence (210)	cs	150	150
+monastic lich	warding_spells	3	Wickedly barbed leather whip	cs	156	156
+mongrel hobgoblin	physical_attacks	0	Morning star	as	99	99
+mongrel hobgoblin	physical_attacks	1	Spiked club	as	79	89
+mongrel hobgoblin	physical_attacks	2	Unknown	as	99	99
+mongrel kobold	physical_attacks	0	Handaxe	as	65	73
+mongrel kobold	physical_attacks	1	Short sword	as	65	73
+mongrel troll	physical_attacks	0	Spear	as	167	167
+mongrel wolfhound	maneuvers	0	Pounce	\N	\N	\N
+mongrel wolfhound	physical_attacks	0	Bite	as	132	150
+mongrel wolfhound	physical_attacks	1	Charge	as	161	161
+monkey	physical_attacks	0	Bite	as	88	88
+monkey	physical_attacks	1	Mace	\N	\N	\N
+monkey	physical_attacks	2	Closed fist	as	88	88
+monkey	physical_attacks	3	Leather whip	\N	\N	\N
+monkey	physical_attacks	4	Length of coiled red vine	as	70	70
+monkey	physical_attacks	5	Thin oaken cudgel	as	63	63
+monkey	physical_attacks	6	Iron-tipped wooden cane	as	70	70
+monkey	special_abilities	0	Hide	\N	\N	\N
+monstrous direwolf	maneuvers	0	Pounce	\N	\N	\N
+monstrous direwolf	maneuvers	1	Lunge	\N	\N	\N
+monstrous direwolf	maneuvers	2	Leap	\N	\N	\N
+monstrous direwolf	physical_attacks	0	Bite (attack)	as	365	365
+monstrous direwolf	physical_attacks	1	Claw (attack)	as	355	355
+monstrous direwolf	physical_attacks	2	Bite	as	345	345
+monstrous direwolf	physical_attacks	3	Claw	as	319	319
+moor eagle	maneuvers	0	Dive	\N	\N	\N
+moor eagle	physical_attacks	0	Claw	as	233	259
+moor eagle	physical_attacks	1	Impale	as	249	249
+moor eagle	physical_attacks	2	Swoop	as	267	267
+moor hound	maneuvers	0	Wing Buffet	\N	\N	\N
+moor hound	physical_attacks	0	Bite	as	232	232
+moor hound	physical_attacks	1	Charge	as	242	242
+moor hound	physical_attacks	2	Claw	as	232	242
+moor witch	physical_attacks	0	Dagger	as	211	252
+moulis	bolt_spells	0	Cone of Elements (518)	\N	\N	\N
+moulis	physical_attacks	0	Attack	as	380	380
+moulis	physical_attacks	1	Powerful lightning bolt	as	277	277
+moulis	special_abilities	0	Splinter Barrage	\N	\N	\N
+moulis	warding_spells	0	Cold Snap (512)	cs	331	349
+moulis	warding_spells	1	Immolation (519)	\N	\N	\N
+mountain goat	physical_attacks	0	Bite	as	161	175
+mountain lion	maneuvers	0	Pounce	\N	\N	\N
+mountain lion	maneuvers	1	Leap	\N	\N	\N
+mountain lion	physical_attacks	0	Claw	as	159	165
+mountain lion	physical_attacks	1	Bite	as	132	168
+mountain ogre	maneuvers	0	Tackle	\N	\N	\N
+mountain ogre	maneuvers	1	Pounce	\N	\N	\N
+mountain ogre	physical_attacks	0	War mattock	as	173	173
+mountain ogre	physical_attacks	1	Broadsword	as	173	173
+mountain ogre	physical_attacks	2	Crude pine mattock	as	177	177
+mountain ogre	physical_attacks	3	Cudgel	as	177	177
+mountain rolton	physical_attacks	0	Bite	as	28	36
+mountain rolton	physical_attacks	1	Unknown	as	28	28
+mountain snowcat	physical_attacks	0	Bite	as	59	59
+mountain snowcat	physical_attacks	1	Claw	as	49	59
+mountain troll	physical_attacks	0	Flail	as	190	190
+mountain troll	physical_attacks	1	Military pick	as	190	190
+mountain troll	special_abilities	0	Attack strength boost (howl)	\N	\N	\N
+mountain troll	special_abilities	1	Attack strength boost (snarl)	\N	\N	\N
+mud wasp	physical_attacks	0	Stinger (attack)	as	254	254
+mud wasp	physical_attacks	1	Stinger	as	254	254
+muddy hog	physical_attacks	0	Bite	as	161	161
+muddy hog	physical_attacks	1	Charge	as	171	171
+muddy hog	physical_attacks	2	Unknown	as	171	171
+murky soul siphon	maneuvers	0	Hamstring	\N	\N	\N
+murky soul siphon	maneuvers	1	Lash	\N	\N	\N
+murky soul siphon	maneuvers	2	Rear	\N	\N	\N
+murky soul siphon	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+murky soul siphon	physical_attacks	0	Dual armrake	as	471	471
+murky soul siphon	physical_attacks	1	Bladed forearms	as	477	491
+murky soul siphon	physical_attacks	2	Barbed tentacle	as	436	436
+murky soul siphon	warding_spells	0	Limb Disruption (708)	cs	447	447
+murky soul siphon	warding_spells	1	Wither (1115)	cs	437	437
+muscular brindlecat	maneuvers	0	Leap	\N	\N	\N
+muscular brindlecat	physical_attacks	0	Bite	as	142	142
+muscular brindlecat	physical_attacks	1	Claw	as	119	119
+muscular brindlecat	physical_attacks	2	Unknown	as	137	137
+muscular supplicant	physical_attacks	0	Flamberge	as	273	342
+muscular supplicant	special_abilities	0	MSTRIKE	\N	\N	\N
+myklian	physical_attacks	0	Charge	as	251	251
+myklian	physical_attacks	1	Claw	as	241	241
+myklian	physical_attacks	2	Stomp	as	241	241
+myklian	physical_attacks	3	Foot	as	241	241
+n'ecare	maneuvers	0	Tackle	\N	\N	\N
+n'ecare	maneuvers	1	Trip	\N	\N	\N
+n'ecare	maneuvers	2	Polearm Plant	\N	\N	\N
+n'ecare	maneuvers	3	Pounce	\N	\N	\N
+n'ecare	physical_attacks	0	Falchion	as	386	503
+n'ecare	physical_attacks	1	Mace	as	386	396
+n'ecare	physical_attacks	2	Long blackened jeddart-axe	as	491	520
+naisirc	maneuvers	0	Lash	\N	\N	\N
+naisirc	offensive_spells	0	Call Wind (912)	\N	\N	\N
+naisirc	offensive_spells	1	Tangleweed (610)	\N	\N	\N
+naisirc	physical_attacks	0	Charge (attack)	as	400	400
+naisirc	physical_attacks	1	Ensnare (attack)	as	396	396
+naisirc	physical_attacks	2	Charge	as	374	374
+naisirc	physical_attacks	3	Ensnare	as	366	370
+nasty little gremlin	physical_attacks	0	Dagger	as	100	100
+nasty little gremlin	physical_attacks	1	Unknown	as	100	100
+nasty little gremlin	physical_attacks	2	Nip	as	80	80
+neartofar orc	physical_attacks	0	Morning star	as	149	159
+neartofar troll	physical_attacks	0	Longsword	as	179	179
+necrotic snake	maneuvers	0	Constriction	\N	\N	\N
+necrotic snake	maneuvers	1	Poison Spit	\N	\N	\N
+necrotic snake	maneuvers	2	Spit	\N	\N	\N
+necrotic snake	maneuvers	3	Strike	\N	\N	\N
+necrotic snake	maneuvers	4	Glob	\N	\N	\N
+necrotic snake	physical_attacks	0	Strike	as	254	288
+nedum vereri	physical_attacks	0	Morning star	as	161	161
+nedum vereri	physical_attacks	1	Gilt-thorned steel spikestar	as	120	120
+nedum vereri	physical_attacks	2	Claw	as	141	141
+nedum vereri	warding_spells	0	Calm (201)	cs	95	95
+nedum vereri	warding_spells	1	Repel (Fear)	cs	95	95
+nedum vereri	warding_spells	2	Gilt-thorned steel spikestar	cs	95	95
+nedum vereri	warding_spells	3	Morning star	cs	95	95
+night golem	physical_attacks	0	Ensnare	as	96	96
+night golem	physical_attacks	1	Pound	as	86	86
+night golem	physical_attacks	2	Black fists	as	77	77
+night hound	physical_attacks	0	Bite	as	192	192
+night hound	physical_attacks	1	Claw	as	182	202
+night hound	special_abilities	0	Breath attack	\N	\N	\N
+night mare	maneuvers	0	Ethereal Wave	\N	\N	\N
+nightmare steed	physical_attacks	0	Bite	as	327	327
+nightmare steed	physical_attacks	1	Charge	as	337	337
+nightmare steed	physical_attacks	2	Foot	as	327	327
+niirsha	physical_attacks	0	Goupillon	as	164	164
+niirsha	warding_spells	0	Bind (214)	cs	133	133
+niirsha	warding_spells	1	Point	cs	139	139
+nonomino	physical_attacks	0	Ball and chain	as	160	160
+nonomino	physical_attacks	1	Dagger	as	147	160
+nonomino	warding_spells	0	Blind (311)	cs	139	139
+nonomino	warding_spells	1	Point	cs	139	139
+ogre sentry	physical_attacks	0	Sunder Shield	\N	\N	\N
+ogre sentry	physical_attacks	1	Thin-bladed steel handaxe	as	193	199
+ogre warrior	maneuvers	0	Sunder Shield	\N	\N	\N
+ogre warrior	maneuvers	1	Pounce	\N	\N	\N
+ogre warrior	physical_attacks	0	Mace	as	173	201
+ogre warrior	physical_attacks	1	Military pick	as	177	193
+ogre warrior	physical_attacks	2	Broad-bladed steel hatchet	as	169	169
+ogre warrior	physical_attacks	3	Unknown	as	173	173
+pale crab	physical_attacks	0	Claw	as	43	43
+pale crab	physical_attacks	1	Ensnare	as	23	53
+pale scaled shaper	maneuvers	0	Skeletal Finger	\N	\N	\N
+pale scaled shaper	offensive_spells	0	Gas cloud	\N	\N	\N
+pale scaled shaper	offensive_spells	1	Major Elemental Wave	\N	\N	\N
+pale scaled shaper	offensive_spells	2	Spiritual Abolition	\N	\N	\N
+pale scaled shaper	offensive_spells	3	Condemn	\N	\N	\N
+pale scaled shaper	physical_attacks	0	Major Fire	\N	\N	\N
+pale scaled shaper	physical_attacks	1	Long acacia runestaff	as	517	517
+pale scaled shaper	warding_spells	0	Disintegrate	cs	353	353
+pale scaled shaper	warding_spells	1	Cloak of Shadows	cs	431	431
+pale scaled shaper	warding_spells	2	Long acacia runestaff	cs	445	445
+pallid fog-cloaked kelpie	bolt_spells	0	Major Cold (907)	as	\N	\N
+pallid fog-cloaked kelpie	offensive_spells	0	Major Elemental Wave (435)	\N	\N	\N
+pallid fog-cloaked kelpie	offensive_spells	1	Elemental Disjunction (530)	\N	\N	\N
+pallid fog-cloaked kelpie	warding_spells	0	Elemental Strike (415)	cs	\N	\N
+panther	physical_attacks	0	Bite	as	150	174
+panther	physical_attacks	1	Claw	as	134	174
+patchwork flesh monstrosity	maneuvers	0	Tackle	\N	\N	\N
+patchwork flesh monstrosity	maneuvers	1	Twin Hammerfists	\N	\N	\N
+patchwork flesh monstrosity	maneuvers	2	Charge	\N	\N	\N
+patchwork flesh monstrosity	maneuvers	3	Disarm	\N	\N	\N
+patchwork flesh monstrosity	maneuvers	4	Stomp	\N	\N	\N
+patchwork flesh monstrosity	physical_attacks	0	Ensnare (attack)Ensnare	as	450	450
+patchwork flesh monstrosity	physical_attacks	1	Stomp (attack)Stomp	\N	\N	\N
+patchwork flesh monstrosity	physical_attacks	2	Bloated arms	as	438	480
+patchwork flesh monstrosity	physical_attacks	3	Bronze cutlass	as	543	543
+patchwork flesh monstrosity	physical_attacks	4	Heel of his hand	as	418	418
+patchwork flesh monstrosity	physical_attacks	5	Kick	as	390	390
+patchwork flesh monstrosity	physical_attacks	6	Heel of her hand	as	427	427
+patchwork flesh monstrosity	special_abilities	0	Tremors	\N	\N	\N
+phantasma	maneuvers	0	Moan	\N	\N	\N
+phantasma	maneuvers	1	Point	\N	\N	\N
+phantasma	physical_attacks	0	Leather whip	as	217	217
+phantasma	physical_attacks	1	Barbed whip	as	237	237
+phantasma	physical_attacks	2	Splintered lance	as	227	227
+phantasma	warding_spells	0	Corrupt Essence (703)	cs	201	201
+phantasma	warding_spells	1	Disintegrate (705)	cs	195	195
+phantasma	warding_spells	2	Pain (711)	cs	207	207
+phantasma	warding_spells	3	Curse (715)	cs	201	201
+phantasma	warding_spells	4	Point	cs	210	210
+phantasmal bestial swordsman	maneuvers	0	Tackle	\N	\N	\N
+phantasmal bestial swordsman	maneuvers	1	Sunder Shield	\N	\N	\N
+phantasmal bestial swordsman	maneuvers	2	Charge	\N	\N	\N
+phantasmal bestial swordsman	physical_attacks	0	Hammer of Kai	\N	\N	\N
+phantasmal bestial swordsman	physical_attacks	1	Black steel claidhmore	as	272	272
+phantasmal bestial swordsman	physical_attacks	2	Black steel twohanded sword	as	342	342
+phantasmal bestial swordsman	physical_attacks	3	Rhimar trident	as	345	345
+phantom	bolt_spells	0	Minor Shock (901)	as	35	35
+phantom	physical_attacks	0	Closed fist	as	28	28
+phantom	physical_attacks	1	Dagger	as	0	0
+phosphorescent worm	maneuvers	0	Pounce	\N	\N	\N
+phosphorescent worm	physical_attacks	0	Charge (attack)	as	154	154
+phosphorescent worm	physical_attacks	1	Charge	as	154	154
+plains lion	physical_attacks	0	Bite	as	165	165
+plains lion	physical_attacks	1	Claw	as	165	165
+plains lion	special_abilities	0	Pounce	\N	\N	\N
+plains ogre	maneuvers	0	Tackle	\N	\N	\N
+plains ogre	maneuvers	1	Pounce	\N	\N	\N
+plains ogre	physical_attacks	0	Closed fist	as	165	165
+plains ogre	physical_attacks	1	Mace	as	157	175
+plains ogre	physical_attacks	2	Claw	as	155	155
+plains orc chieftain	maneuvers	0	Tackle	\N	\N	\N
+plains orc chieftain	physical_attacks	0	Machete	as	171	195
+plains orc chieftain	physical_attacks	1	Morning star	as	191	195
+plains orc scout	maneuvers	0	Throw	\N	\N	\N
+plains orc scout	maneuvers	1	Lash	\N	\N	\N
+plains orc scout	offensive_spells	0	Tangleweed (610)	\N	\N	\N
+plains orc scout	physical_attacks	0	Longsword	as	157	175
+plains orc shaman	bolt_spells	0	Minor Acid	as	166	166
+plains orc shaman	bolt_spells	1	Major Fire	as	166	166
+plains orc shaman	bolt_spells	2	Major Shock	as	166	166
+plains orc shaman	maneuvers	0	Pounce	\N	\N	\N
+plains orc shaman	physical_attacks	0	Kris	as	164	164
+plains orc shaman	physical_attacks	1	Mace	as	164	164
+plains orc warrior	maneuvers	0	Tackle	\N	\N	\N
+plains orc warrior	maneuvers	1	Pounce	\N	\N	\N
+plains orc warrior	physical_attacks	0	Morning star	as	176	180
+plains orc warrior	physical_attacks	1	Handaxe	as	140	180
+plumed cockatrice	maneuvers	0	Dust Kick	\N	\N	\N
+plumed cockatrice	physical_attacks	0	Charge	as	167	167
+plumed cockatrice	physical_attacks	1	Claw	as	157	157
+plumed cockatrice	physical_attacks	2	Pincer (attack)	as	157	157
+plumed cockatrice	physical_attacks	3	Strike	as	143	143
+polar bear	physical_attacks	0	Bite	as	278	319
+polar bear	physical_attacks	1	Charge	as	315	315
+polar bear	physical_attacks	2	Claw	as	319	319
+pra'eda	offensive_spells	0	Energy Maelstrom (710)	\N	\N	\N
+pra'eda	physical_attacks	0	Closed fist	as	281	281
+puma	maneuvers	0	Leap	\N	\N	\N
+puma	physical_attacks	0	Bite	as	134	171
+puma	physical_attacks	1	Claw	as	160	163
+puma	special_abilities	0	Pounce	\N	\N	\N
+putrefied citadel herald	bolt_spells	0	Fire Spirit (111)	as	298	318
+putrefied citadel herald	bolt_spells	1	Web Bolt (118)	as	290	290
+putrefied citadel herald	maneuvers	0	Point	\N	\N	\N
+putrefied citadel herald	offensive_spells	0	Spirit Strike (117)	\N	\N	\N
+putrefied citadel herald	offensive_spells	1	Web (118)	\N	\N	\N
+putrefied citadel herald	physical_attacks	0	Runestaff	as	277	302
+putrefied citadel herald	warding_spells	0	Bind (214)	cs	273	279
+putrefied citadel herald	warding_spells	1	Interference (212)	\N	\N	\N
+putrefied citadel herald	warding_spells	2	Searing Light (135)	cs	270	270
+putrefied citadel herald	warding_spells	3	Silence (210)	cs	273	273
+putrefied citadel herald	warding_spells	4	Unbalance (110)	\N	\N	\N
+putrefied citadel herald	warding_spells	5	Wither (1115)	cs	285	285
+putrefied citadel herald	warding_spells	6	Divine Wrath (335)	cs	273	273
+rabid guard dog	maneuvers	0	Leap	\N	\N	\N
+rabid guard dog	physical_attacks	0	Bite	as	106	106
+rabid guard dog	physical_attacks	1	Charge (attack)	\N	\N	\N
+rabid guard dog	physical_attacks	2	Charge	as	106	106
+rabid squirrel	physical_attacks	0	Nip (attack)	\N	\N	\N
+rabid squirrel	physical_attacks	1	Nip	as	36	46
+radiant-eyed goliath auramancer	maneuvers	0	Disarm	\N	\N	\N
+radiant-eyed goliath auramancer	maneuvers	1	Kneebash	\N	\N	\N
+radiant-eyed goliath auramancer	special_abilities	0	Healing Light	\N	\N	\N
+radiant-eyed goliath auramancer	special_abilities	1	Blinding Rays	\N	\N	\N
+radiant-eyed goliath auramancer	special_abilities	2	Color Lash	\N	\N	\N
+raider orc	physical_attacks	0	Twohanded sword	as	122	132
+raving lunatic	physical_attacks	0	Short sword	as	371	371
+raving lunatic	physical_attacks	1	Bite	as	315	367
+raving lunatic	physical_attacks	2	Claw	as	351	398
+raving lunatic	physical_attacks	3	Midnight black spiked whip	as	415	415
+raving lunatic	physical_attacks	4	Twisted kris	as	391	401
+red bear	maneuvers	0	Charge	\N	\N	\N
+red bear	physical_attacks	0	Claw	as	160	174
+red bear	physical_attacks	1	Bite	as	174	174
+red tsark	physical_attacks	0	Leap	\N	\N	\N
+red tsark	physical_attacks	1	Bite	as	293	293
+red tsark	physical_attacks	2	Claw	as	347	347
+red tsark	physical_attacks	3	Roaring ball of fire	as	294	294
+red-scaled thrak	physical_attacks	0	Bite (attack)	as	278	278
+red-scaled thrak	physical_attacks	1	Claw (attack)	as	278	278
+red-scaled thrak	physical_attacks	2	Bite	as	278	278
+red-scaled thrak	physical_attacks	3	Claw	as	278	278
+reiver	physical_attacks	0	Broadsword	as	222	222
+reiver	physical_attacks	1	Handaxe	as	222	222
+reiver	physical_attacks	2	Falchion	as	222	222
+reiver	physical_attacks	3	Spear	as	222	222
+reiver	physical_attacks	4	Two-handed sword	as	222	222
+reiver	physical_attacks	5	Fist	as	202	202
+reiver	physical_attacks	6	Unknown	as	222	222
+relnak	physical_attacks	0	Bite	as	61	61
+relnak	physical_attacks	1	Charge (attack)	as	71	71
+relnak	physical_attacks	2	Stomp	as	61	61
+relnak	physical_attacks	3	Charge	as	71	71
+relnak	physical_attacks	4	Foot	as	61	61
+relnak	physical_attacks	5	Unknown	as	71	71
+revenant	physical_attacks	0	Closed fist	as	57	57
+revenant	physical_attacks	1	Broadsword	as	0	0
+revenant	warding_spells	0	Blood Burst (701)	cs	40	40
+ridge orc	physical_attacks	0	Handaxe	as	74	84
+ridgeback boar	maneuvers	0	Charge maneuver	\N	\N	\N
+ridgeback boar	maneuvers	1	Charge	\N	\N	\N
+ridgeback boar	physical_attacks	0	Charge	as	140	170
+ridgeback boar	physical_attacks	1	Bite	as	160	170
+ridgeback boar	physical_attacks	2	Impale	as	170	170
+ridgeback boar	physical_attacks	3	Tusk	as	150	150
+roa'ter	maneuvers	0	Burrow	\N	\N	\N
+roa'ter	maneuvers	1	Tail Slam	\N	\N	\N
+roa'ter	maneuvers	2	Tail Swipe	\N	\N	\N
+roa'ter	maneuvers	3	Charge	\N	\N	\N
+roa'ter	maneuvers	4	Stomp	\N	\N	\N
+roa'ter	physical_attacks	0	Charge	as	244	244
+roa'ter wormling	maneuvers	0	Burrow	\N	\N	\N
+roa'ter wormling	physical_attacks	0	Charge (attack)	as	197	197
+roa'ter wormling	physical_attacks	1	Charge	as	191	197
+rock troll zombie	maneuvers	0	Tackle	\N	\N	\N
+rock troll zombie	maneuvers	1	Disarm Weapon	\N	\N	\N
+rock troll zombie	maneuvers	2	Disarm	\N	\N	\N
+rock troll zombie	maneuvers	3	Pounce	\N	\N	\N
+rock troll zombie	physical_attacks	0	Claw	as	227	245
+rolton	physical_attacks	0	Bite	as	32	32
+rolton	physical_attacks	1	Unknown	as	36	36
+rotting chimera	maneuvers	0	Scorpion Stinger	\N	\N	\N
+rotting chimera	maneuvers	1	Webbing	\N	\N	\N
+rotting chimera	maneuvers	2	Tail Swipe	\N	\N	\N
+rotting chimera	physical_attacks	0	Bite	as	276	276
+rotting chimera	physical_attacks	1	Claw	as	244	276
+rotting chimera	physical_attacks	2	Pound	as	276	276
+rotting chimera	physical_attacks	3	Bestial jaws	as	248	248
+rotting chimera	physical_attacks	4	Enormous humanoid fist	as	230	248
+rotting citadel arbalester	maneuvers	0	Sweep	\N	\N	\N
+rotting citadel arbalester	physical_attacks	0	Heavy crossbow	as	312	312
+rotting citadel arbalester	physical_attacks	1	Wooden burning bolt	as	312	312
+rotting citadel arbalester	physical_attacks	2	Wooden heavy crossbow bolt	as	318	318
+rotting corpse	physical_attacks	0	Scythe	as	236	266
+rotting corpse	physical_attacks	1	Bite (attack)	as	233	233
+rotting farmhand	physical_attacks	0	Rusted pitchfork	as	243	243
+rotting krolvin pirate	maneuvers	0	Trip	\N	\N	\N
+rotting krolvin pirate	physical_attacks	0	Handaxe	as	173	173
+rotting krolvin pirate	physical_attacks	1	Trident	as	173	173
+rotting krolvin pirate	physical_attacks	2	Corroded long-handled gaff	as	155	155
+rotting krolvin pirate	physical_attacks	3	Weathered boarding axe	as	153	153
+rotting woodsman	physical_attacks	0	Battle axe	as	202	202
+rotting woodsman	physical_attacks	1	Huge logging axe	as	207	207
+sabre-tooth tiger	maneuvers	0	Leap	\N	\N	\N
+sabre-tooth tiger	physical_attacks	0	Bite	as	244	313
+sabre-tooth tiger	physical_attacks	1	Charge	as	283	315
+sacristan spirit	offensive_spells	0	Bravery (211)	\N	\N	\N
+sacristan spirit	physical_attacks	0	a twisted black steel half moon	as	211	211
+sacristan spirit	physical_attacks	1	Twisted black steel half moon	as	172	207
+sacristan spirit	warding_spells	0	Blinding (311)	cs	142	142
+sacristan spirit	warding_spells	1	Frenzy (216)	cs	142	142
+sacristan spirit	warding_spells	2	Mind Jolt (706)	cs	146	146
+sacristan spirit	warding_spells	3	Silence (210)	cs	142	142
+sacristan spirit	warding_spells	4	Twisted black steel half moon	cs	145	145
+sand beetle	maneuvers	0	Charge	\N	\N	\N
+sand beetle	physical_attacks	0	Pincer (attack)	as	232	232
+sand beetle	special_abilities	0	Gas cloud	\N	\N	\N
+sand devil	bolt_spells	0	Minor Shock (901)	as	283	283
+sand devil	bolt_spells	1	Minor Water (903)	as	273	273
+sand devil	bolt_spells	2	Minor Fire (906)	as	263	263
+sand devil	bolt_spells	3	Minor Cold (1709)	as	263	263
+sand devil	maneuvers	0	Lash	\N	\N	\N
+sand devil	offensive_spells	0	Sandstorm (914)	\N	\N	\N
+sand devil	offensive_spells	1	Energy Maelstrom (710)	\N	\N	\N
+sand devil	offensive_spells	2	Tangleweed (610)	\N	\N	\N
+sand devil	physical_attacks	0	Claw (attack)	as	273	273
+sand devil	physical_attacks	1	Pound (attack)	as	303	303
+sand devil	physical_attacks	2	Claw	as	293	293
+sand devil	physical_attacks	3	Fist	as	303	303
+sand devil	physical_attacks	4	Small surge of electricity	as	283	283
+sand devil	physical_attacks	5	Stream of water	as	283	283
+sand devil	warding_spells	0	Web (118)	\N	\N	\N
+scaly burgee	maneuvers	0	Spit	\N	\N	\N
+scaly burgee	physical_attacks	0	Charge (attack)	as	250	250
+scaly burgee	physical_attacks	1	Claw	as	225	247
+scaly burgee	physical_attacks	2	Charge	as	221	221
+scaly needle-toothed trenchling	special_abilities	0	Abyssal Call	\N	\N	\N
+sea nymph	physical_attacks	0	Dagger	as	50	50
+sea nymph	physical_attacks	1	Handaxe	as	50	50
+sea nymph	physical_attacks	2	Spear	as	50	50
+sea nymph	physical_attacks	3	Unknown	as	50	50
+sea nymph	warding_spells	0	Calm (201)	cs	10	10
+sea nymph	warding_spells	1	Vibration Chant (1002)	cs	2	2
+sea nymph	warding_spells	2	Dagger	cs	10	10
+seeker	maneuvers	0	Skeletal Finger	\N	\N	\N
+seeker	physical_attacks	0	Earthen Fury (917)	\N	\N	\N
+seeker	physical_attacks	1	Gas cloud	\N	\N	\N
+seeker	physical_attacks	2	Strength (509)	\N	\N	\N
+seeker	physical_attacks	3	Elemental Dispel	\N	\N	\N
+seeker	physical_attacks	4	Ancient walking stick	as	243	271
+seething pestilent vision	maneuvers	0	Gesture	\N	\N	\N
+seething pestilent vision	maneuvers	1	Vile Energy	\N	\N	\N
+seething pestilent vision	offensive_spells	0	Web (118)	\N	\N	\N
+seething pestilent vision	offensive_spells	1	Spirit Dispel (119)	\N	\N	\N
+seething pestilent vision	physical_attacks	0	Disintegrate (705)	\N	\N	\N
+seething pestilent vision	physical_attacks	1	Corrupt Essence (703)	\N	\N	\N
+seething pestilent vision	physical_attacks	2	Claw	as	330	330
+seraceris	maneuvers	0	Air Blast	\N	\N	\N
+seraceris	maneuvers	1	Anti-mana Wave	\N	\N	\N
+seraceris	physical_attacks	0	Claw (attack)	as	291	291
+seraceris	physical_attacks	1	Claw	as	380	384
+seraceris	warding_spells	0	Holding Song (1001)	cs	346	346
+seraceris	warding_spells	1	Vibration Chant (1002)	cs	346	346
+seraceris	warding_spells	2	Curse (715)	cs	341	341
+seraceris	warding_spells	3	Evil Eye (717)	\N	\N	\N
+seraceris	warding_spells	4	Disintegrate (705)	cs	341	341
+seraceris	warding_spells	5	Point	cs	346	346
+shadow mare	maneuvers	0	Ethereal Wave	\N	\N	\N
+shadow mare	physical_attacks	0	Bite	as	188	211
+shadow mare	physical_attacks	1	Foot	as	188	211
+shadow mare	physical_attacks	2	Charge	as	175	175
+shadow steed	physical_attacks	0	Charge	as	254	254
+shadow steed	physical_attacks	1	Foot	as	228	242
+shambling lurk	bolt_spells	0	Web (118)	as	417	417
+shambling lurk	maneuvers	0	Vomit	\N	\N	\N
+shambling lurk	maneuvers	1	Bite	\N	\N	\N
+shambling lurk	maneuvers	2	Gesture	\N	\N	\N
+shambling lurk	maneuvers	3	Strike	\N	\N	\N
+shambling lurk	maneuvers	4	Disarm	\N	\N	\N
+shambling lurk	offensive_spells	0	Elemental Wave	\N	\N	\N
+shambling lurk	physical_attacks	0	Bite	as	450	450
+shambling lurk	physical_attacks	1	Bloated arms	as	438	470
+shambling lurk	physical_attacks	2	Strike	as	459	459
+shambling lurk	physical_attacks	3	Bronze cutlass	as	452	533
+shan bardess	physical_attacks	0	Lance	as	320	337
+shan cleric	maneuvers	0	Disarm	\N	\N	\N
+shan cleric	maneuvers	1	Web	\N	\N	\N
+shan cleric	offensive_spells	0	Spirit Strike (117)	\N	\N	\N
+shan cleric	physical_attacks	0	Morning star	as	212	212
+shan cleric	physical_attacks	1	Spiked holy-water sprinkler	as	307	307
+shan cleric	warding_spells	0	Bind (214)	cs	209	209
+shan empath	maneuvers	0	Gesture	\N	\N	\N
+shan empath	physical_attacks	0	Spirit Strike	\N	\N	\N
+shan empath	physical_attacks	1	Modwir-hafted mace	as	260	378
+shan ranger	bolt_spells	0	Web (118)	as	276	276
+shan ranger	maneuvers	0	Disarm	\N	\N	\N
+shan ranger	maneuvers	1	Lash	\N	\N	\N
+shan ranger	maneuvers	2	Web	\N	\N	\N
+shan ranger	offensive_spells	0	Phoen's Strength (606)	\N	\N	\N
+shan ranger	offensive_spells	1	Spirit Strike (117)	\N	\N	\N
+shan ranger	offensive_spells	2	Spike Thorn (616)	\N	\N	\N
+shan ranger	offensive_spells	3	Tangleweed (610)	\N	\N	\N
+shan ranger	offensive_spells	4	Sounds (607)	\N	\N	\N
+shan ranger	offensive_spells	5	Call Swarm (615)	\N	\N	\N
+shan ranger	physical_attacks	0	Longsword	as	276	294
+shan ranger	warding_spells	0	Wild Entropy (603)	cs	188	188
+shan ranger	warding_spells	1	Web (118)	cs	194	194
+shan sorceress	physical_attacks	0	Ball of greenish-black flame	as	326	326
+shan warrior	maneuvers	0	Disarm Weapon	\N	\N	\N
+shan warrior	maneuvers	1	Disarm	\N	\N	\N
+shan warrior	physical_attacks	0	Flamberge	as	259	271
+shan warrior	physical_attacks	1	Longsword	as	231	259
+shan warrior	physical_attacks	2	Jeddart-axe	as	237	259
+shan warrior	physical_attacks	3	Sharply-honed vultite handaxe	as	375	375
+shan wizard	bolt_spells	0	Minor Acid (904)	as	228	228
+shan wizard	maneuvers	0	Web	\N	\N	\N
+shan wizard	maneuvers	1	Point	\N	\N	\N
+shan wizard	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+shan wizard	offensive_spells	1	Elemental Focus (513)	\N	\N	\N
+shan wizard	offensive_spells	2	Elemental Targeting (425)	\N	\N	\N
+shan wizard	physical_attacks	0	Dagger	as	254	254
+shelfae assailant	physical_attacks	0	Bite	as	110	110
+shelfae assailant	physical_attacks	1	Claw	as	120	120
+shelfae chieftain	physical_attacks	0	Halberd	as	130	130
+shelfae chieftain	physical_attacks	1	Morning star	as	130	130
+shelfae chieftain	special_abilities	0	Tail strike	\N	\N	\N
+shelfae guard	physical_attacks	0	Bite	as	82	82
+shelfae guard	physical_attacks	1	Claw	as	82	82
+shelfae soldier	physical_attacks	0	Trident	as	102	102
+shelfae warlord	offensive_spells	0	Tremors (909)	\N	\N	\N
+shelfae warlord	physical_attacks	0	Falchion	as	170	170
+shrickhen	maneuvers	0	Point	\N	\N	\N
+shrickhen	offensive_spells	0	Elemental Dispel (417)	\N	\N	\N
+shrickhen	offensive_spells	1	Elemental Wave (410)	\N	\N	\N
+shrickhen	offensive_spells	2	Major Elemental Wave (435)	\N	\N	\N
+shrickhen	physical_attacks	0	Bite	as	393	393
+shrickhen	physical_attacks	1	Claw	as	403	403
+shrickhen	physical_attacks	2	Severed shrickhen arm	as	50	411
+shriveled icy creeper	maneuvers	0	creeper vine	\N	\N	\N
+shriveled icy creeper	maneuvers	1	leafy appendages	\N	\N	\N
+shriveled icy creeper	maneuvers	2	Vine Fling	\N	\N	\N
+shriveled icy creeper	maneuvers	3	Whip	\N	\N	\N
+shriveled icy creeper	physical_attacks	0	melee: stab	as	285	285
+shriveled icy creeper	physical_attacks	1	Stinger	as	289	289
+sidewinder	maneuvers	0	Strike	\N	\N	\N
+sidewinder	physical_attacks	0	Bite	as	459	459
+sidewinder	physical_attacks	1	Strike	as	469	469
+silver-scaled cold wyrm	physical_attacks	0	Bite	as	826	826
+silver-scaled cold wyrm	physical_attacks	1	Claw	as	826	826
+silver-scaled cold wyrm	physical_attacks	2	Tail swing	as	826	826
+silver-scaled cold wyrm	physical_attacks	3	Dive	as	826	826
+silver-scaled cold wyrm	warding_spells	0	Sympathy (1120)	cs	520	520
+silverback orc	physical_attacks	0	Falchion	as	158	163
+siren	physical_attacks	0	Ensnare	as	446	449
+siren	physical_attacks	1	Coral-hilted sharply tapered longsword	as	428	428
+siren	warding_spells	0	Corrupt Essence (703)	cs	402	402
+siren	warding_spells	1	Holding Song (1001)	cs	402	402
+siren	warding_spells	2	Lullabye (1005)	cs	402	402
+siren	warding_spells	3	Song of Depression (1015)	cs	402	402
+siren	warding_spells	4	Song of Unravelling (1013)	cs	402	402
+siren	warding_spells	5	Coral-hilted sharply tapered longsword	cs	410	410
+siren	warding_spells	6	Ensnare	cs	416	416
+siren lizard	physical_attacks	0	claw (attack)	as	267	267
+siren lizard	physical_attacks	1	Pound (attack)	as	267	267
+siren lizard	physical_attacks	2	Ensnare (attack)	as	277	277
+siren lizard	physical_attacks	3	Tail (attack)	as	255	255
+siren lizard	physical_attacks	4	Claw	as	267	267
+siren lizard	physical_attacks	5	Ensnare	as	277	277
+siren lizard	physical_attacks	6	Fist	as	267	267
+siren lizard	special_abilities	0	Tail lash	\N	\N	\N
+siren lizard	warding_spells	0	Poison	cs	126	126
+skayl	maneuvers	0	Fire Wave	\N	\N	\N
+skayl	physical_attacks	0	Closed fist	as	257	328
+skayl	physical_attacks	1	Ensnare (attack)	as	328	328
+skayl	physical_attacks	2	Ensnare	as	257	302
+skayl	warding_spells	0	Earthen Fury (917)	\N	\N	\N
+skayl	warding_spells	1	Burrow Ambush	cs	265	265
+skayl	warding_spells	2	Ensnare	cs	253	253
+skeletal giant	physical_attacks	0	Pound	as	227	227
+skeletal giant	physical_attacks	1	Fist	as	227	227
+skeletal ice troll	bolt_spells	0	Major Cold (907)	as	183	183
+skeletal ice troll	physical_attacks	0	Battle axe	as	205	205
+skeletal lord	maneuvers	0	Disarm Weapon	\N	\N	\N
+skeletal lord	maneuvers	1	Trip	\N	\N	\N
+skeletal lord	maneuvers	2	Disarm	\N	\N	\N
+skeletal lord	maneuvers	3	Polearm Plant	\N	\N	\N
+skeletal lord	physical_attacks	0	Lance	as	274	274
+skeletal soldier	physical_attacks	0	Disarm Weapon	\N	\N	\N
+skeletal soldier	physical_attacks	1	Crude black iron morning star	as	224	224
+skeletal soldier	physical_attacks	2	Claw	as	207	207
+skeletal warhorse	maneuvers	0	Kick	\N	\N	\N
+skeletal warhorse	physical_attacks	0	Charge	as	262	262
+skeletal warhorse	physical_attacks	1	Stomp	as	240	240
+skeletal warhorse	physical_attacks	2	Foot	as	235	235
+skeleton	physical_attacks	0	Broadsword	\N	\N	\N
+skeleton	physical_attacks	1	Dagger	as	31	31
+skeleton	physical_attacks	2	Unknown	as	31	31
+skeleton	physical_attacks	3	Bite	as	11	11
+sleek black kiramon stalker	maneuvers	0	Eviscerate	\N	\N	\N
+sleek black kiramon stalker	maneuvers	1	Coup de Grace	\N	\N	\N
+sleek black kiramon stalker	maneuvers	2	Dirtkick	\N	\N	\N
+sleek black kiramon stalker	maneuvers	3	Charge	\N	\N	\N
+sleek black kiramon stalker	maneuvers	4	Dust Kick	\N	\N	\N
+sleek black kiramon stalker	physical_attacks	0	Claw	\N	\N	\N
+sleek black kiramon stalker	physical_attacks	1	Stinger (attack)	as	591	597
+sleek black kiramon stalker	physical_attacks	2	Bite	as	565	597
+sleek black kiramon stalker	physical_attacks	3	Bladed forelegs	as	519	519
+sleek black kiramon stalker	physical_attacks	4	Razor-sharp foreleg	as	600	607
+sleek black kiramon stalker	special_abilities	0	Weapon Web	\N	\N	\N
+sleek black kiramon stalker	special_abilities	1	Stealth	\N	\N	\N
+sleek black kiramon stalker	special_abilities	2	On the Hunt	\N	\N	\N
+sleek black kiramon stalker	special_abilities	3	Durable Carapace	\N	\N	\N
+slimy little grub	physical_attacks	0	Stinger (attack)	as	47	47
+slimy little grub	physical_attacks	1	Stinger	as	37	37
+smouldering skeletal dreadsteed	maneuvers	0	Feint	\N	\N	\N
+smouldering skeletal dreadsteed	maneuvers	1	Headbutt	\N	\N	\N
+smouldering skeletal dreadsteed	maneuvers	2	Charge	\N	\N	\N
+smouldering skeletal dreadsteed	maneuvers	3	Lash	\N	\N	\N
+smouldering skeletal dreadsteed	offensive_spells	0	Flaming Aura (1706)	\N	\N	\N
+smouldering skeletal dreadsteed	physical_attacks	0	Bite (attack)	as	520	520
+smouldering skeletal dreadsteed	physical_attacks	1	Charge (attack)	as	530	530
+smouldering skeletal dreadsteed	physical_attacks	2	Stomp (attack)	as	520	520
+smouldering skeletal dreadsteed	physical_attacks	3	Bite	as	567	575
+smouldering skeletal dreadsteed	physical_attacks	4	Charge	as	530	576
+smouldering skeletal dreadsteed	physical_attacks	5	Kick	as	555	561
+smouldering skeletal dreadsteed	special_abilities	0	Charge	\N	\N	\N
+snow crone	bolt_spells	0	Major Cold (907)	as	227	227
+snow crone	maneuvers	0	Stomp	\N	\N	\N
+snow crone	special_abilities	0	Gas Cloud	\N	\N	\N
+snow crone	warding_spells	0	Mana Disruption (702)	cs	201	201
+snow crone	warding_spells	1	Point	cs	192	192
+snow leopard	maneuvers	0	Leap	\N	\N	\N
+snow leopard	physical_attacks	0	Bite	as	182	203
+snow leopard	physical_attacks	1	Charge	as	213	213
+snow leopard	physical_attacks	2	Claw	as	187	213
+snow madrinol	maneuvers	0	Tail Sweep	\N	\N	\N
+snow madrinol	maneuvers	1	Tail Swipe	\N	\N	\N
+snow madrinol	physical_attacks	0	Bite	as	291	301
+snow madrinol	physical_attacks	1	Claw	as	311	311
+snow spectre	physical_attacks	0	Closed fist	as	98	98
+snow spectre	warding_spells	0	Fear	cs	47	53
+snowy cockatrice	maneuvers	0	Stare	\N	\N	\N
+snowy cockatrice	maneuvers	1	Dust Kick	\N	\N	\N
+snowy cockatrice	physical_attacks	0	Charge (attack)	as	109	109
+snowy cockatrice	physical_attacks	1	Claw	as	99	99
+snowy cockatrice	physical_attacks	2	Pincer (attack)	as	99	99
+snowy cockatrice	physical_attacks	3	Strike	as	99	99
+soldier ant	physical_attacks	0	Bite	as	45	45
+soldier ant	physical_attacks	1	Charge (attack)	as	55	55
+soul golem	maneuvers	0	Twin Hammerfists	\N	\N	\N
+soul golem	physical_attacks	0	Pound (attack)	as	337	337
+soul golem	physical_attacks	1	Ensnare (attack)	as	353	353
+soul golem	special_abilities	0	Foot slam	\N	\N	\N
+spectacled bear	physical_attacks	0	Bite	as	180	180
+spectacled bear	physical_attacks	1	Charge	as	171	171
+spectacled bear	physical_attacks	2	Claw	as	171	171
+spectral black warhorse	physical_attacks	0	Charge (attack)	\N	\N	\N
+spectral black warhorse	physical_attacks	1	Stomp	as	250	250
+spectral black warhorse	physical_attacks	2	Charge	as	190	190
+spectral black warhorse	special_abilities	0	Rears	\N	\N	\N
+spectral fisherman	physical_attacks	0	Trident	as	94	94
+spectral fisherman	physical_attacks	1	Bite	\N	\N	\N
+spectral fisherman	physical_attacks	2	Claw (attack)Claw	\N	\N	\N
+spectral lord	maneuvers	0	Disarm Weapon	\N	\N	\N
+spectral lord	maneuvers	1	Disarm	\N	\N	\N
+spectral lord	physical_attacks	0	Ball and chain	as	250	250
+spectral lord	physical_attacks	1	Morning star	as	222	250
+spectral miner	maneuvers	0	Gesture	\N	\N	\N
+spectral miner	physical_attacks	0	Mining pick	as	243	311
+spectral monk	offensive_spells	0	Bravery (211)	\N	\N	\N
+spectral monk	physical_attacks	0	Quarterstaff	as	227	227
+spectral monk	physical_attacks	1	Scythe	as	227	227
+spectral monk	warding_spells	0	Silence (210)	cs	136	136
+spectral monk	warding_spells	1	Frenzy (216)	cs	136	136
+spectral monk	warding_spells	2	Blind (311)	cs	142	142
+spectral monk	warding_spells	3	Mind Jolt (706)	cs	146	146
+spectral monk	warding_spells	4	Long blackened scythe	cs	148	148
+spectral shade	physical_attacks	0	Blackened scythe	as	239	239
+spectral shade	physical_attacks	1	Powerful lightning bolt	as	162	162
+spectral triton defender	maneuvers	0	Charge	\N	\N	\N
+spectral triton defender	maneuvers	1	Disarm	\N	\N	\N
+spectral triton defender	maneuvers	2	Feint	\N	\N	\N
+spectral triton defender	physical_attacks	0	Lackluster blue steel harpoon	as	444	444
+spectral triton defender	physical_attacks	1	Seaweed-wound rusted steel hatchet	as	424	433
+spectral triton defender	physical_attacks	2	Curved vaalorn handaxe	as	432	432
+spectral triton defender	physical_attacks	3	Tarnished dark silver harpoon	as	433	433
+spectral triton protector	maneuvers	0	Shield Charge	\N	\N	\N
+spectral triton protector	physical_attacks	0	Ball and chain	as	424	449
+spectral triton protector	physical_attacks	1	Claw	as	414	414
+spectral triton protector	special_abilities	0	Dizzying Swing	\N	\N	\N
+spectral triton protector	special_abilities	1	Mstrike	\N	\N	\N
+spectral triton protector	special_abilities	2	Hurl	\N	\N	\N
+spectral warrior	maneuvers	0	Disarm	\N	\N	\N
+spectral warrior	maneuvers	1	Halberd Sweep	\N	\N	\N
+spectral warrior	physical_attacks	0	Claw	as	230	230
+spectral warrior	physical_attacks	1	Flail	as	230	250
+spectral warrior	physical_attacks	2	Broadsword	as	250	250
+spectral warrior	physical_attacks	3	Halberd	as	250	288
+spectral warrior	special_abilities	0	Attack strength boost	\N	\N	\N
+spectral woodsman	bolt_spells	0	Minor Acid (904)	as	212	212
+spectral woodsman	bolt_spells	1	Major Cold (907)	as	212	212
+spectral woodsman	bolt_spells	2	Major Fire (908)	as	218	218
+spectral woodsman	bolt_spells	3	Major Shock (910)	as	218	218
+spectral woodsman	physical_attacks	0	Battle axe	\N	\N	\N
+spectral woodsman	physical_attacks	1	Hissing stream of acid	as	192	192
+spectral woodsman	physical_attacks	2	Powerful lightning bolt	as	172	172
+spectral woodsman	physical_attacks	3	Roaring ball of fire	as	176	176
+spectral woodsman	special_abilities	0	Gas cloud	\N	\N	\N
+spectral woodsman	warding_spells	0	Repel(fear)	cs	188	188
+spectral woodsman	warding_spells	1	Mind blanked?	cs	195	195
+spectre	bolt_spells	0	Minor Shock (901)	as	137	137
+spectre	bolt_spells	1	Major Cold (907)	as	137	137
+spectre	maneuvers	0	Gas cloud	\N	\N	\N
+spectre	maneuvers	1	Mystic Gesture	\N	\N	\N
+spectre	offensive_spells	0	Call Wind (912)	\N	\N	\N
+spectre	physical_attacks	0	Halberd	as	102	102
+spectre	physical_attacks	1	Battle axe	as	102	102
+spectre	physical_attacks	2	Fist	as	102	102
+spiked cavern urchin	maneuvers	0	Barbed spines	\N	\N	\N
+spiked cavern urchin	maneuvers	1	Spine Barrage	\N	\N	\N
+spiked cavern urchin	physical_attacks	0	Pincer (attack)	as	\N	\N
+spotted gak	physical_attacks	0	Impale	as	48	48
+spotted gak	physical_attacks	1	Tusk	as	48	48
+spotted gnarp	physical_attacks	0	Impale	as	32	32
+spotted gnarp	physical_attacks	1	Tusk	as	23	36
+spotted gnarp	physical_attacks	2	Unknown	as	23	23
+spotted leaper	physical_attacks	0	Bite	as	68	76
+spotted leaper	physical_attacks	1	Claw	as	76	76
+spotted leaper	physical_attacks	2	Stomp	as	76	76
+spotted leaper	physical_attacks	3	Unknown	as	76	76
+spotted lynx	maneuvers	0	Leap	\N	\N	\N
+spotted lynx	physical_attacks	0	Bite	as	92	92
+spotted lynx	physical_attacks	1	Charge	as	92	102
+spotted lynx	physical_attacks	2	Claw	as	91	102
+spotted lynx	physical_attacks	3	Unknown	as	102	102
+spotted lynx	special_abilities	0	Pounce	\N	\N	\N
+steam dervish	maneuvers	0	Hamstring	\N	\N	\N
+steam dervish	maneuvers	1	Steam Blast	\N	\N	\N
+steam dervish	physical_attacks	0	Longsword	as	402	452
+steam dervish	special_abilities	0	Steam blast	\N	\N	\N
+steel golem	maneuvers	0	Twin Hammerfists	\N	\N	\N
+steel golem	maneuvers	1	Ground Slam	\N	\N	\N
+steel golem	physical_attacks	0	Ensnare	as	168	178
+steel golem	physical_attacks	1	Pound	as	188	188
+steel golem	physical_attacks	2	Stomp	as	198	198
+steel golem	physical_attacks	3	Metallic hand	as	150	169
+steel golem	special_abilities	0	Foot slam	\N	\N	\N
+stone gargoyle	physical_attacks	0	Bite	as	134	242
+stone gargoyle	physical_attacks	1	Claw	as	242	242
+stone giant	bolt_spells	0	Hurl Boulder (510)	as	334	334
+stone giant	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+stone giant	physical_attacks	0	Pound	\N	\N	\N
+stone giant	physical_attacks	1	Stomp	\N	\N	\N
+stone giant	physical_attacks	2	War mattock	as	324	324
+stone giant	physical_attacks	3	Large rock	as	267	267
+stone giant	warding_spells	0	Unbalance (110)	cs	251	263
+stone mastiff	maneuvers	0	Charge	\N	\N	\N
+stone mastiff	maneuvers	1	Leap	\N	\N	\N
+stone mastiff	physical_attacks	0	Bite	as	229	268
+stone mastiff	physical_attacks	1	Claw	as	337	337
+stone sentinel	bolt_spells	0	Fireball	as	373	373
+stone sentinel	maneuvers	0	Point	\N	\N	\N
+stone sentinel	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+stone sentinel	offensive_spells	1	Earthen Fury (917)	\N	\N	\N
+stone sentinel	physical_attacks	0	Pound	as	380	380
+stone sentinel	physical_attacks	1	Fist	as	350	380
+stone sentinel	special_abilities	0	Stone-spitting	\N	\N	\N
+stone sentinel	warding_spells	0	Mind Jolt	cs	231	241
+stone sentinel	warding_spells	1	Silence	cs	231	241
+stone troll	maneuvers	0	Ground slap	\N	\N	\N
+stone troll	maneuvers	1	Ground stomp	\N	\N	\N
+stone troll	maneuvers	2	Stone spit	\N	\N	\N
+stone troll	maneuvers	3	Ground Slam	\N	\N	\N
+stone troll	physical_attacks	0	Thrown	as	321	321
+stone troll	physical_attacks	1	War hammer	as	321	321
+stone troll	physical_attacks	2	Foot	as	296	296
+stone troll	physical_attacks	3	Giant stone hammer	as	298	298
+stone troll	warding_spells	0	Unbalance	cs	214	214
+stooped being	maneuvers	0	Gaze	\N	\N	\N
+stooped being	physical_attacks	0	Claw	as	406	406
+stooped being	physical_attacks	1	Bite	as	356	396
+stooped titan stormcaller	physical_attacks	0	Leering Lightning(?)	\N	\N	\N
+stooped titan stormcaller	physical_attacks	1	Glowing hand	as	205	205
+storm giant	bolt_spells	0	Major Shock (910)	as	195	195
+storm giant	bolt_spells	1	Minor Water (903)	as	195	195
+storm giant	maneuvers	0	Ground stomp	\N	\N	\N
+storm giant	maneuvers	1	Wind blast	\N	\N	\N
+storm giant	maneuvers	2	Ground Slam	\N	\N	\N
+storm giant	maneuvers	3	Thunderclap	\N	\N	\N
+storm giant	maneuvers	4	Wind Rush	\N	\N	\N
+storm giant	offensive_spells	0	Call Wind (912)	\N	\N	\N
+storm giant	offensive_spells	1	Gas cloud	\N	\N	\N
+storm giant	physical_attacks	0	Morning star	as	247	247
+storm giant	physical_attacks	1	Spear	as	197	247
+storm giant	physical_attacks	2	Weathered huge zorchar maul	as	252	252
+storm griffin	bolt_spells	0	Major Shock (910)	as	321	321
+storm griffin	maneuvers	0	Wing Buffet	\N	\N	\N
+storm griffin	offensive_spells	0	Call Wind (912)	\N	\N	\N
+storm griffin	offensive_spells	1	Lightning mote	\N	\N	\N
+storm griffin	offensive_spells	2	Screech	\N	\N	\N
+storm griffin	physical_attacks	0	Claw	as	338	368
+storm griffin	physical_attacks	1	Impale	as	358	358
+storm griffin	physical_attacks	2	Bite	as	327	362
+storm griffin	physical_attacks	3	Swoop	as	331	368
+storm griffin	physical_attacks	4	Beak	as	325	325
+storm griffin	physical_attacks	5	Powerful lightning bolt	as	293	293
+storm hound	bolt_spells	0	Major Shock (910)	as	171	171
+storm hound	physical_attacks	0	Bite	as	192	192
+storm hound	physical_attacks	1	Claw	as	202	202
+storm hound	physical_attacks	2	Powerful lightning bolt	as	202	202
+striped gak	physical_attacks	0	Impale	as	61	61
+striped gak	physical_attacks	1	Tusk	as	54	54
+striped relnak	physical_attacks	0	Bite	as	31	61
+striped relnak	physical_attacks	1	Charge (attack)	as	71	71
+striped relnak	physical_attacks	2	Stomp	as	61	61
+striped relnak	physical_attacks	3	Foot	as	61	61
+striped relnak	physical_attacks	4	Unknown	as	41	41
+striped warcat	maneuvers	0	Leap (knock down)	\N	\N	\N
+striped warcat	maneuvers	1	Leap	\N	\N	\N
+striped warcat	physical_attacks	0	Claw	as	185	195
+striped warcat	physical_attacks	1	Bite	as	166	193
+striped warcat	physical_attacks	2	Unknown	as	185	185
+supple ivasian inciter	maneuvers	0	Gesture	\N	\N	\N
+supple ivasian inciter	maneuvers	1	Kick	\N	\N	\N
+supple ivasian inciter	maneuvers	2	Swiftkick	\N	\N	\N
+supple ivasian inciter	offensive_spells	0	Spirit Strike	\N	\N	\N
+supple ivasian inciter	offensive_spells	1	Spike Thorn	\N	\N	\N
+supple ivasian inciter	physical_attacks	0	Kick	as	414	414
+supple ivasian inciter	physical_attacks	1	Whip	as	294	329
+supple ivasian inciter	physical_attacks	2	Quick jab	as	323	363
+swamp hag	bolt_spells	0	Major Fire (908)	as	235	235
+swamp hag	maneuvers	0	Evil Eye	\N	\N	\N
+swamp hag	maneuvers	1	Lash	\N	\N	\N
+swamp hag	maneuvers	2	Point	\N	\N	\N
+swamp hag	offensive_spells	0	Call Wind (912)	\N	\N	\N
+swamp hag	offensive_spells	1	Sandstorm (914)	\N	\N	\N
+swamp hag	offensive_spells	2	Tremors (909)	\N	\N	\N
+swamp hag	offensive_spells	3	Major Elemental Wave (435)	\N	\N	\N
+swamp hag	physical_attacks	0	Slap	as	255	255
+swamp hag	warding_spells	0	Hand of Tonis (505)	cs	224	224
+swamp troll	physical_attacks	0	Cudgel	as	155	173
+swirling spectre	bolt_spells	0	Cone of Elements (518)	as	150	150
+swirling spectre	maneuvers	0	Claw	\N	\N	\N
+swirling spectre	offensive_spells	0	Call Wind (912)	\N	\N	\N
+swirling spectre	physical_attacks	0	Claw	as	144	144
+swirling spectre	physical_attacks	1	Ensnare	as	222	222
+swirling spectre	warding_spells	0	Thought Lash (1210)	cs	140	140
+swirling spectre	warding_spells	1	Vertigo (1219)	cs	140	140
+tawny armor-clad pegasus	maneuvers	0	Headbutt	\N	\N	\N
+tawny armor-clad pegasus	special_abilities	0	Incandescent Wings	\N	\N	\N
+tawny armor-clad pegasus	special_abilities	1	Wind Burst	\N	\N	\N
+tawny armor-clad pegasus	special_abilities	2	Penance Stare	\N	\N	\N
+tawny armor-clad pegasus	special_abilities	3	Plummeting Charge	\N	\N	\N
+tawny brindlecat	maneuvers	0	Pounce	\N	\N	\N
+tawny brindlecat	maneuvers	1	Leap	\N	\N	\N
+tawny brindlecat	physical_attacks	0	Bite	as	147	150
+tawny brindlecat	physical_attacks	1	Claw	as	136	162
+tegursh sentry	maneuvers	0	Shield Charge	\N	\N	\N
+tegursh sentry	maneuvers	1	Tail Swipe	\N	\N	\N
+tegursh sentry	maneuvers	2	Charge	\N	\N	\N
+tegursh sentry	physical_attacks	0	Falchion	as	207	207
+tegursh sentry	physical_attacks	1	Jeddart-axe	as	176	225
+tegursh sentry	special_abilities	0	Tail sweep	\N	\N	\N
+tenebrific wraith shark	physical_attacks	0	Crush	as	614	614
+thrak	physical_attacks	0	Bite	as	110	110
+thrak	physical_attacks	1	Charge	as	120	120
+thrak	physical_attacks	2	Claw	as	110	110
+thrak	physical_attacks	3	Unknown	as	120	120
+three-toed tegu	maneuvers	0	Tail Sweep	\N	\N	\N
+three-toed tegu	physical_attacks	0	Impale	as	237	237
+three-toed tegu	physical_attacks	1	Bite	as	227	237
+three-toed tegu	physical_attacks	2	Claw	as	237	237
+thunder troll	bolt_spells	0	Major Shock (910)	as	117	117
+thunder troll	maneuvers	0	Gas cloud	\N	\N	\N
+thunder troll	maneuvers	1	Wind Rush	\N	\N	\N
+thunder troll	offensive_spells	0	Call Wind (912)	\N	\N	\N
+thunder troll	physical_attacks	0	War mattock	as	163	163
+thunder troll	physical_attacks	1	Flamberge	as	163	163
+thunder troll	physical_attacks	2	Nut brown steel bastard sword	as	163	163
+thunder troll	physical_attacks	3	Unknown	as	163	163
+thunder troll	physical_attacks	4	Claw	as	153	153
+thunder troll	warding_spells	0	Pain (711)	cs	98	98
+thunder troll	warding_spells	1	Claw	cs	98	98
+thunder troll	warding_spells	2	Flamberge	cs	98	98
+thyril	physical_attacks	0	Closed fist	as	42	42
+thyril	physical_attacks	1	Scimitar	as	52	52
+thyril	physical_attacks	2	Unknown	as	52	52
+titan tempest tyrant	maneuvers	0	Tempest Strike(?)	\N	\N	\N
+titan tempest tyrant	maneuvers	1	Feint	\N	\N	\N
+titan tempest tyrant	maneuvers	2	Ground Slam	\N	\N	\N
+titan tempest tyrant	maneuvers	3	Ethereal Wave	\N	\N	\N
+tomb troll	maneuvers	0	Shield Bash	\N	\N	\N
+tomb troll	physical_attacks	0	Morning star	as	248	273
+tomb troll	physical_attacks	1	Huge swollen right fist	as	235	235
+tomb troll necromancer	maneuvers	0	Animate Dead (730)	\N	\N	\N
+tomb troll necromancer	maneuvers	1	Point	\N	\N	\N
+tomb troll necromancer	physical_attacks	0	Runestaff	as	133	283
+tomb troll necromancer	warding_spells	0	Curse (715)	cs	266	266
+tomb troll necromancer	warding_spells	1	Limb Disruption (708)	cs	266	266
+tomb troll necromancer	warding_spells	2	Pain (711)	cs	266	266
+tomb troll necromancer	warding_spells	3	Blood Burst (701)	cs	266	266
+tomb wight	maneuvers	0	Web	\N	\N	\N
+tomb wight	physical_attacks	0	Broadsword	as	131	163
+tomb wight	physical_attacks	1	Two-handed sword	as	157	157
+tomb wight	physical_attacks	2	Twohanded sword	as	127	157
+tomb wight	physical_attacks	3	Blackened claidhmore	as	141	141
+tomb wight	warding_spells	0	Twohanded sword	cs	90	90
+translucent kiramon strandweaver	offensive_spells	0	Web (118)	\N	\N	\N
+translucent kiramon strandweaver	physical_attacks	0	Barbed stinger	as	565	565
+translucent kiramon strandweaver	physical_attacks	1	Bladed forelegs	as	519	519
+translucent kiramon strandweaver	warding_spells	0	Empathic Link (1117)	\N	\N	\N
+tree spirit	bolt_spells	0	Major Shock (910)	as	194	194
+tree spirit	maneuvers	0	Gesture	\N	\N	\N
+tree spirit	offensive_spells	0	Call Lightning (125)	\N	\N	\N
+tree spirit	offensive_spells	1	Call Wind (912)	\N	\N	\N
+tree spirit	offensive_spells	2	Earthen Fury (917)	\N	\N	\N
+tree spirit	physical_attacks	0	Ensnare	as	190	190
+tree viper	maneuvers	0	Poisonous spit	\N	\N	\N
+tree viper	maneuvers	1	Spit	\N	\N	\N
+tree viper	maneuvers	2	Glob	\N	\N	\N
+tree viper	maneuvers	3	Lash	\N	\N	\N
+tree viper	physical_attacks	0	Bite	as	195	218
+treekin druid	bolt_spells	0	Hurl Boulder (510)	as	350	350
+treekin druid	maneuvers	0	Whirlwind of leaves (or pollen)	\N	\N	\N
+treekin druid	maneuvers	1	Grab	\N	\N	\N
+treekin druid	maneuvers	2	Leaf Whirlwind	\N	\N	\N
+treekin druid	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+treekin druid	offensive_spells	1	Spirit Dispel (119)	\N	\N	\N
+treekin druid	offensive_spells	2	Spike Thorn (616)	\N	\N	\N
+treekin druid	offensive_spells	3	Phoen's Strength (606)	\N	\N	\N
+treekin druid	physical_attacks	0	Pound	as	400	400
+treekin druid	physical_attacks	1	Root lash	as	400	400
+treekin druid	physical_attacks	2	Root slam	as	400	400
+treekin druid	physical_attacks	3	Large boulder	as	265	265
+treekin druid	physical_attacks	4	Leafy fist	as	370	370
+treekin druid	warding_spells	0	Searing Light (135)	cs	340	340
+treekin sapling	maneuvers	0	Sweep	\N	\N	\N
+treekin sapling	physical_attacks	0	Branch rake	as	355	355
+treekin sapling	physical_attacks	1	Root lash	as	355	355
+treekin warrior	maneuvers	0	Twin Hammerfists	\N	\N	\N
+treekin warrior	maneuvers	1	Caber toss	\N	\N	\N
+treekin warrior	maneuvers	2	Grab	\N	\N	\N
+treekin warrior	maneuvers	3	Sap Spit	\N	\N	\N
+treekin warrior	physical_attacks	0	Pound	as	390	390
+treekin warrior	physical_attacks	1	Root lash	as	390	390
+treekin warrior	physical_attacks	2	Root slam	as	390	390
+treekin warrior	physical_attacks	3	Leafy fist	as	355	355
+triton assassin	maneuvers	0	Groin Kick	\N	\N	\N
+triton assassin	maneuvers	1	Cutthroat	\N	\N	\N
+triton assassin	maneuvers	2	Kick	\N	\N	\N
+triton assassin	physical_attacks	0	Longsword	\N	\N	\N
+triton assassin	physical_attacks	1	Main gauche	\N	\N	\N
+triton assassin	physical_attacks	2	Claw	as	443	443
+triton assassin	physical_attacks	3	Coral-hilted heavy ball and chain	as	433	433
+triton assassin	special_abilities	0	Ambush	\N	\N	\N
+triton assassin	special_abilities	1	Stealth	\N	\N	\N
+triton assassin	special_abilities	2	Vanish	\N	\N	\N
+triton assassin	special_abilities	3	Hurl	\N	\N	\N
+triton brawler	maneuvers	0	Crowd Press	\N	\N	\N
+triton brawler	maneuvers	1	Haymaker	\N	\N	\N
+triton brawler	maneuvers	2	Headbutt	\N	\N	\N
+triton brawler	maneuvers	3	Sucker Punch	\N	\N	\N
+triton brawler	maneuvers	4	Twin Hammerfists	\N	\N	\N
+triton brawler	maneuvers	5	Charge	\N	\N	\N
+triton brawler	maneuvers	6	Fist	\N	\N	\N
+triton brawler	maneuvers	7	Grapple	\N	\N	\N
+triton brawler	maneuvers	8	Jab	\N	\N	\N
+triton brawler	maneuvers	9	Kick	\N	\N	\N
+triton brawler	maneuvers	10	Punch	\N	\N	\N
+triton brawler	physical_attacks	0	UCS	as	\N	\N
+triton brawler	special_abilities	0	silencing strike	\N	\N	\N
+triton combatant	maneuvers	0	Charge	\N	\N	\N
+triton combatant	maneuvers	1	Disarm Weapon	\N	\N	\N
+triton combatant	maneuvers	2	Feint	\N	\N	\N
+triton combatant	maneuvers	3	Tackle	\N	\N	\N
+triton combatant	maneuvers	4	Triton's Horn	\N	\N	\N
+triton combatant	maneuvers	5	Drowning Pool	\N	\N	\N
+triton combatant	maneuvers	6	Disarm	\N	\N	\N
+triton combatant	physical_attacks	0	Claw	as	414	414
+triton combatant	physical_attacks	1	Trident	as	424	444
+triton combatant	physical_attacks	2	Seaweed-wound rusted steel hatchet	as	424	426
+triton dissembler	maneuvers	0	Fear Gaze	\N	\N	\N
+triton dissembler	maneuvers	1	Golden Nail	\N	\N	\N
+triton dissembler	offensive_spells	0	Implosion (720)	\N	\N	\N
+triton dissembler	physical_attacks	0	Empathic Assault (1110)	as	404	404
+triton dissembler	physical_attacks	1	Fine-grained deep cerulean runestaff	as	391	391
+triton dissembler	warding_spells	0	Disintegrate (705)	cs	382	409
+triton executioner	maneuvers	0	Coup de Grace	\N	\N	\N
+triton executioner	maneuvers	1	Cutthroat	\N	\N	\N
+triton executioner	maneuvers	2	Drown	\N	\N	\N
+triton executioner	maneuvers	3	Sweep	\N	\N	\N
+triton executioner	physical_attacks	0	Handaxe	as	433	451
+triton executioner	physical_attacks	1	Heavy crossbow	\N	\N	\N
+triton executioner	physical_attacks	2	longsword	as	433	453
+triton executioner	physical_attacks	3	Streaked pale driftwood bolt	as	433	453
+triton fanatic	maneuvers	0	Feint	\N	\N	\N
+triton fanatic	maneuvers	1	Lash	\N	\N	\N
+triton fanatic	maneuvers	2	Charge	\N	\N	\N
+triton fanatic	offensive_spells	0	Arm of the Arkati (1605)	\N	\N	\N
+triton fanatic	offensive_spells	1	Zealot (1617)	\N	\N	\N
+triton fanatic	offensive_spells	2	Fervor (1618)	\N	\N	\N
+triton fanatic	offensive_spells	3	Spirit Strike (117)	\N	\N	\N
+triton fanatic	physical_attacks	0	Hammer of Kai	as	423	539
+triton fanatic	special_abilities	0	Cyclone	\N	\N	\N
+triton fanatic	special_abilities	1	Mstrike	\N	\N	\N
+triton fanatic	warding_spells	0	Pious Trial (1602)	cs	430	442
+triton fanatic	warding_spells	1	Repentance (1615)	cs	430	442
+triton fanatic	warding_spells	2	Point	cs	454	454
+triton magus	maneuvers	0	Feint	\N	\N	\N
+triton magus	maneuvers	1	Spike Thorn (616)	\N	\N	\N
+triton magus	offensive_spells	0	Elemental Targeting (425)	\N	\N	\N
+triton magus	physical_attacks	0	Arrow	as	431	431
+triton magus	physical_attacks	1	Powerful lightning bolt	as	409	409
+triton magus	warding_spells	0	Nature's Fury (635)	cs	433	433
+triton radical	maneuvers	0	Bull Rush	\N	\N	\N
+triton radical	maneuvers	1	Charge	\N	\N	\N
+triton radical	maneuvers	2	Shield Charge	\N	\N	\N
+triton radical	offensive_spells	0	Heroism (215)	\N	\N	\N
+triton radical	offensive_spells	1	Spirit Strike (117)	\N	\N	\N
+triton radical	physical_attacks	0	Scaling fork	as	430	520
+triton radical	physical_attacks	1	Trident	as	430	430
+triton radical	warding_spells	0	Censure (316)	cs	415	415
+triton radical	warding_spells	1	Divine Strike (1615)	cs	424	424
+triton radical	warding_spells	2	Divine Wrath (335)	cs	403	403
+triton radical	warding_spells	3	Frenzy (216)	cs	409	409
+triton radical	warding_spells	4	Judgment (1630)	cs	409	409
+triton radical	warding_spells	5	Point	cs	421	421
+triton warden	physical_attacks	0	Longbow	\N	\N	\N
+triton warden	physical_attacks	1	Pale driftwood arrow	as	431	456
+triton warden	physical_attacks	2	Sapphire-tipped arrow	as	431	456
+triton warden	physical_attacks	3	Brackish green arrow	as	446	446
+triton warden	special_abilities	0	Sunburst (609)	\N	\N	\N
+triton warden	special_abilities	1	Tangleweed (610)	\N	\N	\N
+triton warden	special_abilities	2	Spike Thorn (616)	\N	\N	\N
+triton warden	special_abilities	3	Stealth	\N	\N	\N
+triton warden	warding_spells	0	Wild Entropy (603)	cs	448	448
+triton warlock	bolt_spells	0	Balefire (713)	as	404	429
+triton warlock	physical_attacks	0	Runestaff	as	402	427
+triton warlock	physical_attacks	1	Claw	as	417	417
+triton warlock	warding_spells	0	Disintegrate (705)	cs	402	438
+triton warlock	warding_spells	1	Mind Jolt (706)	cs	402	438
+triton warlock	warding_spells	2	Torment (718)	cs	402	438
+triton warlock	warding_spells	3	Dark Catalyst (719)	cs	402	438
+triton warlock	warding_spells	4	Claw	cs	449	449
+triton warlock	warding_spells	5	Twisted soot black runestaff	cs	399	399
+troglodyte	physical_attacks	0	Cudgel	as	68	68
+troglodyte	physical_attacks	1	Unknown	as	68	68
+troglodyte	physical_attacks	2	Closed fist	as	46	46
+troll chieftain	physical_attacks	0	Battle axe	as	216	270
+troll wraith	physical_attacks	0	Claw	as	214	215
+troll wraith	warding_spells	0	Point	cs	177	177
+tundra giant	bolt_spells	0	Major Cold (907)	as	193	193
+tundra giant	maneuvers	0	Ground Slam	\N	\N	\N
+tundra giant	physical_attacks	0	Claw (attack)	as	235	235
+tusked ursian	maneuvers	0	Charge	\N	\N	\N
+tusked ursian	maneuvers	1	Squeal	\N	\N	\N
+tusked ursian	maneuvers	2	Lash	\N	\N	\N
+tusked ursian	physical_attacks	0	Claw	as	200	260
+tusked ursian	physical_attacks	1	Charge (attack)	as	260	260
+tusked ursian	physical_attacks	2	Bite	as	260	260
+twisted being	maneuvers	0	Firebreathing	\N	\N	\N
+twisted being	maneuvers	1	Lash	\N	\N	\N
+twisted being	physical_attacks	0	Bite	as	356	396
+twisted being	physical_attacks	1	Claw	as	396	396
+undertaker bat	physical_attacks	0	Bite	as	217	242
+undertaker bat	physical_attacks	1	Claw	as	182	226
+urgh	physical_attacks	0	Impale	as	84	84
+urgh	physical_attacks	1	Tusk	as	74	74
+vaespilon	maneuvers	0	Skeletal Finger	\N	\N	\N
+vaespilon	maneuvers	1	Pounce	\N	\N	\N
+vaespilon	physical_attacks	0	Implosion (720)	\N	\N	\N
+vaespilon	physical_attacks	1	Spirit Strike (117)	\N	\N	\N
+vaespilon	physical_attacks	2	Bravery (211)	\N	\N	\N
+vaespilon	physical_attacks	3	Blackened wooden staff	as	495	495
+vapor hound	physical_attacks	0	Bite	as	192	192
+vapor hound	physical_attacks	1	Claw	as	202	202
+vapor hound	special_abilities	0	Breath attack	\N	\N	\N
+velnalin	physical_attacks	0	Bite	as	48	61
+velnalin	physical_attacks	1	Charge	as	61	71
+velnalin	physical_attacks	2	Stomp	as	61	61
+vesperti	maneuvers	0	Charge	\N	\N	\N
+vesperti	physical_attacks	0	Flail	as	229	229
+vesperti	physical_attacks	1	Whip	as	229	229
+vesperti	physical_attacks	2	Scimitar	as	229	229
+vesperti	physical_attacks	3	Blackened cutlass	as	202	202
+vesperti	special_abilities	0	Dodge	\N	\N	\N
+vesperti	warding_spells	0	Energy Maelstrom (710)	\N	\N	\N
+vesperti	warding_spells	1	Pain (711)	\N	\N	\N
+vesperti	warding_spells	2	Curse (715)	\N	\N	\N
+vesperti	warding_spells	3	Pestilence (716)	\N	\N	\N
+vesperti	warding_spells	4	Mana Drain	\N	\N	\N
+vesperti	warding_spells	5	Claw Curse	cs	206	206
+veteran reiver	physical_attacks	0	Old claidhmore	as	207	207
+veteran reiver	physical_attacks	1	Unknown	as	207	207
+vourkha	bolt_spells	0	Minor Acid (904)	as	217	217
+vourkha	bolt_spells	1	Minor Fire (906)	as	217	217
+vourkha	physical_attacks	0	Bite	as	226	252
+vourkha	physical_attacks	1	Claw	as	235	262
+vourkha	physical_attacks	2	Swoop	as	235	235
+waern	maneuvers	0	Grapple	\N	\N	\N
+waern	maneuvers	1	Lunge	\N	\N	\N
+waern	physical_attacks	0	Claw	as	257	295
+waern	physical_attacks	1	Charge	as	286	294
+wall guardian	physical_attacks	0	Military pick	as	153	153
+war griffin	maneuvers	0	Call Wind (912)	\N	\N	\N
+war griffin	maneuvers	1	Screech	\N	\N	\N
+war griffin	maneuvers	2	Wing buffet	\N	\N	\N
+war griffin	maneuvers	3	Wing swat	\N	\N	\N
+war griffin	maneuvers	4	Dive	\N	\N	\N
+war griffin	physical_attacks	0	Bite	as	465	475
+war griffin	physical_attacks	1	Claw	as	465	467
+war griffin	physical_attacks	2	Impale	as	436	436
+war griffin	physical_attacks	3	Beak	as	444	471
+war griffin	physical_attacks	4	Smash	as	443	443
+war griffin	physical_attacks	5	Swoop	as	457	475
+war troll	physical_attacks	0	Two-handed sword	\N	\N	\N
+war troll	physical_attacks	1	War hammer	as	175	175
+war troll	physical_attacks	2	Unknown	as	211	211
+war troll	special_abilities	0	Attack strength boost	\N	\N	\N
+warped tree spirit	maneuvers	0	Vine fling	\N	\N	\N
+warped tree spirit	maneuvers	1	Gesture	\N	\N	\N
+warped tree spirit	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+warped tree spirit	offensive_spells	1	Powersink (1203)	\N	\N	\N
+warped tree spirit	physical_attacks	0	Fear	\N	\N	\N
+warped tree spirit	physical_attacks	1	Pain (711)	\N	\N	\N
+warped tree spirit	physical_attacks	2	Ensnare	as	301	301
+warrior shade	maneuvers	0	Disarm Weapon	\N	\N	\N
+warrior shade	physical_attacks	0	Halberd	as	253	325
+warthog	physical_attacks	0	Charge (attack)	as	226	226
+warthog	physical_attacks	1	Impale (attack)	as	216	216
+warthog	physical_attacks	2	Charge	as	206	206
+warthog	physical_attacks	3	Tusk	as	208	208
+warthog	special_abilities	0	Charge	\N	\N	\N
+wasp nest	physical_attacks	0	Dreadful droning of their wings	as	367	367
+water elemental	maneuvers	0	Water blast	\N	\N	\N
+water elemental	maneuvers	1	Repel	\N	\N	\N
+water elemental	maneuvers	2	Ethereal Wave	\N	\N	\N
+water elemental	physical_attacks	0	Pound	as	424	424
+water elemental	physical_attacks	1	Fist	as	428	439
+water elemental	physical_attacks	2	Stream of water	as	260	310
+water hound	bolt_spells	0	Minor Water (903)	as	171	171
+water hound	physical_attacks	0	Bite	as	182	192
+water hound	physical_attacks	1	Claw	as	202	202
+water hound	physical_attacks	2	Stream of water	as	202	202
+water moccasin	physical_attacks	0	Bite	as	68	68
+water moccasin	physical_attacks	1	Unknown	as	68	68
+water witch	physical_attacks	0	Spear	as	94	94
+water witch	physical_attacks	1	Gold-edged steel jeddart-axe	as	66	66
+water wyrd	bolt_spells	0	Minor Water (903)	as	212	237
+water wyrd	maneuvers	0	Water blast	\N	\N	\N
+water wyrd	maneuvers	1	Repel	\N	\N	\N
+water wyrd	offensive_spells	0	Elemental Wave (410)	\N	\N	\N
+water wyrd	offensive_spells	1	Major Elemental Wave (435)	\N	\N	\N
+water wyrd	physical_attacks	0	Trident	as	197	197
+water wyrd	physical_attacks	1	Stream of water	as	227	227
+water wyrd	warding_spells	0	Elemental Blast (409)	cs	171	199
+werebear	physical_attacks	0	Bite	as	130	130
+werebear	physical_attacks	1	Claw	as	130	130
+werebear	physical_attacks	2	Charge (attack)	as	140	140
+wharf rat	physical_attacks	0	Bite	as	4	4
+whiptail	maneuvers	0	Web	\N	\N	\N
+whiptail	physical_attacks	0	Impale	as	65	65
+whiptail	physical_attacks	1	Pincer (attack)	as	65	65
+whiptail	physical_attacks	2	Pincer	as	65	65
+whiptail	physical_attacks	3	Tusk	as	45	65
+whiptail	special_abilities	0	Web	\N	\N	\N
+white vysan	physical_attacks	0	Ensnare	as	54	54
+white vysan	physical_attacks	1	Pound	as	44	44
+white vysan	physical_attacks	2	Fist	as	34	44
+white vysan	physical_attacks	3	Unknown	as	44	44
+wind witch	bolt_spells	0	Minor Shock (901)	as	139	139
+wind witch	bolt_spells	1	Major Shock (910)	as	139	139
+wind witch	maneuvers	0	Gas cloud	\N	\N	\N
+wind witch	maneuvers	1	Point	\N	\N	\N
+wind witch	offensive_spells	0	Call Wind (912)	\N	\N	\N
+wind witch	physical_attacks	0	Dagger	as	161	161
+wind witch	physical_attacks	1	Knife	as	161	161
+wind wraith	physical_attacks	0	Claw (attack)	as	294	294
+wind wraith	physical_attacks	1	Claw	as	300	303
+wind wraith	warding_spells	0	Claw	cs	291	291
+winged viper	bolt_spells	0	Major Cold (907)	\N	\N	\N
+winged viper	bolt_spells	1	Major Fire (908)	\N	\N	\N
+winged viper	bolt_spells	2	Major Shock (910)	\N	\N	\N
+winged viper	maneuvers	0	Spit	\N	\N	\N
+winged viper	maneuvers	1	Tongue Flick	\N	\N	\N
+winged viper	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+winged viper	offensive_spells	1	Elemental Dispel (417)	\N	\N	\N
+winged viper	offensive_spells	2	Elemental Wave (410)	\N	\N	\N
+winged viper	offensive_spells	3	Major Elemental Wave (435)	\N	\N	\N
+winged viper	offensive_spells	4	Sounds (607)	\N	\N	\N
+winged viper	physical_attacks	0	Bite	as	294	294
+winged viper	physical_attacks	1	Swoop	as	298	298
+winged viper	warding_spells	0	Elemental Strike (415)	\N	\N	\N
+winged viper	warding_spells	1	Bite	cs	274	274
+wolfshade	physical_attacks	0	Bite	as	103	133
+wolfshade	physical_attacks	1	Claw	as	133	133
+wolverine	physical_attacks	0	Bite	as	234	234
+wolverine	physical_attacks	1	Claw	as	234	234
+wood sprite	offensive_spells	0	Call Swarm (615)	\N	\N	\N
+wood sprite	offensive_spells	1	Lullabye (1005)	\N	\N	\N
+wood sprite	offensive_spells	2	Sounds (607)	\N	\N	\N
+wood sprite	offensive_spells	3	Tangleweed (610)	\N	\N	\N
+wood sprite	physical_attacks	0	Jeddart-axe	as	201	214
+wood sprite	physical_attacks	1	Spear	as	230	230
+wood sprite	physical_attacks	2	Quarterstaff	as	250	250
+wood wight	maneuvers	0	Gas cloud	\N	\N	\N
+wood wight	maneuvers	1	Gesture	\N	\N	\N
+wood wight	offensive_spells	0	Earthen Fury (917)	\N	\N	\N
+wood wight	physical_attacks	0	Claw	as	156	156
+wood wight	physical_attacks	1	Closed fist	as	166	166
+wood wight	physical_attacks	2	Pound	as	146	146
+wood wight	warding_spells	0	Mind Jolt (706)	cs	123	123
+wooly mammoth	physical_attacks	0	Foot	as	302	302
+wooly mammoth	physical_attacks	1	Impale	as	266	336
+wraith	physical_attacks	0	Broadsword	as	147	147
+wraith	physical_attacks	1	Handaxe	as	147	147
+wraith	physical_attacks	2	Short sword	as	147	147
+writhing frost-glazed vine	physical_attacks	0	Vine fling	\N	\N	\N
+writhing frost-glazed vine	physical_attacks	1	Stinger	as	217	217
+writhing icy bush	maneuvers	0	thorn fling	\N	\N	\N
+writhing icy bush	maneuvers	1	Lash	\N	\N	\N
+writhing icy bush	physical_attacks	0	small glistening thorn	as	260	260
+writhing icy bush	physical_attacks	1	Stinger (attack)	as	220	220
+writhing icy bush	physical_attacks	2	Thorn	as	230	230
+yeti	maneuvers	0	Ground Slap	\N	\N	\N
+yeti	maneuvers	1	Hurl Boulder (510)	\N	\N	\N
+yeti	maneuvers	2	Stomp	\N	\N	\N
+yeti	maneuvers	3	Ground Slam	\N	\N	\N
+yeti	physical_attacks	0	Pound	as	347	359
+yeti	physical_attacks	1	Stomp	as	289	347
+yeti	physical_attacks	2	Monstrous hairy hand	as	312	312
+young grass snake	physical_attacks	0	Bite	as	23	23
+young grass snake	physical_attacks	1	Unknown	as	23	23
+zombie	physical_attacks	0	Bite	as	202	206
+zombie	physical_attacks	1	Claw	as	202	202
+zombie rolton	physical_attacks	0	Bite	as	32	32
+zombie rolton	physical_attacks	1	Claw	as	32	32
+zombie rolton	physical_attacks	2	Unknown	as	32	32
