@@ -33,7 +33,7 @@ jackblade	.250	.175	.150	.150	.110	2	3	Slash/Crush	60/90
 javelin	.400	.300	.250	.250	.100	4	3	Puncture	17/105
 jeddart-axe	.550	.425	.425	.325	.250	7	4	Slash/Crush	60/185
 katana	.450	.325	.275	.225	.175	5	4	Slash	75/225
-katana,<br>  two-handed	.575	.425	.400	.325	.210	6	4	Slash	75/225
+katana, two-handed	.575	.425	.400	.325	.210	6	4	Slash	75/225
 katar	.325	.250	.225	.200	.175	3	3	Slash/Puncture	70/175
 knuckle-blade	.250	.150	.100	.075	.075	1	2	Slash/Crush	18/195
 knuckle-duster	.250	.175	.125	.100	.040	1	2	Crush	18/199
