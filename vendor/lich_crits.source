@@ -1,0 +1,10 @@
+# Where the critical tables come from.
+#
+# lich-5's lib/gemstone/critranks/*_critical_table.rb: every damage type's
+# table, by location and rank, with what each crit does and the message the
+# game prints. Re-run scripts/lich-crits.sh against a newer checkout to pick
+# up corrections; the TSVs are committed so a build never needs lich.
+repo=elanthia-online/lich-5
+path=lib/gemstone/critranks
+commit=9b4ed1c9845d3b82c1d75121b0fff66382a142fb
+fetched=2026-09-27
