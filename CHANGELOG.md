@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.7.0...gsiv-codex-v0.8.0) (2026-09-27)
+
+
+### New
+
+* **creatures:** how each creature fights ([#23](https://github.com/ondreian/gsiv-codex/issues/23)) ([310445d](https://github.com/ondreian/gsiv-codex/commit/310445df078e1778a742bdaba47f989aa57bba0a))
+
 ## [0.7.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.6.0...gsiv-codex-v0.7.0) (2026-09-27)
 
 
