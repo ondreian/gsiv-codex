@@ -16,10 +16,12 @@
 //! ```
 //!
 //! The uids are the measurement this repository cannot make from a map:
-//! somebody hunted there and wrote down the rooms. The rest of each file --
-//! attack tables, defences, arrival and death messaging -- is left alone,
-//! because nothing has asked a question of it yet and a column nobody queries
-//! is a column that goes stale without anybody noticing.
+//! somebody hunted there and wrote down the rooms.
+//!
+//! How it fights comes too, now that something asks: urnon prices a hunt with
+//! the game's own roll, and needs the creature's AS, DS and TD to do it
+//! (`schema/024_creature_combat.sql`). Messaging, treasure and the rest stay
+//! behind -- a column nobody queries goes stale without anybody noticing.
 //!
 //! Read with `find` and `strip_prefix` rather than a Ruby parser or a regex
 //! crate, which is what `lich_move` next door does and for the same reason:
@@ -31,8 +33,8 @@ use std::collections::BTreeMap;
 use std::fmt::Write as _;
 use std::path::Path;
 
-/// One creature, as much of it as a bounty needs.
-#[derive(Debug, Clone, PartialEq, Eq)]
+/// One creature: what a bounty needs, and how it fights.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct Creature {
     pub name: String,
     pub noun: String,
@@ -41,6 +43,119 @@ pub struct Creature {
     pub level: Option<u32>,
     /// Habitat name to the room ranges it was measured in.
     pub habitats: BTreeMap<String, Vec<(u64, u64)>>,
+    /// Everything it attacks with, in lich's six lists.
+    pub attacks: Vec<Attack>,
+    pub defense: Defense,
+    /// `(field, value)` lich wrote as prose -- `"???"`, `"250 UAF"` -- and
+    /// that this left empty rather than interpret.
+    pub unparsed: Vec<(String, String)>,
+}
+
+/// A measured range. A single value is `lo == hi`.
+pub type Span = (i64, i64);
+
+/// One entry of an attack list.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Attack {
+    /// lich's list: `physical_attacks`, `bolt_spells`, ...
+    pub kind: &'static str,
+    pub name: String,
+    /// `as` or `cs`, whichever the entry carries.
+    pub roll: Option<&'static str>,
+    pub span: Option<Span>,
+}
+
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct Defense {
+    pub max_hp: Option<i64>,
+    pub asg: Option<i64>,
+    /// lich writes a hide or shell as `"12N"`: sub-group 12, natural.
+    pub asg_natural: bool,
+    pub melee: Option<Span>,
+    pub ranged: Option<Span>,
+    pub bolt: Option<Span>,
+    pub udf: Option<Span>,
+    /// Circle abbreviation to TD.
+    pub td: BTreeMap<String, Span>,
+}
+
+/// lich's attack lists, in the order it writes them.
+const ATTACK_KINDS: [&str; 6] = [
+    "physical_attacks",
+    "bolt_spells",
+    "warding_spells",
+    "offensive_spells",
+    "maneuvers",
+    "special_abilities",
+];
+
+/// A value with its trailing comma and any `# comment` gone. A quoted value
+/// is cut at its closing quote, so a `#` inside a name survives.
+fn clean(value: &str) -> &str {
+    let v = value.trim();
+    if let Some(inner) = v.strip_prefix('"') {
+        return match inner.find('"') {
+            Some(end) => &v[..end + 2],
+            None => v,
+        };
+    }
+    let v = v.split(" #").next().unwrap_or(v).trim_end();
+    v.strip_suffix(',').unwrap_or(v).trim_end()
+}
+
+/// `N`, `(N..N)`, `(N)`, `"N"` or `nil`. `Err` is prose, for the report.
+fn span(value: &str) -> Result<Option<Span>, ()> {
+    let v = clean(value);
+    if v == "nil" {
+        return Ok(None);
+    }
+    let v = v
+        .strip_prefix('"')
+        .and_then(|v| v.strip_suffix('"'))
+        .unwrap_or(v);
+    let v = v
+        .strip_prefix('(')
+        .and_then(|v| v.strip_suffix(')'))
+        .unwrap_or(v);
+    let (lo, hi) = v.split_once("..").unwrap_or((v, v));
+    match (lo.trim().parse(), hi.trim().parse()) {
+        (Ok(lo), Ok(hi)) if hi >= lo => Ok(Some((lo, hi))),
+        _ => Err(()),
+    }
+}
+
+/// The body between `\n<indent><key>: <open>` and the line that closes it at
+/// the same indent. `None` for an absent or inline-empty (`[],`) block.
+fn block<'a>(text: &'a str, indent: &str, key: &str, open: char, close: char) -> Option<&'a str> {
+    let head = format!("\n{indent}{key}: {open}\n");
+    let start = text.find(head.as_str())? + head.len() - 1;
+    let rest = &text[start..];
+    let end = rest.find(format!("\n{indent}{close}").as_str())?;
+    Some(&rest[..end])
+}
+
+/// `key: value` lines at exactly `indent`, commented lines skipped.
+fn fields<'a>(body: &'a str, indent: &str) -> Vec<(&'a str, &'a str)> {
+    body.lines()
+        .filter_map(|line| line.strip_prefix(indent))
+        .filter(|line| !line.starts_with(' ') && !line.starts_with('#'))
+        .filter_map(|line| line.split_once(": "))
+        .collect()
+}
+
+/// The `{ ... }` entries of a list block, each as its lines.
+fn entries(list: &str) -> Vec<&str> {
+    let mut out = Vec::new();
+    let mut rest = list;
+    while let Some(open) = rest.find("\n      {") {
+        rest = &rest[open + "\n      {".len()..];
+        let Some(close) = rest.find("\n      }") else {
+            break;
+        };
+        out.push(&rest[..close]);
+        rest = &rest[close..];
+    }
+    out
 }
 
 /// What a harvest found, and what it could not read.
@@ -54,6 +169,8 @@ pub struct Harvest {
     /// knows of them and nobody has hunted there with a notebook -- but it is
     /// the burndown list, so it comes back rather than vanishing.
     pub without_habitat: Vec<String>,
+    /// `(creature, field, value)` left empty because lich wrote prose there.
+    pub unparsed: Vec<(String, String, String)>,
 }
 
 /// The text after `  <key>: ` on the one line that starts with it.
@@ -156,11 +273,89 @@ pub fn parse_one(text: &str) -> Result<Creature, String> {
         ranges.dedup();
     }
 
+    let mut unparsed = Vec::new();
+    let mut read = |field: &str, value: &str| match span(value) {
+        Ok(v) => v,
+        Err(()) => {
+            unparsed.push((field.to_string(), clean(value).to_string()));
+            None
+        }
+    };
+
+    let mut attacks = Vec::new();
+    if let Some(body) = block(text, "  ", "attack_attributes", '{', '}') {
+        for kind in ATTACK_KINDS {
+            let Some(list) = block(body, "    ", kind, '[', ']') else {
+                continue;
+            };
+            for entry in entries(list) {
+                let fs = fields(entry, "        ");
+                let Some(name) = fs
+                    .iter()
+                    .find(|(k, _)| *k == "name")
+                    .and_then(|(_, v)| unquote(clean(v)))
+                else {
+                    continue;
+                };
+                let rolled = fs.iter().find_map(|(k, v)| match *k {
+                    "as" => Some(("as", *v)),
+                    "cs" => Some(("cs", *v)),
+                    _ => None,
+                });
+                let (roll, span) = match rolled {
+                    Some((roll, v)) => (Some(roll), read(&format!("{kind}/{name}/{roll}"), v)),
+                    None => (None, None),
+                };
+                attacks.push(Attack {
+                    kind,
+                    name: name.to_string(),
+                    roll,
+                    span,
+                });
+            }
+        }
+    }
+
+    let mut defense = Defense {
+        max_hp: top_level(text, "max_hp")
+            .and_then(|v| read("max_hp", v))
+            .map(|(lo, _)| lo),
+        ..Defense::default()
+    };
+    if let Some(body) = block(text, "  ", "defense_attributes", '{', '}') {
+        for (key, value) in fields(body, "    ") {
+            match key {
+                "asg" => {
+                    let v = clean(value);
+                    let natural = v.trim_matches('"').ends_with('N');
+                    let v = v.replacen("N\"", "\"", 1);
+                    defense.asg = read(key, &v).map(|(lo, _)| lo);
+                    defense.asg_natural = natural && defense.asg.is_some();
+                }
+                "melee" => defense.melee = read(key, value),
+                "ranged" => defense.ranged = read(key, value),
+                "bolt" => defense.bolt = read(key, value),
+                "udf" => defense.udf = read(key, value),
+                td if td.ends_with("_td") => {
+                    if let Some(span) = read(key, value) {
+                        defense
+                            .td
+                            .insert(td.trim_end_matches("_td").to_string(), span);
+                    }
+                }
+                _ => {}
+            }
+        }
+    }
+
     Ok(Creature {
         name,
         noun,
         level,
         habitats,
+        attacks,
+        defense,
+        unparsed,
     })
 }
 
@@ -262,6 +457,10 @@ pub fn harvest(dir: &Path) -> Result<Harvest, Box<dyn std::error::Error>> {
         let text = std::fs::read_to_string(&path)?;
         match parse_one(&text) {
             Ok(creature) => {
+                for (field, value) in &creature.unparsed {
+                    out.unparsed
+                        .push((creature.name.clone(), field.clone(), value.clone()));
+                }
                 if creature.habitats.is_empty() {
                     out.without_habitat.push(creature.name.clone());
                 }
@@ -307,10 +506,61 @@ pub fn to_tsv(harvest: &Harvest) -> BTreeMap<&'static str, String> {
         let _ = writeln!(habitats, "{name}\t");
     }
 
+    let cell = |v: Option<i64>| v.map_or_else(|| r"\N".to_string(), |v| v.to_string());
+    let lo = |s: Option<Span>| cell(s.map(|(lo, _)| lo));
+    let hi = |s: Option<Span>| cell(s.map(|(_, hi)| hi));
+
+    // Primary-key order: creature, then kind by name, then position.
+    let mut attack_rows: Vec<(&str, &str, usize, String)> = Vec::new();
+    let mut defenses = String::new();
+    let mut tds = String::new();
+    for c in &harvest.creatures {
+        let mut ords: BTreeMap<&str, usize> = BTreeMap::new();
+        for a in &c.attacks {
+            let ord = ords.entry(a.kind).or_default();
+            let roll = a.roll.unwrap_or(r"\N");
+            attack_rows.push((
+                &c.name,
+                a.kind,
+                *ord,
+                format!("{}\t{roll}\t{}\t{}", a.name, lo(a.span), hi(a.span)),
+            ));
+            *ord += 1;
+        }
+        let d = &c.defense;
+        let _ = writeln!(
+            defenses,
+            "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            c.name,
+            cell(d.max_hp),
+            cell(d.asg),
+            u8::from(d.asg_natural),
+            lo(d.melee),
+            hi(d.melee),
+            lo(d.ranged),
+            hi(d.ranged),
+            lo(d.bolt),
+            hi(d.bolt),
+            lo(d.udf),
+            hi(d.udf),
+        );
+        for (circle, (lo, hi)) in &d.td {
+            let _ = writeln!(tds, "{}\t{circle}\t{lo}\t{hi}", c.name);
+        }
+    }
+    attack_rows.sort_by(|a, b| (a.0, a.1, a.2).cmp(&(b.0, b.1, b.2)));
+    let mut attacks = String::new();
+    for (creature, kind, ord, rest) in attack_rows {
+        let _ = writeln!(attacks, "{creature}\t{kind}\t{ord}\t{rest}");
+    }
+
     BTreeMap::from([
         ("070_creatures.tsv", creatures),
         ("071_habitats.tsv", habitats),
         ("072_creature_rooms.tsv", rooms),
+        ("073_creature_attacks.tsv", attacks),
+        ("074_creature_defenses.tsv", defenses),
+        ("075_creature_tds.tsv", tds),
     ])
 }
 
@@ -367,6 +617,118 @@ mod tests {
             c.habitats["Lower Dragonsclaw"],
             vec![(9028, 9041), (372005, 372014)]
         );
+    }
+
+    const TROLL: &str = r#"{
+  name: "ice troll",
+  noun: "troll",
+  level: 29,
+  areas: [],
+  max_hp: 235,
+  attack_attributes: {
+    physical_attacks: [
+      {
+        name: "Sword",
+        as: 228
+      },
+      {
+        name: "Freezing ball of pure cold",
+        as: (179..185)
+      },
+      {
+        name: "Lunge",
+        as: "???"
+      }
+    ],
+    bolt_spells: [],
+    warding_spells: [
+      # { name: "Frenzy (216)", cs: (438..450), effect: "anger" }
+      {
+        name: "Vertigo (1219)",
+        cs: 448
+      }
+    ],
+    maneuvers: [
+      {
+        name: "Pounce"
+      }
+    ],
+  },
+  defense_attributes: {
+    asg: "16N",
+    immunities: [],
+    melee: (152..280),
+    bolt: (134..179),
+    wiz_td: nil,
+    cle_td: 105,
+    mje_td: (104..109),
+  },
+  messaging: {
+    attacks: {
+      attack: [
+        "An ice troll swings {weapon} at you!"
+      ]
+    }
+  }
+}"#;
+
+    #[test]
+    fn reads_how_it_fights_ranges_as_ranges() {
+        let c = parse_one(TROLL).expect("parses");
+        let got: Vec<(&str, &str, Option<&str>, Option<Span>)> = c
+            .attacks
+            .iter()
+            .map(|a| (a.kind, a.name.as_str(), a.roll, a.span))
+            .collect();
+        assert_eq!(
+            got,
+            vec![
+                ("physical_attacks", "Sword", Some("as"), Some((228, 228))),
+                (
+                    "physical_attacks",
+                    "Freezing ball of pure cold",
+                    Some("as"),
+                    Some((179, 185))
+                ),
+                ("physical_attacks", "Lunge", Some("as"), None),
+                (
+                    "warding_spells",
+                    "Vertigo (1219)",
+                    Some("cs"),
+                    Some((448, 448))
+                ),
+                ("maneuvers", "Pounce", None, None),
+            ]
+        );
+        assert_eq!(c.defense.max_hp, Some(235));
+        assert_eq!(c.defense.asg, Some(16));
+        assert!(c.defense.asg_natural);
+        assert_eq!(c.defense.melee, Some((152, 280)));
+        assert_eq!(c.defense.ranged, None);
+        assert_eq!(
+            c.defense
+                .td
+                .iter()
+                .map(|(k, v)| (k.as_str(), *v))
+                .collect::<Vec<_>>(),
+            vec![("cle", (105, 105)), ("mje", (104, 109))]
+        );
+        // Prose is reported, never guessed at.
+        assert_eq!(
+            c.unparsed,
+            vec![(
+                "physical_attacks/Lunge/as".to_string(),
+                "\"???\"".to_string()
+            )]
+        );
+    }
+
+    #[test]
+    fn a_trailing_comment_does_not_hide_a_value() {
+        let text = "{\n  name: \"x\",\n  max_hp: nil,                  # base / typical max HP\n}";
+        let c = parse_one(text).expect("parses");
+        assert_eq!(c.defense.max_hp, None);
+        assert!(c.unparsed.is_empty());
     }
 
     /// The Grimswarm have no level, and the file says so with `nil`. That is a
@@ -433,12 +795,14 @@ mod tests {
                     noun: "kobold".into(),
                     level: Some(1),
                     habitats: BTreeMap::from([("Old Mine Road".into(), vec![(20002, 20018)])]),
+                    ..Default::default()
                 },
                 Creature {
                     name: "rolton".into(),
                     noun: "rolton".into(),
                     level: Some(2),
                     habitats: BTreeMap::from([("Old Mine Road".into(), vec![(20019, 20030)])]),
+                    ..Default::default()
                 },
             ],
             ..Harvest::default()
@@ -486,18 +850,21 @@ mod tests {
                     noun: "ki-lin".into(),
                     level: None,
                     habitats: BTreeMap::new(),
+                    ..Default::default()
                 },
                 Creature {
                     name: "direbear".into(),
                     noun: "direbear".into(),
                     level: Some(65),
                     habitats: BTreeMap::new(),
+                    ..Default::default()
                 },
                 Creature {
                     name: "Grimswarm".into(),
                     noun: "Grimswarm".into(),
                     level: None,
                     habitats: BTreeMap::new(),
+                    ..Default::default()
                 },
             ],
             ..Harvest::default()
@@ -574,6 +941,7 @@ mod tests {
                 noun: "orc".into(),
                 level: None,
                 habitats: BTreeMap::new(),
+                ..Default::default()
             }],
             ..Harvest::default()
         };

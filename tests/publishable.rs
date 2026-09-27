@@ -347,3 +347,30 @@ fn every_wayto_is_published_or_accounted_for() {
         &silent[..silent.len().min(8)]
     );
 }
+
+/// A hunt is priced with the creature's own numbers, so an artifact whose
+/// harvest came back empty prices every creature as harmless and unhittable.
+///
+/// A floor rather than an exact count: lich-5 adds creatures and fills in
+/// measurements, and neither should fail a release. At harvest (lich-5
+/// 9b4ed1c9) 559 of 627 creatures had an AS and 534 a melee DS; a parser that
+/// broke on one field would drop far below either.
+#[test]
+fn creatures_carry_the_numbers_a_hunt_is_priced_with() {
+    let Some(conn) = codex() else { return };
+    let count = |sql: &str| rows(&conn, sql).first().and_then(|n| n.parse::<i64>().ok());
+    let attacking = count(
+        "SELECT CAST(COUNT(DISTINCT creature) AS TEXT) FROM creature_attacks
+          WHERE roll = 'as' AND lo IS NOT NULL",
+    );
+    let defending =
+        count("SELECT CAST(COUNT(*) AS TEXT) FROM creature_defenses WHERE melee_lo IS NOT NULL");
+    assert!(
+        attacking >= Some(500),
+        "creatures with a measured AS: {attacking:?}"
+    );
+    assert!(
+        defending >= Some(500),
+        "creatures with a measured melee DS: {defending:?}"
+    );
+}

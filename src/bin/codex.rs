@@ -121,6 +121,12 @@ fn main() -> ExitCode {
                             harvest.without_habitat.join(", ")
                         );
                     }
+                    // Prose where a number belongs, left empty. Said out loud
+                    // for the same reason: it is a correction someone can make
+                    // upstream, and a harvest that guessed would hide it.
+                    for (who, field, value) in &harvest.unparsed {
+                        eprintln!("unparsed: {who}: {field} = {value}");
+                    }
                     for (who, why) in &harvest.unreadable {
                         eprintln!("unreadable: {who}: {why}");
                     }
