@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.8.0...gsiv-codex-v0.9.0) (2026-09-27)
+
+
+### New
+
+* **weapons:** what a weapon does against what armor ([#25](https://github.com/ondreian/gsiv-codex/issues/25)) ([c9acbb2](https://github.com/ondreian/gsiv-codex/commit/c9acbb2c2d99f8244e6bd74ed0daa0b0b13a77e9))
+
 ## [0.8.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.7.0...gsiv-codex-v0.8.0) (2026-09-27)
 
 
