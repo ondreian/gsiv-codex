@@ -396,3 +396,16 @@ fn every_weapon_has_an_avd_against_every_published_armor() {
     );
     assert!(short.is_empty(), "weapons without all 17 AvDs: {short:?}");
 }
+
+/// Hunt risk counts deaths by crit, so an artifact whose crit harvest came
+/// back empty -- or lost its fatal entries -- prices every hit as survivable.
+/// A floor: at harvest there were 2,394 entries across 21 tables, 326 fatal.
+#[test]
+fn every_damage_type_has_its_crits_and_some_kill() {
+    let Some(conn) = codex() else { return };
+    let count = |sql: &str| rows(&conn, sql).first().and_then(|n| n.parse::<i64>().ok());
+    let tables = count("SELECT CAST(COUNT(DISTINCT type) AS TEXT) FROM crit_ranks");
+    assert!(tables >= Some(20), "crit tables: {tables:?}");
+    let fatal = count("SELECT CAST(COUNT(*) AS TEXT) FROM crit_ranks WHERE fatal = 1");
+    assert!(fatal >= Some(300), "fatal crits: {fatal:?}");
+}
