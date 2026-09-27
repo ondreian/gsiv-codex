@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.9.0...gsiv-codex-v0.9.1) (2026-09-27)
+
+
+### Fixed
+
+* **weapons:** a line break in a wiki cell is not part of the name ([#27](https://github.com/ondreian/gsiv-codex/issues/27)) ([03dd91e](https://github.com/ondreian/gsiv-codex/commit/03dd91ecda40a801e0104b48d0010d119ecdd717))
+
 ## [0.9.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.8.0...gsiv-codex-v0.9.0) (2026-09-27)
 
 
