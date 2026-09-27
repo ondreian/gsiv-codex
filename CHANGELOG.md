@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.6.0...gsiv-codex-v0.7.0) (2026-09-27)
+
+
+### New
+
+* **armor:** what each sub-group covers ([#21](https://github.com/ondreian/gsiv-codex/issues/21)) ([31124e0](https://github.com/ondreian/gsiv-codex/commit/31124e0b20c5d878eac5404ac6f1a17f0d7dd850))
+
 ## [0.6.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.5.0...gsiv-codex-v0.6.0) (2026-09-25)
 
 
