@@ -15,7 +15,7 @@ INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('acistira stem', 'herb'
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('advguard', 'adventurers_guild', 'exact', 'guard');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('advguard2', 'adventurers_guild', 'exact', 'guard');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('advguard3', 'adventurers_guild', 'exact', 'guard');
-INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('advguild', 'adventurers_guild', 'exact', '');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('advguild', 'adventurers_guild', 'exact', 'taskmaster');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('advpickup', 'adventurers_guild', 'exact', 'pickup');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('agave heart', 'herb', 'exact', 'agave_heart');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('alchemist', 'alchemist', 'exact', '');
