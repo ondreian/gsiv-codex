@@ -1,0 +1,73 @@
+arrows/bolts	.200	.100	.080	.100	.040	5	4	Puncture/Slash	20/40
+awl-pike	.600	.550	.575	.450	.350	9	4	Puncture/Crush	60/160
+backsword	.440	.310	.225	.240	.150	5	4	Slash/Puncture/Crush	75/160
+ball and chain	.400	.300	.230	.260	.180	6	4	Crush	75/175
+bastard sword	.450	.325	.275	.250	.180	6	4	Slash/Crush	75/200
+bastard sword, two-handed	.550	.400	.375	.300	.225	6	4	Slash/Crush	75/200
+battle axe	.650	.475	.500	.375	.275	8	4	Slash/Crush	70/155
+blackjack	.250	.140	.090	.110	.075	1	2	Crush	50/80
+bola	.200	.150	.100	.110	.060	5	3	Crush	12/75
+broadsword	.450	.300	.250	.225	.200	5	4	Slash/Puncture/Crush	75/160
+cestus	.250	.175	.150	.075	.035	1	2	Crush	50/80
+claidhmore, new-style	.625	.475	.500	.350	.225	8	4	Slash/Crush	75/200
+claidhmore, old-style	.625	.500	.500	.350	.275	8	4	Slash/Crush	75/200
+closed fist	.100	.075	.040	.036	.032	1	2	Crush	N/A
+composite bow	.350	.300	.325	.275	.150	6	3	Puncture/Slash	50/225
+crowbill	.350	.250	.200	.150	.125	3	3	Puncture/Crush	65/250
+cudgel	.350	.275	.200	.225	.150	4	4	Crush	8/130
+dagger	.250	.200	.100	.125	.075	1	2	Slash/Puncture	18/195
+dart	.125	.100	.075	.055	.050	2	3	Puncture	10/85
+discus	.250	.225	.150	.175	.050	5	3	Crush	60/195
+estoc	.425	.300	.200	.200	.150	4	4	Slash/Puncture	65/160
+falchion	.450	.325	.250	.250	.175	5	4	Slash/Crush	75/160
+fist-scythe	.350	.225	.200	.175	.125	3	3	Slash/Puncture/Crush	70/185
+flail	.575	.425	.400	.350	.250	7	4	Puncture/Crush	60/150
+flamberge	.600	.450	.475	.325	.225	7	4	Slash/Crush	70/190
+halberd	.550	.400	.400	.300	.200	6	4	Slash/Puncture/Crush	25/150
+hammer of kai	.550	.425	.450	.350	.250	7	4	Puncture/Crush	50/190
+hand crossbow	.275	.225	.250	.190	.135	4	4	Puncture/Slash	50/285
+handaxe	.420	.300	.270	.240	.210	5	4	Slash/Crush	70/160
+heavy crossbow	.425	.325	.375	.285	.175	7	5	Puncture/Slash	60/315
+hook-knife	.250	.175	.125	.070	.035	1	2	Slash/Puncture	30/100
+jackblade	.250	.175	.150	.150	.110	2	3	Slash/Crush	60/90
+javelin	.400	.300	.250	.250	.100	4	3	Puncture	17/105
+jeddart-axe	.550	.425	.425	.325	.250	7	4	Slash/Crush	60/185
+katana	.450	.325	.275	.225	.175	5	4	Slash	75/225
+katana,<br>  two-handed	.575	.425	.400	.325	.210	6	4	Slash	75/225
+katar	.325	.250	.225	.200	.175	3	3	Slash/Puncture	70/175
+knuckle-blade	.250	.150	.100	.075	.075	1	2	Slash/Crush	18/195
+knuckle-duster	.250	.175	.125	.100	.040	1	2	Crush	18/199
+lance	.725	.525	.550	.475	.350	9	4	Puncture/Crush	17/105
+leather whip	.275	.150	.090	.100	.035	2	3	Crush	10/75
+light crossbow	.350	.300	.325	.275	.150	6	4	Puncture/Slash	50/285
+long bow	.400	.325	.350	.300	.175	7	3	Puncture/Slash	60/315
+longsword	.425	.275	.225	.200	.175	4	4	Slash/Puncture/Crush	65/160
+mace	.400	.300	.225	.250	.175	4	4	Crush	65/250
+main gauche	.275	.210	.110	.125	.075	2	3	Slash/Puncture	18/190
+maul	.550	.425	.425	.375	.300	7	4	Crush	60/145
+military pick	.500	.375	.425	.375	.260	7	4	Puncture/Crush	60/150
+morning star	.425	.325	.275	.300	.225	5	4	Crush/Puncture	65/250
+naginata	.550	.400	.400	.300	.200	6	4	Slash/Puncture/Crush	25/150
+net	.050	.050	.030	.040	.010	7	3	Unbalance	45/160
+paingrip	.225	.200	.125	.075	.030	1	2	Slash/Puncture/Crush	50/80
+pilum	.350	.250	.225	.175	.060	3	3	Slash/Puncture	50/150
+quarterstaff	.450	.350	.325	.175	.100	3	3	Crush	20/140
+quoit	.250	.225	.150	.100	.050	5	3	Slash	60/155
+rapier	.325	.225	.125	.125	.075	2	3	Slash/Puncture	30/100
+razorpaw	.275	.200	.125	.050	.030	1	2	Slash	40/80
+runestaff	.250	.200	.150	.150	.075	6	4	Crush	20/270
+sai	.250	.200	.110	.150	.040	2	3	Puncture	25/175
+scimitar	.375	.260	.210	.200	.165	4	4	Slash/Puncture/Crush	60/150
+short bow	.325	.225	.275	.250	.100	5	3	Puncture/Slash	35/180
+short sword	.350	.240	.200	.150	.125	3	3	Slash/Puncture/Crush	70/185
+spear, one-handed	.425	.325	.250	.250	.160	5	4	Slash/Puncture	15/130
+spear, two-handed	.550	.385	.340	.325	.230	6	4	Slash/Puncture	15/130
+tiger-claw	.275	.200	.150	.100	.035	1	2	Slash, Crush	18/165
+trident, one-handed	.425	.350	.260	.230	.150	5	4	Slash/Puncture	70/190
+trident, two-handed	.600	.425	.375	.300	.185	6	4	Slash/Puncture	70/190
+troll-claw	.325	.175	.140	.120	.090	2	3	Slash/Crush	60/185
+two-handed sword	.625	.500	.500	.350	.275	8	4	Slash/Crush	75/200
+war hammer	.410	.290	.250	.275	.200	4	4	Puncture/Crush	60/155
+war mattock	.550	.450	.425	.375	.275	7	4	Crush	60/145
+whip-blade	.333	.225	.125	.115	.065	2	3	Slash	30/100
+yierka-spur	.250	.150	.125	.125	.075	1	2	Slash/Puncture/Crush	18/185
