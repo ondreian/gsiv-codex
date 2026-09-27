@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.9.1...gsiv-codex-v0.10.0) (2026-09-27)
+
+
+### New
+
+* **crits:** what a critical hit does ([#29](https://github.com/ondreian/gsiv-codex/issues/29)) ([676e6b8](https://github.com/ondreian/gsiv-codex/commit/676e6b8767552c07b37afb6e54bbce9d0dfb81cc))
+
 ## [0.9.1](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.9.0...gsiv-codex-v0.9.1) (2026-09-27)
 
 
