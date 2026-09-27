@@ -53,7 +53,10 @@ def raw(titles):
 def plain(cell):
     """`[[Slash critical table|Slash]]` -> `Slash`; bold and whitespace gone."""
     cell = re.sub(r"\[\[(?:[^|\]]*\|)?([^\]]*)\]\]", r"\1", cell)
-    return cell.replace("'''", "").strip()
+    # A line break in a cell is layout, not part of the name:
+    # `katana,<br> two-handed` is the katana held in two hands.
+    cell = re.sub(r"<br\s*/?>", " ", cell, flags=re.I)
+    return " ".join(cell.replace("'''", "").split())
 
 def number(cell):
     cell = plain(cell)
