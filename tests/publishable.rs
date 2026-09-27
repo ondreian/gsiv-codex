@@ -365,6 +365,12 @@ fn creatures_carry_the_numbers_a_hunt_is_priced_with() {
     );
     let defending =
         count("SELECT CAST(COUNT(*) AS TEXT) FROM creature_defenses WHERE melee_lo IS NOT NULL");
-    assert!(attacking >= Some(500), "creatures with a measured AS: {attacking:?}");
-    assert!(defending >= Some(500), "creatures with a measured melee DS: {defending:?}");
+    assert!(
+        attacking >= Some(500),
+        "creatures with a measured AS: {attacking:?}"
+    );
+    assert!(
+        defending >= Some(500),
+        "creatures with a measured melee DS: {defending:?}"
+    );
 }

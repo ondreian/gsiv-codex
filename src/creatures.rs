@@ -109,8 +109,14 @@ fn span(value: &str) -> Result<Option<Span>, ()> {
     if v == "nil" {
         return Ok(None);
     }
-    let v = v.strip_prefix('"').and_then(|v| v.strip_suffix('"')).unwrap_or(v);
-    let v = v.strip_prefix('(').and_then(|v| v.strip_suffix(')')).unwrap_or(v);
+    let v = v
+        .strip_prefix('"')
+        .and_then(|v| v.strip_suffix('"'))
+        .unwrap_or(v);
+    let v = v
+        .strip_prefix('(')
+        .and_then(|v| v.strip_suffix(')'))
+        .unwrap_or(v);
     let (lo, hi) = v.split_once("..").unwrap_or((v, v));
     match (lo.trim().parse(), hi.trim().parse()) {
         (Ok(lo), Ok(hi)) if hi >= lo => Ok(Some((lo, hi))),
@@ -143,7 +149,9 @@ fn entries(list: &str) -> Vec<&str> {
     let mut rest = list;
     while let Some(open) = rest.find("\n      {") {
         rest = &rest[open + "\n      {".len()..];
-        let Some(close) = rest.find("\n      }") else { break };
+        let Some(close) = rest.find("\n      }") else {
+            break;
+        };
         out.push(&rest[..close]);
         rest = &rest[close..];
     }
@@ -309,7 +317,9 @@ pub fn parse_one(text: &str) -> Result<Creature, String> {
     }
 
     let mut defense = Defense {
-        max_hp: top_level(text, "max_hp").and_then(|v| read("max_hp", v)).map(|(lo, _)| lo),
+        max_hp: top_level(text, "max_hp")
+            .and_then(|v| read("max_hp", v))
+            .map(|(lo, _)| lo),
         ..Defense::default()
     };
     if let Some(body) = block(text, "  ", "defense_attributes", '{', '}') {
@@ -328,7 +338,9 @@ pub fn parse_one(text: &str) -> Result<Creature, String> {
                 "udf" => defense.udf = read(key, value),
                 td if td.ends_with("_td") => {
                     if let Some(span) = read(key, value) {
-                        defense.td.insert(td.trim_end_matches("_td").to_string(), span);
+                        defense
+                            .td
+                            .insert(td.trim_end_matches("_td").to_string(), span);
                     }
                 }
                 _ => {}
@@ -672,9 +684,19 @@ mod tests {
             got,
             vec![
                 ("physical_attacks", "Sword", Some("as"), Some((228, 228))),
-                ("physical_attacks", "Freezing ball of pure cold", Some("as"), Some((179, 185))),
+                (
+                    "physical_attacks",
+                    "Freezing ball of pure cold",
+                    Some("as"),
+                    Some((179, 185))
+                ),
                 ("physical_attacks", "Lunge", Some("as"), None),
-                ("warding_spells", "Vertigo (1219)", Some("cs"), Some((448, 448))),
+                (
+                    "warding_spells",
+                    "Vertigo (1219)",
+                    Some("cs"),
+                    Some((448, 448))
+                ),
                 ("maneuvers", "Pounce", None, None),
             ]
         );
@@ -684,13 +706,20 @@ mod tests {
         assert_eq!(c.defense.melee, Some((152, 280)));
         assert_eq!(c.defense.ranged, None);
         assert_eq!(
-            c.defense.td.iter().map(|(k, v)| (k.as_str(), *v)).collect::<Vec<_>>(),
+            c.defense
+                .td
+                .iter()
+                .map(|(k, v)| (k.as_str(), *v))
+                .collect::<Vec<_>>(),
             vec![("cle", (105, 105)), ("mje", (104, 109))]
         );
         // Prose is reported, never guessed at.
         assert_eq!(
             c.unparsed,
-            vec![("physical_attacks/Lunge/as".to_string(), "\"???\"".to_string())]
+            vec![(
+                "physical_attacks/Lunge/as".to_string(),
+                "\"???\"".to_string()
+            )]
         );
     }
 
