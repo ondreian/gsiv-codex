@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.10.0...gsiv-codex-v0.11.0) (2026-09-27)
+
+
+### New
+
+* **vocabulary:** advguild is the guild's taskmaster ([#31](https://github.com/ondreian/gsiv-codex/issues/31)) ([f806d75](https://github.com/ondreian/gsiv-codex/commit/f806d755cec4e6eaa8df89961610d5efe1802c8d))
+
 ## [0.10.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.9.1...gsiv-codex-v0.10.0) (2026-09-27)
 
 
