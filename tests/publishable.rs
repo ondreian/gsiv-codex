@@ -374,3 +374,25 @@ fn creatures_carry_the_numbers_a_hunt_is_priced_with() {
         "creatures with a measured melee DS: {defending:?}"
     );
 }
+
+/// A blow is priced with its AvD against the armor it lands on, so an
+/// artifact whose AvD harvest came back empty prices every swing as if armor
+/// did not matter.
+///
+/// A floor, not a count: the wiki adds weapons. At harvest there were 73
+/// weapons and 24 bolt spells, each across the 17 published sub-groups.
+#[test]
+fn every_weapon_has_an_avd_against_every_published_armor() {
+    let Some(conn) = codex() else { return };
+    let count = |sql: &str| rows(&conn, sql).first().and_then(|n| n.parse::<i64>().ok());
+    let weapons = count("SELECT CAST(COUNT(*) AS TEXT) FROM weapons");
+    assert!(weapons >= Some(60), "weapons: {weapons:?}");
+    let short = rows(
+        &conn,
+        "SELECT w.name FROM weapons w
+          WHERE (SELECT COUNT(*) FROM attack_avd a
+                  WHERE a.attack = w.name AND a.kind = 'weapon' AND a.avd IS NOT NULL) <> 17
+          ORDER BY w.name",
+    );
+    assert!(short.is_empty(), "weapons without all 17 AvDs: {short:?}");
+}
