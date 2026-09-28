@@ -8,6 +8,7 @@ INSERT INTO facet_types(type, class, description) VALUES ('alchemist', 'poi', 'a
 INSERT INTO facet_types(type, class, description) VALUES ('bank', 'poi', 'currency exchange / bank teller');
 INSERT INTO facet_types(type, class, description) VALUES ('forge', 'poi', 'smithy / forge');
 INSERT INTO facet_types(type, class, description) VALUES ('furrier', 'poi', 'skins and pelts buyer');
+INSERT INTO facet_types(type, class, description) VALUES ('herbalist', 'poi', 'herb buyer (herb bounties are turned in here)');
 INSERT INTO facet_types(type, class, description) VALUES ('gem_dealer', 'poi', 'gem buyer');
 INSERT INTO facet_types(type, class, description) VALUES ('guild_task', 'poi', 'a guild-system task location (detail = <prof>:<object>)');
 INSERT INTO facet_types(type, class, description) VALUES ('herb', 'resource', 'foraging source (detail = species)');
