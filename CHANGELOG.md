@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.12.0...gsiv-codex-v0.13.0) (2026-09-28)
+
+
+### New
+
+* **vocabulary:** pay the Landing west gate's fee -- a give-silver remedy ([#35](https://github.com/ondreian/gsiv-codex/issues/35)) ([7c6eaf0](https://github.com/ondreian/gsiv-codex/commit/7c6eaf04d89ac8ab956b1af51f4fd66008b3ef67))
+
 ## [0.12.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.11.0...gsiv-codex-v0.12.0) (2026-09-28)
 
 
