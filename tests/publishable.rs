@@ -27,7 +27,11 @@ fn codex() -> Option<Connection> {
         eprintln!("no codex at {}; skipping", path.display());
         return None;
     }
-    gsiv_codex::schema::open(&path).ok()
+    // Read-only. Locally this is the codex a person is running, and opening
+    // it through `schema::open` migrated it: a test run once upgraded an
+    // installed 0.12.0 to schema 27 under a live daemon, leaving its stamp
+    // saying 26 (2026-09-28). A test reads; it never writes.
+    Connection::open_with_flags(&path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY).ok()
 }
 
 fn rows(conn: &Connection, sql: &str) -> Vec<String> {

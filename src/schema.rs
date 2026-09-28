@@ -90,6 +90,10 @@ const MIGRATIONS: &[(&str, &str)] = &[
         "026_crit_ranks",
         include_str!("../schema/026_crit_ranks.sql"),
     ),
+    (
+        "027_give_silver",
+        include_str!("../schema/027_give_silver.sql"),
+    ),
 ];
 
 /// How many migrations this build knows.
@@ -133,7 +137,8 @@ pub fn open(path: impl AsRef<std::path::Path>) -> rusqlite::Result<Connection> {
     Ok(conn)
 }
 
-/// Open an existing database without migrating it.
+/// Open an existing database without switching its journal mode. It is
+/// still migrated forward -- this writes to the file.
 pub fn open_any(path: impl AsRef<std::path::Path>) -> rusqlite::Result<Connection> {
     let conn = Connection::open(path)?;
     conn.execute_batch("PRAGMA foreign_keys = ON;")?;
