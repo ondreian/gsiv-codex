@@ -229,6 +229,8 @@ INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('fresh oregano', 'herb'
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('frostflower', 'herb', 'exact', 'frostflower');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('frostweed', 'herb', 'exact', 'frostweed');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('furrier', 'furrier', 'exact', '');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('herbalist', 'herbalist', 'exact', '');
+INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('herbalist2', 'herbalist', 'exact', '');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('fuzzy peach', 'herb', 'exact', 'fuzzy_peach');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('garlic', 'herb', 'exact', 'garlic');
 INSERT INTO tag_map(pattern, type, mode, detail) VALUES ('gemshop', 'gem_dealer', 'exact', '');
