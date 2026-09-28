@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.11.0...gsiv-codex-v0.12.0) (2026-09-28)
+
+
+### New
+
+* **vocabulary:** the herbalist, where herb bounties are turned in ([#33](https://github.com/ondreian/gsiv-codex/issues/33)) ([edf8fe6](https://github.com/ondreian/gsiv-codex/commit/edf8fe61b5c1bdf4a6b30d444d7d2ab8d745bd0b))
+
 ## [0.11.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.10.0...gsiv-codex-v0.11.0) (2026-09-27)
 
 
