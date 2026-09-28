@@ -123,3 +123,4 @@ way-is-closed	(?:appears|seems) to be closed\.$
 way-is-closed	^You cannot quite manage to squeeze between the stone doors\.$
 wrong-door	^You (?:take a few steps toward|trudge up to|limp towards|march up to|sashay gracefully up to|skip happily towards|sneak up to|stumble toward) a rusty doorknob
 rifted	^Suddenly you feel sick and queasy, and your world seems blurry and indistinct\.
+entrance-fee	^The town guard steps in front of you and says, "Excuse me, [^,]+, there's an entrance fee to use this gate\.  Five silvers please\."$
