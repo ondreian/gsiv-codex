@@ -364,30 +364,6 @@ fn a_remedy_that_takes_no_argument_carries_none() {
     assert_eq!(bad, 0);
 }
 
-/// `give-silver` pays someone: its detail is `payee:amount`, a lowercase noun
-/// and a whole number of silver -- the client builds `give <payee> <amount>`,
-/// so the data can name who and how much but never write a command.
-#[test]
-fn a_payment_names_a_payee_and_an_amount() {
-    let conn = failures();
-    let details: Vec<String> = conn
-        .prepare("SELECT detail FROM failure_remedies WHERE remedy = 'give-silver'")
-        .unwrap()
-        .query_map([], |r| r.get(0))
-        .unwrap()
-        .map(Result::unwrap)
-        .collect();
-    assert!(!details.is_empty(), "the west gate fee is paid somewhere");
-    for d in details {
-        let (payee, amount) = d.split_once(':').unwrap_or_else(|| panic!("{d:?}"));
-        assert!(
-            !payee.is_empty() && payee.chars().all(|c| c.is_ascii_lowercase() || c == '-'),
-            "{d:?}"
-        );
-        assert!(amount.parse::<u32>().is_ok_and(|n| n > 0), "{d:?}");
-    }
-}
-
 /// Remedies are performed in order, so a gap means one silently never runs.
 #[test]
 fn remedies_are_numbered_without_gaps() {
@@ -431,12 +407,12 @@ fn the_whole_of_lichs_move_is_here() {
         ),
         124
     );
-    // 40 from Lich and the Rift, plus the Landing west gate's fee (027).
-    assert_eq!(count(&conn, "SELECT count(*) FROM failure_remedies"), 41);
+    assert_eq!(count(&conn, "SELECT count(*) FROM failure_remedies"), 40);
 
     // One of each of the three verdicts that are not `retry`, because each is
     // a different instruction to a router and losing one is invisible.
-    for (disposition, n) in [("edge-wrong", 1), ("unavailable", 2), ("arrived", 1)] {
+    // `unavailable` is Lich's two plus the Landing west gate's unpaid fee.
+    for (disposition, n) in [("edge-wrong", 1), ("unavailable", 3), ("arrived", 1)] {
         let got = count(
             &conn,
             &format!("SELECT count(*) FROM failure_classes WHERE disposition = '{disposition}'"),

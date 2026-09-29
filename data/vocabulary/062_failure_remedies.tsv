@@ -38,4 +38,3 @@ type-ahead-refused	0	sleep	1000
 wait-n-seconds	0	wait-rt	
 way-is-closed	0	open-the-way	
 wrong-door	0	rewrite	door>second door
-entrance-fee	0	give-silver	guard:5
