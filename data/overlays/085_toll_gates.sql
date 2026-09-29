@@ -31,3 +31,9 @@ INSERT OR IGNORE INTO condition_terms(condition_id, grp, seq, subject, key, op, 
 
 INSERT OR REPLACE INTO edge_costs(from_uid, to_uid, command, resource, amount, waived_by) VALUES
   (9010, 7006, 'go gate', 'silver', 5.0, 'is-citizen:wehnimers-landing');
+
+-- Paid before the move: the prelude `pay-the-west-gate` (vocabulary 045) gives
+-- the guard five silver ahead of `go gate`. Found 2026-09-28: without it a
+-- walker sent `go gate` into the guard nine times with ten silver in hand.
+INSERT OR IGNORE INTO edge_preludes(from_uid, to_uid, command, prelude_id) VALUES
+  (9010, 7006, 'go gate', 'pay-the-west-gate');

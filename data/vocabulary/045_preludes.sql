@@ -74,3 +74,22 @@ INSERT INTO prelude_steps(prelude_id, seq, command, expect) VALUES
   ('widen-the-fissure', 2, 'push fissure', ''),
   ('widen-the-fissure', 3, 'push fissure', ''),
   ('widen-the-fissure', 4, 'push fissure', 'A wide fissure cannot be opened any farther');
+
+-- The Landing's west gate charges non-citizens five silver on the way in
+-- (overlay 085). The guard asks for it after `go gate`; paying first,
+-- `give guard 5` (Benjamin, 2026-09-28), lets the move through. When the guard
+-- is on break at the pub there is no toll, and the give finds nobody -- which
+-- costs nothing -- so the step expects no reply. Citizens pass free and are
+-- never asked, so they are not made to pay.
+INSERT INTO conditions(id, description) VALUES
+  ('not-citizen:wehnimers-landing',
+   'the character is not a citizen of Wehnimer''s Landing (or has not been probed)');
+INSERT INTO condition_terms(condition_id, grp, seq, subject, key, op, value) VALUES
+  ('not-citizen:wehnimers-landing', 0, 0, 'stat', 'citizenship', 'ne', 'Wehnimer''s Landing');
+
+INSERT INTO preludes(id, description, condition_id) VALUES
+  ('pay-the-west-gate',
+   'Wehnimer''s Landing west gate: five silver to the guard before going in. No guard (on break), no toll; the give then finds nobody and costs nothing.',
+   'not-citizen:wehnimers-landing');
+INSERT INTO prelude_steps(prelude_id, seq, command, expect) VALUES
+  ('pay-the-west-gate', 0, 'give guard 5', '');
