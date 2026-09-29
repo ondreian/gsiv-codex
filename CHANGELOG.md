@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.1](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.13.0...gsiv-codex-v0.13.1) (2026-09-29)
+
+
+### Fixed
+
+* **vocabulary:** the Landing west gate's fee is a prelude, not a remedy ([#37](https://github.com/ondreian/gsiv-codex/issues/37)) ([dd6fff5](https://github.com/ondreian/gsiv-codex/commit/dd6fff5397fe9e5507673f67f862e908cfb6d4c3))
+
 ## [0.13.0](https://github.com/ondreian/gsiv-codex/compare/gsiv-codex-v0.12.0...gsiv-codex-v0.13.0) (2026-09-28)
 
 
